@@ -1,8 +1,10 @@
-//          Copyright Odin Holmes 2016.
+//          Copyright Chiel Douwes 2017.
 // Distributed under the Boost Software License, Version 1.0.
 //    (See accompanying file LICENSE.md or copy at
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
+
+#include <cstddef>
 
 #include "../types/list.hpp"
 
@@ -10,15 +12,20 @@ namespace kvasir {
 	namespace mpl {
 
 		template<typename List>
-		struct sort_impl;
+		struct size_impl;
 
 
 		/// kvasir::mpl::list implementation
 		template<typename ...Ts>
-		struct sort_impl<mpl::list<Ts...>> {}; // TODO
+		struct size_impl<mpl::list<Ts...>> {
+		constexpr operator std::size_t() const {
+			return sizeof...(Ts);
+		}
+	};
 
+		/// get the size of a list, the returned type is convertible to some unspecified int type
 		template<typename List>
-		using sort = typename sort_impl<List>::f;
+		using size = typename size_impl<List>::f;
 
 	}
 }
