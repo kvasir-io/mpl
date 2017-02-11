@@ -7,8 +7,7 @@
 namespace kvasir {
 	namespace mpl {
 
-		template<typename T>
+		template <typename T>
 		using identity = T;
-
 	}
 }

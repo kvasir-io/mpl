@@ -11,8 +11,7 @@ namespace kvasir {
 
 		/// filter elements from a list
 		/// takes a lambda that should return a type convertible to bool
-		template<template<typename> class Cond, typename List>
+		template <template <typename> class Cond, typename List>
 		using any = contains_impl<Cond, List>;
-
 	}
 }

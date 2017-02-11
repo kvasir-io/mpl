@@ -9,16 +9,14 @@
 namespace kvasir {
 	namespace mpl {
 
-		template<typename List>
+		template <typename List>
 		struct sort_impl;
 
-
 		/// kvasir::mpl::list implementation
-		template<typename ...Ts>
+		template <typename... Ts>
 		struct sort_impl<mpl::list<Ts...>> {}; // TODO
 
-		template<typename List>
+		template <typename List>
 		using sort = typename sort_impl<List>::f;
-
 	}
 }

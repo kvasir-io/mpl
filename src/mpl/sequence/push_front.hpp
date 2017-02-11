@@ -9,19 +9,17 @@
 namespace kvasir {
 	namespace mpl {
 
-			template<typename Elem, typename List>
+		template <typename Elem, typename List>
 		struct push_front_impl;
 
-
 		/// kvasir::mpl::list implementation
-		template<typename Elem, typename ...Ts>
+		template <typename Elem, typename... Ts>
 		struct push_front_impl<Elem, mpl::list<Ts...>> {
-		using f = mpl::list<Elem, Ts...>;
-	};
+			using f = mpl::list<Elem, Ts...>;
+		};
 
 		/// push an element to the back of a list
-		template<typename Elem, typename List>
+		template <typename Elem, typename List>
 		using push_front = typename push_front_impl<Elem, List>::f;
-
 	}
 }

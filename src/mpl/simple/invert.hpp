@@ -9,17 +9,15 @@ namespace kvasir {
 
 		namespace detail {
 
-			template<bool val>
+			template <bool val>
 			struct invert_impl {
 				constexpr operator bool() const {
 					return !val;
 				}
 			};
-
 		}
 
-		template<typename B>
+		template <typename B>
 		using invert = detail::invert_impl<B{}>;
-
 	}
 }
