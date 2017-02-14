@@ -12,5 +12,19 @@ namespace kvasir {
 				return val;
 			}
 		};
+
+		template<typename T>
+		struct is_integral {
+			constexpr operator bool() const {
+				return false;
+			}
+		};
+
+		template<typename T, T val>
+		struct is_integral<integral_constant<T, val>> {
+			constexpr operator bool() const {
+				return true;
+			}
+		};
 	}
 }
