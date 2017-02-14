@@ -4,4 +4,4 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
-#include "../../src/mpl/algorithm/remove_if.hpp"
+#include "../../src/kvasir/mpl/algorithm/remove_if.hpp"

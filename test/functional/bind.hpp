@@ -4,4 +4,4 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
-#include "../../src/mpl/functional/bind.hpp"
+#include "../../src/kvasir/mpl/functional/bind.hpp"
