@@ -18,11 +18,20 @@
 #include "algorithm/sort.hpp"
 #include "algorithm/transform.hpp"
 
+#include "functional/bind.hpp"
+#include "functional/compose.hpp"
+#include "functional/identity.hpp"
+
 #include "sequence/append.hpp"
 #include "sequence/at.hpp"
 #include "sequence/join.hpp"
+#include "sequence/pop_front.hpp"
 #include "sequence/push_back.hpp"
 #include "sequence/push_front.hpp"
 
+#include "types/integral_constant.hpp"
 #include "types/list.hpp"
 #include "types/nothing.hpp"
+
+#include "utility/always.hpp"
+#include "utility/invert.hpp"
