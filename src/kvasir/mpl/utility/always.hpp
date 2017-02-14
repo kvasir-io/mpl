@@ -9,14 +9,13 @@
 namespace kvasir {
 	namespace mpl {
 
-		template<typename T>
+		template <typename T>
 		struct always {
-			template<typename ...>
+			template <typename...>
 			using f = T;
 		};
 
-		template<typename T>
+		template <typename T>
 		using always_false = bool_constant<false>;
-
 	}
 }

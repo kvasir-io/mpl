@@ -9,10 +9,10 @@
 namespace kvasir {
 	namespace mpl {
 		namespace impl {
-			template<typename List>
+			template <typename List>
 			struct pop_front_impl;
 
-			template<typename T, typename ...Ts>
+			template <typename T, typename... Ts>
 			struct pop_front_impl<mpl::list<T, Ts...>> {
 				struct f {
 					using front = T;

@@ -12,7 +12,7 @@ namespace kvasir {
 		/// be either extracted from the type, or to be processed and used at a later stage.
 		/// It is however possible to add parameters to the function before execution, so that
 		/// they will be prepended to the function arguments when it is called.
-		template <template <typename...> class Func, typename ...Args>
+		template <template <typename...> class Func, typename... Args>
 		struct bind {
 			template <typename... Ts>
 			using f = Func<Args..., Ts...>;
