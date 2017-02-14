@@ -6,9 +6,10 @@
 
 #include <type_traits>
 #include "../../src/kvasir/mpl/algorithm/find_if.hpp"
-#include "../../src/kvasir/mpl/types/list.hpp"
+#include "../../src/kvasir/mpl/functional/bind.hpp"
 
 using namespace kvasir::mpl;
-static_assert(std::is_same<find_if<bind<std::is_same, char>::f, list<void, char, short, int>>,
-                           list<char, short, int>>,
-              "");
+static_assert(
+        std::is_same<find_if<bind<std::is_same, char>::template f, list<void, char, short, int>>,
+                     list<char, short, int>>{},
+        "");

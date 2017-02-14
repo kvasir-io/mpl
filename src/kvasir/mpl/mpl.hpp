@@ -29,6 +29,7 @@
 #include "sequence/push_back.hpp"
 #include "sequence/push_front.hpp"
 
+#include "types/int.hpp"
 #include "types/integral_constant.hpp"
 #include "types/list.hpp"
 #include "types/nothing.hpp"
