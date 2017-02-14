@@ -4,7 +4,7 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
-#include "../types/integral_constant.hpp"
+#include "../types/bool.hpp"
 
 namespace kvasir {
 	namespace mpl {
@@ -16,6 +16,6 @@ namespace kvasir {
 		};
 
 		template <typename T>
-		using always_false = bool_constant<false>;
+		using always_false = bool_<false>;
 	}
 }
