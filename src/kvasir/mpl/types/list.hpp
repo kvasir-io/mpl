@@ -9,8 +9,8 @@ namespace kvasir {
 		template <typename... Ts>
 		struct list {};
 
-		template<typename ...Ts>
-		list<Ts...> make_list(Ts ...) {
+		template <typename... Ts>
+		list<Ts...> make_list(Ts...) {
 			return {};
 		}
 	}

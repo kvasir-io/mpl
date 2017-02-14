@@ -9,18 +9,18 @@
 namespace kvasir {
 	namespace mpl {
 		namespace impl {
-			template<template<typename...> class Type, typename T>
+			template <template <typename...> class Type, typename T>
 			struct is_instance_impl {
 				using f = bool_<false>;
 			};
 
-			template<template<typename...> class Type, typename ...Ts>
+			template <template <typename...> class Type, typename... Ts>
 			struct is_instance_impl<Type, Type<Ts...>> {
 				using f = bool_<true>;
 			};
 		}
 
-		template<template<typename...> class Type, typename T>
+		template <template <typename...> class Type, typename T>
 		using is_instance = typename impl::is_instance_impl<Type, T>::f;
 	}
 }

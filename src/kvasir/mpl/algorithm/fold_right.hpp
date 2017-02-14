@@ -5,28 +5,41 @@
 #pragma once
 
 #include "../types/list.hpp"
+#include "../sequence/pop_front.hpp"
+#include "../sequence/size.hpp"
 
 namespace kvasir {
 	namespace mpl {
 		namespace impl {
-			template <template <typename, typename> class Func, typename State, typename List>
-			struct fold_right_impl;
+			namespace generic {
+				template <bool empty>
+				struct fold_right;
 
-			/// kvasir::mpl::list implementation
-			template <template <typename, typename> class Func, typename State, typename T,
-			          typename... Ts>
-			struct fold_right_impl<Func, State, mpl::list<T, Ts...>> {
-				using f = typename fold_right_impl<Func, Func<State, T>, mpl::list<Ts...>>::f;
-			};
+				template <>
+				struct fold_right<false> {
+					template <template <typename...> class Func, typename State, typename List>
+					using f = typename fold_right<size_impl<List>{} == 1>::template f<
+					        Func, Func<State, typename pop_front_impl<List>::front>,
+					        typename pop_front_impl<List>::rest>;
+				};
 
-			template <template <typename, typename> class Func, typename State>
-			struct fold_right_impl<Func, State, mpl::list<>> {
-				using f = State;
+				template <>
+				struct fold_right<true> {
+					template <template <typename...> class Func, typename State, typename List>
+					using f = State;
+				};
+			}
+
+			template <typename List>
+			struct fold_right_impl {
+				template <template <typename...> class Func, typename State>
+				using f = typename generic::fold_right<size_impl<List>{} == 0>::template f<Func,
+				                                                                           State>;
 			};
 		}
 
 		/// fold right over a list, initialized with State
-		template <template <typename, typename> class Func, typename State, typename List>
-		using fold_right = typename impl::fold_right_impl<Func, State, List>::f;
+		template <template <typename...> class Func, typename State, typename List>
+		using fold_right = typename impl::fold_right_impl<List>::template f<Func, State>;
 	}
 }

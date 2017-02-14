@@ -4,13 +4,14 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
-#include "../types/list.hpp"
 #include "../sequence/push_back.hpp"
+#include "../sequence/create.hpp"
+#include "../algorithm/fold_left.hpp"
 
 namespace kvasir {
 	namespace mpl {
 		namespace impl {
-			namespace list {
+			namespace generic {
 				template <bool cond>
 				struct push_if;
 				template <>
@@ -23,27 +24,16 @@ namespace kvasir {
 					template <typename Elem, typename List>
 					using f = List;
 				};
-
-				template <template <typename...> class Cond, typename Result, typename... Ts>
-				struct remove_if_impl {
-					using f = Result;
-				};
-
-				template <template <typename...> class Cond, typename Result, typename T,
-				          typename... Ts>
-				struct remove_if_impl<Cond, Result, T, Ts...> {
-					using f = typename remove_if_impl<
-					        Cond, typename push_if<Cond<T>{}>::template f<T, Result>, Ts...>::f;
-				};
 			}
 
 			template <template <typename...> class Cond, typename List>
-			struct remove_if_impl;
+			struct remove_if_impl {
+				template <typename Result, typename Elem>
+				using cond_add_pred =
+				        typename generic::push_if<Cond<Elem>{}>::template f<Elem, Result>;
 
-			/// kvasir::mpl::list implementation
-			template <template <typename...> class Cond, typename... Ts>
-			struct remove_if_impl<Cond, mpl::list<Ts...>> {
-				using f = typename list::remove_if_impl<Cond, mpl::list<>, Ts...>::f;
+				using f = typename fold_left_impl<List>::template f<cond_add_pred,
+				                                                    typename create_impl<List>::f>;
 			};
 		}
 

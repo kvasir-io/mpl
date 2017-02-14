@@ -6,38 +6,39 @@
 
 #include "../types/list.hpp"
 #include "../sequence/push_back.hpp"
+#include "../sequence/create.hpp"
 
 namespace kvasir {
 	namespace mpl {
 		namespace impl {
-			namespace list {
+			namespace generic {
 				template <unsigned N>
 				struct partition_impl {
-					template <typename Result, typename T, typename... Ts>
-					using f = typename partition_impl<N - 1>::template f<push_back_impl<T, Result>,
-					                                                     Ts...>;
+					template <typename Result, typename List>
+					using f = typename partition_impl<N - 1>::template f<
+					        push_back_impl<typename pop_front_impl<List>::front, Result>,
+					        typename pop_front_impl<List>::rest>;
 				};
 
 				template <>
 				struct partition_impl<0> {
-					template <typename Result, typename... Ts>
-					using f = mpl::list<Result, mpl::list<Ts...>>;
+					template <typename Result, typename List>
+					struct f {
+						using front = Result;
+						using rest  = List;
+					};
 				};
 			}
 
 			template <unsigned N, typename List>
-			struct partition_impl;
-
-			/// kvasir::mpl::list implementation
-			template <unsigned N, typename... Ts>
-			struct partition_impl<N, mpl::list<Ts...>> {
-				using f = typename list::partition_impl<N>::template f<mpl::list<>, Ts...>;
+			struct partition_impl {
+				using f = typename generic::partition_impl<N>::template f<
+				        typename create_impl<List>::f, List>;
 			};
 		}
 
 		/// partition a list by a certain number of elements
-		/// returns a pair with the first element being the front part, and the second element
-		/// being the back
+		/// returns a struct that is like the struct in pop_front
 		template <unsigned N, typename List>
 		using partition = typename impl::partition_impl<N, List>::f;
 	}

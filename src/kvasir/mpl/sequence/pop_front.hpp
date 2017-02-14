@@ -14,17 +14,15 @@ namespace kvasir {
 
 			template <typename T, typename... Ts>
 			struct pop_front_impl<mpl::list<T, Ts...>> {
-				struct f {
-					using front = T;
-					using rest  = mpl::list<Ts...>;
-				};
+				using front = T;
+				using rest  = mpl::list<Ts...>;
 			};
 		}
 
 		/// pop a single element from the front of a list
-		/// returns a pair of the first element and the rest of the list, with ::first and ::rest
+		/// returns a pair of the first element and the rest of the list, with ::front and ::rest
 		/// respectively
 		template <typename List>
-		using pop_front = typename impl::pop_front_impl<List>::f;
+		using pop_front = impl::pop_front_impl<List>;
 	}
 }

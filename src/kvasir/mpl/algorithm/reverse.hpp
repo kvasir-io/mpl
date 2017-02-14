@@ -6,30 +6,17 @@
 
 #include "../types/list.hpp"
 #include "../sequence/push_front.hpp"
+#include "../sequence/pop_front.hpp"
 
 namespace kvasir {
 	namespace mpl {
 		namespace impl {
-			namespace list {
-				template <typename List, typename... Ts>
-				struct reverse_impl {
-					using f = List;
-				};
-
-				template <typename List, typename T, typename... Ts>
-				struct reverse_impl<List, T, Ts...> {
-					// use push_front_impl since this is internal code
-					using f = reverse_impl<typename push_front_impl<T, List>::f, Ts...>;
-				};
-			}
-
 			template <typename List>
-			struct reverse_impl;
-
-			/// kvasir::mpl::list implementation
-			template <typename... Ts>
-			struct reverse_impl<mpl::list<Ts...>> {
-				using f = typename list::reverse_impl<mpl::list<>, Ts...>::f;
+			struct reverse_impl {
+				template <typename Result, typename Elem>
+				using push_front_pred = typename push_front_impl<Elem, Result>::f;
+				using f               = typename fold_left_impl<List>::template f<push_front_pred,
+				                                                    typename create_impl<List>::f>;
 			};
 		}
 
