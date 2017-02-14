@@ -8,5 +8,10 @@ namespace kvasir {
 	namespace mpl {
 		template <typename... Ts>
 		struct list {};
+
+		template<typename ...Ts>
+		list<Ts...> make_list(Ts ...) {
+			return {};
+		}
 	}
 }
