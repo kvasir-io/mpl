@@ -19,6 +19,6 @@ namespace kvasir {
 
 		/// takes any list and creates an empty list of the same type
 		template <typename List>
-		using create = impl::create_impl<List>::f;
+		using create = typename impl::create_impl<List>::f;
 	}
 }
