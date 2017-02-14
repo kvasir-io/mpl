@@ -21,6 +21,6 @@ namespace kvasir {
 
 		/// push an element to the back of a list
 		template <typename Elem, typename List>
-		using push_front = typename push_front_impl<Elem, List>::f;
+		using push_front = typename impl::push_front_impl<Elem, List>::f;
 	}
 }

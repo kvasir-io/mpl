@@ -7,7 +7,7 @@
 #include "remove_if.hpp"
 #include "../sequence/size.hpp"
 #include "../functional/compose.hpp"
-#include "../simple/invert.hpp"
+#include "../utility/invert.hpp"
 
 namespace kvasir {
 	namespace mpl {
@@ -22,6 +22,6 @@ namespace kvasir {
 		/// filter elements from a list
 		/// takes a lambda that should return a type convertible to bool
 		template <template <typename> class Cond, typename List>
-		using count_if = typename count_if_impl<Cond, List>::f;
+		using count_if = typename impl::count_if_impl<Cond, List>::f;
 	}
 }

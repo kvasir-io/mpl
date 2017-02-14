@@ -16,6 +16,6 @@ namespace kvasir {
 		}
 
 		template <typename B>
-		using invert = detail::invert_impl<B{}>;
+		using invert = impl::invert_impl<B{}>;
 	}
 }

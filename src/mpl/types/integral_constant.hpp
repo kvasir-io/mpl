@@ -8,7 +8,7 @@ namespace kvasir {
 	namespace mpl {
 		template <typename T, T val>
 		struct integral_constant {
-			constexpr operator T() {
+			constexpr operator T() const {
 				return val;
 			}
 		};

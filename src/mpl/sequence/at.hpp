@@ -30,6 +30,6 @@ namespace kvasir {
 
 		/// get the n-th element of the list
 		template <unsigned N, typename List>
-		using at = typename at_impl<N, List>::f;
+		using at = typename impl::at_impl<N, List>::f;
 	}
 }

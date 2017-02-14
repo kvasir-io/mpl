@@ -27,6 +27,6 @@ namespace kvasir {
 
 		/// fold left over a list, initialized with State
 		template <template <typename, typename> class Func, typename State, typename List>
-		using fold_left = typename fold_left_impl<Func, State, List>::f;
+		using fold_left = typename impl::fold_left_impl<Func, State, List>::f;
 	}
 }

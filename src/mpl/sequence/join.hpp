@@ -30,6 +30,6 @@ namespace kvasir {
 		/// join two or more lists together
 		/// when there is only one list input the result is that list
 		template <typename List, typename... Lists>
-		using join = typename join_impl<List, Lists...>::f;
+		using join = typename impl::join_impl<List, Lists...>::f;
 	}
 }

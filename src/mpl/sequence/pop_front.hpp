@@ -24,7 +24,7 @@ namespace kvasir {
 		/// pop a single element from the front of a list
 		/// returns a pair of the first element and the rest of the list, with ::first and ::rest
 		/// respectively
-		template <typename list>
+		template <typename List>
 		using pop_front = typename impl::pop_front_impl<List>::f;
 	}
 }

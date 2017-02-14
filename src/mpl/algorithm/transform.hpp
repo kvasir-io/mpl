@@ -21,6 +21,6 @@ namespace kvasir {
 
 		/// transform each element in a list with a function
 		template <template <typename> class F, typename List>
-		using transform = typename transform_impl<F, List>::f;
+		using transform = typename impl::transform_impl<F, List>::f;
 	}
 }

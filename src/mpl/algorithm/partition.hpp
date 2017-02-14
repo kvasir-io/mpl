@@ -34,7 +34,7 @@ namespace kvasir {
 			/// kvasir::mpl::list implementation
 			template<unsigned N, typename... Ts>
 			struct partition_impl<N, mpl::list<Ts...>> {
-				using f = typename detail::partition_impl<N>::template f<mpl::list<>, Ts...>;
+				using f = typename list::partition_impl<N>::template f<mpl::list<>, Ts...>;
 			};
 		}
 
@@ -42,6 +42,6 @@ namespace kvasir {
 		/// returns a pair with the first element being the front part, and the second element
 		/// being the back
 		template <unsigned N, typename List>
-		using partition = typename partition_impl<N, List>::f;
+		using partition = typename impl::partition_impl<N, List>::f;
 	}
 }

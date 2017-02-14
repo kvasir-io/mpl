@@ -25,6 +25,6 @@ namespace kvasir {
 
 		/// get the size of a list, the returned type is convertible to some unspecified int type
 		template <typename List>
-		using size = typename size_impl<List>::f;
+		using size = typename impl::size_impl<List>::f;
 	}
 }

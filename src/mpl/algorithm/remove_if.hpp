@@ -42,13 +42,13 @@ namespace kvasir {
 			/// kvasir::mpl::list implementation
 			template<template<typename> class Cond, typename... Ts>
 			struct remove_if_impl<Cond, mpl::list<Ts...>> {
-				using f = typename detail::remove_if_impl<Cond, mpl::list<>, Ts...>::f;
+				using f = typename list::remove_if_impl<Cond, mpl::list<>, Ts...>::f;
 			};
 		}
 
 		/// filter elements from a list
 		/// takes a lambda that should return a type convertible to bool
 		template <template <typename> class Cond, typename List>
-		using remove_if = typename remove_if_impl<Cond, List>::f;
+		using remove_if = typename impl::remove_if_impl<Cond, List>::f;
 	}
 }

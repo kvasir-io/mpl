@@ -30,6 +30,6 @@ namespace kvasir {
 		}
 
 		template <template <typename...> class F, template <typename> class... Fs>
-		using compose = typename compose_n_impl<Fs...>::template f<F>;
+		using compose = typename impl::compose_n_impl<Fs...>::template f<F>;
 	}
 }

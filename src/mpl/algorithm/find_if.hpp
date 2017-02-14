@@ -50,6 +50,6 @@ namespace kvasir {
 
 		/// fold left over a list, initialized with State
 		template <template <typename> class Cond, typename List>
-		using find_if = typename detail::find_if_impl<Cond, List>::f;
+		using find_if = typename impl::find_if_impl<Cond, List>::f;
 	}
 }

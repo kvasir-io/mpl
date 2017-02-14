@@ -29,11 +29,11 @@ namespace kvasir {
 			/// kvasir::mpl::list implementation
 			template <typename... Ts>
 			struct reverse_impl<mpl::list<Ts...>> {
-				using f = typename detail::reverse_impl<mpl::list<>, Ts...>::f;
+				using f = typename list::reverse_impl<mpl::list<>, Ts...>::f;
 			};
 		}
 
 		template <typename List>
-		using reverse = typename reverse_impl<List>::f;
+		using reverse = typename impl::reverse_impl<List>::f;
 	}
 }
