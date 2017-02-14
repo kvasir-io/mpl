@@ -23,6 +23,7 @@
 
 #include "sequence/append.hpp"
 #include "sequence/at.hpp"
+#include "sequence/create.hpp"
 #include "sequence/join.hpp"
 #include "sequence/pop_front.hpp"
 #include "sequence/push_back.hpp"
