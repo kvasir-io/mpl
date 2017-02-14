@@ -9,18 +9,18 @@
 namespace kvasir {
 	namespace mpl {
 		namespace impl {
-			template <template <typename> class F, typename List>
+			template <template <typename...> class F, typename List>
 			struct transform_impl;
 
 			/// kvasir::mpl::list implementation
-			template <template <typename> class F, typename... Ts>
+			template <template <typename...> class F, typename... Ts>
 			struct transform_impl<F, mpl::list<Ts...>> {
 				using f = mpl::list<F<Ts>...>;
 			};
 		}
 
 		/// transform each element in a list with a function
-		template <template <typename> class F, typename List>
+		template <template <typename...> class F, typename List>
 		using transform = typename impl::transform_impl<F, List>::f;
 	}
 }

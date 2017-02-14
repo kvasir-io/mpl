@@ -13,7 +13,7 @@ namespace kvasir {
 	namespace mpl {
 		namespace impl {
 			/// generic implementation for any list type
-			template <template <typename> class Cond, typename List>
+			template <template <typename...> class Cond, typename List>
 			struct all_impl {
 				constexpr operator bool() const {
 					return size_impl<remove_if_impl<Cond, List>>{} == 0;
@@ -23,7 +23,7 @@ namespace kvasir {
 
 		/// filter elements from a list
 		/// takes a lambda that should return a type convertible to bool
-		template <template <typename> class Cond, typename List>
+		template <template <typename...> class Cond, typename List>
 		using all = impl::all_impl<Cond, List>;
 	}
 }

@@ -13,7 +13,7 @@ namespace kvasir {
 	namespace mpl {
 		namespace impl {
 			/// generic implementation for any list type
-			template <template <typename> class Cond, typename List>
+			template <template <typename...> class Cond, typename List>
 			struct count_if_impl {
 				using f = size_impl<remove_if_impl<compose<Cond, invert>::template f, List>>;
 			};
@@ -21,7 +21,7 @@ namespace kvasir {
 
 		/// filter elements from a list
 		/// takes a lambda that should return a type convertible to bool
-		template <template <typename> class Cond, typename List>
+		template <template <typename...> class Cond, typename List>
 		using count_if = typename impl::count_if_impl<Cond, List>::f;
 	}
 }
