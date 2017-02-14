@@ -37,3 +37,4 @@
 
 #include "utility/always.hpp"
 #include "utility/invert.hpp"
+#include "utility/is_instance.hpp"

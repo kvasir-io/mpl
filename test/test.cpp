@@ -36,6 +36,7 @@
 
 #include "utility/always.hpp"
 #include "utility/invert.hpp"
+#include "utility/is_instance.hpp"
 
 int main() {
 	// for now, if everything compiles it's fine
