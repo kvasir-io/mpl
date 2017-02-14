@@ -15,10 +15,5 @@ namespace kvasir {
 
 		template <bool val>
 		using bool_constant = integral_constant<bool, val>;
-
-		template <typename T>
-		constexpr auto make_integral(const T &&val) -> integral_constant<T, val> {
-			return {};
-		}
 	}
 }
