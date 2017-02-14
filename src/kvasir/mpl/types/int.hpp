@@ -8,12 +8,10 @@
 
 namespace kvasir {
 	namespace mpl {
-
-		template<unsigned long long value>
+		template <unsigned long long value>
 		using uint_ = integral_constant<unsigned long long, value>;
 
-		template<long long value>
+		template <long long value>
 		using int_ = integral_constant<long long, value>;
-
 	}
 }
