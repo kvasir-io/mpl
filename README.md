@@ -1,4 +1,9 @@
-# MPL
+# Kvasir::mpl
+This toolchain is part of the Kvasir project.
+Kvasir is a collection of zero cost statically checked libraries for resource constrained systems including microcontrollers.
+More information at kvasir.io.
+
+## Introduction
 This repository contains the template metaprogramming library used in Kvasir.
 Having Kvasir as the only dependency (at least initially) allows us to experiment more freely with
 improvements in the metaprogramming field. This library is not intended to be used by the end user
