@@ -5,12 +5,19 @@
 #pragma once
 
 #include "../types/list.hpp"
+#include "../sequence/push_back.hpp"
+#include "../sequence/create.hpp"
 
 namespace kvasir {
 	namespace mpl {
 		namespace impl {
 			template <template <typename...> class F, typename List>
-			struct transform_impl;
+			struct transform_impl {
+				template <typename Result, typename Elem>
+				using transform_pred = typename push_back_impl<F<Elem>, Result>::f;
+				using f              = typename fold_left_impl<List>::template f<transform_pred,
+				                                                    typename create_impl<List>::f>;
+			};
 
 			/// kvasir::mpl::list implementation
 			template <template <typename...> class F, typename... Ts>
