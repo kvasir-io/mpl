@@ -10,7 +10,10 @@ namespace kvasir {
 	namespace mpl {
 		namespace impl {
 			template <typename Elem, typename List>
-			struct push_back_impl;
+			struct push_back_impl {
+				// invalid lists get ignored
+				using f = Elem;
+			};
 
 			/// kvasir::mpl::list implementation
 			template <typename Elem, typename... Ts>

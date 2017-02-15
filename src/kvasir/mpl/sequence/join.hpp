@@ -10,7 +10,7 @@ namespace kvasir {
 	namespace mpl {
 		namespace impl {
 			template <typename... Lists>
-			struct join_impl;
+			struct join_impl {};
 
 			// do not create a zero list case, as the result will be undefined
 

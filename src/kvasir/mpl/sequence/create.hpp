@@ -8,12 +8,15 @@ namespace kvasir {
 	namespace mpl {
 		namespace impl {
 			template <typename List>
-			struct create_impl;
+			struct create_impl {
+				// catch cases that are not actually a list
+				using f = List;
+			};
 
-			/// default implementation for flat lists
-			template <template <typename...> class ListT, typename... Ts>
-			struct create_impl<ListT<Ts...>> {
-				using f = ListT<>;
+			/// kvasir::mpl::list implementation
+			template <typename... Ts>
+			struct create_impl<mpl::list<Ts...>> {
+				using f = mpl::list<>;
 			};
 		}
 

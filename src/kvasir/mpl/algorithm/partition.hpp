@@ -6,6 +6,7 @@
 
 #include "../types/list.hpp"
 #include "../sequence/push_back.hpp"
+#include "../sequence/pop_front.hpp"
 #include "../sequence/create.hpp"
 
 namespace kvasir {

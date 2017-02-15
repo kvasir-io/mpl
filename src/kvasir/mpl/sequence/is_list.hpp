@@ -9,18 +9,18 @@
 namespace kvasir {
 	namespace mpl {
 		namespace impl {
-			template<typename Elem>
+			template <typename Elem>
 			struct is_list {
 				using f = bool_<false>;
 			};
 
-			template<typename ...Ts>
+			template <typename... Ts>
 			struct is_list<mpl::list<Ts...>> {
 				using f = bool_<true>;
 			};
 		}
 
-		template<typename Elem>
+		template <typename Elem>
 		using is_list = typename impl::is_list<Elem>::f;
 	}
 }

@@ -5,17 +5,27 @@
 #pragma once
 
 #include "../types/list.hpp"
+#include "../types/nothing.hpp"
 
 namespace kvasir {
 	namespace mpl {
 		namespace impl {
 			template <typename List>
-			struct pop_front_impl;
+			struct pop_front_impl {
+				using front = List;
+				using rest  = nothing;
+			};
 
 			template <typename T, typename... Ts>
 			struct pop_front_impl<mpl::list<T, Ts...>> {
 				using front = T;
 				using rest  = mpl::list<Ts...>;
+			};
+
+			template <>
+			struct pop_front_impl<mpl::list<>> {
+				using front = nothing;
+				using rest  = nothing;
 			};
 		}
 
