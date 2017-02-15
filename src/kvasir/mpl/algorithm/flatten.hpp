@@ -15,6 +15,10 @@ namespace kvasir {
 				template <bool list>
 				struct flatten;
 
+				template <typename Result, typename Elem>
+				using flatten_func =
+				typename flatten<impl::is_list<Elem>{}>::template f<Elem, Result>;
+
 				template <>
 				struct flatten<true> {
 					// the passed element is a list
@@ -28,10 +32,6 @@ namespace kvasir {
 					template <typename Elem, typename Result>
 					using f = typename push_back_impl<Elem, Result>::f;
 				};
-
-				template <typename Result, typename Elem>
-				using flatten_func =
-				        typename flatten<impl::is_list<Elem>{}>::template f<Elem, Result>;
 			}
 
 			template <typename Elem, typename Result>

@@ -5,6 +5,7 @@
 #pragma once
 
 #include "../types/list.hpp"
+#include "../types/bool.hpp"
 
 namespace kvasir {
 	namespace mpl {
