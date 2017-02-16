@@ -1,5 +1,8 @@
 # MPL
-This repository contains the template metaprogramming library used in Kvasir. Having Kvasir as the only dependency (at least initially) allows us to experiment more freely with improvements in the metaprogramming field. This library is not internded to be used by the end user but serves more as a foundation for those developing the library and drivers.
+This repository contains the template metaprogramming library used in Kvasir.
+Having Kvasir as the only dependency (at least initially) allows us to experiment more freely with
+improvements in the metaprogramming field. This library is not intended to be used by the end user
+but serves more as a foundation for those developing the library and drivers.
 
 A short list of key design decisions: 
 - compile time speed above all else (especially for large lists)
