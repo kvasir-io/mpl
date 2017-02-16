@@ -6,9 +6,7 @@
 
 namespace kvasir {
 	namespace mpl {
-
-		namespace detail {
-
+		namespace impl {
 			template <bool val>
 			struct invert_impl {
 				constexpr operator bool() const {

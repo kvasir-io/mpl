@@ -9,31 +9,34 @@
 
 namespace kvasir {
 	namespace mpl {
+		namespace impl {
+			namespace list {
+				template<unsigned N>
+				struct partition_impl {
+					template<typename Result, typename T,
+					         typename... Ts> using f = typename partition_impl<N - 1>::template f<
+						push_back_impl < T,
+						Result>,
+					Ts...>;
+				};
 
-		namespace detail {
+				template<>
+				struct partition_impl<0> {
+					template<typename Result, typename... Ts> using f = mpl::list<
+						Result,
+						mpl::list<Ts...>>;
+				};
+			}
 
-			template <unsigned N>
-			struct partition_impl {
-				template <typename Result, typename T, typename... Ts>
-				using f = typename partition_impl<N - 1>::template f<push_back_impl<T, Result>,
-				                                                     Ts...>;
-			};
+			template<unsigned N, typename List>
+			struct partition_impl;
 
-			template <>
-			struct partition_impl<0> {
-				template <typename Result, typename... Ts>
-				using f = mpl::list<Result, mpl::list<Ts...>>;
+			/// kvasir::mpl::list implementation
+			template<unsigned N, typename... Ts>
+			struct partition_impl<N, mpl::list<Ts...>> {
+				using f = typename detail::partition_impl<N>::template f<mpl::list<>, Ts...>;
 			};
 		}
-
-		template <unsigned N, typename List>
-		struct partition_impl;
-
-		/// kvasir::mpl::list implementation
-		template <unsigned N, typename... Ts>
-		struct partition_impl<N, mpl::list<Ts...>> {
-			using f = typename detail::partition_impl<N>::template f<mpl::list<>, Ts...>;
-		};
 
 		/// partition a list by a certain number of elements
 		/// returns a pair with the first element being the front part, and the second element

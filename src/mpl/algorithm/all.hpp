@@ -11,18 +11,19 @@
 
 namespace kvasir {
 	namespace mpl {
-
-		/// generic implementation for any list type
-		template <template <typename> class Cond, typename List>
-		struct all_impl {
-			constexpr operator bool() const {
-				return size_impl<remove_if_impl<Cond, List>>{} == 0;
-			}
+		namespace impl {
+			/// generic implementation for any list type
+			template <template <typename> class Cond, typename List>
+			struct all_impl {
+				constexpr operator bool() const {
+					return size_impl<remove_if_impl<Cond, List>>{} == 0;
+				}
+			};
 		};
 
 		/// filter elements from a list
 		/// takes a lambda that should return a type convertible to bool
 		template <template <typename> class Cond, typename List>
-		using all = all_impl<Cond, List>;
+		using all = detail::all_impl<Cond, List>;
 	}
 }

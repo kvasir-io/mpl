@@ -8,24 +8,25 @@
 
 namespace kvasir {
 	namespace mpl {
+		namespace impl {
+			template <unsigned N, typename List>
+			struct at_impl;
 
-		template <unsigned N, typename List>
-		struct at_impl;
+			/// kvasir::mpl::list implementation
+			template <unsigned N, typename T, typename... Ts>
+			struct at_impl<N, mpl::list<T, Ts...>> {
+				using f = typename at_impl<N - 1, mpl::list<Ts...>>::f;
+			};
 
-		/// kvasir::mpl::list implementation
-		template <unsigned N, typename T, typename... Ts>
-		struct at_impl<N, mpl::list<T, Ts...>> {
-			using f = typename at_impl<N - 1, mpl::list<Ts...>>::f;
-		};
+			template <typename T, typename... Ts>
+			struct at_impl<0, mpl::list<T, Ts...>> {
+				using f = T;
+			};
 
-		template <typename T, typename... Ts>
-		struct at_impl<0, mpl::list<T, Ts...>> {
-			using f = T;
-		};
-
-		/// past the end of the list; result is undefined
-		template <unsigned N>
-		struct at_impl<N, mpl::list<>>;
+			/// past the end of the list; result is undefined
+			template <unsigned N>
+			struct at_impl<N, mpl::list<>>;
+		}
 
 		/// get the n-th element of the list
 		template <unsigned N, typename List>

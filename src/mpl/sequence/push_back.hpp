@@ -8,15 +8,16 @@
 
 namespace kvasir {
 	namespace mpl {
+		namespace impl {
+			template <typename Elem, typename List>
+			struct push_back_impl;
 
-		template <typename Elem, typename List>
-		struct push_back_impl;
-
-		/// kvasir::mpl::list implementation
-		template <typename Elem, typename... Ts>
-		struct push_back_impl<Elem, mpl::list<Ts...>> {
-			using f = mpl::list<Ts..., Elem>;
-		};
+			/// kvasir::mpl::list implementation
+			template <typename Elem, typename... Ts>
+			struct push_back_impl<Elem, mpl::list<Ts...>> {
+				using f = mpl::list<Ts..., Elem>;
+			};
+		}
 
 		/// push an element to the back of a list
 		template <typename Elem, typename List>

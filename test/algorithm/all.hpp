@@ -5,3 +5,5 @@
 #pragma once
 
 #include "../../src/mpl/algorithm/all.hpp"
+
+static_assert(kvasir::mpl:);

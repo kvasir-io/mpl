@@ -8,21 +8,22 @@
 
 namespace kvasir {
 	namespace mpl {
+		namespace impl {
+			template <template <typename, typename> class Func, typename State, typename List>
+			struct fold_left_impl;
 
-		template <template <typename, typename> class Func, typename State, typename List>
-		struct fold_left_impl;
+			/// kvasir::mpl::list implementation
+			template <template <typename, typename> class Func, typename State, typename T,
+			          typename... Ts>
+			struct fold_left_impl<Func, State, mpl::list<T, Ts...>> {
+				using f = Func<typename fold_left_impl<Func, State, Ts...>::f, T>;
+			};
 
-		/// kvasir::mpl::list implementation
-		template <template <typename, typename> class Func, typename State, typename T,
-		          typename... Ts>
-		struct fold_left_impl<Func, State, mpl::list<T, Ts...>> {
-			using f = Func<typename fold_left_impl<Func, State, Ts...>::f, T>;
-		};
-
-		template <template <typename, typename> class Func, typename State>
-		struct fold_left_impl<Func, State, mpl::list<>> {
-			using f = State;
-		};
+			template <template <typename, typename> class Func, typename State>
+			struct fold_left_impl<Func, State, mpl::list<>> {
+				using f = State;
+			};
+		}
 
 		/// fold left over a list, initialized with State
 		template <template <typename, typename> class Func, typename State, typename List>
