@@ -4,7 +4,6 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
-#include "../types/list.hpp"
 #include "../types/nothing.hpp"
 #include "../algorithm/fold_left.hpp"
 #include "../sequence/create.hpp"
