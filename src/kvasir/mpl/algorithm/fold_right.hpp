@@ -39,20 +39,20 @@ namespace kvasir {
 				                                                                             State>;
 			};
 
-#if __cpp_fold_expressions
+#if __cpp_fold_expressions | __cplusplus >= 201406
 			namespace list {
-				template<template<typename...> class Func, typename T>
+				template <template <typename...> class Func, typename T>
 				struct folder {
-					template<typename State>
-					constexpr auto operator>>=(State&&) -> Func<State, T> {
+					template <typename State>
+					constexpr auto operator>>=(State &&) -> Func<State, T> {
 						return {};
 					}
 				};
 			}
 
-			template<typename ...Ts>
+			template <typename... Ts>
 			struct fold_left_impl<mpl::list<Ts...>> {
-				template<template<typename...> class Func, typename State>
+				template <template <typename...> class Func, typename State>
 				using f = decltype(folder<Func, Ts>{} >>= ... >>= std::declval<State>{});
 			};
 #endif

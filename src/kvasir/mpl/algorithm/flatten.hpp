@@ -17,7 +17,7 @@ namespace kvasir {
 
 				template <typename Result, typename Elem>
 				using flatten_func =
-				typename flatten<impl::is_list<Elem>{}>::template f<Elem, Result>;
+				        typename flatten<impl::is_list<Elem>{}>::template f<Elem, Result>;
 
 				template <>
 				struct flatten<true> {

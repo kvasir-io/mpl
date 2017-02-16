@@ -20,7 +20,7 @@ namespace kvasir {
 				template <>
 				struct fold_left<false> {
 					template <template <typename...> class Func, typename State, typename List>
-					using f = typename fold_left<size_impl<List>{} == 1>::template f<
+					using f = typename fold_left<(size_impl<List>{} == 1)>::template f<
 					        Func, Func<State, typename pop_front_impl<List>::front>,
 					        typename pop_front_impl<List>::rest>;
 				};
@@ -35,17 +35,18 @@ namespace kvasir {
 			template <typename List>
 			struct fold_left_impl { // TODO change to using is_empty
 				template <template <typename...> class Func, typename State>
-				using f = typename generic::fold_left<size_impl<List>{} == 0>::template f<Func,
-				                                                                          State>;
+				using f = typename generic::fold_left<(size_impl<List>{} ==
+				                                       0)>::template f<Func, State, List>;
 			};
 
-#if __cpp_fold_expressions
+#if __cpp_fold_expressions | __cplusplus >= 201406
 			namespace list {
-				template<template<typename...> class Func, typename State>
+				template <template <typename...> class Func, typename State>
 				struct fold_monad {
-				// not really a monad because the foldee does not contain the function but whatever
-					template<typename T>
-					constexpr auto operator>>=(folder<T>&&) -> fold_monad<Func<State, T>> {
+					// not really a monad because the foldee does not contain the function but
+					// whatever
+					template <typename T>
+					constexpr auto operator>>=(folder<T> &&) -> fold_monad<Func<State, T>> {
 						return {};
 					}
 
@@ -53,10 +54,10 @@ namespace kvasir {
 				};
 			}
 
-			template<typename ...Ts>
+			template <typename... Ts>
 			struct fold_left_impl<mpl::list<Ts...>> {
-				template<template<typename...> class Func, typename State>
-				using f = typename (fold_monad<Func, State>{} >>= ... >>= std::declval<Ts>{})::f;
+				template <template <typename...> class Func, typename State>
+				using f = typename(fold_monad<Func, State>{} >>= ... >>= std::declval<Ts>{})::f;
 			};
 #endif
 		}

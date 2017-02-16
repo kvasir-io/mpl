@@ -4,4 +4,19 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
+#include <type_traits>
+
+#include "../../src/kvasir/mpl/types/bool.hpp"
+#include "../../src/kvasir/mpl/types/int.hpp"
 #include "../../src/kvasir/mpl/algorithm/sort.hpp"
+#include "../../src/kvasir/mpl/types/list.hpp"
+
+using namespace kvasir::mpl;
+
+template <typename E1, typename E2>
+using compare_func = bool_<(E1{} > E2{})>;
+
+using test_list   = list<int_<3>, int_<0>, int_<2>, int_<1>>;
+using expect_list = list<int_<0>, int_<1>, int_<2>, int_<3>>;
+
+static_assert(std::is_same<sort<compare_func, test_list>, expect_list>{}, "");
