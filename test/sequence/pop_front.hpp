@@ -4,4 +4,4 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
-#include "../../src/kvasir/mpl/sequence/pop_front.hpp"
+#include <kvasir/mpl/sequence/pop_front.hpp>

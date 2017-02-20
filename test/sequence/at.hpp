@@ -4,4 +4,4 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
-#include "../../src/kvasir/mpl/sequence/at.hpp"
+#include <kvasir/mpl/sequence/at.hpp>

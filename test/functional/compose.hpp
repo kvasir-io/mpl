@@ -4,4 +4,4 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
-#include "../../src/kvasir/mpl/functional/compose.hpp"
+#include <kvasir/mpl/functional/compose.hpp>

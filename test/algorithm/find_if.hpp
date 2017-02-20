@@ -5,8 +5,8 @@
 #pragma once
 
 #include <type_traits>
-#include "../../src/kvasir/mpl/algorithm/find_if.hpp"
-#include "../../src/kvasir/mpl/functional/bind.hpp"
+#include <kvasir/mpl/algorithm/find_if.hpp>
+#include <kvasir/mpl/functional/bind.hpp>
 
 using namespace kvasir::mpl;
 static_assert(

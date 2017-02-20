@@ -6,10 +6,10 @@
 
 #include <type_traits>
 
-#include "../../src/kvasir/mpl/types/bool.hpp"
-#include "../../src/kvasir/mpl/types/int.hpp"
-#include "../../src/kvasir/mpl/algorithm/sort.hpp"
-#include "../../src/kvasir/mpl/types/list.hpp"
+#include <kvasir/mpl/types/bool.hpp>
+#include <kvasir/mpl/types/int.hpp>
+#include <kvasir/mpl/algorithm/sort.hpp>
+#include <kvasir/mpl/types/list.hpp>
 
 using namespace kvasir::mpl;
 
