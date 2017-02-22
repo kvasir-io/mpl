@@ -32,3 +32,14 @@ consideration.
   implementations.
 - Templated structs (except for function backend structs) should have no more than one 
   parameter. Instead the "meta monad" style should be used.
+
+## Contributors
+We'd like to thank the following contributors, in alphabetical order:
+
+- Chiel Douwes ([@chieltbest](https://github.com/chieltbest))
+- Odin Holmes ([@odinthenerd](https://github.com/odinthenerd))
+
+## Maintainer
+This library is maintained by Chiel Douwes ([@chieltbest](https://github.com/chieltbest)). 
+Requests for push rights could be addressed to him. The maintainer is also the only one who could approve pull requests to
+master.
