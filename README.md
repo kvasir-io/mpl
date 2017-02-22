@@ -1,5 +1,5 @@
 # Kvasir::mpl
-This toolchain is part of the Kvasir project.
+This library is part of the Kvasir project.
 Kvasir is a collection of zero cost statically checked libraries for resource constrained systems including microcontrollers.
 More information at kvasir.io.
 
@@ -21,7 +21,7 @@ consideration.
 
 - All kvasir mpl code will go into the kvasir::mpl namespace.
 - All user-facing functions must be eager.
-- Anything that is not eager should _impl or similar appended, and be in the ::detail namespace
+- Anything that is not eager should have '_impl' or similar appended, and be in the ::detail namespace
 - Returning objects:
   - Functions returning a type should inherently be that type, see the all eager functions above
   - Functions returning a value should be implicitly convertible to it's return value
@@ -32,3 +32,14 @@ consideration.
   implementations.
 - Templated structs (except for function backend structs) should have no more than one 
   parameter. Instead the "meta monad" style should be used.
+
+## Contributors
+We'd like to thank the following contributors, in alphabetical order:
+
+- Chiel Douwes ([@chieltbest](https://github.com/chieltbest))
+- Odin Holmes ([@odinthenerd](https://github.com/odinthenerd))
+
+## Maintainer
+This library is maintained by Chiel Douwes ([@chieltbest](https://github.com/chieltbest)). 
+Requests for push rights could be addressed to him. The maintainer is also the only one who could approve pull requests to
+master.
