@@ -20,9 +20,9 @@ namespace kvasir {
 				template <>
 				struct fold_right<false> {
 					template <template <typename...> class Func, typename State, typename List>
-					using f = typename fold_right<(size_impl<List>{} == 1)>::template f<
-					        Func, Func<State, typename pop_front_impl<List>::front>,
-					        typename pop_front_impl<List>::rest>;
+					using f = Func<typename fold_right<(size_impl<List>{} == 1)>::template f<
+					                       Func, State, typename pop_front_impl<List>::rest>,
+					               typename pop_front_impl<List>::front>;
 				};
 
 				template <>
@@ -35,8 +35,8 @@ namespace kvasir {
 			template <typename List>
 			struct fold_right_impl {
 				template <template <typename...> class Func, typename State>
-				using f = typename generic::fold_right<(size_impl<List>{} == 0)>::template f<Func,
-				                                                                             State>;
+				using f = typename generic::fold_right<(size_impl<List>{} ==
+				                                        0)>::template f<Func, State, List>;
 			};
 
 #if __cpp_fold_expressions | __cplusplus >= 201406

@@ -12,6 +12,7 @@ namespace kvasir {
 		namespace impl {
 			template <typename List>
 			struct pop_front_impl {
+				// when used with any element, just return the element
 				using front = List;
 				using rest  = nothing;
 			};
@@ -24,6 +25,7 @@ namespace kvasir {
 
 			template <>
 			struct pop_front_impl<mpl::list<>> {
+				// when the list is empty return void for bot
 				using front = nothing;
 				using rest  = nothing;
 			};
