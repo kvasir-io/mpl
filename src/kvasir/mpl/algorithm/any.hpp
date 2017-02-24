@@ -5,12 +5,13 @@
 #pragma once
 
 #include "contains.hpp"
+#include "../utility/identity.hpp"
 
 namespace kvasir {
 	namespace mpl {
 		/// filter elements from a list
 		/// takes a lambda that should return a type convertible to bool
-		template <template <typename...> class Cond, typename List>
+		template <typename List, template <typename...> class Cond = identity>
 		using any = impl::contains_impl<Cond, List>;
 	}
 }

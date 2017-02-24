@@ -30,7 +30,7 @@ namespace kvasir {
 				template <typename BSTElem, typename BSTLeft, typename BSTRight>
 				struct push_bst<bst<BSTElem, BSTLeft, BSTRight>> {
 					template <template <typename...> class Comp, typename Elem>
-					using f = typename push_bst_impl<Comp<BSTElem, Elem>{}>::template f<
+					using f = typename push_bst_impl<Comp<Elem, BSTElem>{}>::template f<
 					        Comp, Elem, BSTElem, BSTLeft, BSTRight>;
 				};
 
@@ -76,7 +76,12 @@ namespace kvasir {
 			};
 		}
 
-		template <template <typename...> class Comp, typename List>
+		namespace detail {
+			template<typename T1, typename T2>
+			using less = bool_<T1{} < T2{}>;
+		}
+
+		template <typename List, template <typename...> class Comp = detail::less>
 		using sort = typename impl::sort_impl<Comp, List>::f;
 	}
 }

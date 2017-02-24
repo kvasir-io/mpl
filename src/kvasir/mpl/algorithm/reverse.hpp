@@ -11,16 +11,15 @@
 namespace kvasir {
 	namespace mpl {
 		namespace impl {
-			template <typename List>
+			template <typename List, typename Result>
 			struct reverse_impl {
-				template <typename Result, typename Elem>
-				using push_front_pred = typename push_front_impl<Elem, Result>::f;
-				using f               = typename fold_left_impl<List>::template f<push_front_pred,
-				                                                    typename create_impl<List>::f>;
+				template <typename State, typename Elem>
+				using push_front_pred = typename push_front_impl<Elem, State>::f;
+				using f = typename fold_left_impl<List>::template f<push_front_pred, Result>;
 			};
 		}
 
-		template <typename List>
-		using reverse = typename impl::reverse_impl<List>::f;
+		template <typename List, typename Result = typename impl::create_impl<List>::f>
+		using reverse = typename impl::reverse_impl<List, Result>::f;
 	}
 }

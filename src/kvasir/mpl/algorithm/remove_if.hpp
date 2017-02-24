@@ -7,6 +7,7 @@
 #include "../sequence/push_back.hpp"
 #include "../sequence/create.hpp"
 #include "../algorithm/fold_left.hpp"
+#include "../utility/identity.hpp"
 
 namespace kvasir {
 	namespace mpl {
@@ -39,7 +40,7 @@ namespace kvasir {
 
 		/// filter elements from a list
 		/// takes a lambda that should return a type convertible to bool
-		template <template <typename...> class Cond, typename List>
+		template <typename List, template <typename...> class Cond = identity>
 		using remove_if = typename impl::remove_if_impl<Cond, List>::f;
 	}
 }

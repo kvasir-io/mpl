@@ -4,6 +4,8 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
+#include <type_traits>
+
 #include "fold_right.hpp"
 #include "../sequence/push_front.hpp"
 #include "../types/list.hpp"
@@ -65,7 +67,7 @@ namespace kvasir {
 		/// takes a boolean predicate with two parameters
 		/// if the predicate return true for any two adjacent elements,
 		/// then the first of the two elements is removed
-		template <template <typename...> class Pred, typename List>
+		template <typename List, template <typename...> class Pred = std::is_same>
 		using remove_adjacent = typename impl::remove_adjacent<Pred, List>::f;
 	}
 }

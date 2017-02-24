@@ -63,7 +63,7 @@ namespace kvasir {
 		}
 
 		/// fold left over a list, initialized with State
-		template <template <typename...> class Func, typename State, typename List>
+		template <typename List, template <typename...> class Func, typename State>
 		using fold_left = typename impl::fold_left_impl<List>::template f<Func, State>;
 	}
 }

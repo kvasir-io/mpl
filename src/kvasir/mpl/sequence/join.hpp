@@ -29,6 +29,8 @@ namespace kvasir {
 
 		/// join two or more lists together
 		/// when there is only one list input the result is that list
+		/// in the case of joining two or more distinct list types, the first list type will always
+		/// be the resulting type
 		template <typename List, typename... Lists>
 		using join = typename impl::join_impl<List, Lists...>::f;
 	}

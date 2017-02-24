@@ -10,6 +10,6 @@
 
 using namespace kvasir::mpl;
 static_assert(
-        std::is_same<find_if<bind<std::is_same, char>::template f, list<void, char, short, int>>,
+        std::is_same<find_if<list<void, char, short, int>, bind<std::is_same, char>::template f>,
                      list<char, short, int>>{},
         "");

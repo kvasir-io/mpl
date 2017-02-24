@@ -22,7 +22,7 @@ namespace kvasir {
 		}
 
 		/// get the n-th element of the list
-		template <unsigned N, typename List>
+		template <typename List, unsigned N>
 		using at = typename impl::at_impl<N, List>::f;
 	}
 }

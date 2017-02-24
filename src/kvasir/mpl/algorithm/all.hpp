@@ -6,8 +6,7 @@
 
 #include "remove_if.hpp"
 #include "../sequence/size.hpp"
-#include "../functional/compose.hpp"
-#include "../utility/invert.hpp"
+#include "../utility/identity.hpp"
 
 namespace kvasir {
 	namespace mpl {
@@ -23,7 +22,7 @@ namespace kvasir {
 
 		/// filter elements from a list
 		/// takes a lambda that should return a type convertible to bool
-		template <template <typename...> class Cond, typename List>
+		template <typename List, template <typename...> class Cond = identity>
 		using all = impl::all_impl<Cond, List>;
 	}
 }

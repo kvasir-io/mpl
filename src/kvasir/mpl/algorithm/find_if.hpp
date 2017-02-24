@@ -49,7 +49,7 @@ namespace kvasir {
 		}
 
 		/// fold left over a list, initialized with State
-		template <template <typename...> class Cond, typename List>
+		template <typename List, template <typename...> class Cond = identity>
 		using find_if = typename impl::find_if_impl<Cond, List>::f;
 	}
 }

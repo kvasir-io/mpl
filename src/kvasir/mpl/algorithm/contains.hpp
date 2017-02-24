@@ -8,6 +8,7 @@
 #include "../sequence/size.hpp"
 #include "../functional/compose.hpp"
 #include "../utility/invert.hpp"
+#include "../utility/identity.hpp"
 
 namespace kvasir {
 	namespace mpl {
@@ -22,8 +23,8 @@ namespace kvasir {
 		}
 
 		/// filter elements from a list
-		/// takes a lambda that should return a type convertible to bool
-		template <template <typename...> class Cond, typename List>
+		/// takes a lambda that should return a type convertible to booln
+		template <typename List, template <typename...> class Cond = identity>
 		using contains = impl::contains_impl<Cond, List>;
 	}
 }

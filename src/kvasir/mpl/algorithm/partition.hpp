@@ -40,7 +40,7 @@ namespace kvasir {
 
 		/// partition a list by a certain number of elements
 		/// returns a struct that is like the struct in pop_front
-		template <unsigned N, typename List>
+		template <typename List, unsigned N>
 		using partition = typename impl::partition_impl<N, List>::f;
 	}
 }
