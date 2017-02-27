@@ -7,6 +7,7 @@
 #include "../types/list.hpp"
 #include "../sequence/push_back.hpp"
 #include "../sequence/create.hpp"
+#include "../algorithm/fold_left.hpp"
 
 namespace kvasir {
 	namespace mpl {

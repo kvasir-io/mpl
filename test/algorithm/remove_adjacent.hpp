@@ -9,7 +9,7 @@
 #include <kvasir/mpl/types/bool.hpp>
 
 using namespace kvasir;
-static_assert(std::is_same<remove_adjacent<std::is_same, mpl::list<void, char, char, short>>,
+static_assert(std::is_same<mpl::remove_adjacent<std::is_same, mpl::list<void, char, char, short>>,
                            mpl::list<void, char, short>>{},
               "");
 
@@ -27,6 +27,6 @@ template <typename T1, typename T2>
 using foo_is_same = typename foo_is_same_impl<T1, T2>::f;
 
 // unoptimised version of remove_adjacent
-static_assert(std::is_same<remove_adjacent<foo_is_same, mpl::list<void, char, char, short>>,
+static_assert(std::is_same<mpl::remove_adjacent<foo_is_same, mpl::list<void, char, char, short>>,
                            mpl::list<void, char, short>>{},
               "");

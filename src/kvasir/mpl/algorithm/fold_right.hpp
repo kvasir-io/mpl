@@ -51,9 +51,9 @@ namespace kvasir {
 			}
 
 			template <typename... Ts>
-			struct fold_left_impl<mpl::list<Ts...>> {
+			struct fold_right_impl<mpl::list<Ts...>> {
 				template <template <typename...> class Func, typename State>
-				using f = decltype(folder<Func, Ts>{} >>= ... >>= std::declval<State>{});
+				using f = typeof(list::folder<Func, Ts>{} >>= ... >>= std::declval<State>());
 			};
 #endif
 		}

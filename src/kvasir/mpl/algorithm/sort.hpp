@@ -30,7 +30,7 @@ namespace kvasir {
 				template <typename BSTElem, typename BSTLeft, typename BSTRight>
 				struct push_bst<bst<BSTElem, BSTLeft, BSTRight>> {
 					template <template <typename...> class Comp, typename Elem>
-					using f = typename push_bst_impl<Comp<BSTElem, Elem>{}>::template f<
+					using f = typename push_bst_impl<Comp<Elem, BSTElem>{}>::template f<
 					        Comp, Elem, BSTElem, BSTLeft, BSTRight>;
 				};
 
@@ -61,6 +61,20 @@ namespace kvasir {
 					using f = typename flatten_bst<
 					        Left, typename push_front_impl<
 					                      Elem, typename flatten_bst<Right, Result>::f>::f>::f;
+				};
+
+				template <typename Elem, typename Left, typename Elem2, typename Left2,
+				          typename Right2, typename Result>
+				struct flatten_bst<bst<Elem, Left, bst<Elem2, Left2, Right2>>, Result> {
+					using f = typename flatten_bst<
+					        Left,
+					        typename push_front_impl<
+					                Elem,
+					                typename flatten_bst<
+					                        Left2,
+					                        typename push_front_impl<
+					                                Elem2, typename flatten_bst<Right2, Result>::
+					                                               f>::f>::f>::f>::f;
 				};
 			}
 

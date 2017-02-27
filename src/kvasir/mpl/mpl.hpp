@@ -19,6 +19,7 @@
 #include "algorithm/reverse.hpp"
 #include "algorithm/sort.hpp"
 #include "algorithm/transform.hpp"
+#include "algorithm/zip_with.hpp"
 
 #include "functional/bind.hpp"
 #include "functional/compose.hpp"
