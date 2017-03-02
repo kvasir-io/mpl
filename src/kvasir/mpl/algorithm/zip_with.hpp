@@ -49,9 +49,8 @@ namespace kvasir {
 
 			template <template <typename...> class F, typename List, typename... Lists>
 			struct zip_with<F, List, Lists...> {
-				using f =
-				        typename generic::zip_with<(size_impl<List>{} == 0)>::template f<
-				                F, typename create_impl<List>::f, List, Lists...>;
+				using f = typename generic::zip_with<(size_impl<List>{} == 0)>::template f<
+				        F, typename create_impl<List>::f, List, Lists...>;
 			};
 
 			/// mpl::list optimization for only two lists
