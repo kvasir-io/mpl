@@ -6,16 +6,11 @@
 
 namespace kvasir {
 	namespace mpl {
-		namespace impl {
-			template <bool val>
-			struct invert_impl {
-				constexpr operator bool() const {
-					return !val;
-				}
-			};
-		}
-
 		template <typename B>
-		using invert = impl::invert_impl<B{}>;
+		struct invert {
+			constexpr operator bool() const {
+				return !B{};
+			}
+		};
 	}
 }

@@ -5,3 +5,10 @@
 #pragma once
 
 #include <kvasir/mpl/algorithm/contains.hpp>
+#include <kvasir/mpl/types/list.hpp>
+#include <kvasir/mpl/functional/bind.hpp>
+
+using namespace kvasir;
+static_assert(mpl::contains<mpl::bind<std::is_same, int>::template f, mpl::list<void, char, int,
+                                                                         float>>{},
+              "");

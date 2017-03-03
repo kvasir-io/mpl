@@ -16,7 +16,8 @@ namespace kvasir {
 			template <template <typename...> class Cond, typename List>
 			struct contains_impl {
 				constexpr operator bool() const {
-					return size_impl<remove_if_impl<compose<Cond, invert>::template f, List>>{} > 0;
+					return size_impl<typename remove_if_impl<compose<Cond, invert>::template f,
+					                                         List>::f>{} > 0;
 				}
 			};
 		}
