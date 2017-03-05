@@ -16,6 +16,10 @@ namespace kvasir {
 		};
 
 		template <typename ...>
-		using always_false = bool_<false>;
+		struct always_false {
+			constexpr operator bool() const {
+				return false;
+			}
+		};
 	}
 }
