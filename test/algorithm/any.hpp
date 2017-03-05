@@ -6,9 +6,11 @@
 
 #include <kvasir/mpl/algorithm/any.hpp>
 #include <kvasir/mpl/types/list.hpp>
+#include <kvasir/mpl/types/bool.hpp>
 #include <kvasir/mpl/functional/bind.hpp>
 
+template <typename T>
+using comp = std::is_same<int, T>;
+
 using namespace kvasir;
-static_assert(mpl::any<
-	mpl::bind<std::is_same, int>::template f, mpl::list<
-		void, char, int, float>>{}, "");
+static_assert(mpl::any<comp, mpl::list<void, char, int, float>>{}, "");

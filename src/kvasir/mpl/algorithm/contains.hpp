@@ -15,9 +15,11 @@ namespace kvasir {
 			/// generic implementation for any list type
 			template <template <typename...> class Cond, typename List>
 			struct contains_impl {
+				template <typename T>
+				using inverse_cond = invert<Cond<T>>;
+
 				constexpr operator bool() const {
-					return size_impl<typename remove_if_impl<compose<Cond, invert>::template f,
-					                                         List>::f>{} > 0;
+					return size_impl<typename remove_if_impl<inverse_cond, List>::f>{} > 0;
 				}
 			};
 		}
