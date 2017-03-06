@@ -19,7 +19,8 @@ namespace kvasir {
 				using inverse_cond = invert<Cond<T>>;
 
 				constexpr operator bool() const {
-					return size_impl<typename remove_if_impl<inverse_cond, List>::f>{} > 0;
+					return 0;//size_impl<typename remove_if_impl<inverse_cond, List>::f>{} > 0;
+					//TODO implement this in faster terms
 				}
 			};
 		}
