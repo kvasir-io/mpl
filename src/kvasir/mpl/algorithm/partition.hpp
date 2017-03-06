@@ -13,8 +13,8 @@ namespace kvasir {
 		using partition = c::call<
 			list<  //using the forking version
 			c::listify, 
-			c::transform<c::join<c::listify>, c::list_wrap_if_not<Cond>>, //essentially a remove if
-			c::transform<c::join<c::listify>, c::list_wrap_if<Cond>>>, //essentially a filter
+			c::remove_if<c::listify, Cond>, 
+			c::filter<c::listify, Cond>>, //essentially a filter
 			List>;
 	}
 }

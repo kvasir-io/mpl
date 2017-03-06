@@ -8,10 +8,15 @@
 
 namespace kvasir {
 	namespace mpl {
+		namespace c {
+			///continuation version of filter, taking a continuation and predicate
+			template<typename C, template <typename...> class Cond>
+			using filter = transform<join<C>, list_wrap_if<Cond>>;
+		}
 
 		/// filter elements from a list
 		/// takes a lambda that should return a type convertible to bool
 		template <template <typename...> class Cond, typename List>
-		using filter = c::call<c::transform<c::join<c::listify>, c::list_wrap_if<Cond>>, List>;
+		using filter = c::call<c::filter<c::listify,Cond>, List>;
 	}
 }
