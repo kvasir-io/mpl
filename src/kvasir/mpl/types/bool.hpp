@@ -9,6 +9,10 @@
 namespace kvasir {
 	namespace mpl {
 		template <bool value>
-		using bool_ = integral_constant<bool, value>;
+		struct bool_ {
+			constexpr operator bool() const {
+				return value;
+			}
+		};
 	}
 }
