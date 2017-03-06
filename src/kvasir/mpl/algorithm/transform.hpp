@@ -18,14 +18,6 @@ namespace kvasir {
 				template<typename...Ts>
 				using f = typename C::template f<typename F::template f<Ts>...>;
 			};
-
-			///forkable version of transform
-			template<typename R, typename...C, class F>
-			struct transform<list<R,C...>,F> {
-				template<typename...Ts>
-				using f = typename R::template f<typename C::template f<typename F::template f<Ts>...>...>;
-			};
-
 		}
 
 		/// transform each element in a list with a function
