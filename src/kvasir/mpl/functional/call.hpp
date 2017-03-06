@@ -11,12 +11,14 @@ namespace kvasir {
 			namespace detail {
 				template<typename C, typename L>
 				struct call_impl;
-				template<typename C, typename...Ts>
-				struct call_impl<C, list<Ts...>> {
+				template<typename C, template<typename...> class Seq, typename...Ts>
+				struct call_impl<C, Seq<Ts...>> {
 					using type = typename C::template f<Ts...>;
 				};
-				template<typename R, typename...C, typename...Ts>
-				struct call_impl<list<R, C...>, list<Ts...>> {
+				//forking version of call expects a "combining" continuation as its first arguement 
+				//and a variadic pack of continuations which are executed in paralell
+				template<typename R, typename...C, template<typename...> class Seq, typename...Ts>
+				struct call_impl<list<R, C...>, Seq<Ts...>> {
 					using type = typename R::template f<typename C::template f<Ts...>...>;
 				};
 			}
