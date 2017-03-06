@@ -5,30 +5,31 @@
 #pragma once
 
 #include "../types/list.hpp"
-#include "../sequence/push_back.hpp"
-#include "../sequence/create.hpp"
-#include "../algorithm/fold_left.hpp"
+#include "../functional/call.hpp"
+#include "../functional/bind.hpp"
 
 namespace kvasir {
 	namespace mpl {
-		namespace impl {
-			template <template <typename...> class F, typename List>
-			struct transform_impl {
-				template <typename Result, typename Elem>
-				using transform_pred = typename push_back_impl<F<Elem>, Result>::f;
-				using f              = typename fold_left_impl<List>::template f<transform_pred,
-				                                                    typename create_impl<List>::f>;
+		namespace c {
+
+			///transform a list using a type wrapped predicate
+			template<typename C, class F>
+			struct transform {
+				template<typename...Ts>
+				using f = typename C::template f<typename F::template f<Ts>...>;
 			};
 
-			/// kvasir::mpl::list implementation
-			template <template <typename...> class F, typename... Ts>
-			struct transform_impl<F, mpl::list<Ts...>> {
-				using f = mpl::list<F<Ts>...>;
+			///forkable version of transform
+			template<typename R, typename...C, class F>
+			struct transform<list<R,C...>,F> {
+				template<typename...Ts>
+				using f = typename R::template f<typename C::template f<typename F::template f<Ts>...>...>;
 			};
+
 		}
 
 		/// transform each element in a list with a function
 		template <template <typename...> class F, typename List>
-		using transform = typename impl::transform_impl<F, List>::f;
+		using transform = c::call<c::transform<c::listify,bind<F>>, List>;
 	}
 }
