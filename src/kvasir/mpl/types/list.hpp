@@ -13,5 +13,11 @@ namespace kvasir {
 		list<Ts...> make_list(Ts...) {
 			return {};
 		}
+		namespace c {
+			struct listify{
+				template<typename...Ts>
+				using f = list<Ts...>;
+			};
+		}
 	}
 }
