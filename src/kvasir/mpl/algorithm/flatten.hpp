@@ -6,6 +6,7 @@
 
 #include "../sequence/create.hpp"
 #include "../sequence/is_list.hpp"
+#include "../sequence/push_back.hpp"
 #include "fold_left.hpp"
 
 namespace kvasir {
