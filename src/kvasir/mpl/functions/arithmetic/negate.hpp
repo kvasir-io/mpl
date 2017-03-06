@@ -5,8 +5,8 @@
 #pragma once
 
 namespace kvasir {
-	namespace mpl {
+  namespace mpl {
     template<typename A>
     using negate = integral_constant<decltype(-A{}), (-A{})>;
-	}
+  }
 }

@@ -5,8 +5,8 @@
 #pragma once
 
 namespace kvasir {
-	namespace mpl {
+  namespace mpl {
     template<typename A, typename B>
     using bitwise_or = integral_constant<decltype(A{} | B{}), (A{} | B{})>;
-	}
+  }
 }

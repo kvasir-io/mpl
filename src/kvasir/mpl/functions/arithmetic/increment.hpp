@@ -5,8 +5,8 @@
 #pragma once
 
 namespace kvasir {
-	namespace mpl {
+  namespace mpl {
     template<typename A>
     using increment = integral_constant<decltype(A{} + 1), (A{} + 1)>;
-	}
+  }
 }

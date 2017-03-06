@@ -5,7 +5,7 @@
 #pragma once
 
 namespace kvasir {
-	namespace mpl {
+  namespace mpl {
     namespace detail {
 
         template<bool>
@@ -26,5 +26,5 @@ namespace kvasir {
 
     template<typename A, typename B>
     using max = max_impl<A{} > B{}>::template f<A, B>;
-	}
+  }
 }
