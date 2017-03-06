@@ -24,6 +24,9 @@
 #include "functional/compose.hpp"
 #include "functional/identity.hpp"
 
+#include "functions/arithmetic/max.hpp"
+#include "functions/arithmetic/min.hpp"
+
 #include "sequence/append.hpp"
 #include "sequence/at.hpp"
 #include "sequence/create.hpp"
