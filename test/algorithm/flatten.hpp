@@ -8,5 +8,6 @@
 #include <kvasir/mpl/types/list.hpp>
 
 using namespace kvasir;
-static_assert(std::is_same<mpl::flatten<mpl::list<float>, mpl::list<int>>, mpl::list<float, int>>{},
+static_assert(std::is_same<mpl::flatten<mpl::list<mpl::list<float>, mpl::list<int>>>,
+                           mpl::list<float, int>>{},
               "flatten test failed");

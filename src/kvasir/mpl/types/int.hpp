@@ -9,9 +9,17 @@
 namespace kvasir {
 	namespace mpl {
 		template <unsigned long long value>
-		using uint_ = integral_constant<unsigned long long, value>;
+		struct uint_ {
+			constexpr operator unsigned() const {
+				return value;
+			}
+		};
 
 		template <long long value>
-		using int_ = integral_constant<long long, value>;
+		struct int_ {
+			constexpr operator unsigned() const {
+				return value;
+			}
+		};
 	}
 }

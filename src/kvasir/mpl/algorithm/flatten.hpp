@@ -11,14 +11,15 @@
 namespace kvasir {
 	namespace mpl {
 		namespace impl {
+			template <typename Elem, typename Result>
+			struct flatten;
+
 			namespace generic {
 				template <bool list>
 				struct flatten;
 
 				template <typename Result, typename Elem>
-				using flatten_func =
-				        typename flatten<typename impl::is_list<Elem>::f{}>::template f<Elem,
-				                                                                        Result>;
+				using flatten_func = typename impl::flatten<Elem, Result>::f;
 
 				template <>
 				struct flatten<true> {
@@ -37,11 +38,12 @@ namespace kvasir {
 
 			template <typename Elem, typename Result>
 			struct flatten {
-				using f = generic::flatten_func<Result, Elem>;
+				using f = typename generic::flatten<typename impl::is_list<Elem>::f{}>::template f<
+				        Elem, Result>;
 			};
 		}
 
 		template <typename List, typename Result = typename impl::create_impl<List>::f>
-		using flatten = typename impl::flatten<Result, List>::f;
+		using flatten = typename impl::flatten<List, Result>::f;
 	}
 }

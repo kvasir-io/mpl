@@ -15,7 +15,7 @@ namespace kvasir {
 			using f = T;
 		};
 
-		template <typename T>
+		template <typename ...>
 		using always_false = bool_<false>;
 	}
 }
