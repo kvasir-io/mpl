@@ -15,16 +15,16 @@ namespace kvasir {
 			struct max_impl<true> {
 				template <typename A, typename B>
 				using f = A;
-			}
+			};
 
 			template <>
 			struct max_impl<false> {
 				template <typename A, typename B>
 				using f = B;
-			}
+			};
 		}
 
 		template <typename A, typename B>
-		using max = max_impl<A{}> B{} > ::template f<A, B>;
+		using max = typename detail::max_impl<(A{} > B{})>::template f<A, B>;
 	}
 }

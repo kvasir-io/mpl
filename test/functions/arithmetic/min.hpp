@@ -4,4 +4,4 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
-#include <kvasir/mpl/functions/arithmetic/max.hpp>
+#include <kvasir/mpl/functions/arithmetic/min.hpp>
