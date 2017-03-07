@@ -13,9 +13,15 @@ namespace kvasir {
 				template<template<typename...> class, typename...>
 				struct join_impl;
 
-				template<template<typename...> class C, typename...T0s, typename...T1s, typename...T2s, typename...T3s, typename...T4s, typename...T5s, typename...T6s, typename...T7s>
-				struct join_impl<C,list<T0s...>, list<T1s...>, list<T2s...>, list<T3s...>, list<T4s...>, list<T5s...>, list<T6s...>, list<T7s...>> {
-					using type = C<T0s..., T1s..., T2s..., T3s..., T4s..., T5s..., T6s..., T7s...>;
+				template<template<typename...> class C, typename...T0s, typename...T1s, typename...T2s, typename...T3s>
+				struct join_impl<C, list<T0s...>, list<T1s...>, list<T2s...>, list<T3s...>> {
+					using type = C<T0s..., T1s..., T2s..., T3s...>;
+				};
+
+				template<template<typename...> class C, typename...T0s, typename...T1s, typename...T2s, typename...T3s, typename...T4s, typename...T5s, typename...T6s, typename...T7s, typename...T8s, typename...T9s, typename...T10s, typename...T11s, typename...T12s, typename...T13s, typename...T14s, typename...T15s>
+				struct join_impl<C, list<T0s...>, list<T1s...>, list<T2s...>, list<T3s...>, list<T4s...>, list<T5s...>, list<T6s...>, list<T7s...>, list<T8s...>, list<T9s...>, list<T10s...>, list<T11s...>, list<T12s...>, list<T13s...>, list<T14s...>, list<T15s...>>
+				{
+					using type = C<T0s..., T1s..., T2s..., T3s..., T4s..., T5s..., T6s..., T7s..., T8s..., T9s..., T10s..., T11s..., T12s..., T13s..., T14s..., T15s...>;
 				};
 
 				template<template<typename...> class C, typename...T0s, typename...T1s, typename...T2s, typename...T3s, typename...T4s, typename...T5s, typename...T6s, typename...T7s, typename...T8s, typename...T9s, typename...T10s, typename...T11s, typename...T12s, typename...T13s, typename...T14s, typename...T15s, typename...T16s, typename...T17s, typename...T18s, typename...T19s, typename...T20s, typename...T21s, typename...T22s, typename...T23s, typename...T24s, typename...T25s, typename...T26s, typename...T27s, typename...T28s, typename...T29s, typename...T30s, typename...T31s, typename...T32s, typename...T33s, typename...T34s, typename...T35s, typename...T36s, typename...T37s, typename...T38s, typename...T39s, typename...T40s, typename...T41s, typename...T42s, typename...T43s, typename...T44s, typename...T45s, typename...T46s, typename...T47s, typename...T48s, typename...T49s, typename...T50s, typename...T51s, typename...T52s, typename...T53s, typename...T54s, typename...T55s, typename...T56s, typename...T57s, typename...T58s, typename...T59s, typename...T60s, typename...T61s, typename...T62s, typename...T63s>
@@ -76,7 +82,7 @@ namespace kvasir {
 
 		/// join two or more lists together
 		/// when there is only one list input the result is that list
-		template <typename List, typename... Lists>
-		using join = typename c::join<c::listify>::template f<List,Lists...>;
+		//template <typename List, typename... Lists>
+		//using join = typename c::join<c::listify>::template f<List,Lists...>;
 	}
 }
