@@ -13,7 +13,7 @@ namespace kvasir {
 		namespace c {
 
 			///transform a list using a type wrapped predicate
-			template<typename C, class F>
+			template<class F, typename C = listify>
 			struct transform {
 				template<typename...Ts>
 				using f = typename C::template f<typename F::template f<Ts>...>;

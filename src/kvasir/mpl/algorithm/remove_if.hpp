@@ -40,13 +40,13 @@ namespace kvasir {
 			};
 
 			///continuation version of remove_if, taking a continuation and predicate
-			template<typename C, template <typename...> class Cond>
-			using remove_if = transform<join<C>, list_wrap_if_not<Cond>>;
+			template<template <typename...> class Cond, typename C = listify>
+			using remove_if = transform<list_wrap_if_not<Cond>, join<C>>;
 		}
 
 		/// filter elements from a list
 		/// takes a lambda that should return a type convertible to bool
 		template <template <typename...> class Cond, typename List>
-		using remove_if = c::call<c::remove_if<c::listify, Cond>,List>;
+		using remove_if = c::call<c::remove_if<Cond>,List>;
 	}
 }
