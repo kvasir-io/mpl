@@ -9,6 +9,6 @@
 #include <kvasir/mpl/functional/bind.hpp>
 
 using namespace kvasir;
-static_assert(mpl::contains<mpl::bind<std::is_same, int>::template f, mpl::list<void, char, int,
-                                                                         float>>{},
+static_assert(mpl::contains<mpl::bind<std::is_same, int>::template f,
+                            mpl::list<void, char, int, float>>{},
               "");
