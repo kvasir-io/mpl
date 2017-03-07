@@ -4,27 +4,39 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
-#include "remove_if.hpp"
-#include "../sequence/size.hpp"
-#include "../functional/compose.hpp"
-#include "../utility/invert.hpp"
+#include "../functional/call.hpp"
 
 namespace kvasir {
 	namespace mpl {
-		namespace impl {
-			/// generic implementation for any list type
-			template <template <typename...> class Cond, typename List>
-			struct all_impl {
-				constexpr operator bool() const {
-					return 0; // size_impl<remove_if_impl<Cond, List>>{} == 0;
-					//TODO implement this in faster terms
-				}
-			};
-		};
+		namespace c {
+			namespace detail {
+				namespace all_tester {
+					struct constructable {
+						constructable(...) {}
+					};
 
-		/// filter elements from a list
-		/// takes a lambda that should return a type convertible to bool
+					template<typename Match, typename T, typename U>
+					T all_same(std::initializer_list<Match>) {
+						return{};
+					}
+
+					template<typename Match, typename T, typename U>
+					U all_same(constructable) {
+						return{};
+					}
+				}
+			}
+
+			template<template<typename...> class F, typename TrueType = std::true_type, typename FalseType = std::false_type>
+			struct all {
+				template<typename...Ts>
+				using f = decltype(detail::all_tester::all_same<std::true_type, TrueType, FalseType>({ std::bool_constant<F<Ts>::value>{}... }));
+			};
+		}
+
+		/// resolves to std::true_type if all elements in the input list 
+		/// fulfill the provided predicate
 		template <template <typename...> class Cond, typename List>
-		using all = impl::all_impl<Cond, List>;
+		using all = c::call<c::all<Cond>,List>;
 	}
 }
