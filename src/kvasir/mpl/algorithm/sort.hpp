@@ -85,7 +85,7 @@ namespace kvasir {
 
 				// implementation of sort using treesort
 				using f = typename generic::flatten_bst<
-				        typename fold_left_impl<List>::template f<push_func, nothing>,
+				        int, // TODO fix this     typename fold_left_impl<List>::template f<push_func, nothing>,
 				        typename create_impl<List>::f>::f;
 			};
 		}

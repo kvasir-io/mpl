@@ -34,7 +34,7 @@ namespace kvasir {
 
 				template <template <typename...> class Cond, typename T, typename... Ts>
 				struct find_if_impl<Cond, T, Ts...> {
-					using f = typename find_if_selector<Cond<T>{}>::template f<Cond, T, Ts...>;
+					using f = typename find_if_selector<Cond<T>::value>::template f<Cond, T, Ts...>;
 				};
 			}
 

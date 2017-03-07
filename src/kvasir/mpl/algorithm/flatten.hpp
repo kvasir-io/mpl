@@ -26,7 +26,7 @@ namespace kvasir {
 				struct flatten<true> {
 					// the passed element is a list
 					template <typename List, typename Result>
-					using f = typename impl::fold_left_impl<List>::template f<flatten_func, Result>;
+					using f = int; //TODO make this work again typename impl::fold_left_impl<List>::template f<flatten_func, Result>;
 				};
 
 				template <>

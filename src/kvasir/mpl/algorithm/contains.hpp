@@ -4,24 +4,15 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
-#include "remove_if.hpp"
-#include "../sequence/size.hpp"
-#include "../functional/compose.hpp"
-#include "../utility/invert.hpp"
+#include "all.hpp"
 
 namespace kvasir {
 	namespace mpl {
-		namespace impl {
-			/// generic implementation for any list type
-			template <template <typename...> class Cond, typename List>
-			struct contains_impl {
-				template <typename T>
-				using inverse_cond = invert<Cond<T>>;
-
-				constexpr operator bool() const {
-					return 0;//size_impl<typename remove_if_impl<inverse_cond, List>::f>{} > 0;
-					//TODO implement this in faster terms
-				}
+		namespace c {
+			template<template<typename...> class F, typename TrueType = std::true_type, typename FalseType = std::false_type>
+			struct any {
+				template<typename...Ts>
+				using f = decltype(detail::all_tester::all_same<std::false_type, FalseType, TrueType>({ std::bool_constant<F<Ts>::value>{}... }));
 			};
 		}
 
