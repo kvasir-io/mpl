@@ -10,6 +10,12 @@
 
 namespace kvasir {
 	namespace mpl {
+		namespace c {
+			struct size {
+				template<typename...Ts>
+				using f = std::integral_constant<std::size_t, sizeof...(Ts)>;
+			};
+		}
 		namespace impl {
 			template <typename List>
 			struct size_impl;
