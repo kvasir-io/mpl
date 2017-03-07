@@ -83,24 +83,6 @@ namespace kvasir {
 				using f = typename generic::fold_right<(size_impl<List>{} ==
 				                                        0)>::template f<Func, State, List>;
 			};
-
-#if __cpp_fold_expressions | __cplusplus >= 201406
-			namespace list {
-				template <template <typename...> class Func, typename T>
-				struct folder {
-					template <typename State>
-					constexpr auto operator>>=(State &&) -> Func<State, T> {
-						return {};
-					}
-				};
-			}
-
-			template <typename... Ts>
-			struct fold_right_impl<mpl::list<Ts...>> {
-				template <template <typename...> class Func, typename State>
-				using f = typeof(list::folder<Func, Ts>{} >>= ... >>= std::declval<State>());
-			};
-#endif
 		}
 
 		/// fold right over a list, initialized with State

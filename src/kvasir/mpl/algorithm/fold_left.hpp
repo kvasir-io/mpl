@@ -84,30 +84,6 @@ namespace kvasir {
 				                                       0)>::template f<Func, State, List>;
 			};
 
-#if __cpp_fold_expressions | __cplusplus >= 201406
-			namespace list {
-				template <template <typename...> class Func, typename State>
-				struct fold_monad {
-					// not really a monad because the foldee does not contain the function but
-					// whatever
-					template <typename T>
-					constexpr auto operator>>=(T &&) const -> fold_monad<Func, Func<State, T>> {
-						return {};
-					}
-
-					using f = State;
-				};
-			}
-
-			template <typename... Ts>
-			struct fold_left_impl<mpl::list<Ts...>> {
-				template <template <typename...> class Func, typename State>
-				using folded = typeof(list::fold_monad<Func, State>{} >>= ... >>=
-				                      std::declval<Ts>());
-				template <template <typename...> class Func, typename State>
-				using f = typename folded<Func, State>::f;
-			};
-#endif
 		}
 
 		/// fold left over a list, initialized with State
