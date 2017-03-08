@@ -10,6 +10,30 @@ namespace kvasir {
 	namespace mpl {
 		namespace c {
 			namespace detail {
+
+				template<template<typename...> class, typename L>
+				struct recursive_join_impl;
+
+				template<template<typename...> class C, typename...L0s, typename...L1s, typename...L2s, typename...L3s, typename...L4s, typename...L5s, typename...L6s, typename...L7s, typename Tail>
+				struct recursive_join_impl<C, rlist<list<L0s...>, rlist<list<L1s...>, rlist<list<L2s...>, rlist<list<L3s...>, rlist<list<L4s...>, rlist<list<L5s...>, rlist<list<L6s...>, rlist<list<L7s...>, Tail>>>>>>>>> {
+					using type = C<L0s..., L1s..., L2s..., L3s..., L4s..., L5s..., L6s..., L7s...>;
+				};
+
+				template<template<typename...> class C, typename...L0s, typename...L1s, typename...L2s, typename...L3s, typename...L4s, typename...L5s, typename...L6s, typename...L7s, typename...L8s, typename...L9s, typename...L10s, typename...L11s, typename...L12s, typename...L13s, typename...L14s, typename...L15s, typename Tail>
+				struct recursive_join_impl<C, rlist<list<L0s...>, rlist<list<L1s...>, rlist<list<L2s...>, rlist<list<L3s...>, rlist<list<L4s...>, rlist<list<L5s...>, rlist<list<L6s...>, rlist<list<L7s...>, rlist<list<L8s...>, rlist<list<L9s...>, rlist<list<L10s...>, rlist<list<L11s...>, rlist<list<L12s...>, rlist<list<L13s...>, rlist<list<L14s...>, rlist<list<L15s...>, Tail>>>>>>>>>>>>>>>>> {
+					using type = C<L0s..., L1s..., L2s..., L3s..., L4s..., L5s..., L6s..., L7s..., L8s..., L9s..., L10s..., L11s..., L12s..., L13s..., L14s..., L15s...>;
+				};
+
+				template<template<typename...> class C, typename...L0s, typename...L1s, typename...L2s, typename...L3s, typename...L4s, typename...L5s, typename...L6s, typename...L7s, typename...L8s, typename...L9s, typename...L10s, typename...L11s, typename...L12s, typename...L13s, typename...L14s, typename...L15s, typename...L16s, typename...L17s, typename...L18s, typename...L19s, typename...L20s, typename...L21s, typename...L22s, typename...L23s, typename Tail>
+				struct recursive_join_impl<C, rlist<list<L0s...>, rlist<list<L1s...>, rlist<list<L2s...>, rlist<list<L3s...>, rlist<list<L4s...>, rlist<list<L5s...>, rlist<list<L6s...>, rlist<list<L7s...>, rlist<list<L8s...>, rlist<list<L9s...>, rlist<list<L10s...>, rlist<list<L11s...>, rlist<list<L12s...>, rlist<list<L13s...>, rlist<list<L14s...>, rlist<list<L15s...>, rlist<list<L16s...>, rlist<list<L17s...>, rlist<list<L18s...>, rlist<list<L19s...>, rlist<list<L20s...>, rlist<list<L21s...>, rlist<list<L22s...>, rlist<list<L23s...>, Tail>>>>>>>>>>>>>>>>>>>>>>>>> {
+					using type = C<L0s..., L1s..., L2s..., L3s..., L4s..., L5s..., L6s..., L7s..., L8s..., L9s..., L10s..., L11s..., L12s..., L13s..., L14s..., L15s..., L16s..., L17s..., L18s..., L19s..., L20s..., L21s..., L22s..., L23s...>;
+				};
+
+				template<template<typename...> class C, typename...L0s, typename...L1s, typename...L2s, typename...L3s, typename...L4s, typename...L5s, typename...L6s, typename...L7s, typename...L8s, typename...L9s, typename...L10s, typename...L11s, typename...L12s, typename...L13s, typename...L14s, typename...L15s, typename...L16s, typename...L17s, typename...L18s, typename...L19s, typename...L20s, typename...L21s, typename...L22s, typename...L23s, typename...L24s, typename...L25s, typename...L26s, typename...L27s, typename...L28s, typename...L29s, typename...L30s, typename...L31s, typename Tail>
+				struct recursive_join_impl<C, rlist<list<L0s...>, rlist<list<L1s...>, rlist<list<L2s...>, rlist<list<L3s...>, rlist<list<L4s...>, rlist<list<L5s...>, rlist<list<L6s...>, rlist<list<L7s...>, rlist<list<L8s...>, rlist<list<L9s...>, rlist<list<L10s...>, rlist<list<L11s...>, rlist<list<L12s...>, rlist<list<L13s...>, rlist<list<L14s...>, rlist<list<L15s...>, rlist<list<L16s...>, rlist<list<L17s...>, rlist<list<L18s...>, rlist<list<L19s...>, rlist<list<L20s...>, rlist<list<L21s...>, rlist<list<L22s...>, rlist<list<L23s...>, rlist<list<L24s...>, rlist<list<L25s...>, rlist<list<L26s...>, rlist<list<L27s...>, rlist<list<L28s...>, rlist<list<L29s...>, rlist<list<L30s...>, rlist<list<L31s...>, Tail>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> {
+					using type = C<L0s..., L1s..., L2s..., L3s..., L4s..., L5s..., L6s..., L7s..., L8s..., L9s..., L10s..., L11s..., L12s..., L13s..., L14s..., L15s..., L16s..., L17s..., L18s..., L19s..., L20s..., L21s..., L22s..., L23s..., L24s..., L25s..., L26s..., L27s..., L28s..., L29s..., L30s..., L31s...>;
+				};
+
 				template<template<typename...> class, typename...>
 				struct join_impl;
 
@@ -76,6 +100,11 @@ namespace kvasir {
 			struct join {
 				template<typename...Ts>
 				using f = typename detail::join_select<detail::select_join_size(sizeof...(Ts))>::template f<C::template f,Ts...>;
+			};
+			template<typename C>
+			struct recursive_join {
+				template<typename T>
+				using f = typename detail::recursive_join_impl<C::template f, T>::type;
 			};
 		}
 

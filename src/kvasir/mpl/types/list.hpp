@@ -6,6 +6,8 @@
 
 namespace kvasir {
 	namespace mpl {
+		template <typename... Ts>
+		struct list {};
 		namespace c {
 			namespace detail {
 				//recursive list, for internal use only
@@ -14,8 +16,6 @@ namespace kvasir {
 				using rlist_tail_of8 = rlist<list<>, rlist<list<>, rlist<list<>, rlist<list<>, rlist<list<>, rlist<list<>, rlist<list<>, rlist<list<>, void>>>>>>>>;
 			}
 		}
-		template <typename... Ts>
-		struct list {};
 
 		template <typename... Ts>
 		list<Ts...> make_list(Ts...) {
