@@ -51,10 +51,10 @@ namespace kvasir {
 				};
 
 			}
-			template<template<typename...> class F>
+			template<typename F>
 			struct fold_right {
 				template<typename...Ts>
-				using f = typename detail::fold_right_impl<detail::select_fold_right(sizeof...(Ts))>::template f<F, Ts...>;
+				using f = typename detail::fold_right_impl<detail::select_fold_right(sizeof...(Ts))>::template f<F::template f, Ts...>;
 			};
 		}
 		namespace impl {
