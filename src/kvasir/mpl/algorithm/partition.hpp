@@ -5,16 +5,15 @@
 #pragma once
 
 #include "../algorithm/remove_if.hpp"
+#include "../functional/fork.hpp"
 
 namespace kvasir {
 	namespace mpl {
 
 		template <template <typename...> class Cond, typename List>
-		using partition = c::call<
-			list<  //using the forking version
-			c::listify, 
-			c::remove_if<Cond>, 
-			c::filter<Cond>>, //essentially a filter
-			List>;
+		using partition = c::call<c::fork< // using the forking version
+		                                  c::listify, c::remove_if<Cond>,
+		                                  c::filter<Cond>>, // essentially a filter
+		                          List>;
 	}
 }
