@@ -30,7 +30,7 @@ namespace kvasir {
 			template<template<typename...> class F, typename TrueType = std::true_type, typename FalseType = std::false_type>
 			struct all {
 				template<typename...Ts>
-				using f = decltype(detail::all_tester::all_same<std::true_type, TrueType, FalseType>({ std::bool_constant<bool(F<Ts>::value)>{}... }));
+				using f = decltype(detail::all_tester::all_same<std::true_type, TrueType, FalseType>({ F<Ts>{}... }));
 			};
 		}
 
