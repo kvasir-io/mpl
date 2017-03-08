@@ -5,6 +5,7 @@
 #pragma once
 
 #include "../types/list.hpp"
+#include "../functional/fork.hpp"
 namespace kvasir {
 	namespace mpl {
 		namespace c {
@@ -13,13 +14,13 @@ namespace kvasir {
 				struct call_impl;
 				template<typename C, template<typename...> class Seq, typename...Ls, typename...Ts>
 				struct call_impl<C, Seq<Ls...>, Ts...> {
-					using type = typename C::template f<Ts...,Ls...>;
+					using type = typename C::template f<Ts..., Ls...>;
 				};
 				//forking version of call expects a "combining" continuation as its first arguement 
 				//and a variadic pack of continuations which are executed in paralell
 				template<typename R, typename...C, template<typename...> class Seq, typename...Ls, typename...Ts>
-				struct call_impl<list<R, C...>, Seq<Ls...>,Ts...> {
-					using type = typename R::template f<typename C::template f<Ts...,Ls...>...>;
+				struct call_impl<fork<R, C...>, Seq<Ls...>, Ts...> {
+					using type = typename R::template f<typename C::template f<Ts..., Ls...>...>;
 				};
 			}
 			template<typename C, typename L, typename...Ts>
