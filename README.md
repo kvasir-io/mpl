@@ -27,7 +27,7 @@ consideration.
   - Functions returning a value should be implicitly convertible to it's return value
   - Functions returning a function should be a type that has a templated member ::f
     For instance, when calling a function `foo` that returns a function one would do as such:
-    `remove_if<bind<std::is_same, Elem>::f, List>`
+    `remove_if<bind<std::is_same, Elem>::template f, List>`
 - Any function taking a list should refer to a generic struct, as to allow for special
   implementations.
 - Templated structs (except for function backend structs) should have no more than one
