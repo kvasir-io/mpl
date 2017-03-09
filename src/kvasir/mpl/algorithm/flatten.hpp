@@ -27,7 +27,9 @@ namespace kvasir {
 			};
 
 			template <template <class...> class L, class... Ts>
-			struct flatten_impl<L<Ts...>> : flatten_element_impl<L, L<Ts...>> {};
+			struct flatten_impl<L<Ts...>> {
+				using type = flatten_element_impl<L, L<Ts...>>;
+			};
 		}
 
 		template <typename Sequence>
