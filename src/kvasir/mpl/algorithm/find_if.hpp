@@ -4,15 +4,16 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
-#include "../types/list.hpp"
 #include "../functional/bind.hpp"
+#include "../functional/call.hpp"
+#include "../types/list.hpp"
 
 namespace kvasir {
 	namespace mpl {
 		namespace c {
 			namespace detail {
 				constexpr unsigned first_find(const std::size_t size) {
-					return size >= 64 ? 14:size >= 16 ? 13 : size >= 4 ? 12 : size >= 1 ? 11 : 0;
+					return size >= 64 ? 14 : size >= 16 ? 13 : size >= 4 ? 12 : size >= 1 ? 11 : 0;
 				}
 				constexpr unsigned find_any(const std::size_t size, const bool b0) {
 					return b0 ? 1 : size == 0 ? 0 : 2;
@@ -22,50 +23,49 @@ namespace kvasir {
 					return b0 ? 1 : (b1 || b2 || b3) ? 2 : size >= 4 ? 3 : 2;
 				}
 				constexpr unsigned find_any(const std::size_t size, const bool b0, const bool b1,
-					const bool b2, const bool b3, const bool b4,
-					const bool b5, const bool b6, const bool b7,
-					const bool b8, const bool b9, const bool b10,
-					const bool b11, const bool b12, const bool b13,
-					const bool b14, const bool b15) {
+				                            const bool b2, const bool b3, const bool b4,
+				                            const bool b5, const bool b6, const bool b7,
+				                            const bool b8, const bool b9, const bool b10,
+				                            const bool b11, const bool b12, const bool b13,
+				                            const bool b14, const bool b15) {
 					return b0 ? 1 :
-						(b1 || b2 || b3) ? 2 :
-						(b4 || b5 || b6 || b7 || b8 || b9 || b10 ||
-							b11 || b12 || b13 || b14 || b15) ?
-						3 :
-						size >= 16 ? 4 : 3;
+					            (b1 || b2 || b3) ? 2 :
+					                               (b4 || b5 || b6 || b7 || b8 || b9 || b10 ||
+					                                b11 || b12 || b13 || b14 || b15) ?
+					                               3 :
+					                               size >= 16 ? 4 : 3;
 				}
-				constexpr unsigned find_any(const std::size_t size, const bool b0, const bool b1,
-					const bool b2, const bool b3, const bool b4,
-					const bool b5, const bool b6, const bool b7,
-					const bool b8, const bool b9, const bool b10,
-					const bool b11, const bool b12, const bool b13,
-					const bool b14, const bool b15, const bool b16, const bool b17,
-					const bool b18, const bool b19, const bool b20,
-					const bool b21, const bool b22, const bool b23,
-					const bool b24, const bool b25, const bool b26,
-					const bool b27, const bool b28, const bool b29,
-					const bool b30, const bool b31, const bool b32, const bool b33,
-					const bool b34, const bool b35, const bool b36,
-					const bool b37, const bool b38, const bool b39,
-					const bool b40, const bool b41, const bool b42,
-					const bool b43, const bool b44, const bool b45,
-					const bool b46, const bool b47, const bool b48, const bool b49,
-					const bool b50, const bool b51, const bool b52,
-					const bool b53, const bool b54, const bool b55,
-					const bool b56, const bool b57, const bool b58,
-					const bool b59, const bool b60, const bool b61,
-					const bool b62, const bool b63) {
+				constexpr unsigned
+				find_any(const std::size_t size, const bool b0, const bool b1, const bool b2,
+				         const bool b3, const bool b4, const bool b5, const bool b6, const bool b7,
+				         const bool b8, const bool b9, const bool b10, const bool b11,
+				         const bool b12, const bool b13, const bool b14, const bool b15,
+				         const bool b16, const bool b17, const bool b18, const bool b19,
+				         const bool b20, const bool b21, const bool b22, const bool b23,
+				         const bool b24, const bool b25, const bool b26, const bool b27,
+				         const bool b28, const bool b29, const bool b30, const bool b31,
+				         const bool b32, const bool b33, const bool b34, const bool b35,
+				         const bool b36, const bool b37, const bool b38, const bool b39,
+				         const bool b40, const bool b41, const bool b42, const bool b43,
+				         const bool b44, const bool b45, const bool b46, const bool b47,
+				         const bool b48, const bool b49, const bool b50, const bool b51,
+				         const bool b52, const bool b53, const bool b54, const bool b55,
+				         const bool b56, const bool b57, const bool b58, const bool b59,
+				         const bool b60, const bool b61, const bool b62, const bool b63) {
 					return b0 ? 1 :
-						(b1 || b2 || b3) ? 2 :
-						(b4 || b5 || b6 || b7 || b8 || b9 || b10 ||
-							b11 || b12 || b13 || b14 || b15) ?
-						3 : (b16 || b17 || b18 || b19 || b20 || b21 || b22 ||
-							b23 || b24 || b25 || b26 || b27 || b28 || b29 || b30 || b31 || b32 || b33 || b34 ||
-							b35 || b36 || b37 || b38 || b39 || b40 || b41 || b42 || b43 || b44 || b45 || b46 ||
-							b47 || b48 || b49 || b50 || b51 || b52 || b53 || b54 || b55 || b56 || b57 ||
-							b58 || b59 || b60 || b61 || b62 || b63) ?
-						4 :
-						size >= 64 ? 5 : 4;
+					            (b1 || b2 || b3) ?
+					            2 :
+					            (b4 || b5 || b6 || b7 || b8 || b9 || b10 || b11 || b12 || b13 ||
+					             b14 || b15) ?
+					            3 :
+					            (b16 || b17 || b18 || b19 || b20 || b21 || b22 || b23 || b24 ||
+					             b25 || b26 || b27 || b28 || b29 || b30 || b31 || b32 || b33 ||
+					             b34 || b35 || b36 || b37 || b38 || b39 || b40 || b41 || b42 ||
+					             b43 || b44 || b45 || b46 || b47 || b48 || b49 || b50 || b51 ||
+					             b52 || b53 || b54 || b55 || b56 || b57 || b58 || b59 || b60 ||
+					             b61 || b62 || b63) ?
+					            4 :
+					            size >= 64 ? 5 : 4;
 				}
 				template <unsigned, typename C>
 				struct find_if_impl;
@@ -245,19 +245,18 @@ namespace kvasir {
 			struct find_if {
 				template <typename... Ts>
 				using f = typename detail::find_if_impl<detail::first_find(sizeof...(Ts)),
-					C>::template f<F::template f, Ts...>;
+				                                        C>::template f<F::template f, Ts...>;
 			};
 			template <template <typename...> class F, typename C>
-			struct find_if<bind<F>,C> {
+			struct find_if<bind<F>, C> {
 				template <typename... Ts>
 				using f = typename detail::find_if_impl<detail::first_find(sizeof...(Ts)),
-					C>::template f<F, Ts...>;
+				                                        C>::template f<F, Ts...>;
 			};
 		}
 
-
 		/// fold left over a list, initialized with State
 		template <template <typename...> class Cond, typename List>
-		using find_if = c::call<c::find_if<bind<Cond>>,List>;
+		using find_if = c::call<c::find_if<bind<Cond>>, List>;
 	}
 }
