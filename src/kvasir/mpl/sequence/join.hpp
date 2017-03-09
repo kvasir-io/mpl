@@ -5,6 +5,7 @@
 #pragma once
 
 #include "../types/list.hpp"
+#include "../functional/bind.hpp"
 
 namespace kvasir {
 	namespace mpl {
@@ -105,6 +106,11 @@ namespace kvasir {
 			struct recursive_join {
 				template<typename T>
 				using f = typename detail::recursive_join_impl<C::template f, T>::type;
+			};
+			template<template<typename...> class C>
+			struct recursive_join<bind<C>> {
+				template<typename T>
+				using f = typename detail::recursive_join_impl<C, T>::type;
 			};
 		}
 
