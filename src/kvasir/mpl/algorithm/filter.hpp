@@ -5,12 +5,11 @@
 #pragma once
 #include "remove_if.hpp"
 
-
 namespace kvasir {
 	namespace mpl {
 		namespace c {
-			///continuation version of filter, taking a continuation and predicate
-			template<template <typename...> class Cond, typename C = listify>
+			/// continuation version of filter, taking a continuation and predicate
+			template <template <typename...> class Cond, typename C = listify>
 			using filter = transform<list_wrap_if<Cond>, join<C>>;
 		}
 
