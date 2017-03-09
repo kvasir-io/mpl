@@ -4,47 +4,40 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
-#include "../sequence/create.hpp"
-#include "../sequence/is_list.hpp"
-#include "../sequence/push_back.hpp"
-#include "fold_left.hpp"
+#include "../sequence/join.hpp"
 
 namespace kvasir {
 	namespace mpl {
-		namespace impl {
-			template <typename Elem, typename Result>
-			struct flatten;
+		namespace detail
+		{
 
-			namespace generic {
-				template <bool list>
-				struct flatten;
-
-				template <typename Result, typename Elem>
-				using flatten_func = typename impl::flatten<Elem, Result>::f;
-
-				template <>
-				struct flatten<true> {
-					// the passed element is a list
-					template <typename List, typename Result>
-					using f = int; //TODO make this work again typename impl::fold_left_impl<List>::template f<flatten_func, Result>;
-				};
-
-				template <>
-				struct flatten<false> {
-					// the passed element is not a list
-					template <typename Elem, typename Result>
-					using f = typename push_back_impl<Elem, Result>::f;
-				};
-			}
-
-			template <typename Elem, typename Result>
-			struct flatten {
-				using f = typename generic::flatten<typename impl::is_list<Elem>::f{}>::template f<
-				        Elem, Result>;
+			template <class L>
+			struct flatten_impl
+			{
+				using type = L;
 			};
+
+			template <template<class...> class L, class T>
+			struct flatten_element_impl
+			{
+				using type = L<T>;
+			};
+
+			template <template<class...> class L, class... Ts>
+			struct flatten_element_impl<L, L<Ts...>>
+			{
+				using type = typename c::join<c::listify>::template f<typename flatten_element_impl<L, Ts>::type...>;
+			};
+
+			template <template<class...> class L, class... Ts>
+			struct flatten_impl<L<Ts...>>
+				: flatten_element_impl<L, L<Ts...>>
+			{
+			};
+
 		}
 
-		template <typename List, typename Result = typename impl::create_impl<List>::f>
-		using flatten = typename impl::flatten<List, Result>::f;
+		template <typename Sequence>
+		using flatten = typename detail::flatten_impl<Sequence>::type;
 	}
 }
