@@ -11,12 +11,12 @@ namespace kvasir {
 		namespace c {
 			namespace detail {
 				struct one_or_more {
-					template<typename...Ts>
-					using f = std::integral_constant<bool, (sizeof...(Ts) > 0)>;
+					template <typename... Ts>
+					using f = bool_<(sizeof...(Ts) > 0)>;
 				};
 			}
-			template<typename F>
-			struct any : find_if<F, detail::one_or_more> {};
+			template <typename F>
+			using any = find_if<F, detail::one_or_more>;
 		}
 		/// filter elements from a list
 		/// takes a lambda that should return a type convertible to bool

@@ -68,23 +68,27 @@ namespace kvasir {
 					          typename T54, typename T55, typename T56, typename T57, typename T58,
 					          typename T59, typename T60, typename T61, typename T62, typename T63,
 					          typename... Ts>
-					using f = typename reverse_impl<select_reverse(
-					        sizeof...(Ts))>::template f<rlist<list<T63, T62, T61, T60, T59, T58, T57, T56, T55,
-						T54, T53, T52, T51, T50, T49, T48, T47, T46, T45, T44, T43, T42, T41, T40, T39,
-						T38, T37, T36, T35, T34, T33, T32, T31, T30, T29, T28, T27, T26, T25, T24, T23,
-						T22, T21, T20, T19, T18, T17, T16, T15, T14, T13, T12, T11, T10, T9, T8, T7,
-						T6, T5, T4, T3, T2, T1, T0>, Tail>, Ts...>;
+					using f = typename reverse_impl<select_reverse(sizeof...(Ts))>::template f<
+					        rlist<list<T63, T62, T61, T60, T59, T58, T57, T56, T55, T54, T53, T52,
+					                   T51, T50, T49, T48, T47, T46, T45, T44, T43, T42, T41, T40,
+					                   T39, T38, T37, T36, T35, T34, T33, T32, T31, T30, T29, T28,
+					                   T27, T26, T25, T24, T23, T22, T21, T20, T19, T18, T17, T16,
+					                   T15, T14, T13, T12, T11, T10, T9, T8, T7, T6, T5, T4, T3, T2,
+					                   T1, T0>,
+					              Tail>,
+					        Ts...>;
 				};
 			}
 			template <typename C>
 			struct reverse {
 				template <typename... Ts>
-				using f = typename recursive_join<C>::template f<typename detail::reverse_impl<detail::select_reverse(
-				        sizeof...(Ts))>::template f<detail::rlist_tail_of8,Ts...>>;
+				using f = typename recursive_join<C>::template f<
+				        typename detail::reverse_impl<detail::select_reverse(
+				                sizeof...(Ts))>::template f<detail::rlist_tail_of8, Ts...>>;
 			};
 		}
 
 		template <typename List>
-		using reverse = c::call<c::reverse<c::listify>,List>;
+		using reverse = c::call<c::reverse<c::listify>, List>;
 	}
 }

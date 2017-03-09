@@ -4,49 +4,47 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
-#include "../sequence/join.hpp"
+#include "../algorithm/transform.hpp"
 #include "../functional/bind.hpp"
 #include "../functional/call.hpp"
-#include "../algorithm/transform.hpp"
+#include "../sequence/join.hpp"
 
 namespace kvasir {
 	namespace mpl {
 		namespace c {
 			namespace detail {
-				template<bool>
+				template <bool>
 				struct list_wrap_if;
-				template<>
-				struct list_wrap_if<true>
-				{
-					template<typename T>
+				template <>
+				struct list_wrap_if<true> {
+					template <typename T>
 					using f = list<T>;
 				};
-				template<>
-				struct list_wrap_if<false>
-				{
-					template<typename>
+				template <>
+				struct list_wrap_if<false> {
+					template <typename>
 					using f = list<>;
 				};
 			}
-			template<template<typename...> class F>
+			template <template <typename...> class F>
 			struct list_wrap_if {
-				template<typename T>
+				template <typename T>
 				using f = typename detail::list_wrap_if<F<T>::value>::template f<T>;
 			};
-			template<template<typename...> class F>
+			template <template <typename...> class F>
 			struct list_wrap_if_not {
-				template<typename T>
+				template <typename T>
 				using f = typename detail::list_wrap_if<(!F<T>::value)>::template f<T>;
 			};
 
-			///continuation version of remove_if, taking a continuation and predicate
-			template<template <typename...> class Cond, typename C = listify>
+			/// continuation version of remove_if, taking a continuation and predicate
+			template <template <typename...> class Cond, typename C = listify>
 			using remove_if = transform<list_wrap_if_not<Cond>, join<C>>;
 		}
 
 		/// filter elements from a list
 		/// takes a lambda that should return a type convertible to bool
 		template <template <typename...> class Cond, typename List>
-		using remove_if = c::call<c::remove_if<Cond>,List>;
+		using remove_if = c::call<c::remove_if<Cond>, List>;
 	}
 }

@@ -4,9 +4,9 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
-#include "fold_right.hpp"
 #include "../sequence/push_front.hpp"
 #include "../types/list.hpp"
+#include "fold_right.hpp"
 
 namespace kvasir {
 	namespace mpl {

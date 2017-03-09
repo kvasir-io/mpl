@@ -8,33 +8,26 @@
 
 namespace kvasir {
 	namespace mpl {
-		namespace detail
-		{
+		namespace detail {
 
 			template <class L>
-			struct flatten_impl
-			{
+			struct flatten_impl {
 				using type = L;
 			};
 
-			template <template<class...> class L, class T>
-			struct flatten_element_impl
-			{
+			template <template <class...> class L, class T>
+			struct flatten_element_impl {
 				using type = L<T>;
 			};
 
-			template <template<class...> class L, class... Ts>
-			struct flatten_element_impl<L, L<Ts...>>
-			{
-				using type = typename c::join<c::listify>::template f<typename flatten_element_impl<L, Ts>::type...>;
+			template <template <class...> class L, class... Ts>
+			struct flatten_element_impl<L, L<Ts...>> {
+				using type = typename c::join<c::listify>::template f<
+				        typename flatten_element_impl<L, Ts>::type...>;
 			};
 
-			template <template<class...> class L, class... Ts>
-			struct flatten_impl<L<Ts...>>
-				: flatten_element_impl<L, L<Ts...>>
-			{
-			};
-
+			template <template <class...> class L, class... Ts>
+			struct flatten_impl<L<Ts...>> : flatten_element_impl<L, L<Ts...>> {};
 		}
 
 		template <typename Sequence>
