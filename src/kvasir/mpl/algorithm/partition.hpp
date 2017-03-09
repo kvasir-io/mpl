@@ -12,8 +12,8 @@ namespace kvasir {
 
 		template <template <typename...> class Cond, typename List>
 		using partition = c::call<c::fork< // using the forking version
-		                                  c::listify, c::remove_if<Cond>,
-		                                  c::filter<Cond>>, // essentially a filter
+		                                  c::listify, c::remove_if<bind<Cond>>,
+		                                  c::filter<bind<Cond>>>, // essentially a filter
 		                          List>;
 	}
 }

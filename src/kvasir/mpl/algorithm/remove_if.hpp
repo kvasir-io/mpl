@@ -26,25 +26,35 @@ namespace kvasir {
 					using f = list<>;
 				};
 			}
-			template <template <typename...> class F>
+			template <typename F>
 			struct list_wrap_if {
+				template <typename T>
+				using f = typename detail::list_wrap_if<F::template f<T>::value>::template f<T>;
+			};
+			template <template <typename...> class F>
+			struct list_wrap_if<bind<F>> {
 				template <typename T>
 				using f = typename detail::list_wrap_if<F<T>::value>::template f<T>;
 			};
-			template <template <typename...> class F>
+			template <typename F>
 			struct list_wrap_if_not {
+				template <typename T>
+				using f = typename detail::list_wrap_if<(!F::template f<T>::value)>::template f<T>;
+			};
+			template <template <typename...> class F>
+			struct list_wrap_if_not<bind<F>> {
 				template <typename T>
 				using f = typename detail::list_wrap_if<(!F<T>::value)>::template f<T>;
 			};
 
 			/// continuation version of remove_if, taking a continuation and predicate
-			template <template <typename...> class Cond, typename C = listify>
+			template <typename Cond, typename C = listify>
 			using remove_if = transform<list_wrap_if_not<Cond>, join<C>>;
 		}
 
 		/// filter elements from a list
 		/// takes a lambda that should return a type convertible to bool
 		template <template <typename...> class Cond, typename List>
-		using remove_if = c::call<c::remove_if<Cond>, List>;
+		using remove_if = c::call<c::remove_if<bind<Cond>>, List>;
 	}
 }

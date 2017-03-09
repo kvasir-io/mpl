@@ -40,7 +40,6 @@
 #include "functions/bitwise/bitwise_or.hpp"
 #include "functions/bitwise/bitwise_xor.hpp"
 
-#include "sequence/append.hpp"
 #include "sequence/at.hpp"
 #include "sequence/create.hpp"
 #include "sequence/is_list.hpp"

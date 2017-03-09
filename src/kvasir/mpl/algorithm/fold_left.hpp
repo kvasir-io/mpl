@@ -72,16 +72,22 @@ namespace kvasir {
 					using f = typename fold_impl<select_fold(sizeof...(Ts))>::template f<F, F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<In, T0>, T1>, T2>, T3>, T4>, T5>, T6>, T7>, T8>, T9>, T10>, T11>, T12>, T13>, T14>, T15>, T16>, T17>, T18>, T19>, T20>, T21>, T22>, T23>, T24>, T25>, T26>, T27>, T28>, T29>, T30>, T31>, T32>, T33>, T34>, T35>, T36>, T37>, T38>, T39>, T40>, T41>, T42>, T43>, T44>, T45>, T46>, T47>, T48>, T49>, T50>, T51>, T52>, T53>, T54>, T55>, T56>, T57>, T58>, T59>, T60>, T61>, T62>, T63>, Ts...>;
 				};
 			}
-			template <template <typename...> class F>
+			template <typename F>
 			struct fold_left {
 				template <typename... Ts>
 				using f = typename detail::fold_impl<detail::select_fold(
-				        sizeof...(Ts))>::template f<F, Ts...>;
+					sizeof...(Ts))>::template f<F::template f, Ts...>;
+			};
+			template <template <typename...> class F>
+			struct fold_left<bind<F>> {
+				template <typename... Ts>
+				using f = typename detail::fold_impl<detail::select_fold(
+					sizeof...(Ts))>::template f<F, Ts...>;
 			};
 		}
 
 		/// fold left over a list, initialized with State
 		template <template <typename...> class Func, typename State, typename List>
-		using fold_left = c::call<c::fold_left<Func>, List, State>;
+		using fold_left = c::call<c::fold_left<bind<Func>>, List, State>;
 	}
 }
