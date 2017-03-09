@@ -6,25 +6,32 @@
 
 #include "filter.hpp"
 #include "../sequence/size.hpp"
+#include "../functional/bind.hpp"
 
 namespace kvasir {
 	namespace mpl {
 		namespace c {
 			namespace detail {
-				template<template<typename...> class F>
+				template<typename F>
 				struct list_wrap_void_if {
+					template<typename T>
+					using f = typename std::conditional<F::template f<T>::value, list<void>, list<>>::type;
+				};
+				template<template<typename...> class F>
+				struct list_wrap_void_if<bind<F>> {
 					template<typename T>
 					using f = typename std::conditional<F<T>::value, list<void>, list<>>::type;
 				};
 			}
-			template<template <typename...> class Cond>
+			template<typename Cond>
 			using count_if = transform<detail::list_wrap_void_if<Cond>, join<size>>;
+
 		}
 
 
 		/// filter elements from a list
 		/// takes a lambda that should return a type convertible to bool
 		template <template <typename...> class Cond, typename List>
-		using count_if = c::call < c::count_if<Cond>, List>;
+		using count_if = c::call < c::count_if<bind<Cond>>, List>;
 	}
 }
