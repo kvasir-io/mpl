@@ -21,7 +21,9 @@
 #include "algorithm/zip_with.hpp"
 
 #include "functional/bind.hpp"
+#include "functional/call.hpp"
 #include "functional/compose.hpp"
+#include "functional/fork.hpp"
 #include "functional/identity.hpp"
 
 #include "functions/arithmetic/complement.hpp"
