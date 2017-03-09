@@ -7,9 +7,9 @@
 namespace kvasir {
 	namespace mpl {
 		namespace c {
-			template<typename Combiner, typename...Cs>
+			template <typename Combiner, typename... Cs>
 			struct fork {
-				template<typename...Ts>
+				template <typename... Ts>
 				using f = typename Combiner::template f<typename Cs::template f<Ts...>...>;
 			};
 		}
