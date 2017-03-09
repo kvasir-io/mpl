@@ -3,29 +3,31 @@
 //    (See accompanying file LICENSE.md or copy at
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
-
+#include "../functional/bind.hpp"
 namespace kvasir {
 	namespace mpl {
 		template <typename... Ts>
 		struct list {};
 		namespace c {
 			namespace detail {
-				//recursive list, for internal use only
-				template<typename Head, typename Tail>
+				// recursive list, for internal use only
+				template <typename Head, typename Tail>
 				struct rlist {};
-				using rlist_tail_of8 = rlist<list<>, rlist<list<>, rlist<list<>, rlist<list<>, rlist<list<>, rlist<list<>, rlist<list<>, rlist<list<>, void>>>>>>>>;
+				using rlist_tail_of8 = rlist<
+				        list<>,
+				        rlist<list<>,
+				              rlist<list<>,
+				                    rlist<list<>,
+				                          rlist<list<>,
+				                                rlist<list<>,
+				                                      rlist<list<>, rlist<list<>, void>>>>>>>>;
 			}
+			using listify = bind<list>;
 		}
 
 		template <typename... Ts>
 		list<Ts...> make_list(Ts...) {
 			return {};
-		}
-		namespace c {
-			struct listify{
-				template<typename...Ts>
-				using f = list<Ts...>;
-			};
 		}
 	}
 }
