@@ -7,12 +7,10 @@
 #include <type_traits>
 
 #include <kvasir/mpl/algorithm/find_if.hpp>
-
-template<typename T>
-using is_char = std::is_same<char, T>;
+#include <kvasir/mpl/functional/bind.hpp>
 
 using namespace kvasir;
-static_assert(std::is_same<mpl::find_if<is_char,
+static_assert(std::is_same<mpl::find_if<mpl::bind1<std::is_same, char>,
                                         mpl::list<void, char, short, int>>,
                            mpl::list<char, short, int>>{},
               "");
