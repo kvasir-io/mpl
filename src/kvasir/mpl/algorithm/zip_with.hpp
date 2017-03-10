@@ -4,15 +4,15 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
-#include "transform.hpp"
-#include "../utility/always.hpp"
 #include "../functional/bind.hpp"
 #include "../types/nothing.hpp"
+#include "../utility/always.hpp"
+#include "transform.hpp"
 
 #include "../sequence/create.hpp"
-#include "../sequence/size.hpp"
-#include "../sequence/push_front.hpp"
 #include "../sequence/pop_front.hpp"
+#include "../sequence/push_front.hpp"
+#include "../sequence/size.hpp"
 
 namespace kvasir {
 	namespace mpl {

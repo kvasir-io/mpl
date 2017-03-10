@@ -4,6 +4,8 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
+#include <type_traits>
+
 #include <kvasir/mpl/algorithm/flatten.hpp>
 #include <kvasir/mpl/types/list.hpp>
 

@@ -4,12 +4,17 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
-#include <cstddef>
-
 #include "../types/list.hpp"
+#include "../types/int.hpp"
 
 namespace kvasir {
 	namespace mpl {
+		namespace c {
+			struct size {
+				template <typename... Ts>
+				using f = int_<sizeof...(Ts)>;
+			};
+		}
 		namespace impl {
 			template <typename List>
 			struct size_impl;

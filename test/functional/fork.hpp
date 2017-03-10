@@ -4,14 +4,4 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
-namespace kvasir {
-	namespace mpl {
-		template <bool Value>
-		struct bool_ {
-			constexpr operator bool() const {
-				return Value;
-			}
-			static constexpr bool value = Value;
-		};
-	}
-}
+#include <kvasir/mpl/functional/fork.hpp>
