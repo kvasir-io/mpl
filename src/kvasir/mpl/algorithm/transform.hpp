@@ -18,17 +18,17 @@ namespace kvasir {
 				template <typename... Ts>
 				using f = typename C::template f<typename F::template f<Ts>...>;
 			};
-			template <template<typename...> class F, typename C>
+			template <template <typename...> class F, typename C>
 			struct transform<lambda<F>, C> {
 				template <typename... Ts>
 				using f = typename C::template f<F<Ts>...>;
 			};
-			template <template<typename...> class F, template<typename...> class C>
+			template <template <typename...> class F, template <typename...> class C>
 			struct transform<lambda<F>, lambda<C>> {
 				template <typename... Ts>
 				using f = C<F<Ts>...>;
 			};
-			template <typename F, template<typename...> class C>
+			template <typename F, template <typename...> class C>
 			struct transform<F, lambda<C>> {
 				template <typename... Ts>
 				using f = C<typename F::template f<Ts>...>;

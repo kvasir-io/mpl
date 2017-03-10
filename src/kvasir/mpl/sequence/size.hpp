@@ -11,7 +11,7 @@ namespace kvasir {
 	namespace mpl {
 		namespace c {
 			struct size {
-				template<typename...Ts>
+				template <typename... Ts>
 				using f = int_<sizeof...(Ts)>;
 			};
 		}
