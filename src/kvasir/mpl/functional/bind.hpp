@@ -39,6 +39,13 @@ namespace kvasir {
 			};
 			template<template<typename...> class F>
 			struct lambda {};
-		
+			namespace c {
+				using mpl::bind0n;
+				using mpl::bind1;
+				using mpl::bind1n;
+				using mpl::bind2;
+				using mpl::bind2n;
+				using mpl::lambda;
+			}
 	}
 }
