@@ -4,6 +4,8 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
+#include <cstddef>
+
 #include "../functional/bind.hpp"
 #include "../functional/call.hpp"
 #include "../types/list.hpp"
@@ -28,12 +30,11 @@ namespace kvasir {
 				                            const bool b8, const bool b9, const bool b10,
 				                            const bool b11, const bool b12, const bool b13,
 				                            const bool b14, const bool b15) {
-					return b0 ? 1 :
-					            (b1 || b2 || b3) ? 2 :
-					                               (b4 || b5 || b6 || b7 || b8 || b9 || b10 ||
-					                                b11 || b12 || b13 || b14 || b15) ?
-					                               3 :
-					                               size >= 16 ? 4 : 3;
+					return b0 ? 1 : (b1 || b2 || b3) ? 2 :
+					                                   (b4 || b5 || b6 || b7 || b8 || b9 || b10 ||
+					                                    b11 || b12 || b13 || b14 || b15) ?
+					                                   3 :
+					                                   size >= 16 ? 4 : 3;
 				}
 				constexpr unsigned
 				find_any(const std::size_t size, const bool b0, const bool b1, const bool b2,
@@ -52,8 +53,7 @@ namespace kvasir {
 				         const bool b52, const bool b53, const bool b54, const bool b55,
 				         const bool b56, const bool b57, const bool b58, const bool b59,
 				         const bool b60, const bool b61, const bool b62, const bool b63) {
-					return b0 ? 1 :
-					            (b1 || b2 || b3) ?
+					return b0 ? 1 : (b1 || b2 || b3) ?
 					            2 :
 					            (b4 || b5 || b6 || b7 || b8 || b9 || b10 || b11 || b12 || b13 ||
 					             b14 || b15) ?
@@ -71,24 +71,25 @@ namespace kvasir {
 				struct find_if_impl;
 				template <typename C>
 				struct find_if_impl<0, C> { // not found
-					template <template <typename> class F, typename... Ts>
+					template <template <typename...> class F, typename... Ts>
 					using f = typename C::template f<>;
 				};
 				template <typename C>
 				struct find_if_impl<1, C> {
-					template <template <typename> class F, typename... Ts>
+					template <template <typename...> class F, typename... Ts>
 					using f = typename C::template f<Ts...>;
 				}; // found
 
 				template <typename C>
 				struct find_if_impl<2, C> {
-					template <template <typename> class F, typename R, typename T, typename... Ts>
+					template <template <typename...> class F, typename R, typename T,
+					          typename... Ts>
 					using f = typename find_if_impl<find_any(sizeof...(Ts), F<T>::value),
 					                                C>::template f<F, T, Ts...>;
 				};
 				template <typename C>
 				struct find_if_impl<3, C> {
-					template <template <typename> class F, typename R0, typename R1, typename R2,
+					template <template <typename...> class F, typename R0, typename R1, typename R2,
 					          typename R3, typename T0, typename T1, typename T2, typename T3,
 					          typename... Ts>
 					using f = typename find_if_impl<find_any(sizeof...(Ts), F<T0>::value,
@@ -98,7 +99,7 @@ namespace kvasir {
 				};
 				template <typename C>
 				struct find_if_impl<4, C> {
-					template <template <typename> class F, typename R0, typename R1, typename R2,
+					template <template <typename...> class F, typename R0, typename R1, typename R2,
 					          typename R3, typename R4, typename R5, typename R6, typename R7,
 					          typename R8, typename R9, typename R10, typename R11, typename R12,
 					          typename R13, typename R14, typename R15, typename T0, typename T1,
@@ -117,7 +118,7 @@ namespace kvasir {
 				};
 				template <typename C>
 				struct find_if_impl<5, C> {
-					template <template <typename> class F, typename R0, typename R1, typename R2,
+					template <template <typename...> class F, typename R0, typename R1, typename R2,
 					          typename R3, typename R4, typename R5, typename R6, typename R7,
 					          typename R8, typename R9, typename R10, typename R11, typename R12,
 					          typename R13, typename R14, typename R15, typename R16, typename R17,
@@ -171,22 +172,22 @@ namespace kvasir {
 				};
 				template <typename C>
 				struct find_if_impl<11, C> { // start 1
-					template <template <typename> class F, typename T0, typename... Ts>
+					template <template <typename...> class F, typename T0, typename... Ts>
 					using f = typename find_if_impl<find_any(sizeof...(Ts), F<T0>::value),
 					                                C>::template f<F, T0, Ts...>;
 				};
 				template <typename C>
 				struct find_if_impl<12, C> { // start 4
-					template <template <typename> class F, typename T0, typename T1, typename T2,
-					          typename T3, typename T4, typename... Ts>
+					template <template <typename...> class F, typename T0, typename T1, typename T2,
+					          typename T3, typename... Ts>
 					using f = typename find_if_impl<find_any(sizeof...(Ts), F<T0>::value,
 					                                         F<T1>::value, F<T2>::value,
 					                                         F<T3>::value),
-					                                C>::template f<F, T0, T1, T2, T3, T4, Ts...>;
+					                                C>::template f<F, T0, T1, T2, T3, Ts...>;
 				};
 				template <typename C>
 				struct find_if_impl<13, C> { // start 16
-					template <template <typename> class F, typename T0, typename T1, typename T2,
+					template <template <typename...> class F, typename T0, typename T1, typename T2,
 					          typename T3, typename T4, typename T5, typename T6, typename T7,
 					          typename T8, typename T9, typename T10, typename T11, typename T12,
 					          typename T13, typename T14, typename T15, typename... Ts>
@@ -201,7 +202,7 @@ namespace kvasir {
 				};
 				template <typename C>
 				struct find_if_impl<14, C> { // start 64
-					template <template <typename> class F, typename T0, typename T1, typename T2,
+					template <template <typename...> class F, typename T0, typename T1, typename T2,
 					          typename T3, typename T4, typename T5, typename T6, typename T7,
 					          typename T8, typename T9, typename T10, typename T11, typename T12,
 					          typename T13, typename T14, typename T15, typename T16, typename T17,

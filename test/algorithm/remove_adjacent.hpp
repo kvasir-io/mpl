@@ -4,6 +4,8 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
+#include <type_traits>
+
 #include <kvasir/mpl/algorithm/remove_adjacent.hpp>
 #include <kvasir/mpl/types/list.hpp>
 #include <kvasir/mpl/types/bool.hpp>

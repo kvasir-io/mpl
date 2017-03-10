@@ -5,11 +5,14 @@
 #pragma once
 
 #include <type_traits>
+
 #include <kvasir/mpl/algorithm/find_if.hpp>
-#include <kvasir/mpl/functional/bind.hpp>
+
+template<typename T>
+using is_char = std::is_same<char, T>;
 
 using namespace kvasir;
-static_assert(std::is_same<mpl::find_if<mpl::bind<std::is_same, char>::template f,
+static_assert(std::is_same<mpl::find_if<is_char,
                                         mpl::list<void, char, short, int>>,
                            mpl::list<char, short, int>>{},
               "");
