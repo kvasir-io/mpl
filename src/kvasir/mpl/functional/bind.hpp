@@ -52,6 +52,18 @@ namespace kvasir {
 			using mpl::bind2n;
 			using mpl::lambda;
 			using mpl::bind_t;
+
+			//helper for functions that cannot specialize to detect lambda wrapped types
+			//this is handy but will be slower
+			namespace detail {
+				template <typename T>
+				struct make_bound : T {};
+				template <template <typename...> class F>
+				struct make_bound<lambda<F>> {
+					template <typename... Ts>
+					using f = F<Ts...>;
+				};
+			}
 		}
 	}
 }
