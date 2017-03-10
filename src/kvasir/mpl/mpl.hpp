@@ -50,6 +50,7 @@
 #include "sequence/push_back.hpp"
 #include "sequence/push_front.hpp"
 #include "sequence/size.hpp"
+#include "sequence/front.hpp"
 
 #include "types/bool.hpp"
 #include "types/int.hpp"
