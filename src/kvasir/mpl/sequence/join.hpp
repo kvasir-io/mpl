@@ -103,7 +103,7 @@ namespace kvasir {
 				using f = typename detail::join_select<detail::select_join_size(sizeof...(Ts))>::template f<C::template f, Ts...>;
 			};
 			template<template<typename...> class C>
-			struct join<bind<C>> {
+			struct join<lambda<C>> {
 				template<typename...Ts>
 				using f = typename detail::join_select<detail::select_join_size(sizeof...(Ts))>::template f<C, Ts...>;
 			};
@@ -113,7 +113,7 @@ namespace kvasir {
 				using f = typename detail::recursive_join_impl<C::template f, T>::type;
 			};
 			template<template<typename...> class C>
-			struct recursive_join<bind<C>> {
+			struct recursive_join<lambda<C>> {
 				template<typename T>
 				using f = typename detail::recursive_join_impl<C, T>::type;
 			};
@@ -122,7 +122,7 @@ namespace kvasir {
 
 		/// join two or more lists together
 		/// when there is only one list input the result is that list
-		//template <typename List, typename... Lists>
-		//using join = typename c::join<c::listify>::template f<List,Lists...>;
+		template <typename List, typename... Lists>
+		using join = typename c::join<c::listify>::template f<List,Lists...>;
 	}
 }

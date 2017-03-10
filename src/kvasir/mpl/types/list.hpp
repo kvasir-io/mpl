@@ -22,7 +22,7 @@ namespace kvasir {
 				                                rlist<list<>,
 				                                      rlist<list<>, rlist<list<>, void>>>>>>>>;
 			}
-			using listify = bind<list>;
+			using listify = lambda<list>;
 		}
 
 		template <typename... Ts>

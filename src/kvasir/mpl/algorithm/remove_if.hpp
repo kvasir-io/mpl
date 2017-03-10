@@ -32,7 +32,7 @@ namespace kvasir {
 				using f = typename detail::list_wrap_if<F::template f<T>::value>::template f<T>;
 			};
 			template <template <typename...> class F>
-			struct list_wrap_if<bind<F>> {
+			struct list_wrap_if<lambda<F>> {
 				template <typename T>
 				using f = typename detail::list_wrap_if<F<T>::value>::template f<T>;
 			};
@@ -42,7 +42,7 @@ namespace kvasir {
 				using f = typename detail::list_wrap_if<(!F::template f<T>::value)>::template f<T>;
 			};
 			template <template <typename...> class F>
-			struct list_wrap_if_not<bind<F>> {
+			struct list_wrap_if_not<lambda<F>> {
 				template <typename T>
 				using f = typename detail::list_wrap_if<(!F<T>::value)>::template f<T>;
 			};
@@ -55,6 +55,6 @@ namespace kvasir {
 		/// filter elements from a list
 		/// takes a lambda that should return a type convertible to bool
 		template <template <typename...> class Cond, typename List>
-		using remove_if = c::call<c::remove_if<bind<Cond>>, List>;
+		using remove_if = c::call<c::remove_if<lambda<Cond>>, List>;
 	}
 }

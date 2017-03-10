@@ -21,6 +21,6 @@ namespace kvasir {
 		/// filter elements from a list
 		/// takes a lambda that should return a type convertible to bool
 		template <template <typename...> class Cond, typename List>
-		using any = c::call<c::any<bind<Cond>>, List>;
+		using any = c::call<c::any<lambda<Cond>>, List>;
 	}
 }

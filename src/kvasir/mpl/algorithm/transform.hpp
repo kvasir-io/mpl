@@ -19,19 +19,24 @@ namespace kvasir {
 				using f = typename C::template f<typename F::template f<Ts>...>;
 			};
 			template <template<typename...> class F, typename C>
-			struct transform<bind<F>, C> {
+			struct transform<lambda<F>, C> {
 				template <typename... Ts>
 				using f = typename C::template f<F<Ts>...>;
 			};
 			template <template<typename...> class F, template<typename...> class C>
-			struct transform<bind<F>, bind<C>> {
+			struct transform<lambda<F>, lambda<C>> {
 				template <typename... Ts>
 				using f = C<F<Ts>...>;
+			};
+			template <typename F, template<typename...> class C>
+			struct transform<F, lambda<C>> {
+				template <typename... Ts>
+				using f = C<typename F::template f<Ts>...>;
 			};
 		}
 
 		/// transform each element in a list with a function
 		template <template <typename...> class F, typename List>
-		using transform = c::call<c::transform<c::listify, bind<F>>, List>;
+		using transform = c::call<c::transform<c::listify, lambda<F>>, List>;
 	}
 }

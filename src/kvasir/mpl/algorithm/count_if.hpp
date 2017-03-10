@@ -19,7 +19,7 @@ namespace kvasir {
 					                                    list<>>::type;
 				};
 				template <template <typename...> class F>
-				struct list_wrap_void_if<bind<F>> {
+				struct list_wrap_void_if<lambda<F>> {
 					template <typename T>
 					using f = typename std::conditional<F<T>::value, list<void>, list<>>::type;
 				};
@@ -31,6 +31,6 @@ namespace kvasir {
 		/// filter elements from a list
 		/// takes a lambda that should return a type convertible to bool
 		template <template <typename...> class Cond, typename List>
-		using count_if = c::call<c::count_if<bind<Cond>>, List>;
+		using count_if = c::call<c::count_if<lambda<Cond>>, List>;
 	}
 }
