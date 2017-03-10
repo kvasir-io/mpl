@@ -27,7 +27,7 @@ namespace kvasir {
 			}
 		};
 
-		template<typename T>
+		template <typename T>
 		struct is_integral<integral_constant<T, nullptr>> {
 			constexpr operator bool() const {
 				return true;
