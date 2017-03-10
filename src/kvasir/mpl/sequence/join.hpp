@@ -1479,7 +1479,7 @@ namespace kvasir {
 					return i <= 4 ? 0 : i <= 16 ? 1 : i <= 64 ? 2 : i <= 256 ? 3 : 4;
 				}
 			}
-			template <typename C>
+			template <typename C = listify>
 			struct join {
 				template <typename... Ts>
 				using f = typename detail::join_select<detail::select_join_size(
