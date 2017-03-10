@@ -10,7 +10,7 @@
 #include <kvasir/mpl/functional/bind.hpp>
 
 using namespace kvasir;
-static_assert(std::is_same<mpl::find_if<mpl::bind1<std::is_same, char>,
+static_assert(std::is_same<mpl::find_if<mpl::bind1<std::is_same, char>::template f,
                                         mpl::list<void, char, short, int>>,
                            mpl::list<char, short, int>>{},
               "");
