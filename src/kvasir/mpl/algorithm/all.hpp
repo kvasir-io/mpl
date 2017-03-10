@@ -4,25 +4,39 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
-#include "remove_if.hpp"
-#include "../sequence/size.hpp"
+#include "../algorithm/find_if.hpp"
+#include "../functional/bind.hpp"
+#include "../functional/call.hpp"
+#include "../types/bool.hpp"
 #include "../utility/identity.hpp"
 
 namespace kvasir {
 	namespace mpl {
-		namespace impl {
-			/// generic implementation for any list type
-			template <template <typename...> class Cond, typename List>
-			struct all_impl {
-				constexpr operator bool() const {
-					return size_impl<remove_if_impl<Cond, List>>{} == 0;
-				}
-			};
-		};
+		namespace c {
+			namespace detail {
+				struct nothing_found {
+					template <typename... Ts>
+					using f = bool_<(sizeof...(Ts) == 0)>;
+				};
+				template <typename F>
+				struct not_ {
+					template <typename T>
+					using f = bool_<(!F::template f<T>::value)>;
+				};
+				template <template <typename...> class F>
+				struct not_<lambda<F>> {
+					template <typename T>
+					using f = bool_<(!F<T>::value)>;
+				};
+			}
 
-		/// filter elements from a list
-		/// takes a lambda that should return a type convertible to bool
-		template <typename List, template <typename...> class Cond = identity>
-		using all = impl::all_impl<Cond, List>;
+			template <typename F>
+			using all = find_if<detail::not_<F>, detail::nothing_found>;
+		}
+
+		/// resolves to std::true_type if all elements in the input list
+		/// fulfill the provided predicate
+		template<typename List, template<typename...> class Cond = identity>
+		using all = c::call<c::all<lambda<Cond>>, List>;
 	}
 }

@@ -4,43 +4,58 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
-#include "../sequence/push_back.hpp"
-#include "../sequence/create.hpp"
-#include "../algorithm/fold_left.hpp"
+#include "../algorithm/transform.hpp"
+#include "../functional/bind.hpp"
+#include "../functional/call.hpp"
+#include "../sequence/join.hpp"
 #include "../utility/identity.hpp"
 
 namespace kvasir {
 	namespace mpl {
-		namespace impl {
-			namespace generic {
-				template <bool cond>
-				struct push_if;
+		namespace c {
+			namespace detail {
+				template <bool>
+				struct list_wrap_if;
 				template <>
-				struct push_if<true> {
-					template <typename Elem, typename List>
-					using f = typename push_back_impl<Elem, List>::f;
+				struct list_wrap_if<true> {
+					template <typename T>
+					using f = list<T>;
 				};
 				template <>
-				struct push_if<false> {
-					template <typename Elem, typename List>
-					using f = List;
+				struct list_wrap_if<false> {
+					template <typename>
+					using f = list<>;
 				};
 			}
-
-			template <template <typename...> class Cond, typename List>
-			struct remove_if_impl {
-				template <typename Result, typename Elem>
-				using cond_add_pred =
-				        typename generic::push_if<Cond<Elem>{}>::template f<Elem, Result>;
-
-				using f = typename fold_left_impl<List>::template f<cond_add_pred,
-				                                                    typename create_impl<List>::f>;
+			template <typename F>
+			struct list_wrap_if {
+				template <typename T>
+				using f = typename detail::list_wrap_if<F::template f<T>::value>::template f<T>;
 			};
+			template <template <typename...> class F>
+			struct list_wrap_if<lambda<F>> {
+				template <typename T>
+				using f = typename detail::list_wrap_if<F<T>::value>::template f<T>;
+			};
+			template <typename F>
+			struct list_wrap_if_not {
+				template <typename T>
+				using f = typename detail::list_wrap_if<(!F::template f<T>::value)>::template f<T>;
+			};
+			template <template <typename...> class F>
+			struct list_wrap_if_not<lambda<F>> {
+				template <typename T>
+				using f = typename detail::list_wrap_if<(!F<T>::value)>::template f<T>;
+			};
+
+			/// continuation version of remove_if, taking a continuation and predicate
+			template <typename Cond, typename C = listify>
+			using remove_if = transform<list_wrap_if_not<Cond>, join<C>>;
 		}
 
 		/// filter elements from a list
 		/// takes a lambda that should return a type convertible to bool
 		template <typename List, template <typename...> class Cond = identity>
-		using remove_if = typename impl::remove_if_impl<Cond, List>::f;
+		using remove_if = c::call<c::remove_if<lambda<Cond>>, List>;
 	}
 }

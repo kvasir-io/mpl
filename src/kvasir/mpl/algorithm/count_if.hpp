@@ -4,24 +4,34 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
-#include "remove_if.hpp"
+#include "../functional/bind.hpp"
 #include "../sequence/size.hpp"
-#include "../functional/compose.hpp"
-#include "../utility/invert.hpp"
+#include "filter.hpp"
+#include "../utility/conditional.hpp"
 
 namespace kvasir {
 	namespace mpl {
-		namespace impl {
-			/// generic implementation for any list type
-			template <template <typename...> class Cond, typename List>
-			struct count_if_impl {
-				using f = size_impl<remove_if_impl<compose<Cond, invert>::template f, List>>;
-			};
+		namespace c {
+			namespace detail {
+				template <typename F>
+				struct list_wrap_void_if {
+					template <typename T>
+					using f = typename conditional<F::template f<T>::value>::template f<list<void>,
+					                                                                    list<>>;
+				};
+				template <template <typename...> class F>
+				struct list_wrap_void_if<lambda<F>> {
+					template <typename T>
+					using f = typename conditional<F<T>::value>::template f<list<void>, list<>>;
+				};
+			}
+			template <typename Cond>
+			using count_if = transform<detail::list_wrap_void_if<Cond>, join<size>>;
 		}
 
 		/// filter elements from a list
 		/// takes a lambda that should return a type convertible to bool
 		template <typename List, template <typename...> class Cond = identity>
-		using count_if = typename impl::count_if_impl<Cond, List>::f;
+		using count_if = c::call<c::count_if<lambda<Cond>>, List>;
 	}
 }

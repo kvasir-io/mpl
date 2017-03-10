@@ -4,30 +4,39 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
+#include "../functional/bind.hpp"
+#include "../functional/call.hpp"
 #include "../types/list.hpp"
-#include "../sequence/push_back.hpp"
-#include "../sequence/create.hpp"
 
 namespace kvasir {
 	namespace mpl {
-		namespace impl {
-			template <template <typename...> class F, typename List>
-			struct transform_impl {
-				template <typename Result, typename Elem>
-				using transform_pred = typename push_back_impl<F<Elem>, Result>::f;
-				using f              = typename fold_left_impl<List>::template f<transform_pred,
-				                                                    typename create_impl<List>::f>;
-			};
+		namespace c {
 
-			/// kvasir::mpl::list implementation
-			template <template <typename...> class F, typename... Ts>
-			struct transform_impl<F, mpl::list<Ts...>> {
-				using f = mpl::list<F<Ts>...>;
+			/// transform a list using a type wrapped predicate
+			template <typename F, typename C = listify>
+			struct transform {
+				template <typename... Ts>
+				using f = typename C::template f<typename F::template f<Ts>...>;
+			};
+			template <template <typename...> class F, typename C>
+			struct transform<lambda<F>, C> {
+				template <typename... Ts>
+				using f = typename C::template f<F<Ts>...>;
+			};
+			template <template <typename...> class F, template <typename...> class C>
+			struct transform<lambda<F>, lambda<C>> {
+				template <typename... Ts>
+				using f = C<F<Ts>...>;
+			};
+			template <typename F, template <typename...> class C>
+			struct transform<F, lambda<C>> {
+				template <typename... Ts>
+				using f = C<typename F::template f<Ts>...>;
 			};
 		}
 
 		/// transform each element in a list with a function
 		template <typename List, template <typename...> class F>
-		using transform = typename impl::transform_impl<F, List>::f;
+		using transform = c::call<c::transform<c::listify, lambda<F>>, List>;
 	}
 }

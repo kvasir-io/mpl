@@ -4,11 +4,14 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
-#include "integral_constant.hpp"
-
 namespace kvasir {
 	namespace mpl {
-		template <bool value>
-		using bool_ = integral_constant<bool, value>;
+		template <bool Value>
+		struct bool_ {
+			constexpr operator bool() const {
+				return Value;
+			}
+			static constexpr bool value = Value;
+		};
 	}
 }

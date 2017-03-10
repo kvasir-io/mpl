@@ -4,12 +4,14 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
+#include <type_traits>
+
 #include <kvasir/mpl/algorithm/remove_adjacent.hpp>
 #include <kvasir/mpl/types/list.hpp>
 #include <kvasir/mpl/types/bool.hpp>
 
 using namespace kvasir;
-static_assert(std::is_same<remove_adjacent<mpl::list<void, char, char, short>>,
+static_assert(std::is_same<mpl::remove_adjacent<mpl::list<void, char, char, short>>,
                            mpl::list<void, char, short>>{},
               "");
 
@@ -27,6 +29,6 @@ template <typename T1, typename T2>
 using foo_is_same = typename foo_is_same_impl<T1, T2>::f;
 
 // unoptimised version of remove_adjacent
-static_assert(std::is_same<remove_adjacent<mpl::list<void, char, char, short>, foo_is_same>,
+static_assert(std::is_same<mpl::remove_adjacent<mpl::list<void, char, char, short>, foo_is_same>,
                            mpl::list<void, char, short>>{},
               "");

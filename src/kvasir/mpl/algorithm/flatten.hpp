@@ -4,43 +4,35 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
-#include "../sequence/create.hpp"
-#include "../sequence/is_list.hpp"
-#include "fold_left.hpp"
+#include "../sequence/join.hpp"
 
 namespace kvasir {
 	namespace mpl {
-		namespace impl {
-			namespace generic {
-				template <bool list>
-				struct flatten;
+		namespace detail {
 
-				template <typename Result, typename Elem>
-				using flatten_func =
-				        typename flatten<impl::is_list<Elem>{}>::template f<Elem, Result>;
+			template <class L>
+			struct flatten_impl {
+				using type = L;
+			};
 
-				template <>
-				struct flatten<true> {
-					// the passed element is a list
-					template <typename List, typename Result>
-					using f = typename impl::fold_left_impl<List>::template f<flatten_func, Result>;
-				};
+			template <template <class...> class L, class T>
+			struct flatten_element_impl {
+				using type = L<T>;
+			};
 
-				template <>
-				struct flatten<false> {
-					// the passed element is not a list
-					template <typename Elem, typename Result>
-					using f = typename push_back_impl<Elem, Result>::f;
-				};
-			}
+			template <template <class...> class L, class... Ts>
+			struct flatten_element_impl<L, L<Ts...>> {
+				using type = typename c::join<c::listify>::template f<
+				        typename flatten_element_impl<L, Ts>::type...>;
+			};
 
-			template <typename Elem, typename Result>
-			struct flatten {
-				using f = generic::flatten_func<Result, Elem>;
+			template <template <class...> class L, class... Ts>
+			struct flatten_impl<L<Ts...>> {
+				using type = typename flatten_element_impl<L, L<Ts...>>::type;
 			};
 		}
 
-		template <typename List, typename Result = typename impl::create_impl<List>::f>
-		using flatten = typename impl::flatten<Result, List>::f;
+		template <typename Sequence>
+		using flatten = typename detail::flatten_impl<Sequence>::type;
 	}
 }

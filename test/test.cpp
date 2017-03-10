@@ -5,7 +5,6 @@
 
 #include "algorithm/all.hpp"
 #include "algorithm/any.hpp"
-#include "algorithm/contains.hpp"
 #include "algorithm/count_if.hpp"
 #include "algorithm/filter.hpp"
 #include "algorithm/find_if.hpp"
@@ -18,12 +17,17 @@
 #include "algorithm/reverse.hpp"
 #include "algorithm/sort.hpp"
 #include "algorithm/transform.hpp"
+#include "algorithm/zip_with.hpp"
 
 #include "functional/bind.hpp"
+#include "functional/call.hpp"
 #include "functional/compose.hpp"
+#include "functional/fork.hpp"
 #include "functional/identity.hpp"
 
-#include "sequence/append.hpp"
+#include "functions/arithmetic/max.hpp"
+#include "functions/arithmetic/min.hpp"
+
 #include "sequence/at.hpp"
 #include "sequence/create.hpp"
 #include "sequence/is_list.hpp"
@@ -31,6 +35,7 @@
 #include "sequence/pop_front.hpp"
 #include "sequence/push_back.hpp"
 #include "sequence/push_front.hpp"
+#include "sequence/size.hpp"
 
 #include "types/bool.hpp"
 #include "types/int.hpp"
