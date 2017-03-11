@@ -1669,7 +1669,7 @@ namespace kvasir {
 
 		/// join two or more lists together
 		/// when there is only one list input the result is that list
-		template <typename List, typename... Lists>
-		using join = typename c::join<c::listify>::template f<List, Lists...>;
+		template <typename... Lists>
+		using join = typename c::join<c::listify>::template f<Lists...>;
 	}
 }
