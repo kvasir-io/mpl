@@ -25,9 +25,9 @@ namespace kvasir {
 
 			template <>
 			struct pop_front_impl<mpl::list<>> {
-				// when the list is empty return void for bot
+				// when the list is empty return nothing as the element and an empty list as rest
 				using front = nothing;
-				using rest  = nothing;
+				using rest  = mpl::list<>;
 			};
 		}
 
