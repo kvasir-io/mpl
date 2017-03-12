@@ -23,6 +23,13 @@ namespace kvasir {
 				                                      rlist<list<>, rlist<list<>, void>>>>>>>>;
 			}
 			using listify = bind0n<list>;
+
+			template<typename S>
+			struct sequencify;
+			template<template<typename...> class S, typename...Ts>
+			struct sequencify<S<Ts...>> {
+				using type = bind0n<S>;
+			};
 		}
 
 		template <typename... Ts>
