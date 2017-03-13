@@ -21,4 +21,4 @@ target_compile_features(kvasir_mpl INTERFACE
 
 add_executable(kvasir_mpl_test test/test.cpp)
 target_link_libraries(kvasir_mpl_test kvasir_mpl)
-target_compile_options(kvasir_mpl_test PUBLIC -ftemplate-depth=2048 -std=gnu++1z)
+target_compile_options(kvasir_mpl_test PUBLIC -ftemplate-depth=2048) # -std=gnu++1z)
