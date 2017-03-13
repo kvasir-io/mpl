@@ -13,11 +13,20 @@ namespace kvasir {
 				constexpr bool always_true(const std::size_t in) {
 					return in < std::numeric_limits<std::size_t>::max();
 				}
+				template<template<typename...> class F, typename...Ts>
+				struct lazify {
+					using type = F<Ts...>;
+				};
 				template<typename T, bool I>
 				struct dependant_call {};
 
 				template<typename T>
-				struct dependant_call<T, true> : T {
+				struct dependant_call<T, true> : T {};
+
+				template<template<typename...> class F, typename...As>
+				struct dependant_call<bind0n<F,As...>, true> {
+					template<typename...Ts>
+					using f = typename lazify<F,As...,Ts...>::type;
 				};
 			}
 		}
