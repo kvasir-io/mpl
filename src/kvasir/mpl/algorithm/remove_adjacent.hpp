@@ -30,6 +30,19 @@ namespace kvasir {
 				using f = U;
 			};
 
+#if defined(KVASIR_MSVC_2017) || defined(KVASIR_MSVC_2015) || defined(KVASIR_MSVC_2013)
+			template<template <typename...> class Pred, typename T, typename U>
+			struct binary_list_if_not {
+				using type = typename if_<Pred<T, U>::value>::template f<list<>, list<T>>;
+			};
+
+			template<template <typename...> class Pred, typename T, typename U>
+			struct remove_adjacent;
+			template<template <typename...> class Pred, template <typename...> class S, typename...Ts, typename...Us>
+			struct remove_adjacent<Pred, S<Ts...>, S<Us...>> {
+				using type = typename ::kvasir::mpl::c::detail::dependant_call<c::join<lambda<S>>, ::kvasir::mpl::c::detail::always_true(sizeof...(Ts))>::template f<typename binary_list_if_not<Pred,Ts,Us>::type...>;
+			};
+#else
 			template<template <typename...> class Pred>
 			struct binary_list_if_not {
 				template<typename T, typename U>
@@ -40,8 +53,9 @@ namespace kvasir {
 			struct remove_adjacent;
 			template<template <typename...> class Pred, template <typename...> class S, typename...Ts, typename...Us>
 			struct remove_adjacent<Pred, S<Ts...>, S<Us...>> {
-				using type = KVASIR_D_CALL(c::join<lambda<S>>,Ts)<typename binary_list_if_not<Pred>::template f<Ts,Us>...>;
+				using type = KVASIR_D_CALL(c::join<lambda<S>>, Ts)<typename binary_list_if_not<Pred>::template f<Ts, Us>...>;
 			};
+#endif
 		}
 
 		/// takes a boolean predicate with two parameters
