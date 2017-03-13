@@ -10,8 +10,11 @@
 #include <kvasir/mpl/types/list.hpp>
 #include <kvasir/mpl/functional/bind.hpp>
 
-template<typename T>
-using comp = std::is_same<int, T>;
+namespace {
+	template<typename T>
+	using comp = std::is_same<int, T>;
 
-using namespace kvasir;
-static_assert(mpl::all<comp, mpl::list<int, int, int, int>>{}, "");
+	using namespace kvasir;
+	static_assert(mpl::all<comp, mpl::list<int, int, int, int>>{}, "");
+	static_assert(!mpl::all<comp, mpl::list<int, int, bool, int>>{}, "");
+}
