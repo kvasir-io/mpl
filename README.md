@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/kvasir-io/mpl.svg?branch=master)](https://travis-ci.org/kvasir-io/mpl)
+[![Build Status](https://travis-ci.org/kvasir-io/mpl.svg?branch=development)](https://travis-ci.org/kvasir-io/mpl)
 # Kvasir::mpl
 This library is part of the Kvasir project.
 Kvasir is a collection of zero cost statically checked libraries for resource constrained systems including microcontrollers.
