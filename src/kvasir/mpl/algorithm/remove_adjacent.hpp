@@ -4,61 +4,46 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
+#include "../compatability/dependant_call.hpp"
 #include "../sequence/push_front.hpp"
 #include "../types/list.hpp"
 #include "fold_right.hpp"
+#include "remove_if.hpp"
 
 namespace kvasir {
 	namespace mpl {
-		namespace impl {
-			namespace generic {
-				template <bool>
-				struct omit_if;
+		namespace detail {
+			template<typename T>
+			struct rotate_one_impl {
+				using type = T;
+			};
+			template<template<typename...> class S, typename T, typename...Ts>
+			struct rotate_one_impl<S<T,Ts...>> {
+				using type = S<Ts..., T>;
+			};
 
-				template <>
-				struct omit_if<false> {
-					template <typename T, typename List>
-					using f = typename push_front_impl<T, List>::f;
-				};
+			template<bool>
+			struct if_ {
+				template<typename T, typename U>
+				using f = T;
+			};
+			template<>
+			struct if_<false> {
+				template<typename T, typename U>
+				using f = U;
+			};
 
-				template <>
-				struct omit_if<true> {
-					template <typename T, typename List>
-					using f = List;
-				};
+			template<template <typename...> class Pred>
+			struct binary_list_if_not {
+				template<typename T, typename U>
+				using f = typename if_<Pred<T, U>::value>::template f<T, U>;
+			};
 
-				template <template <typename...> class Pred>
-				struct remove_adjacent_func {
-					template <typename State, typename Elem>
-					using f = typename omit_if<Pred<typename pop_front_impl<State>::front,
-					                                Elem>{}>::template f<Elem, State>;
-				};
-
-				/// function that combines push_if and is_same
-				/// inserts T1 into List if the two element are not the same
-				template <typename T1, typename T2, typename List>
-				struct omit_if_same {
-					using f = typename push_front_impl<T1, List>::f;
-				};
-
-				template <typename T, typename List>
-				struct omit_if_same<T, T, List> {
-					using f = List;
-				};
-
-				/// simple optimisation for when using std::is_same (which is most of the time)
-				template <>
-				struct remove_adjacent_func<std::is_same> {
-					template <typename State, typename Elem>
-					using f = typename omit_if_same<Elem, typename pop_front_impl<State>::front,
-					                                State>::f;
-				};
-			}
-
-			template <template <typename...> class Pred, typename List>
-			struct remove_adjacent {
-				using f = typename fold_right_impl<List>::template f<
-				        generic::remove_adjacent_func<Pred>::template f, mpl::list<>>;
+			template<template <typename...> class Pred, typename T, typename U>
+			struct remove_adjacent;
+			template<template <typename...> class Pred, template <typename...> class S, typename...Ts, typename...Us>
+			struct remove_adjacent<Pred, S<Ts...>, S<Us...>> {
+				using type = KVASIR_D_CALL(c::join<lambda<S>>,Ts)<typename binary_list_if_not<Pred>::template f<Ts,Us>...>;
 			};
 		}
 
@@ -66,6 +51,6 @@ namespace kvasir {
 		/// if the predicate return true for any two adjacent elements,
 		/// then the first of the two elements is removed
 		template <template <typename...> class Pred, typename List>
-		using remove_adjacent = typename impl::remove_adjacent<Pred, List>::f;
+		using remove_adjacent = typename detail::remove_adjacent<Pred, List, typename detail::rotate_one_impl<List>::type>::type;
 	}
 }
