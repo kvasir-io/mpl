@@ -5,9 +5,6 @@
 #pragma once
 
 #include "../compatability/dependant_call.hpp"
-#include "../sequence/push_front.hpp"
-#include "../types/list.hpp"
-#include "fold_right.hpp"
 #include "remove_if.hpp"
 
 namespace kvasir {
@@ -36,7 +33,7 @@ namespace kvasir {
 			template<template <typename...> class Pred>
 			struct binary_list_if_not {
 				template<typename T, typename U>
-				using f = typename if_<Pred<T, U>::value>::template f<T, U>;
+				using f = typename if_<Pred<T, U>::value>::template f<list<>, list<T>>;
 			};
 
 			template<template <typename...> class Pred, typename T, typename U>
