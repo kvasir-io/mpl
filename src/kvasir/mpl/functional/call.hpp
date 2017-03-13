@@ -6,6 +6,7 @@
 
 #include "../types/list.hpp"
 #include "../functional/fork.hpp"
+#include "../compatability/dependant_call.hpp"
 namespace kvasir {
 	namespace mpl {
 		namespace c {
@@ -14,7 +15,7 @@ namespace kvasir {
 				struct call_impl;
 				template <typename C, template <typename...> class Seq, typename... Ls>
 				struct call_impl<C, Seq<Ls...>> {
-					using type = typename C::template f<Ls...>;
+					using type = KVASIR_D_CALL(C, Ls)<Ls...>;
 				};
 				// forking version of call expects a "combining" continuation as its first arguement
 				// and a variadic pack of continuations which are executed in paralell
