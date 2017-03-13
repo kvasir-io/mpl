@@ -7,7 +7,7 @@
 #include "../functional/bind.hpp"
 #include "../functional/call.hpp"
 #include "../types/list.hpp"
-#include "../compatability/dependant_call.hpp"
+#include "../compatability/dependent_call.hpp"
 
 namespace kvasir {
 	namespace mpl {

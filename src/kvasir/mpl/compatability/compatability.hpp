@@ -19,7 +19,9 @@
 //GCC
 #else
 #if __clang_major__ == 3
-#if __clang_minor__ == 6
+#if __clang_minor__ == 5
+#define KVASIR_CLANG_35
+#elif __clang_minor__ == 6
 #define KVASIR_CLANG_36
 #elif __clang_minor__ == 7
 #define KVASIR_CLANG_37

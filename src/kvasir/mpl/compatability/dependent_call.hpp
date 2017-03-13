@@ -18,13 +18,13 @@ namespace kvasir {
 					using type = F<Ts...>;
 				};
 				template<typename T, bool I>
-				struct dependant_call {};
+				struct dependent_call {};
 
 				template<typename T>
-				struct dependant_call<T, true> : T {};
+				struct dependent_call<T, true> : T {};
 
 				template<template<typename...> class F, typename...As>
-				struct dependant_call<bind0n<F,As...>, true> {
+				struct dependent_call<bind0n<F,As...>, true> {
 					template<typename...Ts>
 					using f = typename lazify<F,As...,Ts...>::type;
 				};
@@ -33,9 +33,9 @@ namespace kvasir {
 	}
 }
 
-#if defined(KVASIR_MSVC_2017) || defined(KVASIR_MSVC_2015) || defined(KVASIR_MSVC_2013) || defined(KVASIR_CLANG_36) || defined(KVASIR_CLANG_37)
+#if defined(KVASIR_MSVC_2017) || defined(KVASIR_MSVC_2015) || defined(KVASIR_MSVC_2013) || defined(KVASIR_CLANG_35)|| defined(KVASIR_CLANG_36) || defined(KVASIR_CLANG_37)
 
-#define KVASIR_D_CALL(Continuation,Pack)  typename ::kvasir::mpl::c::detail::dependant_call<Continuation,::kvasir::mpl::c::detail::always_true(sizeof...(Pack))>::template f
+#define KVASIR_D_CALL(Continuation,Pack)  typename ::kvasir::mpl::c::detail::dependent_call<Continuation,::kvasir::mpl::c::detail::always_true(sizeof...(Pack))>::template f
 
 #else
 
