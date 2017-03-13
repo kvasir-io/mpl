@@ -4,7 +4,7 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
-#include <cstddef>
+//#include <cstddef>
 
 #include "../functional/bind.hpp"
 #include "../functional/call.hpp"
@@ -14,17 +14,17 @@ namespace kvasir {
 	namespace mpl {
 		namespace c {
 			namespace detail {
-				constexpr unsigned first_find(const std::size_t size) {
+				constexpr unsigned first_find(const unsigned size) {
 					return size >= 64 ? 14 : size >= 16 ? 13 : size >= 4 ? 12 : size >= 1 ? 11 : 0;
 				}
-				constexpr unsigned find_any(const std::size_t size, const bool b0) {
+				constexpr unsigned find_any(const unsigned size, const bool b0) {
 					return b0 ? 1 : size == 0 ? 0 : 2;
 				}
-				constexpr unsigned find_any(const std::size_t size, const bool b0, const bool b1,
+				constexpr unsigned find_any(const unsigned size, const bool b0, const bool b1,
 				                            const bool b2, const bool b3) {
 					return b0 ? 1 : (b1 || b2 || b3) ? 2 : size >= 4 ? 3 : 2;
 				}
-				constexpr unsigned find_any(const std::size_t size, const bool b0, const bool b1,
+				constexpr unsigned find_any(const unsigned size, const bool b0, const bool b1,
 				                            const bool b2, const bool b3, const bool b4,
 				                            const bool b5, const bool b6, const bool b7,
 				                            const bool b8, const bool b9, const bool b10,
@@ -37,7 +37,7 @@ namespace kvasir {
 					                                   size >= 16 ? 4 : 3;
 				}
 				constexpr unsigned
-				find_any(const std::size_t size, const bool b0, const bool b1, const bool b2,
+				find_any(const unsigned size, const bool b0, const bool b1, const bool b2,
 				         const bool b3, const bool b4, const bool b5, const bool b6, const bool b7,
 				         const bool b8, const bool b9, const bool b10, const bool b11,
 				         const bool b12, const bool b13, const bool b14, const bool b15,

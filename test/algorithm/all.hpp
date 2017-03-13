@@ -4,4 +4,14 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
+#include <type_traits>
+
 #include <kvasir/mpl/algorithm/all.hpp>
+#include <kvasir/mpl/types/list.hpp>
+#include <kvasir/mpl/functional/bind.hpp>
+
+template<typename T>
+using comp = std::is_same<int, T>;
+
+using namespace kvasir;
+static_assert(mpl::all<comp, mpl::list<int, int, int, int>>{}, "");

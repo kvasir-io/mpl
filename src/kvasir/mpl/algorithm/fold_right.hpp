@@ -6,6 +6,7 @@
 
 #include <utility>
 
+#include "../functional/call.hpp"
 #include "../sequence/pop_front.hpp"
 #include "../sequence/size.hpp"
 #include "../types/list.hpp"
@@ -170,13 +171,13 @@ namespace kvasir {
 			struct fold_right {
 				template <typename... Ts>
 				using f = typename detail::fold_right_impl<detail::select_fold_right(
-				        sizeof...(Ts))>::template f<F::template f, Ts...>;
+				        sizeof...(Ts)-1)>::template f<F::template f, Ts...>;
 			};
 			template <template <typename...> class F>
 			struct fold_right<lambda<F>> {
 				template <typename... Ts>
 				using f = typename detail::fold_right_impl<detail::select_fold_right(
-				        sizeof...(Ts))>::template f<F, Ts...>;
+				        sizeof...(Ts)-1)>::template f<F, Ts...>;
 			};
 		}
 

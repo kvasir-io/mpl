@@ -39,7 +39,8 @@ namespace kvasir {
 			template <typename F>
 			struct list_wrap_if_not {
 				template <typename T>
-				using f = typename detail::list_wrap_if<(!F::template f<T>::value)>::template f<T>;
+				using f = typename detail::list_wrap_if<(!F::template f<T>::value)>::template
+				f<T>;
 			};
 			template <template <typename...> class F>
 			struct list_wrap_if_not<lambda<F>> {

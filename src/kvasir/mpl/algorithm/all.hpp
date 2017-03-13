@@ -20,7 +20,7 @@ namespace kvasir {
 				template <typename F>
 				struct not_ {
 					template <typename T>
-					using f = bool_<(!F::template f<T>::value)>;
+					using f = bool_<(!(F::template f<T>::value))>;
 				};
 				template <template <typename...> class F>
 				struct not_<lambda<F>> {
