@@ -28,10 +28,10 @@ namespace kvasir {
 			template<template<typename...> class F>
 			struct split_if_pred {
 				template<typename T, typename U>
-				using f = typename std::conditional<F<U>::value, split_push<T, U>, split_next<T>>::type::type;
+				using f = typename std::conditional<F<U>::value, split_next<T>, split_push<T, U>>::type::type;
 			};
 		}
 		template<typename List, template<typename...> class F>
-		using split_if = c::call<bind0n<c::fold_left<detail::split_if_pred<F>>::template f, list<list<>>>, List>;
+		using split_if = c::call<bind0n<c::fold_right<detail::split_if_pred<F>>::template f, list<list<>>>, List>;
 	}
 }
