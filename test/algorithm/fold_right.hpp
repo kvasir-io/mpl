@@ -15,7 +15,7 @@ using mpl::uint_;
 template <typename T1, typename T2>
 using add = uint_<(T1{} + T2{})>;
 
-static_assert(std::is_same<mpl::fold_right<mpl::list<uint_<1>, uint_<2>, uint_<3>, uint_<4>>, add,
-                                           uint_<0>>,
+static_assert(std::is_same<mpl::fold_right<mpl::list<uint_<1>, uint_<2>, uint_<3>, uint_<4>>,
+                                           uint_<0>, add>,
                            uint_<10>>{},
               "");

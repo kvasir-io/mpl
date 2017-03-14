@@ -11,7 +11,6 @@
 namespace kvasir {
 	namespace mpl {
 		namespace c {
-
 			/// transform a list using a type wrapped predicate
 			template <typename F, typename C = listify>
 			struct transform {

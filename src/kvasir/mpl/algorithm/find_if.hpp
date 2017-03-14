@@ -93,9 +93,8 @@ namespace kvasir {
 					template <template <typename...> class F, typename R0, typename R1, typename R2,
 					          typename R3, typename T0, typename T1, typename T2, typename T3,
 					          typename... Ts>
-					using f = typename find_if_impl<find_any(sizeof...(Ts), F<T0>{},
-					                                         F<T1>{}, F<T2>{},
-					                                         F<T3>{}),
+					using f = typename find_if_impl<find_any(sizeof...(Ts), F<T0>{}, F<T1>{},
+					                                         F<T2>{}, F<T3>{}),
 					                                C>::template f<F, T0, T1, T2, T3, Ts...>;
 				};
 				template <typename C>
@@ -109,11 +108,9 @@ namespace kvasir {
 					          typename T12, typename T13, typename T14, typename T15,
 					          typename... Ts>
 					using f = typename find_if_impl<
-					        find_any(sizeof...(Ts), F<T0>{}, F<T1>{}, F<T2>{},
-					                 F<T3>{}, F<T4>{}, F<T5>{}, F<T6>{},
-					                 F<T7>{}, F<T8>{}, F<T9>{}, F<T10>{},
-					                 F<T11>{}, F<T12>{}, F<T13>{}, F<T14>{},
-					                 F<T15>{}),
+					        find_any(sizeof...(Ts), F<T0>{}, F<T1>{}, F<T2>{}, F<T3>{}, F<T4>{},
+					                 F<T5>{}, F<T6>{}, F<T7>{}, F<T8>{}, F<T9>{}, F<T10>{},
+					                 F<T11>{}, F<T12>{}, F<T13>{}, F<T14>{}, F<T15>{}),
 					        C>::template f<F, T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12,
 					                       T13, T14, T15, Ts...>;
 				};
@@ -147,23 +144,17 @@ namespace kvasir {
 					          typename T59, typename T60, typename T61, typename T62, typename T63,
 					          typename... Ts>
 					using f = typename find_if_impl<
-					        find_any(sizeof...(Ts), F<T0>{}, F<T1>{}, F<T2>{},
-					                 F<T3>{}, F<T4>{}, F<T5>{}, F<T6>{},
-					                 F<T7>{}, F<T8>{}, F<T9>{}, F<T10>{},
-					                 F<T11>{}, F<T12>{}, F<T13>{}, F<T14>{},
-					                 F<T15>{}, F<T16>{}, F<T17>{}, F<T18>{},
-					                 F<T19>{}, F<T20>{}, F<T21>{}, F<T22>{},
-					                 F<T23>{}, F<T24>{}, F<T25>{}, F<T26>{},
-					                 F<T27>{}, F<T28>{}, F<T29>{}, F<T30>{},
-					                 F<T31>{}, F<T32>{}, F<T33>{}, F<T34>{},
-					                 F<T35>{}, F<T36>{}, F<T37>{}, F<T38>{},
-					                 F<T39>{}, F<T40>{}, F<T41>{}, F<T42>{},
-					                 F<T43>{}, F<T44>{}, F<T45>{}, F<T46>{},
-					                 F<T47>{}, F<T48>{}, F<T49>{}, F<T50>{},
-					                 F<T51>{}, F<T52>{}, F<T53>{}, F<T54>{},
-					                 F<T55>{}, F<T56>{}, F<T57>{}, F<T58>{},
-					                 F<T59>{}, F<T60>{}, F<T61>{}, F<T62>{},
-					                 F<T63>{}),
+					        find_any(sizeof...(Ts), F<T0>{}, F<T1>{}, F<T2>{}, F<T3>{}, F<T4>{},
+					                 F<T5>{}, F<T6>{}, F<T7>{}, F<T8>{}, F<T9>{}, F<T10>{},
+					                 F<T11>{}, F<T12>{}, F<T13>{}, F<T14>{}, F<T15>{}, F<T16>{},
+					                 F<T17>{}, F<T18>{}, F<T19>{}, F<T20>{}, F<T21>{}, F<T22>{},
+					                 F<T23>{}, F<T24>{}, F<T25>{}, F<T26>{}, F<T27>{}, F<T28>{},
+					                 F<T29>{}, F<T30>{}, F<T31>{}, F<T32>{}, F<T33>{}, F<T34>{},
+					                 F<T35>{}, F<T36>{}, F<T37>{}, F<T38>{}, F<T39>{}, F<T40>{},
+					                 F<T41>{}, F<T42>{}, F<T43>{}, F<T44>{}, F<T45>{}, F<T46>{},
+					                 F<T47>{}, F<T48>{}, F<T49>{}, F<T50>{}, F<T51>{}, F<T52>{},
+					                 F<T53>{}, F<T54>{}, F<T55>{}, F<T56>{}, F<T57>{}, F<T58>{},
+					                 F<T59>{}, F<T60>{}, F<T61>{}, F<T62>{}, F<T63>{}),
 					        C>::template f<F, T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12,
 					                       T13, T14, T15, T16, T17, T18, T19, T20, T21, T22, T23,
 					                       T24, T25, T26, T27, T28, T29, T30, T31, T32, T33, T34,
@@ -181,9 +172,8 @@ namespace kvasir {
 				struct find_if_impl<12, C> { // start 4
 					template <template <typename...> class F, typename T0, typename T1, typename T2,
 					          typename T3, typename... Ts>
-					using f = typename find_if_impl<find_any(sizeof...(Ts), F<T0>{},
-					                                         F<T1>{}, F<T2>{},
-					                                         F<T3>{}),
+					using f = typename find_if_impl<find_any(sizeof...(Ts), F<T0>{}, F<T1>{},
+					                                         F<T2>{}, F<T3>{}),
 					                                C>::template f<F, T0, T1, T2, T3, Ts...>;
 				};
 				template <typename C>
@@ -193,11 +183,9 @@ namespace kvasir {
 					          typename T8, typename T9, typename T10, typename T11, typename T12,
 					          typename T13, typename T14, typename T15, typename... Ts>
 					using f = typename find_if_impl<
-					        find_any(sizeof...(Ts), F<T0>{}, F<T1>{}, F<T2>{},
-					                 F<T3>{}, F<T4>{}, F<T5>{}, F<T6>{},
-					                 F<T7>{}, F<T8>{}, F<T9>{}, F<T10>{},
-					                 F<T11>{}, F<T12>{}, F<T13>{}, F<T14>{},
-					                 F<T15>{}),
+					        find_any(sizeof...(Ts), F<T0>{}, F<T1>{}, F<T2>{}, F<T3>{}, F<T4>{},
+					                 F<T5>{}, F<T6>{}, F<T7>{}, F<T8>{}, F<T9>{}, F<T10>{},
+					                 F<T11>{}, F<T12>{}, F<T13>{}, F<T14>{}, F<T15>{}),
 					        C>::template f<F, T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12,
 					                       T13, T14, T15, Ts...>;
 				};
@@ -218,23 +206,17 @@ namespace kvasir {
 					          typename T58, typename T59, typename T60, typename T61, typename T62,
 					          typename T63, typename... Ts>
 					using f = typename find_if_impl<
-					        find_any(sizeof...(Ts), F<T0>{}, F<T1>{}, F<T2>{},
-					                 F<T3>{}, F<T4>{}, F<T5>{}, F<T6>{},
-					                 F<T7>{}, F<T8>{}, F<T9>{}, F<T10>{},
-					                 F<T11>{}, F<T12>{}, F<T13>{}, F<T14>{},
-					                 F<T15>{}, F<T16>{}, F<T17>{}, F<T18>{},
-					                 F<T19>{}, F<T20>{}, F<T21>{}, F<T22>{},
-					                 F<T23>{}, F<T24>{}, F<T25>{}, F<T26>{},
-					                 F<T27>{}, F<T28>{}, F<T29>{}, F<T30>{},
-					                 F<T31>{}, F<T32>{}, F<T33>{}, F<T34>{},
-					                 F<T35>{}, F<T36>{}, F<T37>{}, F<T38>{},
-					                 F<T39>{}, F<T40>{}, F<T41>{}, F<T42>{},
-					                 F<T43>{}, F<T44>{}, F<T45>{}, F<T46>{},
-					                 F<T47>{}, F<T48>{}, F<T49>{}, F<T50>{},
-					                 F<T51>{}, F<T52>{}, F<T53>{}, F<T54>{},
-					                 F<T55>{}, F<T56>{}, F<T57>{}, F<T58>{},
-					                 F<T59>{}, F<T60>{}, F<T61>{}, F<T62>{},
-					                 F<T63>{}),
+					        find_any(sizeof...(Ts), F<T0>{}, F<T1>{}, F<T2>{}, F<T3>{}, F<T4>{},
+					                 F<T5>{}, F<T6>{}, F<T7>{}, F<T8>{}, F<T9>{}, F<T10>{},
+					                 F<T11>{}, F<T12>{}, F<T13>{}, F<T14>{}, F<T15>{}, F<T16>{},
+					                 F<T17>{}, F<T18>{}, F<T19>{}, F<T20>{}, F<T21>{}, F<T22>{},
+					                 F<T23>{}, F<T24>{}, F<T25>{}, F<T26>{}, F<T27>{}, F<T28>{},
+					                 F<T29>{}, F<T30>{}, F<T31>{}, F<T32>{}, F<T33>{}, F<T34>{},
+					                 F<T35>{}, F<T36>{}, F<T37>{}, F<T38>{}, F<T39>{}, F<T40>{},
+					                 F<T41>{}, F<T42>{}, F<T43>{}, F<T44>{}, F<T45>{}, F<T46>{},
+					                 F<T47>{}, F<T48>{}, F<T49>{}, F<T50>{}, F<T51>{}, F<T52>{},
+					                 F<T53>{}, F<T54>{}, F<T55>{}, F<T56>{}, F<T57>{}, F<T58>{},
+					                 F<T59>{}, F<T60>{}, F<T61>{}, F<T62>{}, F<T63>{}),
 					        C>::template f<F, T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12,
 					                       T13, T14, T15, T16, T17, T18, T19, T20, T21, T22, T23,
 					                       T24, T25, T26, T27, T28, T29, T30, T31, T32, T33, T34,

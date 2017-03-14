@@ -24,9 +24,9 @@ namespace kvasir {
 			}
 			using listify = bind0n<list>;
 
-			template<typename S>
+			template <typename S>
 			struct sequencify;
-			template<template<typename...> class S, typename...Ts>
+			template <template <typename...> class S, typename... Ts>
 			struct sequencify<S<Ts...>> {
 				using type = bind0n<S>;
 			};

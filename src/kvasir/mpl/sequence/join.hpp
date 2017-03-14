@@ -1672,6 +1672,7 @@ namespace kvasir {
 		/// in the case of joining two or more distinct list types, the first list type will always
 		/// be the resulting type
 		template <typename List, typename... Lists>
-		using join = typename c::join<typename c::sequencify<List>::type>::template f<List, Lists...>;
+		using join =
+		        typename c::join<typename c::sequencify<List>::type>::template f<List, Lists...>;
 	}
 }

@@ -156,18 +156,18 @@ namespace kvasir {
 			struct fold_left {
 				template <typename... Ts>
 				using f = typename detail::fold_impl<detail::select_fold(
-				        sizeof...(Ts) - 1)>::template f<F::template f, Ts...>;
+				        sizeof...(Ts)-1)>::template f<F::template f, Ts...>;
 			};
 			template <template <typename...> class F>
 			struct fold_left<lambda<F>> {
 				template <typename... Ts>
 				using f = typename detail::fold_impl<detail::select_fold(
-				        sizeof...(Ts) - 1)>::template f<F, Ts...>;
+				        sizeof...(Ts)-1)>::template f<F, Ts...>;
 			};
 		}
 
 		/// fold left over a list, initialized with State
-		template <typename List, template <typename...> class Func, typename State>
+		template <typename List, typename State, template <typename...> class Func>
 		using fold_left = c::call<c::fold_left<lambda<Func>>, List, State>;
 	}
 }

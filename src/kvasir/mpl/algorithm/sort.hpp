@@ -8,12 +8,12 @@
 #include "../sequence/create.hpp"
 #include "../sequence/join.hpp"
 #include "../sequence/push_front.hpp"
+#include "../types/bool.hpp"
 #include "../types/nothing.hpp"
 
 namespace kvasir {
 	namespace mpl {
 		namespace detail {
-
 			template <class L, class Seq1, class Seq2, template <typename...> class Comp>
 			struct merge_impl;
 
@@ -26,8 +26,8 @@ namespace kvasir {
 			template <class... R, class T0, class T1, class... Ts, class U, class... Us,
 			          template <typename...> class Comp>
 			struct merge_insert<true, list<R...>, list<T0, T1, Ts...>, list<U, Us...>, Comp>
-			        : merge_insert<Comp<T1, U>{}, list<R..., T0>, list<T1, Ts...>,
-			                       list<U, Us...>, Comp> {};
+			        : merge_insert<Comp<T1, U>{}, list<R..., T0>, list<T1, Ts...>, list<U, Us...>,
+			                       Comp> {};
 
 			template <class... R, class T, class U, class... Us, template <typename...> class Comp>
 			struct merge_insert<true, list<R...>, list<T>, list<U, Us...>, Comp> {
@@ -39,8 +39,8 @@ namespace kvasir {
 			template <class... R, class T, class... Ts, class U0, class U1, class... Us,
 			          template <typename...> class Comp>
 			struct merge_insert<false, list<R...>, list<T, Ts...>, list<U0, U1, Us...>, Comp>
-			        : merge_insert<Comp<T, U1>{}, list<R..., U0>, list<T, Ts...>,
-			                       list<U1, Us...>, Comp> {};
+			        : merge_insert<Comp<T, U1>{}, list<R..., U0>, list<T, Ts...>, list<U1, Us...>,
+			                       Comp> {};
 
 			template <class... R, class T, class... Ts, class U, template <typename...> class Comp>
 			struct merge_insert<false, list<R...>, list<T, Ts...>, list<U>, Comp> {
@@ -121,8 +121,7 @@ namespace kvasir {
 			template <class T0, class T1, template <typename...> class Comp>
 			struct mini_sort<list<T0, T1>, Comp> {
 				using base = Comp<T0, T1>;
-				using type =
-				        typename std::conditional<base{}, list<T0, T1>, list<T1, T0>>::type;
+				using type = typename std::conditional<base{}, list<T0, T1>, list<T1, T0>>::type;
 			};
 
 			template <class T0, template <typename...> class Comp>
@@ -327,11 +326,11 @@ namespace kvasir {
 		}
 
 		namespace detail {
-			template<typename T1, typename T2>
-			using less = bool_<T1{} < T2{}>;
+			template <typename T1, typename T2>
+			using less = bool_<(T1{} < T2{})>;
 		}
 
-		template<typename List, template<typename...> class Comp = detail::less>
+		template <typename List, template <typename...> class Comp = detail::less>
 		using sort = typename detail::sort_impl<list<>, List, Comp>::type;
 	}
 }

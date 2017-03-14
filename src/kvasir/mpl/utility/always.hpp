@@ -8,7 +8,6 @@
 
 namespace kvasir {
 	namespace mpl {
-
 		template <typename T>
 		struct always {
 			template <typename...>
