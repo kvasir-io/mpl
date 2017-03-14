@@ -7,6 +7,6 @@
 namespace kvasir {
 	namespace mpl {
 		template <typename A>
-		using negate = integral_constant<decltype(-A{}), (-A{})>;
+		using negate = integral_constant<decltype(-A::value), (-A::value)>;
 	}
 }

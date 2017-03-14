@@ -6,9 +6,9 @@
 
 #include <type_traits>
 
+#include <kvasir/mpl/algorithm/sort.hpp>
 #include <kvasir/mpl/types/bool.hpp>
 #include <kvasir/mpl/types/int.hpp>
-#include <kvasir/mpl/algorithm/sort.hpp>
 #include <kvasir/mpl/types/list.hpp>
 
 using namespace kvasir::mpl;

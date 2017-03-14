@@ -4,14 +4,16 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
+#include <type_traits>
 #include <kvasir/mpl/algorithm/remove_if.hpp>
 #include <kvasir/mpl/types/bool.hpp>
 #include <kvasir/mpl/types/int.hpp>
-#include <type_traits>
 namespace {
 	using namespace kvasir::mpl;
-	template<typename T>
+	template <typename T>
 	using less_than_5 = bool_<(T::value < 5)>;
 
-	static_assert(std::is_same<remove_if<list<int_<1>, int_<2>, int_<7>, int_<8>>, less_than_5>, list<int_<7>, int_<8>>>::value, "");
+	static_assert(std::is_same<remove_if<list<int_<1>, int_<2>, int_<7>, int_<8>>, less_than_5>,
+	                           list<int_<7>, int_<8>>>::value,
+	              "");
 }

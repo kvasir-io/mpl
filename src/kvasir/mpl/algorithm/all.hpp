@@ -16,17 +16,23 @@ namespace kvasir {
 			namespace detail {
 				struct nothing_found {
 					template <typename... Ts>
-					using f = bool_<(sizeof...(Ts) == 0)>;
+					struct f {
+						constexpr static bool value = (sizeof...(Ts) == 0);
+					};
 				};
 				template <typename F>
 				struct not_ {
 					template <typename T>
-					using f = bool_<(!(F::template f<T>::value))>;
+					struct f {
+						constexpr static bool value = (!(F::template f<T>::value));
+					};
 				};
 				template <template <typename...> class F>
 				struct not_<lambda<F>> {
 					template <typename T>
-					using f = bool_<(!F<T>::value)>;
+					struct f {
+						constexpr static bool value = (!F<T>::value);
+					};
 				};
 			}
 

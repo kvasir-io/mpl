@@ -7,6 +7,6 @@
 namespace kvasir {
 	namespace mpl {
 		template <typename A, typename B>
-		using modulo = integral_constant<decltype(A{} % B{}), (A{} % B{})>;
+		using modulo = integral_constant<decltype(A::value % B::value), (A::value % B::value)>;
 	}
 }

@@ -11,7 +11,8 @@
 
 namespace {
 	using namespace kvasir;
-	static_assert(std::is_same<mpl::find_if<mpl::list<void, char, short, int>, mpl::bind1<std::is_same, char>::template f>,
-		mpl::list<char, short, int>>{},
-		"");
+	static_assert(std::is_same<mpl::find_if<mpl::list<void, char, short, int>,
+	                                        mpl::bind1<std::is_same, char>::template f>,
+	                           mpl::list<char, short, int>>{},
+	              "");
 }

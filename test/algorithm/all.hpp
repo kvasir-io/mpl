@@ -7,11 +7,11 @@
 #include <type_traits>
 
 #include <kvasir/mpl/algorithm/all.hpp>
-#include <kvasir/mpl/types/list.hpp>
 #include <kvasir/mpl/functional/bind.hpp>
+#include <kvasir/mpl/types/list.hpp>
 
 namespace {
-	template<typename T>
+	template <typename T>
 	using comp = std::is_same<int, T>;
 
 	using namespace kvasir;

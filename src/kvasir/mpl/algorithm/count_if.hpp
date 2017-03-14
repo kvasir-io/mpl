@@ -4,9 +4,9 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
+#include "filter.hpp"
 #include "../functional/bind.hpp"
 #include "../sequence/size.hpp"
-#include "filter.hpp"
 #include "../utility/conditional.hpp"
 
 namespace kvasir {

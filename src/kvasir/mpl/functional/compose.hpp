@@ -4,8 +4,8 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
-#include "identity.hpp"
 #include "bind.hpp"
+#include "identity.hpp"
 
 namespace kvasir {
 	namespace mpl {

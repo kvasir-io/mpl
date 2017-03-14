@@ -4,9 +4,9 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
-#include "../types/list.hpp"
-#include "../functional/fork.hpp"
 #include "../compatability/dependent_call.hpp"
+#include "../functional/fork.hpp"
+#include "../types/list.hpp"
 namespace kvasir {
 	namespace mpl {
 		namespace c {

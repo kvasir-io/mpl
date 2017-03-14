@@ -4,10 +4,10 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
+#include "../compatability/dependent_call.hpp"
 #include "../functional/bind.hpp"
 #include "../functional/call.hpp"
 #include "../types/list.hpp"
-#include "../compatability/dependent_call.hpp"
 
 namespace kvasir {
 	namespace mpl {
@@ -16,7 +16,7 @@ namespace kvasir {
 			template <typename F, typename C = listify>
 			struct transform {
 				template <typename... Ts>
-				using f = KVASIR_D_CALL(C,Ts)<typename F::template f<Ts>...>;
+				using f = KVASIR_D_CALL(C, Ts)<typename F::template f<Ts>...>;
 			};
 			template <template <typename...> class F, typename C>
 			struct transform<lambda<F>, C> {
