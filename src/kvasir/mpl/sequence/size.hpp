@@ -14,6 +14,14 @@ namespace kvasir {
 				template <typename... Ts>
 				using f = int_<sizeof...(Ts)>;
 			};
+
+			///offset provides the difference between the origional length of a list 
+			///(provided as the input parameter) and the pack supplied to f
+			template<typename T>
+			struct offset {
+				template <typename... Ts>
+				using f = int_<(T::value - sizeof...(Ts))>;
+			};
 		}
 		namespace impl {
 			template <typename List>
