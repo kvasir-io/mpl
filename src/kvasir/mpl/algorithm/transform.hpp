@@ -34,16 +34,10 @@ namespace kvasir {
 				template <typename... Ts>
 				using f = C<typename F::template f<Ts>...>;
 			};
-			namespace detail {
-				template <typename F, typename C, template <typename...> class Seq, typename... L0s, typename... L1s>
-				struct call_impl<transform<F,C>, Seq<L0s...>, Seq<L1s...>> {
-					using type = typename detail::make_bound<C>::template f<typename detail::make_bound<F>::template f<L0s,L1s>...>;
-				};
-			}
 		}
 
 		/// transform each element in a list with a function
-		template <template <typename...> class F, typename List, typename...Ls>
-		using transform = c::call<c::transform<lambda<F>, c::listify>, List, Ls...>;
+		template <typename List, template <typename...> class F>
+		using transform = c::call<c::transform<lambda<F>, c::listify>, List>;
 	}
 }

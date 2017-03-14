@@ -8,7 +8,7 @@
 
 namespace {
 	using namespace kvasir;
-	static_assert(std::is_same<mpl::transform<list,mpl::list<void, char, short, int>>,
+	static_assert(std::is_same<mpl::transform<mpl::list<void, char, short, int>, list>,
 		mpl::list<mpl::list<void>, mpl::list<char>, mpl::list<short>, mpl::list<int>>>{},
 		"");
 }
