@@ -16,6 +16,26 @@
 
 namespace kvasir {
 	namespace mpl {
+		namespace c {
+
+			template<typename F, typename C = listify>
+			struct zip_with {};  //just a placeholder, has no ::template f, we must use specialization 
+
+			namespace detail {
+				template <typename F, typename C, template <typename...> class Seq, typename... L0s, typename... L1s>
+				struct call_impl<zip_with<F, C>, Seq<L0s...>, Seq<L1s...>> {
+					using type = typename detail::make_bound<C>::template f<typename detail::make_bound<F>::template f<L0s, L1s>...>;
+				};
+				template <typename F, typename C, template <typename...> class Seq, typename... L0s, typename... L1s, typename... L2s>
+				struct call_impl<zip_with<F, C>, Seq<L0s...>, Seq<L1s...>, Seq<L2s...>> {
+					using type = typename detail::make_bound<C>::template f<typename detail::make_bound<F>::template f<L0s, L1s, L2s>...>;
+				};
+				template <typename F, typename C, template <typename...> class Seq, typename... L0s, typename... L1s, typename... L2s, typename... L3s>
+				struct call_impl<zip_with<F, C>, Seq<L0s...>, Seq<L1s...>, Seq<L2s...>, Seq<L3s...>> {
+					using type = typename detail::make_bound<C>::template f<typename detail::make_bound<F>::template f<L0s, L1s, L2s, L3s>...>;
+				};
+			}
+		}
 		namespace impl {
 			namespace generic {
 				template <bool empty>
@@ -29,7 +49,7 @@ namespace kvasir {
 					        F<typename pop_front_impl<List>::front,
 					          typename pop_front_impl<Lists>::front...>,
 					        typename zip_with<(
-					                size_impl<typename pop_front_impl<List>::rest>{} ==
+					                size_impl<typename pop_front_impl<List>::rest>::value ==
 					                0)>::template f<F, Result, typename pop_front_impl<List>::rest,
 					                                typename pop_front_impl<Lists>::rest...>>::f;
 				};
@@ -49,7 +69,7 @@ namespace kvasir {
 
 			template <template <typename...> class F, typename List, typename... Lists>
 			struct zip_with<F, List, Lists...> {
-				using f = typename generic::zip_with<(size_impl<List>{} == 0)>::template f<
+				using f = typename generic::zip_with<(size_impl<List>::value == 0)>::template f<
 				        F, typename create_impl<List>::f, List, Lists...>;
 			};
 

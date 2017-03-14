@@ -8,9 +8,7 @@ namespace kvasir {
 	namespace mpl {
 		template <typename B>
 		struct invert {
-			constexpr operator bool() const {
-				return !B{};
-			}
+			static constexpr auto value = B::value;
 		};
 	}
 }

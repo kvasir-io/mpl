@@ -30,23 +30,23 @@ namespace kvasir {
 			template <typename F>
 			struct list_wrap_if {
 				template <typename T>
-				using f = typename detail::list_wrap_if<typename F::template f<T>{}>::template f<T>;
+				using f = typename detail::list_wrap_if<F::template f<T>::value>::template f<T>;
 			};
 			template <template <typename...> class F>
 			struct list_wrap_if<lambda<F>> {
 				template <typename T>
-				using f = typename detail::list_wrap_if<F<T>{}>::template f<T>;
+				using f = typename detail::list_wrap_if<F<T>::value>::template f<T>;
 			};
 			template <typename F>
 			struct list_wrap_if_not {
 				template <typename T>
 				using f = typename detail::list_wrap_if<(
-				        !typename F::template f<T>{})>::template f<T>;
+				        !F::template f<T>::value)>::template f<T>;
 			};
 			template <template <typename...> class F>
 			struct list_wrap_if_not<lambda<F>> {
 				template <typename T>
-				using f = typename detail::list_wrap_if<(!F<T>{})>::template f<T>;
+				using f = typename detail::list_wrap_if<(!F<T>::value)>::template f<T>;
 			};
 
 			/// continuation version of remove_if, taking a continuation and predicate

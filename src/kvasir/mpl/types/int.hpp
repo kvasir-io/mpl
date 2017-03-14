@@ -8,16 +8,12 @@ namespace kvasir {
 	namespace mpl {
 		template <unsigned long long Value>
 		struct uint_ {
-			constexpr operator unsigned() const {
-				return Value;
-			}
+			static constexpr unsigned long long value = Value;
 		};
 
 		template <long long Value>
 		struct int_ {
-			constexpr operator unsigned() const {
-				return Value;
-			}
+			static constexpr unsigned long long value = Value;
 		};
 	}
 }

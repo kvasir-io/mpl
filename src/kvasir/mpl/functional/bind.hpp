@@ -37,6 +37,11 @@ namespace kvasir {
 			template <typename T, typename U, typename... Ts>
 			using f = Func<Args..., T, U, Ts...>;
 		};
+		template<template<typename...> class F, typename...As>
+		struct bind_t {
+			template<typename...Ts>
+			using f = typename F<As..., Ts...>::type;
+		};
 		template <template <typename...> class F>
 		struct lambda {};
 		namespace c {
@@ -46,6 +51,19 @@ namespace kvasir {
 			using mpl::bind2;
 			using mpl::bind2n;
 			using mpl::lambda;
+			using mpl::bind_t;
+
+			//helper for functions that cannot specialize to detect lambda wrapped types
+			//this is handy but will be slower
+			namespace detail {
+				template <typename T>
+				struct make_bound : T {};
+				template <template <typename...> class F>
+				struct make_bound<lambda<F>> {
+					template <typename... Ts>
+					using f = F<Ts...>;
+				};
+			}
 		}
 	}
 }

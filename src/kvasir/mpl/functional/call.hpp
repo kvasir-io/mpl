@@ -6,28 +6,28 @@
 
 #include "../types/list.hpp"
 #include "../functional/fork.hpp"
+#include "../compatability/dependent_call.hpp"
 namespace kvasir {
 	namespace mpl {
 		namespace c {
 			namespace detail {
 				template <typename C, typename L, typename... Ts>
 				struct call_impl;
-				template <typename C, template <typename...> class Seq, typename... Ls,
-				          typename... Ts>
-				struct call_impl<C, Seq<Ls...>, Ts...> {
-					using type = typename C::template f<Ts..., Ls...>;
+				template <typename C, template <typename...> class Seq, typename... Ls>
+				struct call_impl<C, Seq<Ls...>> {
+					using type = KVASIR_D_CALL(C, Ls)<Ls...>;
 				};
 				// forking version of call expects a "combining" continuation as its first arguement
 				// and a variadic pack of continuations which are executed in paralell
 				template <typename R, typename... C, template <typename...> class Seq,
-				          typename... Ls, typename... Ts>
-				struct call_impl<fork<R, C...>, Seq<Ls...>, Ts...> {
+				          typename... Ls>
+				struct call_impl<fork<R, C...>, Seq<Ls...>> {
 					using type = typename detail::make_bound<R>::template f<
-					        typename detail::make_bound<C>::template f<Ts..., Ls...>...>;
+					        typename detail::make_bound<C>::template f<Ls...>...>;
 				};
 			}
-			template <typename C, typename L, typename... Ts>
-			using call = typename detail::call_impl<C, L, Ts...>::type;
+			template <typename C, typename L, typename... Ls>
+			using call = typename detail::call_impl<C, L, Ls...>::type;
 		}
 	}
 }

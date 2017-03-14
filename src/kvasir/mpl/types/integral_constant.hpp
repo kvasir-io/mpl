@@ -8,37 +8,27 @@ namespace kvasir {
 	namespace mpl {
 		template <typename T, T val>
 		struct integral_constant {
-			constexpr operator T() const {
-				return val;
-			}
+			static constexpr T value = val;
 		};
 
 		template <typename T>
 		struct is_integral {
-			constexpr operator bool() const {
-				return false;
-			}
+			static constexpr bool value = false;
 		};
 
 		template <typename T, T val>
 		struct is_integral<integral_constant<T, val>> {
-			constexpr operator bool() const {
-				return true;
-			}
+			static constexpr bool value = true;
 		};
 
 		template <typename T>
 		struct is_integral<integral_constant<T, nullptr>> {
-			constexpr operator bool() const {
-				return true;
-			}
+			static constexpr bool value = true;
 		};
 
 		template <>
 		struct is_integral<integral_constant<std::nullptr_t, nullptr>> {
-			constexpr operator bool() const {
-				return true;
-			}
+			static constexpr bool value = true;
 		};
 	}
 }
