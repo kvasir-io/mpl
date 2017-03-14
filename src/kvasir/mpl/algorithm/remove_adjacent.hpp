@@ -4,8 +4,8 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
-#include "../compatability/dependent_call.hpp"
 #include "remove_if.hpp"
+#include "../compatability/dependent_call.hpp"
 #include "../utility/conditional.hpp"
 
 namespace kvasir {

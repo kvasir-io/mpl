@@ -5,8 +5,8 @@
 #pragma once
 
 #include <kvasir/mpl/algorithm/make_sequence.hpp>
-#include <kvasir/mpl/types/list.hpp>
 #include <kvasir/mpl/types/int.hpp>
+#include <kvasir/mpl/types/list.hpp>
 
 namespace {
 	using namespace kvasir::mpl;

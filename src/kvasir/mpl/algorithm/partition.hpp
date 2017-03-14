@@ -4,8 +4,8 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
-#include "../algorithm/remove_if.hpp"
 #include "../algorithm/filter.hpp"
+#include "../algorithm/remove_if.hpp"
 #include "../functional/fork.hpp"
 #include "../utility/identity.hpp"
 

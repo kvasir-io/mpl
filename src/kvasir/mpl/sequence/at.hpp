@@ -4,8 +4,8 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
-#include "../types/list.hpp"
 #include "pop_front.hpp"
+#include "../types/list.hpp"
 
 namespace kvasir {
 	namespace mpl {

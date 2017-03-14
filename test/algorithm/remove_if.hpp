@@ -4,10 +4,10 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
+#include <type_traits>
 #include <kvasir/mpl/algorithm/remove_if.hpp>
 #include <kvasir/mpl/types/bool.hpp>
 #include <kvasir/mpl/types/int.hpp>
-#include <type_traits>
 namespace {
 	using namespace kvasir::mpl;
 	template <typename T>

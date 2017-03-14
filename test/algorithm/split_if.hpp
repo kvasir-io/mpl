@@ -5,9 +5,9 @@
 #pragma once
 
 #include <kvasir/mpl/algorithm/split_if.hpp>
-#include <kvasir/mpl/types/list.hpp>
-#include <kvasir/mpl/types/int.hpp>
 #include <kvasir/mpl/types/bool.hpp>
+#include <kvasir/mpl/types/int.hpp>
+#include <kvasir/mpl/types/list.hpp>
 
 namespace split_if_test {
 	using namespace kvasir::mpl;

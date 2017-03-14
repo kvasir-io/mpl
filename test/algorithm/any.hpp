@@ -7,8 +7,8 @@
 #include <type_traits>
 
 #include <kvasir/mpl/algorithm/any.hpp>
-#include <kvasir/mpl/types/list.hpp>
 #include <kvasir/mpl/functional/bind.hpp>
+#include <kvasir/mpl/types/list.hpp>
 
 namespace {
 	template <typename T>

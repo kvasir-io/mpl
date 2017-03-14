@@ -12,15 +12,18 @@
 #include "algorithm/flatten.hpp"
 #include "algorithm/fold_left.hpp"
 #include "algorithm/fold_right.hpp"
+#include "algorithm/make_sequence.hpp"
 #include "algorithm/partition.hpp"
 #include "algorithm/remove_adjacent.hpp"
 #include "algorithm/remove_if.hpp"
 #include "algorithm/reverse.hpp"
 #include "algorithm/sort.hpp"
+#include "algorithm/split_if.hpp"
 #include "algorithm/transform.hpp"
 #include "algorithm/zip_with.hpp"
-#include "algorithm/make_sequence.hpp"
-#include "algorithm/split_if.hpp"
+
+#include "compatability/compatability.hpp"
+#include "compatability/dependent_call.hpp"
 
 #include "functional/bind.hpp"
 #include "functional/call.hpp"
@@ -46,13 +49,13 @@
 
 #include "sequence/at.hpp"
 #include "sequence/create.hpp"
+#include "sequence/front.hpp"
 #include "sequence/is_list.hpp"
 #include "sequence/join.hpp"
 #include "sequence/pop_front.hpp"
 #include "sequence/push_back.hpp"
 #include "sequence/push_front.hpp"
 #include "sequence/size.hpp"
-#include "sequence/front.hpp"
 
 #include "types/bool.hpp"
 #include "types/int.hpp"
@@ -61,6 +64,6 @@
 #include "types/nothing.hpp"
 
 #include "utility/always.hpp"
+#include "utility/conditional.hpp"
 #include "utility/identity.hpp"
-#include "utility/invert.hpp"
 #include "utility/is_instance.hpp"
