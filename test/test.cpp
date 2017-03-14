@@ -47,7 +47,6 @@
 
 #include "utility/always.hpp"
 #include "utility/identity.hpp"
-#include "utility/invert.hpp"
 #include "utility/is_instance.hpp"
 
 int main() {

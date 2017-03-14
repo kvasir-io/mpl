@@ -12,7 +12,9 @@ namespace kvasir {
 		namespace c {
 			struct size {
 				template <typename... Ts>
-				using f = int_<sizeof...(Ts)>;
+				struct f {
+					constexpr static auto value = sizeof...(Ts);
+				};
 			};
 
 			///offset provides the difference between the origional length of a list 
@@ -20,7 +22,9 @@ namespace kvasir {
 			template<typename T>
 			struct offset {
 				template <typename... Ts>
-				using f = int_<(T::value - sizeof...(Ts))>;
+				struct f {
+					constexpr static auto value = (T::value - sizeof...(Ts));
+				};
 			};
 		}
 		namespace impl {

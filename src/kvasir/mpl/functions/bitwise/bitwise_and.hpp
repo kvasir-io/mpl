@@ -7,6 +7,6 @@
 namespace kvasir {
 	namespace mpl {
 		template <typename A, typename B>
-		using bitwise_and = integral_constant<decltype(A{} & B{}), (A{} & B{})>;
+		using bitwise_and = integral_constant<decltype(A::value & B::value), (A::value & B::value)>;
 	}
 }

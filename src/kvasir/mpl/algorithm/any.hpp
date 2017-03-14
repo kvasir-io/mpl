@@ -13,7 +13,9 @@ namespace kvasir {
 			namespace detail {
 				struct one_or_more {
 					template <typename... Ts>
-					using f = bool_<(sizeof...(Ts) > 0)>;
+					struct f {
+						constexpr static bool value = (sizeof...(Ts) > 0);
+					};
 				};
 			}
 			template <typename F>

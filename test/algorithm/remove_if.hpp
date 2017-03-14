@@ -10,8 +10,10 @@
 #include <type_traits>
 namespace {
 	using namespace kvasir::mpl;
-	template<typename T>
+	template <typename T>
 	using less_than_5 = bool_<(T::value < 5)>;
 
-	static_assert(std::is_same<remove_if<list<int_<1>, int_<2>, int_<7>, int_<8>>, less_than_5>, list<int_<7>, int_<8>>>::value, "");
+	static_assert(std::is_same<remove_if<list<int_<1>, int_<2>, int_<7>, int_<8>>, less_than_5>,
+	                           list<int_<7>, int_<8>>>::value,
+	              "");
 }

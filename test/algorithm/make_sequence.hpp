@@ -10,10 +10,9 @@
 
 namespace {
 	using namespace kvasir::mpl;
-	template<typename T>
+	template <typename T>
 	using is_99 = bool_<T::value == 99>;
-	using a = make_int_sequence<int_<5>>;
-	using b = list<int_<1>, int_<2>, int_<3>, int_<4>, int_<5>>;
-	static_assert(std::is_same<a, b>{},
-		"");
+	using a     = make_int_sequence<int_<5>>;
+	using b     = list<int_<1>, int_<2>, int_<3>, int_<4>, int_<5>>;
+	static_assert(std::is_same<a, b>{}, "");
 }

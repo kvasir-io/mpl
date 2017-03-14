@@ -11,7 +11,7 @@
 #include <kvasir/mpl/functional/bind.hpp>
 
 namespace {
-	template<typename T>
+	template <typename T>
 	using comp = std::is_same<int, T>;
 
 	using namespace kvasir;

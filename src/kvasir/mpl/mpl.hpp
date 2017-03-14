@@ -28,10 +28,10 @@
 #include "functional/fork.hpp"
 #include "functional/identity.hpp"
 
-#include "functions/arithmetic/complement.hpp"
 #include "functions/arithmetic/decrement.hpp"
 #include "functions/arithmetic/divide.hpp"
 #include "functions/arithmetic/increment.hpp"
+#include "functions/arithmetic/invert.hpp"
 #include "functions/arithmetic/max.hpp"
 #include "functions/arithmetic/min.hpp"
 #include "functions/arithmetic/minus.hpp"
@@ -40,7 +40,7 @@
 #include "functions/arithmetic/plus.hpp"
 #include "functions/arithmetic/times.hpp"
 #include "functions/bitwise/bitwise_and.hpp"
-#include "functions/bitwise/bitwise_not.hpp"
+#include "functions/bitwise/bitwise_complement.hpp"
 #include "functions/bitwise/bitwise_or.hpp"
 #include "functions/bitwise/bitwise_xor.hpp"
 
