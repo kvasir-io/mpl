@@ -11,7 +11,6 @@ namespace kvasir {
 			constexpr operator unsigned() const {
 				return Value;
 			}
-			static constexpr unsigned long long value = Value;
 		};
 
 		template <long long Value>
@@ -19,7 +18,6 @@ namespace kvasir {
 			constexpr operator unsigned() const {
 				return Value;
 			}
-			static constexpr unsigned long long value = Value;
 		};
 	}
 }

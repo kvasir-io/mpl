@@ -22,7 +22,8 @@ namespace kvasir {
 
 			template <template <class...> class L, class... Ts>
 			struct flatten_element_impl<L, L<Ts...>> {
-				using type = typename c::join<c::listify>::template f<
+				using type = typename c::detail::join_select<c::detail::select_join_size(
+					sizeof...(Ts))>::template f<list,
 				        typename flatten_element_impl<L, Ts>::type...>;
 			};
 

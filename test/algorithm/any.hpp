@@ -8,7 +8,6 @@
 
 #include <kvasir/mpl/algorithm/any.hpp>
 #include <kvasir/mpl/types/list.hpp>
-#include <kvasir/mpl/types/bool.hpp>
 #include <kvasir/mpl/functional/bind.hpp>
 
 template <typename T>

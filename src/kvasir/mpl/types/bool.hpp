@@ -11,7 +11,6 @@ namespace kvasir {
 			constexpr operator bool() const {
 				return Value;
 			}
-			static constexpr bool value = Value;
 		};
 	}
 }
