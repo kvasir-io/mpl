@@ -40,7 +40,7 @@ namespace kvasir {
 			struct remove_adjacent;
 			template<template <typename...> class Pred, template <typename...> class S, typename...Ts, typename...Us>
 			struct remove_adjacent<Pred, S<Ts...>, S<Us...>> {
-				using type = typename ::kvasir::mpl::c::detail::dependant_call<c::join<lambda<S>>, ::kvasir::mpl::c::detail::always_true(sizeof...(Ts))>::template f<typename binary_list_if_not<Pred,Ts,Us>::type...>;
+				using type = typename ::kvasir::mpl::c::detail::dependent_call<c::join<lambda<S>>, ::kvasir::mpl::c::detail::always_true(sizeof...(Ts))>::template f<typename binary_list_if_not<Pred,Ts,Us>::type...>;
 			};
 #else
 			template<template <typename...> class Pred>
