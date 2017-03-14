@@ -9,6 +9,6 @@
 namespace {
 	using namespace kvasir;
 	static_assert(std::is_same<mpl::transform<mpl::list<void, char, short, int>, list>,
-		mpl::list<mpl::list<void>, mpl::list<char>, mpl::list<short>, mpl::list<int>>>{},
+		mpl::list<mpl::list<void>, mpl::list<char>, mpl::list<short>, mpl::list<int>>>::value,
 		"");
 }
