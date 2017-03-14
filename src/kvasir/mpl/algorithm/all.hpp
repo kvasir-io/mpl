@@ -35,7 +35,7 @@ namespace kvasir {
 
 		/// resolves to std::true_type if all elements in the input list
 		/// fulfill the provided predicate
-		template <template <typename...> class Cond, typename List>
+		template <typename List, template <typename...> class Cond>
 		using all = c::call<c::all<lambda<Cond>>, List>;
 	}
 }

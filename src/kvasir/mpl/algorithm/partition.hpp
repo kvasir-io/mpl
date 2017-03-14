@@ -15,7 +15,7 @@ namespace kvasir {
 			using partition = c::fork<R, remove_if<Cond>, filter<Cond>>;
 		}
 
-		template <template <typename...> class Cond, typename List>
+		template <typename List, template <typename...> class Cond>
 		using partition = c::call<c::partition<lambda<Cond>>, List>;
 	}
 }

@@ -11,6 +11,6 @@ namespace {
 	using comp = std::is_same<int, T>;
 
 	using namespace kvasir;
-	static_assert(mpl::count_if<comp, mpl::list<void, char, int, float>>::value == 1, "");
-	static_assert(mpl::count_if<comp, mpl::list<void, char, bool, float>>::value == 0, "");
+	static_assert(mpl::count_if<mpl::list<void, char, int, float>, comp>::value == 1, "");
+	static_assert(mpl::count_if<mpl::list<void, char, bool, float>, comp>::value == 0, "");
 }

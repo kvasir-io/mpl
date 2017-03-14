@@ -31,7 +31,7 @@ namespace kvasir {
 
 		/// filter elements from a list
 		/// takes a lambda that should return a type convertible to bool
-		template <template <typename...> class Cond, typename List>
+		template <typename List, template <typename...> class Cond>
 		using count_if = c::call<c::count_if<lambda<Cond>>, List>;
 	}
 }

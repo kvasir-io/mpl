@@ -16,8 +16,7 @@ namespace {
 	template <typename T1, typename T2>
 	using add = uint_ < (T1::value +T2::value) > ;
 
-	static_assert(std::is_same<mpl::fold_right<add, uint_<0>,
-		mpl::list<uint_<1>, uint_<2>, uint_<3>, uint_<4>>>,
+	static_assert(std::is_same<mpl::fold_right<mpl::list<uint_<1>, uint_<2>, uint_<3>, uint_<4>>, uint_<0>, add>,
 		uint_<10>>::value,
 		"");
 }

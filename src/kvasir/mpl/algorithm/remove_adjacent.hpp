@@ -61,7 +61,7 @@ namespace kvasir {
 		/// takes a boolean predicate with two parameters
 		/// if the predicate return true for any two adjacent elements,
 		/// then the first of the two elements is removed
-		template <template <typename...> class Pred, typename List>
+		template <typename List, template <typename...> class Pred = bind2<std::is_same>::template f>
 		using remove_adjacent = typename detail::remove_adjacent<Pred, List, typename detail::rotate_one_impl<List>::type>::type;
 	}
 }

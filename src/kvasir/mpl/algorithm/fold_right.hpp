@@ -182,7 +182,7 @@ namespace kvasir {
 		}
 
 		/// fold right over a list, initialized with State		
-		template <template <typename...> class Func, typename State, typename List>
+		template <typename List, typename State, template <typename...> class Func>
 		using fold_right = c::call<bind0n<c::fold_right<lambda<Func>>::template f, State>, List>;
 	}
 }

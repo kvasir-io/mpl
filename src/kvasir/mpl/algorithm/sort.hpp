@@ -325,7 +325,7 @@ namespace kvasir {
 			};
 		}
 
-		template <template <typename...> class Comp, typename List>
+		template <typename List, template <typename...> class Comp>
 		using sort = typename detail::sort_impl<list<>, List, Comp>::type;
 	}
 }

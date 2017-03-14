@@ -43,7 +43,7 @@ namespace kvasir {
 		}
 
 		/// transform each element in a list with a function
-		template <template <typename...> class F, typename List>
-		using transform = c::call<c::transform<lambda<F>, c::listify>, List>;
+		template <template <typename...> class F, typename List, typename...Ls>
+		using transform = c::call<c::transform<lambda<F>, c::listify>, List, Ls...>;
 	}
 }

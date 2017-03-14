@@ -257,7 +257,7 @@ namespace kvasir {
 		}
 
 		/// fold left over a list, initialized with State
-		template <template <typename...> class Cond, typename List>
+		template <typename List, template <typename...> class Cond>
 		using find_if = c::call<c::find_if<lambda<Cond>>, List>;
 	}
 }
