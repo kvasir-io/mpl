@@ -4,7 +4,6 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
-#include <cstddef>
 #include "../types/list.hpp"
 #include "../types/int.hpp"
 
@@ -23,10 +22,7 @@ namespace kvasir {
 			/// kvasir::mpl::list implementation
 			template <typename... Ts>
 			struct size_impl<mpl::list<Ts...>> {
-				static constexpr std::size_t value = sizeof...(Ts);
-				constexpr operator std::size_t() const {
-					return value;
-				}
+				static constexpr auto value = sizeof...(Ts);
 			};
 		}
 
