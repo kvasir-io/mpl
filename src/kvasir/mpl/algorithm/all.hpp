@@ -20,12 +20,12 @@ namespace kvasir {
 				template <typename F>
 				struct not_ {
 					template <typename T>
-					using f = bool_<(!(typename F::template f<T>{}))>;
+					using f = bool_<(!(F::template f<T>::value))>;
 				};
 				template <template <typename...> class F>
 				struct not_<lambda<F>> {
 					template <typename T>
-					using f = bool_<(!F<T>{})>;
+					using f = bool_<(!F<T>::value)>;
 				};
 			}
 
@@ -35,7 +35,7 @@ namespace kvasir {
 
 		/// resolves to std::true_type if all elements in the input list
 		/// fulfill the provided predicate
-		template <template <typename...> class Cond, typename List>
+		template <typename List, template <typename...> class Cond>
 		using all = c::call<c::all<lambda<Cond>>, List>;
 	}
 }

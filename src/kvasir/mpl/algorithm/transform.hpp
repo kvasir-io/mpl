@@ -7,6 +7,7 @@
 #include "../functional/bind.hpp"
 #include "../functional/call.hpp"
 #include "../types/list.hpp"
+#include "../compatability/dependent_call.hpp"
 
 namespace kvasir {
 	namespace mpl {
@@ -16,7 +17,7 @@ namespace kvasir {
 			template <typename F, typename C = listify>
 			struct transform {
 				template <typename... Ts>
-				using f = typename C::template f<typename F::template f<Ts>...>;
+				using f = KVASIR_D_CALL(C,Ts)<typename F::template f<Ts>...>;
 			};
 			template <template <typename...> class F, typename C>
 			struct transform<lambda<F>, C> {
@@ -33,10 +34,16 @@ namespace kvasir {
 				template <typename... Ts>
 				using f = C<typename F::template f<Ts>...>;
 			};
+			namespace detail {
+				template <typename F, typename C, template <typename...> class Seq, typename... L0s, typename... L1s>
+				struct call_impl<transform<F,C>, Seq<L0s...>, Seq<L1s...>> {
+					using type = typename detail::make_bound<C>::template f<typename detail::make_bound<F>::template f<L0s,L1s>...>;
+				};
+			}
 		}
 
 		/// transform each element in a list with a function
-		template <template <typename...> class F, typename List>
-		using transform = c::call<c::transform<lambda<F>, c::listify>, List>;
+		template <template <typename...> class F, typename List, typename...Ls>
+		using transform = c::call<c::transform<lambda<F>, c::listify>, List, Ls...>;
 	}
 }

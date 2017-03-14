@@ -8,9 +8,7 @@ namespace kvasir {
 	namespace mpl {
 		template <bool Value>
 		struct bool_ {
-			constexpr operator bool() const {
-				return Value;
-			}
+			static constexpr bool value = Value;
 		};
 	}
 }
