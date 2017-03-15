@@ -4,7 +4,8 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
-#include <kvasir/mpl/algorithm/fold_right.hpp>
+#include <kvasir/mpl/algorithm/fold_left.hpp>
+#include <kvasir/mpl/functional/bind.hpp>
 #include <kvasir/mpl/sequence/create.hpp>
 #include <kvasir/mpl/sequence/join.hpp>
 #include <kvasir/mpl/sequence/push_front.hpp>
