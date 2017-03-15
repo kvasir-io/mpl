@@ -65,5 +65,4 @@
 
 #include "utility/always.hpp"
 #include "utility/conditional.hpp"
-#include "utility/identity.hpp"
 #include "utility/is_instance.hpp"
