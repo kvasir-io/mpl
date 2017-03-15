@@ -27,6 +27,6 @@ namespace kvasir {
 		}
 
 		template <typename A, typename B>
-		using min = typename detail::max_impl<(A::value < B::value)>::template f<A, B>;
+		using min = typename detail::min_impl<(A::value < B::value)>::template f<A, B>;
 	}
 }

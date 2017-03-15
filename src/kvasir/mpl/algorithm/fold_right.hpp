@@ -36,7 +36,7 @@ namespace kvasir {
 				struct fold_right_impl<2> {
 					template <template <typename...> class F, typename In, typename T0, typename T1,
 					          typename... Ts>
-					using f = F<F<typename fold_right_impl<select_fold(
+					using f = F<F<typename fold_right_impl<select_fold_right(
 					                      sizeof...(Ts))>::template f<F, In, Ts...>,
 					              T1>,
 					            T0>;
@@ -45,7 +45,7 @@ namespace kvasir {
 				struct fold_right_impl<4> {
 					template <template <typename...> class F, typename In, typename T0, typename T1,
 					          typename T2, typename T3, typename... Ts>
-					using f = F<F<F<F<typename fold_right_impl<select_fold(
+					using f = F<F<F<F<typename fold_right_impl<select_fold_right(
 					                          sizeof...(Ts))>::template f<F, In, Ts...>,
 					                  T3>,
 					                T2>,
@@ -59,25 +59,26 @@ namespace kvasir {
 					          typename T7, typename T8, typename T9, typename T10, typename T11,
 					          typename T12, typename T13, typename T14, typename T15,
 					          typename... Ts>
-					using f = F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<typename fold_right_impl<select_fold(
-					                                                  sizeof...(Ts))>::
-					                                                  template f<F, In, Ts...>,
-					                                          T15>,
-					                                        T14>,
-					                                      T13>,
-					                                    T12>,
-					                                  T11>,
-					                                T10>,
-					                              T9>,
-					                            T8>,
-					                          T7>,
-					                        T6>,
-					                      T5>,
-					                    T4>,
-					                  T3>,
-					                T2>,
-					              T1>,
-					            T0>;
+					using f = F<
+					        F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<typename fold_right_impl<select_fold_right(
+					                                              sizeof...(Ts))>::
+					                                              template f<F, In, Ts...>,
+					                                      T15>,
+					                                    T14>,
+					                                  T13>,
+					                                T12>,
+					                              T11>,
+					                            T10>,
+					                          T9>,
+					                        T8>,
+					                      T7>,
+					                    T6>,
+					                  T5>,
+					                T4>,
+					              T3>,
+					            T2>,
+					          T1>,
+					        T0>;
 				};
 				template <>
 				struct fold_right_impl<64> {
@@ -96,7 +97,7 @@ namespace kvasir {
 					          typename T57, typename T58, typename T59, typename T60, typename T61,
 					          typename T62, typename T63, typename... Ts>
 					using f = F<
-					        F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<typename fold_right_impl<select_fold(
+					        F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<typename fold_right_impl<select_fold_right(
 					                                                                                                                                              sizeof...(Ts))>::
 					                                                                                                                                              template f<
 					                                                                                                                                                      F, In,

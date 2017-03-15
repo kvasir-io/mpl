@@ -27,7 +27,7 @@ namespace kvasir {
 		};
 
 		template <>
-		struct is_integral<integral_constant<std::nullptr_t, nullptr>> {
+		struct is_integral<integral_constant<decltype(nullptr), nullptr>> {
 			static constexpr bool value = true;
 		};
 	}

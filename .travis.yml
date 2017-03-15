@@ -87,7 +87,7 @@ matrix:
 before_script:
   - mkdir build
   - cd build
-  - cmake .. -DCMAKE_CXX_COMPILER=$TOOLSET
+  - cmake .. -DCMAKE_CXX_COMPILER=$TOOLSET -DMAKE_INCLUDE_TESTS=ON
 
 script:
   - make VERBOSE=1

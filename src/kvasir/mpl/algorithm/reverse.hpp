@@ -5,6 +5,7 @@
 #pragma once
 
 #include "../functional/call.hpp"
+#include "../sequence/join.hpp"
 
 namespace kvasir {
 	namespace mpl {

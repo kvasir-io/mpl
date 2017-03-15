@@ -6,6 +6,8 @@
 
 #include <type_traits>
 
+#include "../algorithm/fold_right.hpp"
+#include "../functional/call.hpp"
 #include "../types/list.hpp"
 
 namespace kvasir {
