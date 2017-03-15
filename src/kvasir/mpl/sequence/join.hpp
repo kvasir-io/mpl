@@ -4,8 +4,8 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
-#include "../types/list.hpp"
 #include "../functional/bind.hpp"
+#include "../types/list.hpp"
 
 namespace kvasir {
 	namespace mpl {
@@ -1669,7 +1669,10 @@ namespace kvasir {
 
 		/// join two or more lists together
 		/// when there is only one list input the result is that list
+		/// in the case of joining two or more distinct list types, the first list type will always
+		/// be the resulting type
 		template <typename List, typename... Lists>
-		using join = typename c::join<typename c::sequencify<List>::type>::template f<List, Lists...>;
+		using join =
+		        typename c::join<typename c::sequencify<List>::type>::template f<List, Lists...>;
 	}
 }

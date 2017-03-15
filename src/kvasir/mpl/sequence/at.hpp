@@ -4,8 +4,8 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
-#include "../types/list.hpp"
 #include "pop_front.hpp"
+#include "../types/list.hpp"
 
 namespace kvasir {
 	namespace mpl {
@@ -23,7 +23,7 @@ namespace kvasir {
 		}
 
 		/// get the n-th element of the list
-		template <unsigned N, typename List>
+		template <typename List, unsigned N>
 		using at = typename impl::at_impl<N, List>::f;
 	}
 }

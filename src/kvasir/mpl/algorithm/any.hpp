@@ -5,6 +5,7 @@
 #pragma once
 
 #include "find_if.hpp"
+#include "../utility/identity.hpp"
 
 namespace kvasir {
 	namespace mpl {
@@ -12,7 +13,9 @@ namespace kvasir {
 			namespace detail {
 				struct one_or_more {
 					template <typename... Ts>
-					using f = bool_<(sizeof...(Ts) > 0)>;
+					struct f {
+						constexpr static bool value = (sizeof...(Ts) > 0);
+					};
 				};
 			}
 			template <typename F>
@@ -20,7 +23,7 @@ namespace kvasir {
 		}
 		/// filter elements from a list
 		/// takes a lambda that should return a type convertible to bool
-		template <typename List, template <typename...> class Cond>
+		template <typename List, template <typename...> class Cond = identity>
 		using any = c::call<c::any<lambda<Cond>>, List>;
 	}
 }

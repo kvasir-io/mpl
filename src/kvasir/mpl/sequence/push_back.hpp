@@ -23,6 +23,9 @@ namespace kvasir {
 		}
 
 		/// push an element to the back of a list
+		/// be wary that pushing to the back of a list can be a linear operation, and is therefore
+		/// not recommended as a way of adding to a list
+		/// instead, it is conventional to recurse backwards and push to the front instead
 		template <typename Elem, typename List>
 		using push_back = typename impl::push_back_impl<Elem, List>::f;
 	}

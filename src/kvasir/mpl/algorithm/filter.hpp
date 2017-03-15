@@ -3,7 +3,9 @@
 //    (See accompanying file LICENSE.md or copy at
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
+
 #include "remove_if.hpp"
+#include "../utility/identity.hpp"
 
 namespace kvasir {
 	namespace mpl {
@@ -15,7 +17,7 @@ namespace kvasir {
 
 		/// filter elements from a list
 		/// takes a lambda that should return a type convertible to bool
-		template <typename List, template <typename...> class Cond>
+		template <typename List, template <typename...> class Cond = identity>
 		using filter = c::call<c::filter<lambda<Cond>>, List>;
 	}
 }

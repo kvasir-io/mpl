@@ -10,18 +10,20 @@
 namespace kvasir {
 	namespace mpl {
 		namespace detail {
-			template<typename T, template<T> class W, template<typename...> class S, bool Continue = true>
+			template <typename T, template <T> class W, template <typename...> class S,
+			          bool Continue = true>
 			struct make_sequence {
-				template<T N, typename...Ts>
+				template <T N, typename... Ts>
 				using f = typename make_sequence<T, W, S, (N > 1)>::template f<N - 1, W<N>, Ts...>;
 			};
-			template<typename T, template<T> class W, template<typename...> class S>
+			template <typename T, template <T> class W, template <typename...> class S>
 			struct make_sequence<T, W, S, false> {
-				template<T N, typename...Ts>
+				template <T N, typename... Ts>
 				using f = S<Ts...>;
 			};
 		}
-		template<typename T>
-		using make_int_sequence = detail::make_sequence<long long, int_, list>::template f<T::value>;
+		template <typename T>
+		using make_int_sequence =
+		        detail::make_sequence<long long, int_, list>::template f<T::value>;
 	}
 }

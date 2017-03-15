@@ -6,9 +6,9 @@
 
 #include <type_traits>
 
+#include <kvasir/mpl/algorithm/sort.hpp>
 #include <kvasir/mpl/types/bool.hpp>
 #include <kvasir/mpl/types/int.hpp>
-#include <kvasir/mpl/algorithm/sort.hpp>
 #include <kvasir/mpl/types/list.hpp>
 
 using namespace kvasir::mpl;
@@ -21,4 +21,4 @@ using test_list =
 using expect_list =
         list<int_<0>, int_<1>, int_<2>, int_<3>, int_<3>, int_<4>, int_<5>, int_<6>, int_<7>>;
 
-static_assert(std::is_same<sort<test_list, compare_func>, expect_list>::value, "");
+static_assert(std::is_same<sort<test_list>, expect_list>::value, "");

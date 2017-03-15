@@ -4,23 +4,27 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
-#include "../types/list.hpp"
 #include "../types/int.hpp"
+#include "../types/list.hpp"
 
 namespace kvasir {
 	namespace mpl {
 		namespace c {
 			struct size {
 				template <typename... Ts>
-				using f = int_<sizeof...(Ts)>;
+				struct f {
+					constexpr static auto value = sizeof...(Ts);
+				};
 			};
 
-			///offset provides the difference between the origional length of a list 
+			/// offset provides the difference between the origional length of a list
 			///(provided as the input parameter) and the pack supplied to f
-			template<typename T>
+			template <typename T>
 			struct offset {
 				template <typename... Ts>
-				using f = int_<(T::value - sizeof...(Ts))>;
+				struct f {
+					constexpr static auto value = (T::value - sizeof...(Ts));
+				};
 			};
 		}
 		namespace impl {

@@ -3,10 +3,10 @@
 //    (See accompanying file LICENSE.md or copy at
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
-
+#include "../../types/integral_constant.hpp"
 namespace kvasir {
 	namespace mpl {
 		template <typename A>
-		using bitwise_not = integral_constant<decltype(!A{}), (!A{})>;
+		using invert = integral_constant<decltype(!A::value), (!A::value)>;
 	}
 }

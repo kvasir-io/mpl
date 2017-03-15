@@ -10,7 +10,7 @@ namespace kvasir {
 	namespace mpl {
 		namespace c {
 			struct front {
-				template<typename T, typename...Ts>
+				template <typename T, typename... Ts>
 				using f = T;
 			};
 		}

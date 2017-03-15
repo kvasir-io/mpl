@@ -7,11 +7,11 @@
 #include <type_traits>
 
 #include <kvasir/mpl/algorithm/remove_adjacent.hpp>
-#include <kvasir/mpl/types/list.hpp>
 #include <kvasir/mpl/types/bool.hpp>
+#include <kvasir/mpl/types/list.hpp>
 
 using namespace kvasir;
-static_assert(std::is_same<mpl::remove_adjacent<mpl::list<void, char, char, short>, std::is_same>,
+static_assert(std::is_same<mpl::remove_adjacent<mpl::list<void, char, char, short>>,
                            mpl::list<void, char, short>>{},
               "");
 

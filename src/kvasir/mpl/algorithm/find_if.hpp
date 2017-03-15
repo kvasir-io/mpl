@@ -9,6 +9,7 @@
 #include "../functional/bind.hpp"
 #include "../functional/call.hpp"
 #include "../types/list.hpp"
+#include "../utility/identity.hpp"
 
 namespace kvasir {
 	namespace mpl {
@@ -257,7 +258,7 @@ namespace kvasir {
 		}
 
 		/// fold left over a list, initialized with State
-		template <typename List, template <typename...> class Cond>
+		template <typename List, template <typename...> class Cond = identity>
 		using find_if = c::call<c::find_if<lambda<Cond>>, List>;
 	}
 }

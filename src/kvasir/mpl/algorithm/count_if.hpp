@@ -4,9 +4,9 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
+#include "filter.hpp"
 #include "../functional/bind.hpp"
 #include "../sequence/size.hpp"
-#include "filter.hpp"
 #include "../utility/conditional.hpp"
 
 namespace kvasir {
@@ -31,7 +31,7 @@ namespace kvasir {
 
 		/// filter elements from a list
 		/// takes a lambda that should return a type convertible to bool
-		template <typename List, template <typename...> class Cond>
+		template <typename List, template <typename...> class Cond = identity>
 		using count_if = c::call<c::count_if<lambda<Cond>>, List>;
 	}
 }

@@ -7,6 +7,6 @@
 namespace kvasir {
 	namespace mpl {
 		template <typename A>
-		using increment = integral_constant<decltype(A{} + 1), (A{} + 1)>;
+		using increment = integral_constant<decltype(A::value + 1), (A::value + 1)>;
 	}
 }

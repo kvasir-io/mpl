@@ -16,7 +16,7 @@
 
 #elif __GNUC__
 #ifndef __clang__
-//GCC
+// GCC
 #else
 #if __clang_major__ == 3
 #if __clang_minor__ == 5
@@ -29,5 +29,3 @@
 #endif
 #endif
 #endif
-
-

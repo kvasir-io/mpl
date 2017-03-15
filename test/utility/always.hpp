@@ -8,9 +8,9 @@
 
 #include <kvasir/mpl/utility/always.hpp>
 
-static_assert(std::is_same<always<int>::template f<void>, int>{}, "");
+static_assert(std::is_same<always<int>::template f<void>, int>::value, "");
 
 template <typename T>
 struct foo {
-	static_assert(always_false<T>{}, "always_false should not have been instantiated");
+	static_assert(always_false<T>::value, "always_false should not have been instantiated");
 };
