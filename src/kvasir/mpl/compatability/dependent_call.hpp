@@ -10,6 +10,8 @@
         defined(KVASIR_CLANG_35) || defined(KVASIR_CLANG_36) || defined(KVASIR_CLANG_37)
 #include <limits>
 
+#include "../functional/bind.hpp"
+
 namespace kvasir {
 	namespace mpl {
 		namespace c {
