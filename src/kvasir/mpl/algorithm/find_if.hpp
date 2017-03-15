@@ -8,8 +8,8 @@
 
 #include "../functional/bind.hpp"
 #include "../functional/call.hpp"
+#include "../functional/identity.hpp"
 #include "../types/list.hpp"
-#include "../utility/identity.hpp"
 
 namespace kvasir {
 	namespace mpl {

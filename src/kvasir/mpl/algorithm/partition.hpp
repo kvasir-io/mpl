@@ -7,7 +7,7 @@
 #include "../algorithm/filter.hpp"
 #include "../algorithm/remove_if.hpp"
 #include "../functional/fork.hpp"
-#include "../utility/identity.hpp"
+#include "../functional/identity.hpp"
 
 namespace kvasir {
 	namespace mpl {

@@ -4,9 +4,10 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
+#include <kvasir/mpl/algorithm/all.hpp>
+
 #include <type_traits>
 
-#include <kvasir/mpl/algorithm/all.hpp>
 #include <kvasir/mpl/functional/bind.hpp>
 #include <kvasir/mpl/types/list.hpp>
 

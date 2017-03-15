@@ -5,7 +5,7 @@
 #pragma once
 
 #include "remove_if.hpp"
-#include "../utility/identity.hpp"
+#include "../functional/identity.hpp"
 
 namespace kvasir {
 	namespace mpl {

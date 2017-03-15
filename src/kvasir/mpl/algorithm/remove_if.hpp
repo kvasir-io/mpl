@@ -8,7 +8,7 @@
 #include "../functional/bind.hpp"
 #include "../functional/call.hpp"
 #include "../sequence/join.hpp"
-#include "../utility/identity.hpp"
+#include "../functional/identity.hpp"
 
 namespace kvasir {
 	namespace mpl {

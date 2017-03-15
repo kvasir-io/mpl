@@ -3,7 +3,9 @@
 //    (See accompanying file LICENSE.md or copy at
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
+
 #include "../../types/integral_constant.hpp"
+
 namespace kvasir {
 	namespace mpl {
 		template <typename A>
