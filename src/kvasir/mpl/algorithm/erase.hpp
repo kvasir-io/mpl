@@ -16,9 +16,14 @@ namespace kvasir {
 			namespace detail {
 			}
 
+			template<typename Index>
+			struct erase {
+				template<typename...Ts>
+				using f = typename rotate < mpl::int_<Index::value>, pop_front<rotate<mpl::int_<(sizeof...(Ts)-Index::value-1)>, listify>>>::template f<Ts...>;
+			};
 		}
 
-		template <typename List, typename Index>
-		using erase = c::call<c::rotate<mpl::int_<Index::value>,c::pop_front<c::rotate<mpl::int_<(size<List>::value - Index::value)>,c::listify>>>, List>;
+		template <typename List, unsigned Index>
+		using erase = c::call<c::erase<int_<Index>>, List>;
 	}
 }

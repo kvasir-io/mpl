@@ -12,9 +12,13 @@
 
 namespace kvasir {
 	namespace mpl {
+		namespace c {
+			template<typename N>
+			using at = rotate<N, front>;
+		}
 
 		/// get the n-th element of the list
 		template <typename List, unsigned N>
-		using at = c::call<c::rotate<mpl::int_<N>, c::front>, List>;
+		using at = c::call<c::at<mpl::int_<N>>, List>;
 	}
 }

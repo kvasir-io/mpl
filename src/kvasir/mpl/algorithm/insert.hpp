@@ -13,12 +13,14 @@
 namespace kvasir {
 	namespace mpl {
 		namespace c {
-			namespace detail {
-			}
-
+			template<typename Index, typename Input, typename C = listify>
+			struct insert {
+				template<typename...Ts>
+				using f = typename rotate<Index, push_front<Input, rotate<uint_<(1 + sizeof...(Ts) - Index::value)>, C>>>::template f<Ts...>;
+			};
 		}
 
-		template <typename List, typename Index, typename Input>
-		using insert = c::call<c::rotate<mpl::int_<Index::value>, c::push_front<Input,c::rotate<mpl::int_<(size<List>::value - Index::value)>, c::listify>>>, List>;
+		template <typename List, unsigned Index, typename Input>
+		using insert = c::call<c::insert<uint_<Index>,Input>, List>;
 	}
 }

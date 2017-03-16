@@ -198,7 +198,7 @@ namespace kvasir {
 
 		}
 
-		template <typename List, typename Index>
-		using rotate = c::call<c::rotate<mpl::int_<Index::value>, c::listify>, List>;
+		template <typename List, unsigned Index>
+		using rotate = c::call<c::rotate<mpl::uint_<Index>, c::listify>, List>;
 	}
 }
