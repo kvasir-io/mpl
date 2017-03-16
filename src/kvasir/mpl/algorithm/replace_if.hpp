@@ -8,6 +8,7 @@
 #include "../functional/identity.hpp"
 #include "../sequence/join.hpp"
 #include "../utility/conditional.hpp"
+#include "../algorithm/transform.hpp"
 
 namespace kvasir {
 	namespace mpl {
