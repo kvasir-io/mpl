@@ -8,6 +8,7 @@
 #include "../sequence/pop_front.hpp"
 #include "../sequence/size.hpp"
 #include "../functional/call.hpp"
+#include <type_traits>
 
 
 namespace kvasir {
@@ -20,43 +21,43 @@ namespace kvasir {
 				template<typename C>
 				struct rotate_impl<1, C> {
 					template<typename T, typename...Ts>
-					using f = KVASIR_D_CALL(C, Ts) < Ts..., T >;
+					using f = typename std::conditional<(sizeof...(Ts)<100000),C,void>::type::template f< Ts..., T >;
 				}; 
 				template<typename C>
 				struct rotate_impl<2, C> {
 					template<typename T0, typename T1, typename...Ts>
-					using f = KVASIR_D_CALL(C, Ts) < Ts..., T0, T1>;
+					using f = typename std::conditional<(sizeof...(Ts)<100000),C,void>::type::template f< Ts..., T0, T1>;
 				};
 				template<typename C>
 				struct rotate_impl<3, C> {
 					template<typename T0, typename T1, typename T2, typename...Ts>
-					using f = KVASIR_D_CALL(C, Ts) < Ts..., T0, T1, T2>;
+					using f = typename std::conditional<(sizeof...(Ts)<100000),C,void>::type::template f< Ts..., T0, T1, T2>;
 				};
 				template<typename C>
 				struct rotate_impl<4, C> {
 					template<typename T0, typename T1, typename T2, typename T3, typename...Ts>
-					using f = KVASIR_D_CALL(C, Ts) < Ts..., T0, T1, T2, T3>;
+					using f = typename std::conditional<(sizeof...(Ts)<100000),C,void>::type::template f< Ts..., T0, T1, T2, T3>;
 				};
 				template<typename C>
 				struct rotate_impl<5, C> {
 					template<typename T0, typename T1, typename T2, typename T3, typename T4, typename...Ts>
-					using f = KVASIR_D_CALL(C, Ts) < Ts..., T0, T1, T2, T3, T4>;
+					using f = typename std::conditional<(sizeof...(Ts)<100000),C,void>::type::template f< Ts..., T0, T1, T2, T3, T4>;
 				};
 				template<typename C>
 				struct rotate_impl<6, C> {
 					template<typename T0, typename T1, typename T2, typename T3, typename T4, typename T5, typename...Ts>
-					using f = KVASIR_D_CALL(C, Ts) < Ts..., T0, T1, T2, T3, T4, T5>;
+					using f = typename std::conditional<(sizeof...(Ts)<100000),C,void>::type::template f< Ts..., T0, T1, T2, T3, T4, T5>;
 				};
 				template<typename C>
 				struct rotate_impl<7, C> {
 					template<typename T0, typename T1, typename T2, typename T3, typename T4, typename T5, typename T6, typename...Ts>
-					using f = KVASIR_D_CALL(C, Ts) < Ts..., T0, T1, T2, T3, T4, T5, T6>;
+					using f = typename std::conditional<(sizeof...(Ts)<100000),C,void>::type::template f< Ts..., T0, T1, T2, T3, T4, T5, T6>;
 				};
 				template<typename C>
 				struct rotate_impl<8, C> {
 					template<typename T0, typename T1, typename T2, typename T3, typename T4, typename T5, typename T6,
 						typename T7, typename...Ts>
-					using f = KVASIR_D_CALL(C, Ts) < Ts..., T0, T1, T2, T3, T4, T5, T6,
+					using f = typename std::conditional<(sizeof...(Ts)<100000),C,void>::type::template f< Ts..., T0, T1, T2, T3, T4, T5, T6,
 						T7 >;
 				};
 				template<typename C>
@@ -64,7 +65,7 @@ namespace kvasir {
 					template<typename T0, typename T1, typename T2, typename T3, typename T4, typename T5, typename T6,
 						typename T7, typename T8, typename T9, typename T10, typename T11, typename T12, typename T13,
 						typename T14, typename T15, typename...Ts>
-					using f = KVASIR_D_CALL(C, Ts) < Ts..., T0, T1, T2, T3, T4, T5, T6,
+					using f = typename std::conditional<(sizeof...(Ts)<100000),C,void>::type::template f< Ts..., T0, T1, T2, T3, T4, T5, T6,
 						T7, T8, T9, T10, T11, T12, T13,
 						T14, T15 >;
 				};
@@ -80,7 +81,7 @@ namespace kvasir {
 						typename T49, typename T50, typename T51, typename T52, typename T53, typename T54, typename T55,
 						typename T56, typename T57, typename T58, typename T59, typename T60, typename T61, typename T62,
 						typename T63, typename...Ts>
-					using f = KVASIR_D_CALL(C, Ts) < Ts..., T0, T1, T2, T3, T4, T5, T6,
+					using f = typename std::conditional<(sizeof...(Ts)<100000),C,void>::type::template f< Ts..., T0, T1, T2, T3, T4, T5, T6,
 						T7, T8, T9, T10, T11, T12, T13,
 						T14, T15, T16, T17, T18, T19, T20,
 						T21, T22, T23, T24, T25, T26, T27,
@@ -133,7 +134,7 @@ namespace kvasir {
 						typename T236, typename T237, typename T238, typename T239, typename T240, typename T241,
 						typename T242, typename T243, typename T244, typename T245, typename T246, typename T247,
 						typename T248, typename T249, typename T250, typename T251, typename T252, typename T253, typename T254, typename T255, typename...Ts>
-					using f = KVASIR_D_CALL(C, Ts) < Ts...,  T0,  T1,  T2,  T3,  T4,  T5,  T6,
+					using f = typename std::conditional<(sizeof...(Ts)<100000),C,void>::type::template f< Ts...,  T0,  T1,  T2,  T3,  T4,  T5,  T6,
 						 T7,  T8,  T9,  T10,  T11,  T12,  T13,
 						 T14,  T15,  T16,  T17,  T18,  T19,  T20,
 						 T21,  T22,  T23,  T24,  T25,  T26,  T27,
@@ -185,7 +186,7 @@ namespace kvasir {
 				template<bool Done>
 				struct build_rotate {
 					template<unsigned N, typename Out>
-					using f = typename build_rotate<(next_rotate_step(N) == 0)>::template f<next_rotate_step(N),rotate_impl<current_rotate_step(N), Out>>;
+					using f = typename build_rotate<(next_rotate_step(N) == 0)>::template f<next_rotate_step(N), rotate_impl<current_rotate_step(N), Out>>;
 				};
 				template<>
 				struct build_rotate<true> {

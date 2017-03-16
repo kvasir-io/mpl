@@ -7,6 +7,7 @@
 #include "../types/list.hpp"
 #include "../types/nothing.hpp"
 #include "../compatability/dependent_call.hpp"
+#include <type_traits>
 
 namespace kvasir {
 	namespace mpl {
@@ -14,7 +15,7 @@ namespace kvasir {
 			template<typename C>
 			struct pop_front {
 				template<typename T, typename...Ts>
-				using f = KVASIR_D_CALL(C, Ts) < Ts... >;
+				using f = typename std::conditional<(sizeof...(Ts)<100000), C, void>::type::template f< Ts... >;
 			};
 		}
 		namespace impl {
