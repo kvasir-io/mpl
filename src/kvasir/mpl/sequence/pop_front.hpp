@@ -6,9 +6,18 @@
 
 #include "../types/list.hpp"
 #include "../types/nothing.hpp"
+#include "../compatability/dependent_call.hpp"
+#include <type_traits>
 
 namespace kvasir {
 	namespace mpl {
+		namespace c {
+			template<typename C>
+			struct pop_front {
+				template<typename T, typename...Ts>
+				using f = typename std::conditional<(sizeof...(Ts)<100000), C, void>::type::template f< Ts... >;
+			};
+		}
 		namespace impl {
 			template <typename List>
 			struct pop_front_impl {

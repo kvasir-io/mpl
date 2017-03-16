@@ -4,26 +4,21 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
-#include "pop_front.hpp"
-#include "../types/list.hpp"
+#include "../algorithm/rotate.hpp"
+#include "../types/int.hpp"
+#include "../sequence/front.hpp"
+#include "../sequence/size.hpp"
+#include "../functional/call.hpp"
 
 namespace kvasir {
 	namespace mpl {
-
-		namespace impl {
-			template <unsigned N, typename List>
-			struct at_impl {
-				using f = typename at_impl<N - 1, typename pop_front_impl<List>::rest>::f;
-			};
-
-			template <typename List>
-			struct at_impl<0, List> {
-				using f = typename pop_front_impl<List>::front;
-			};
+		namespace c {
+			template<typename N>
+			using at = rotate<N, front>;
 		}
 
 		/// get the n-th element of the list
 		template <typename List, unsigned N>
-		using at = typename impl::at_impl<N, List>::f;
+		using at = c::call<c::at<mpl::int_<N>>, List>;
 	}
 }
