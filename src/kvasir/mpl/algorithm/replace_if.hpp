@@ -26,8 +26,8 @@ namespace kvasir {
 				};
 			}
 
-			template <typename F, typename Input>
-			using replace_if = transform<detail::replace_if_pred<F,Input>, listify>;
+			template <typename F, typename Input, typename C = listify>
+			using replace_if = transform<detail::replace_if_pred<F,Input>, C>;
 		}
 
 		template <typename List, typename Input, template <typename...> class Cond = identity>
