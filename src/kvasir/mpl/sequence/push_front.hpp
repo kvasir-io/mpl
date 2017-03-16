@@ -5,6 +5,7 @@
 #pragma once
 
 #include "../types/list.hpp"
+#include "../compatability/dependent_call.hpp"
 
 namespace kvasir {
 	namespace mpl {
