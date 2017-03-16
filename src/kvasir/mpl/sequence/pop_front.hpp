@@ -6,9 +6,17 @@
 
 #include "../types/list.hpp"
 #include "../types/nothing.hpp"
+#include "../compatability/dependent_call.hpp"
 
 namespace kvasir {
 	namespace mpl {
+		namespace c {
+			template<typename C>
+			struct pop_front {
+				template<typename T, typename...Ts>
+				using f = KVASIR_D_CALL(C, Ts) < Ts... >;
+			};
+		}
 		namespace impl {
 			template <typename List>
 			struct pop_front_impl {

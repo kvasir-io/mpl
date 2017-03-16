@@ -8,6 +8,13 @@
 
 namespace kvasir {
 	namespace mpl {
+		namespace c {
+			template<typename Input, typename C>
+			struct push_front {
+				template<typename...Ts>
+				using f = KVASIR_D_CALL(C, Ts) <Input, Ts... >;
+			};
+		}
 		namespace impl {
 			template <typename Elem, typename List>
 			struct push_front_impl;
