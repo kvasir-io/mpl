@@ -27,7 +27,7 @@ namespace kvasir {
 			template<template<typename...> class S, typename C>
 			struct flatten<lambda<S>, C> {
 				template<typename...Ts>
-				using = detail::join_select<detail::select_join_size(sizeof...(Ts))>::template f<C::template f,
+				using f = typename detail::join_select<detail::select_join_size(sizeof...(Ts))>::template f<C::template f,
 					typename detail::flatten_element_impl<S, Ts>::type...>;
 			};
 		}
@@ -37,7 +37,7 @@ namespace kvasir {
 			struct flatten_impl;
 			template<template<typename...> class S, typename...Ts>
 			struct flatten_impl<S<Ts...>> {
-				using type = c::flatten<lambda<S>>::template f<Ts...>;
+				using type = typename c::flatten<lambda<S>>::template f<Ts...>;
 			};
 		}
 

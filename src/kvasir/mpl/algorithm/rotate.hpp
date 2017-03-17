@@ -194,7 +194,7 @@ namespace kvasir {
 					using f = Out;
 				};
 			}
-			template<typename N, typename C>
+			template<typename N, typename C = listify>
 			using rotate = typename detail::build_rotate<(N::value == 0)>::template f<N::value, C>;
 
 		}

@@ -28,6 +28,9 @@ namespace kvasir {
 			}
 			template <typename C, typename L, typename... Ls>
 			using call = typename detail::call_impl<C, L, Ls...>::type;
+
+			template<typename C, typename...Ts>
+			using ucall = typename dcall<C, sizeof...(Ts)>::template f<Ts...>;
 		}
 	}
 }
