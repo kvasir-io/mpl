@@ -4,15 +4,17 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
+#include <type_traits>
+
 #include <kvasir/mpl/algorithm/make_sequence.hpp>
+#include <kvasir/mpl/types/bool.hpp>
 #include <kvasir/mpl/types/int.hpp>
 #include <kvasir/mpl/types/list.hpp>
 
 namespace {
-	using namespace kvasir::mpl;
-	template <typename T>
-	using is_99 = bool_<T::value == 99>;
-	using a     = make_int_sequence<int_<5>>;
-	using b     = list<int_<1>, int_<2>, int_<3>, int_<4>, int_<5>>;
+	namespace mpl = kvasir::mpl;
+	template<typename T> using is_99 = mpl::bool_<T::value == 99>;
+	using a     = mpl::make_int_sequence<mpl::int_<5>>;
+	using b     = mpl::list<mpl::int_<1>, mpl::int_<2>, mpl::int_<3>, mpl::int_<4>, mpl::int_<5>>;
 	static_assert(std::is_same<a, b>{}, "");
 }
