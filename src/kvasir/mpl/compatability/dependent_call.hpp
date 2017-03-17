@@ -5,6 +5,16 @@
 #pragma once
 
 #include "compatability.hpp"
+#include "../utility/conditional.hpp"
+
+namespace kvasir {
+	namespace mpl {
+		namespace c {
+			template<typename C, unsigned size>
+			using dcall = typename conditional<(size<100000)>::template f<C, void>;
+		}
+	}
+}
 
 #if defined(KVASIR_MSVC_2017) || defined(KVASIR_MSVC_2015) || defined(KVASIR_MSVC_2013) || \
         defined(KVASIR_CLANG_35) || defined(KVASIR_CLANG_36) || defined(KVASIR_CLANG_37)
@@ -44,6 +54,7 @@ namespace kvasir {
 
 #else
 
-#define KVASIR_D_CALL(T, Pack) typename T::template f
+#define KVASIR_D_CALL(T, Pack) typename ::kvasir::mpl::c::dcall<T,sizeof...(Pack)>::template f
 
 #endif
+
