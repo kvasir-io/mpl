@@ -29,8 +29,9 @@ namespace kvasir {
 			template <typename C, typename L, typename... Ls>
 			using call = typename detail::call_impl<C, L, Ls...>::type;
 
+			//unpacked version of call, can be used instead of the uglynees 
 			template<typename C, typename...Ts>
-			using ucall = typename dcall<C, sizeof...(Ts)>::template f<Ts...>;
+			using ucall = typename conditional<(sizeof...(Ts)<100000)>::template f<C, void>::template f<Ts...>;
 		}
 	}
 }
