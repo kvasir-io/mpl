@@ -4,6 +4,7 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
+#include "../functional/call.hpp"
 #include "../types/int.hpp"
 #include "../types/list.hpp"
 
@@ -27,19 +28,9 @@ namespace kvasir {
 				};
 			};
 		}
-		namespace impl {
-			template <typename List>
-			struct size_impl;
-
-			/// kvasir::mpl::list implementation
-			template <typename... Ts>
-			struct size_impl<mpl::list<Ts...>> {
-				static constexpr auto value = sizeof...(Ts);
-			};
-		}
 
 		/// get the size of a list, the returned type is convertible to some unspecified int type
 		template <typename List>
-		using size = typename impl::size_impl<List>::f;
+		using size = c::call<c::size, List>;
 	}
 }
