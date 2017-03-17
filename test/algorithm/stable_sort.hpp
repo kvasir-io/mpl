@@ -11,7 +11,7 @@
 #include <kvasir/mpl/types/int.hpp>
 #include <kvasir/mpl/types/list.hpp>
 
-using namespace kvasir;
+namespace mpl = kvasir::mpl;
 
 template <typename A, typename B>
 struct equal {
@@ -22,6 +22,8 @@ template <typename A, typename B>
 struct less {
 	constexpr static bool value = A::value < B::value;
 };
+
+using namespace mpl;
 
 using ss_test_list =
         list<int_<3>, int_<0>, int_<7>, int_<2>, int_<1>, int_<3>, int_<4>, int_<6>, int_<5>>;

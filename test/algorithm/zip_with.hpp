@@ -6,14 +6,14 @@
 
 #include <kvasir/mpl/algorithm/zip_with.hpp>
 
-namespace zip_with_test {
-	using namespace kvasir;
+namespace {
+	namespace mpl  = kvasir::mpl;
 	using a        = mpl::list<void, char, short, int>;
 	using b        = mpl::list<int, void, char, short>;
 	using shoud_be = mpl::list<mpl::list<void, int>, mpl::list<char, void>, mpl::list<short, char>,
 	                           mpl::list<int, short>>;
-	static_assert(std::is_same<mpl::zip_with<list, a, b>, shoud_be>::value, "");
-	static_assert(
-	        std::is_same<mpl::c::call<mpl::c::zip_with<mpl::lambda<list>>, a, b>, shoud_be>::value,
-	        "");
+	static_assert(std::is_same<mpl::zip_with<mpl::list, a, b>, shoud_be>::value, "");
+	static_assert(std::is_same<mpl::c::call<mpl::c::zip_with<mpl::lambda<mpl::list>>, a, b>,
+	                           shoud_be>::value,
+	              "");
 }

@@ -57,7 +57,7 @@ namespace kvasir {
 					        F<typename pop_front_impl<List>::front,
 					          typename pop_front_impl<Lists>::front...>,
 					        typename zip_with<(
-					                size_impl<typename pop_front_impl<List>::rest>::value ==
+					                size<typename pop_front_impl<List>::rest>::value ==
 					                0)>::template f<F, Result, typename pop_front_impl<List>::rest,
 					                                typename pop_front_impl<Lists>::rest...>>::f;
 				};
@@ -77,7 +77,7 @@ namespace kvasir {
 
 			template <template <typename...> class F, typename List, typename... Lists>
 			struct zip_with<F, List, Lists...> {
-				using f = typename generic::zip_with<(size_impl<List>::value == 0)>::template f<
+				using f = typename generic::zip_with<(size<List>::value == 0)>::template f<
 				        F, typename create_impl<List>::f, List, Lists...>;
 			};
 
