@@ -13,9 +13,9 @@ namespace kvasir {
 			namespace detail {
 				template <typename C, typename L, typename... Ts>
 				struct call_impl;
-				template <typename C, template <typename...> class Seq, typename... Ls>
-				struct call_impl<C, Seq<Ls...>> {
-					using type = KVASIR_D_CALL(C, Ls)<Ls...>;
+				template <typename C, template <typename...> class Seq, typename... Ls, typename...Ts>
+				struct call_impl<C, Seq<Ls...>, Ts...> {
+					using type = typename c::dcall<C, sizeof...(Ls)>::template f<Ts...,Ls...>;
 				};
 				// forking version of call expects a "combining" continuation as its first arguement
 				// and a variadic pack of continuations which are executed in paralell
