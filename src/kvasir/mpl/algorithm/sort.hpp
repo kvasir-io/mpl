@@ -4,7 +4,9 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
-#include "../algorithm/fold_left.hpp"
+#include "fold_left.hpp"
+#include "stable_sort.hpp"
+#include "../functions/comparison/less_than.hpp"
 #include "../sequence/create.hpp"
 #include "../sequence/join.hpp"
 #include "../sequence/push_front.hpp"
@@ -450,20 +452,20 @@ namespace kvasir {
 					using type = T;
 				};
 			}
-			template <template <typename...> class F>
-			struct sort {
-				template <typename... Ts>
-				using f = typename detail::sort_loop<detail::select_sort_loop(sizeof...(Ts)),
-				                                     F>::template f<Ts...>;
-			};
+//			template <template <typename...> class F>
+//			struct sort {
+//				template <typename... Ts>
+//				using f = typename detail::sort_loop<detail::select_sort_loop(sizeof...(Ts)),
+//				                                     F>::template f<Ts...>;
+//			};
+			template<template<typename...> class Comp = less_than>
+			using sort = stable_sort<Comp>;
 		}
 
-		namespace detail {
-			template <typename T1, typename T2>
-			using less = bool_<(T1::value < T2::value)>;
-		}
-
-		template <typename List, template <typename...> class Comp = detail::less>
-		using sort = typename c::detail::recursive_merge<Comp, c::call<c::sort<Comp>, List>>::type;
+		//		template <typename List, template <typename...> class Comp = less_than>
+		//		using sort = typename c::detail::recursive_merge<Comp, c::call<c::sort<Comp>,
+		//List>>::type;
+		template<typename List, template<typename...> class Comp = less_than>
+		using sort = stable_sort<List, Comp>;
 	}
 }

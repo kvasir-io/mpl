@@ -12,6 +12,7 @@
 #include "../types/bool.hpp"
 #include "../types/list.hpp"
 #include "../types/nothing.hpp"
+#include "../functions/comparison/less_than.hpp"
 
 namespace kvasir {
 	namespace mpl {
@@ -182,7 +183,7 @@ namespace kvasir {
 				using f = typename push_bst<Result>::template f<Comp, Elem>;
 			};
 		}
-		template <typename List, template <typename...> class Comp>
+		template <typename List, template <typename...> class Comp = less_than>
 		using stable_sort = typename detail::flatten_bst<mpl::c::call<
 		        bind0n<c::fold_left<detail::push_func<Comp>>::template f, nothing>, List>>::f;
 
