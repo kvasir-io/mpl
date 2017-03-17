@@ -4,14 +4,14 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
-#include <kvasir/mpl/algorithm/fold_left.hpp>
-#include <kvasir/mpl/functional/bind.hpp>
-#include <kvasir/mpl/sequence/create.hpp>
-#include <kvasir/mpl/sequence/join.hpp>
-#include <kvasir/mpl/sequence/push_front.hpp>
-#include <kvasir/mpl/types/bool.hpp>
-#include <kvasir/mpl/types/list.hpp>
-#include <kvasir/mpl/types/nothing.hpp>
+#include "../algorithm/fold_left.hpp"
+#include "../functional/bind.hpp"
+#include "../sequence/create.hpp"
+#include "../sequence/join.hpp"
+#include "../sequence/push_front.hpp"
+#include "../types/bool.hpp"
+#include "../types/list.hpp"
+#include "../types/nothing.hpp"
 
 namespace kvasir {
 	namespace mpl {
