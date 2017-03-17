@@ -8,11 +8,14 @@
 
 #include <kvasir/mpl/utility/always.hpp>
 
-namespace mpl = kvasir::mpl;
+namespace {
+	namespace mpl = kvasir::mpl;
 
-static_assert(std::is_same<mpl::always<int>::template f<void>, int>::value, "");
+	static_assert(std::is_same<mpl::always<int>::template f<void>, int>::value, "");
 
-template <typename T>
-struct foo {
-	static_assert(mpl::always_false<T>::value, "always_false should not have been instantiated");
-};
+	template<typename T>
+	struct foo {
+		static_assert(mpl::always_false<T>::value,
+		              "always_false should not have been instantiated");
+	};
+}
