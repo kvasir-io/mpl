@@ -36,7 +36,7 @@ namespace kvasir {
 		}
 		template <typename List, template <typename...> class F>
 		using split_if =
-		        c::call<bind0n<c::fold_right<detail::split_if_pred<F>>::template f, list<list<>>>,
-		                List>;
+		        c::call<c::fold_right<detail::split_if_pred<F>>,
+		                List, list<list<>>>;
 	}
 }

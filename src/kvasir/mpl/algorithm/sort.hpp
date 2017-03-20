@@ -458,8 +458,8 @@ namespace kvasir {
 //				using f = typename detail::sort_loop<detail::select_sort_loop(sizeof...(Ts)),
 //				                                     F>::template f<Ts...>;
 //			};
-			template<template<typename...> class Comp = less_than>
-			using sort = stable_sort<Comp>;
+			template<template<typename...> class Comp = less_than, typename C = listify>
+			using sort = stable_sort<Comp,C>;
 		}
 
 		//		template <typename List, template <typename...> class Comp = less_than>

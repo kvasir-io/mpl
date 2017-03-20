@@ -24,31 +24,31 @@ namespace kvasir {
 				struct fold_impl;
 				template <>
 				struct fold_impl<0> {
-					template <template <typename...> class F, typename In>
+					template <template <typename, typename> class F, typename In>
 					using f = In;
 				};
 				template <>
 				struct fold_impl<1> {
-					template <template <typename...> class F, typename In, typename T0>
+					template <template <typename, typename> class F, typename In, typename T0>
 					using f = F<In, T0>;
 				};
 				template <>
 				struct fold_impl<2> {
-					template <template <typename...> class F, typename In, typename T0, typename T1,
+					template <template <typename, typename> class F, typename In, typename T0, typename T1,
 					          typename... Ts>
 					using f = typename fold_impl<select_fold(
 					        sizeof...(Ts))>::template f<F, F<F<In, T0>, T1>, Ts...>;
 				};
 				template <>
 				struct fold_impl<4> {
-					template <template <typename...> class F, typename In, typename T0, typename T1,
+					template <template <typename, typename> class F, typename In, typename T0, typename T1,
 					          typename T2, typename T3, typename... Ts>
 					using f = typename fold_impl<select_fold(
 					        sizeof...(Ts))>::template f<F, F<F<F<F<In, T0>, T1>, T2>, T3>, Ts...>;
 				};
 				template <>
 				struct fold_impl<16> {
-					template <template <typename...> class F, typename In, typename T0, typename T1,
+					template <template <typename, typename> class F, typename In, typename T0, typename T1,
 					          typename T2, typename T3, typename T4, typename T5, typename T6,
 					          typename T7, typename T8, typename T9, typename T10, typename T11,
 					          typename T12, typename T13, typename T14, typename T15,
@@ -69,7 +69,7 @@ namespace kvasir {
 				};
 				template <>
 				struct fold_impl<64> {
-					template <template <typename...> class F, typename In, typename T0, typename T1,
+					template <template <typename, typename> class F, typename In, typename T0, typename T1,
 					          typename T2, typename T3, typename T4, typename T5, typename T6,
 					          typename T7, typename T8, typename T9, typename T10, typename T11,
 					          typename T12, typename T13, typename T14, typename T15, typename T16,
@@ -168,6 +168,6 @@ namespace kvasir {
 
 		/// fold left over a list, initialized with State
 		template <typename List, typename State, template <typename...> class Func>
-		using fold_left = c::call<bind0n<c::fold_left<lambda<Func>>::template f,State>, List>;
+		using fold_left = c::call<c::fold_left<lambda<Func>>, List, State>;
 	}
 }
