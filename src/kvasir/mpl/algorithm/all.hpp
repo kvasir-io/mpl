@@ -28,7 +28,7 @@ namespace kvasir {
 					};
 				};
 				template <template <typename...> class F>
-				struct not_<lambda<F>> {
+				struct not_<cfe<F,identity>> {
 					template <typename T>
 					struct f {
 						constexpr static bool value = (!F<T>::value);
@@ -43,6 +43,6 @@ namespace kvasir {
 		/// resolves to std::true_type if all elements in the input list
 		/// fulfill the provided predicate
 		template <typename List, template <typename...> class Cond = identity>
-		using all = c::call<c::all<lambda<Cond>>, List>;
+		using all = c::call<c::all<c::cfe<Cond>>, List>;
 	}
 }

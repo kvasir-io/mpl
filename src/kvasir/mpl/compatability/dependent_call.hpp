@@ -39,11 +39,6 @@ namespace kvasir {
 				template <typename T>
 				struct dependent_call<T, true> : T {};
 
-				template <template <typename...> class F, typename... As>
-				struct dependent_call<bind0n<F, As...>, true> {
-					template <typename... Ts>
-					using f = typename lazify<F, As..., Ts...>::type;
-				};
 			}
 		}
 	}

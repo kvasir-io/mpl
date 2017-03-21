@@ -38,11 +38,10 @@ namespace kvasir {
 			template<typename F, typename C = listify>
 			struct split_if {
 				template<typename...Ts>
-				using f = typename dcall<c::fold_right<detail::split_if_pred<F::template f>,push_front<C,bind2<call>>>, sizeof...(Ts)>::template f<list<list<>>, Ts...>;
+				using f = typename dcall<c::fold_right<detail::split_if_pred<F::template f>,push_front<C,c::cfe<call>>>, sizeof...(Ts)>::template f<list<list<>>, Ts...>;
 			};
 		}
 		template <typename List, template <typename...> class F>
-		using split_if =
-		        c::call<c::split_if<bind0n<F>>, List>;
+		using split_if = c::call<c::split_if<c::cfe<F>>, List>;
 	}
 }
