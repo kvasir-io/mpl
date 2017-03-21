@@ -22,3 +22,5 @@ using expect_list =
         list<int_<0>, int_<1>, int_<2>, int_<3>, int_<3>, int_<4>, int_<5>, int_<6>, int_<7>>;
 
 static_assert(std::is_same<sort<test_list>, expect_list>::value, "");
+
+using empty_sort_test = sort<list<>>;
