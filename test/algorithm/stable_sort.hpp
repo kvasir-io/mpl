@@ -35,4 +35,6 @@ namespace {
 	              "Stable sort is not stable");
 	static_assert(std::is_same<ss_expect_list, mpl::stable_sort<ss_test_list, less>>::value,
 	              "Stable sort is not sort");
+
+	using empty_ss_test = mpl::stable_sort<mpl::list<>>;
 }
