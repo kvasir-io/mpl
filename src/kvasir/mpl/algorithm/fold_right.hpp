@@ -168,17 +168,17 @@ namespace kvasir {
 					        T0>;
 				};
 			}
-			template <typename F>
+			template <typename F, typename C = identity>
 			struct fold_right {
 				template <typename... Ts>
-				using f = typename detail::fold_right_impl<detail::select_fold_right(
-				        sizeof...(Ts)-1)>::template f<F::template f, Ts...>;
+				using f = typename C::template f<typename detail::fold_right_impl<detail::select_fold_right(
+				        sizeof...(Ts)-1)>::template f<F::template f, Ts...>>;
 			};
-			template <template <typename...> class F>
-			struct fold_right<lambda<F>> {
+			template <template <typename...> class F, typename C>
+			struct fold_right<lambda<F>,C> {
 				template <typename... Ts>
-				using f = typename detail::fold_right_impl<detail::select_fold_right(
-				        sizeof...(Ts)-1)>::template f<F, Ts...>;
+				using f = typename C::template f<typename detail::fold_right_impl<detail::select_fold_right(
+				        sizeof...(Ts)-1)>::template f<F, Ts...>>;
 			};
 		}
 

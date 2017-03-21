@@ -6,6 +6,12 @@
 
 namespace kvasir {
 	namespace mpl {
+		namespace c {
+			struct identity {
+				template <typename T>
+				using f = T;
+			};
+		}
 		template <typename T>
 		using identity = T;
 	}
