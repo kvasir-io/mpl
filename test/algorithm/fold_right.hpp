@@ -9,6 +9,7 @@
 #include <kvasir/mpl/algorithm/fold_right.hpp>
 #include <kvasir/mpl/types/int.hpp>
 #include <kvasir/mpl/types/list.hpp>
+#include <kvasir/mpl/functional/bind.hpp>
 
 namespace {
 	namespace mpl = kvasir::mpl;
@@ -30,33 +31,33 @@ namespace {
 	              "");
 
 	static_assert(std::is_same<mpl::fold_right<mpl::list<uint_<1>, uint_<2>>, mpl::list<>,
-	                                           mpl::bind_t<push>::template f>,
+	                                           mpl::c::cfl<push>::template f>,
 	                           mpl::list<uint_<1>, uint_<2>>>::value,
 	              "");
 	static_assert(std::is_same<mpl::fold_right<mpl::list<uint_<1>, uint_<2>, uint_<3>>, mpl::list<>,
-	                                           mpl::bind_t<push>::template f>,
+												mpl::c::cfl<push>::template f>,
 	                           mpl::list<uint_<1>, uint_<2>, uint_<3>>>::value,
 	              "");
 	static_assert(std::is_same<mpl::fold_right<mpl::list<uint_<1>, uint_<2>, uint_<3>, uint_<4>>,
-	                                           mpl::list<>, mpl::bind_t<push>::template f>,
+	                                           mpl::list<>, mpl::c::cfl<push>::template f>,
 	                           mpl::list<uint_<1>, uint_<2>, uint_<3>, uint_<4>>>::value,
 	              "");
 	static_assert(
 	        std::is_same<
 	                mpl::fold_right<mpl::list<uint_<1>, uint_<2>, uint_<3>, uint_<4>, uint_<5>>,
-	                                mpl::list<>, mpl::bind_t<push>::template f>,
+	                                mpl::list<>, mpl::c::cfl<push>::template f>,
 	                mpl::list<uint_<1>, uint_<2>, uint_<3>, uint_<4>, uint_<5>>>::value,
 	        "");
 	static_assert(
 	        std::is_same<
 	                mpl::fold_right<
 	                        mpl::list<uint_<1>, uint_<2>, uint_<3>, uint_<4>, uint_<5>, uint_<6>>,
-	                        mpl::list<>, mpl::bind_t<push>::template f>,
+	                        mpl::list<>, mpl::c::cfl<push>::template f>,
 	                mpl::list<uint_<1>, uint_<2>, uint_<3>, uint_<4>, uint_<5>, uint_<6>>>::value,
 	        "");
 	static_assert(std::is_same<mpl::fold_right<mpl::list<uint_<1>, uint_<2>, uint_<3>, uint_<4>,
 	                                                     uint_<5>, uint_<6>, uint_<7>>,
-	                                           mpl::list<>, mpl::bind_t<push>::template f>,
+	                                           mpl::list<>, mpl::c::cfl<push>::template f>,
 	                           mpl::list<uint_<1>, uint_<2>, uint_<3>, uint_<4>, uint_<5>, uint_<6>,
 	                                     uint_<7>>>::value,
 	              "");

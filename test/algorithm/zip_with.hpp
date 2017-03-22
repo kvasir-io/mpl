@@ -5,6 +5,7 @@
 #pragma once
 
 #include <kvasir/mpl/algorithm/zip_with.hpp>
+#include <kvasir/mpl/functional/bind.hpp>
 
 namespace {
 	namespace mpl  = kvasir::mpl;
@@ -14,7 +15,7 @@ namespace {
 	                                                                                    char>,
 	                           mpl::list<int, short>>;
 	static_assert(std::is_same<mpl::zip_with<mpl::list, zip_a, zip_b>, zip_shoud_be>::value, "");
-	static_assert(std::is_same<mpl::c::call<mpl::c::zip_with<mpl::lambda<mpl::list>>, zip_a, zip_b>,
+	static_assert(std::is_same<mpl::c::call<mpl::c::zip_with<mpl::c::cfe<mpl::list>>, zip_a, zip_b>,
 	                           zip_shoud_be>::value,
 	              "");
 }

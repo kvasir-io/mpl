@@ -24,7 +24,7 @@ namespace kvasir {
 				template <template <typename...> class Pred, typename T, typename U, typename C = listify>
 				struct remove_adjacent;
 				template <template <typename...> class Pred, typename... Ts, typename... Us, typename C>
-					struct remove_adjacent<Pred, list<Ts...>, list<Us...>,C> {
+				struct remove_adjacent<Pred, list<Ts...>, list<Us...>, C> {
 					using type = typename dcall<join<C>, sizeof...(Ts)>::
 						template f<typename binary_list_if_not<Pred, Ts, Us>::type...>;
 				};
@@ -50,7 +50,7 @@ namespace kvasir {
 				using f = typename detail::remove_adjacent<F::template f, list<Ts...>, typename dcall<rotate<uint_<1>>,sizeof...(Ts)>::template f<Ts...>, C>::type;
 			};
 			template<template<typename...Ts> class F, typename C>
-			struct remove_adjacent<lambda<F>, C> {
+			struct remove_adjacent<cfe<F,identity>, C> {
 				template<typename...Ts>
 				using f = typename detail::remove_adjacent<F, list<Ts...>, typename dcall<rotate<uint_<1>>, sizeof...(Ts)>::template f<Ts...>, C>::type;
 			};
@@ -61,6 +61,6 @@ namespace kvasir {
 		/// if the predicate return true for any two adjacent elements,
 		/// then the first of the two elements is removed
 		template <typename List, template <typename...> class Pred = std::is_same>
-		using remove_adjacent = c::call<c::remove_adjacent<lambda<Pred>>, List>;
+		using remove_adjacent = c::call<c::remove_adjacent<c::cfe<Pred>>, List>;
 	}
 }

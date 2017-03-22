@@ -22,8 +22,7 @@ namespace kvasir {
 				template <typename R, typename... C, template <typename...> class Seq,
 				          typename... Ls>
 				struct call_impl<fork<R, C...>, Seq<Ls...>> {
-					using type = typename detail::make_bound<R>::template f<
-					        typename detail::make_bound<C>::template f<Ls...>...>;
+					using type = typename R::template f<typename C::template f<Ls...>...>;
 				};
 			}
 			template <typename C, typename L, typename... Ls>

@@ -17,6 +17,6 @@ namespace kvasir {
 		}
 
 		template <typename List, template <typename...> class Cond = identity>
-		using partition = c::call<c::partition<lambda<Cond>>, List>;
+		using partition = c::call<c::partition<c::cfe<Cond>>, List>;
 	}
 }

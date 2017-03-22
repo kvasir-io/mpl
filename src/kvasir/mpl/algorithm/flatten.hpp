@@ -21,11 +21,11 @@ namespace kvasir {
 						Ts))>::template f<list, typename flatten_element_impl<L, Ts>::type...>;
 				};
 			}
-			template<typename SequenceType = lambda<list>, typename C = listify>
+			template<typename SequenceType = cfe<list>, typename C = listify>
 			struct flatten;
 			
 			template<template<typename...> class S, typename C>
-			struct flatten<lambda<S>, C> {
+			struct flatten<cfe<S,identity>, C> {
 				template<typename...Ts>
 				using f = typename detail::join_select<detail::select_join_size(sizeof...(Ts))>::template f<C::template f,
 					typename detail::flatten_element_impl<S, Ts>::type...>;
@@ -37,7 +37,7 @@ namespace kvasir {
 			struct flatten_impl;
 			template<template<typename...> class S, typename...Ts>
 			struct flatten_impl<S<Ts...>> {
-				using type = typename c::flatten<lambda<S>>::template f<Ts...>;
+				using type = typename c::flatten<c::cfe<S>>::template f<Ts...>;
 			};
 		}
 

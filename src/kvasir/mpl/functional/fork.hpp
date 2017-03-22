@@ -11,8 +11,8 @@ namespace kvasir {
 			template <typename Combiner, typename... Cs>
 			struct fork {
 				template <typename... Ts>
-				using f = typename detail::make_bound<Combiner>::template f<
-				        typename detail::make_bound<Cs>::template f<Ts...>...>;
+				using f = typename dcall<Combiner,sizeof...(Cs)>::template f<
+				        typename dcall<Cs,sizeof...(Ts)>::template f<Ts...>...>;
 			};
 		}
 	}

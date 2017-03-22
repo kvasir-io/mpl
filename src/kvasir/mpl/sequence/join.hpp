@@ -1650,7 +1650,7 @@ namespace kvasir {
 				        sizeof...(Ts))>::template f<C::template f, Ts...>;
 			};
 			template <template <typename...> class C>
-			struct join<lambda<C>> {
+			struct join<cfe<C,identity>> {
 				template <typename... Ts>
 				using f = typename detail::join_select<detail::select_join_size(
 				        sizeof...(Ts))>::template f<C, Ts...>;
@@ -1661,7 +1661,7 @@ namespace kvasir {
 				using f = typename detail::recursive_join_impl<C::template f, T>::type;
 			};
 			template <template <typename...> class C>
-			struct recursive_join<lambda<C>> {
+			struct recursive_join<cfe<C,identity>> {
 				template <typename T>
 				using f = typename detail::recursive_join_impl<C, T>::type;
 			};

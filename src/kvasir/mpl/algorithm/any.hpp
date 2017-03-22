@@ -24,6 +24,6 @@ namespace kvasir {
 		/// filter elements from a list
 		/// takes a lambda that should return a type convertible to bool
 		template <typename List, template <typename...> class Cond = identity>
-		using any = c::call<c::any<lambda<Cond>>, List>;
+		using any = c::call<c::any<c::cfe<Cond>>, List>;
 	}
 }
