@@ -25,8 +25,8 @@ namespace kvasir {
 					using f = typename conditional<F<T>::value>::template f<list<void>, list<>>;
 				};
 			}
-			template <typename F = identity>
-			using count_if = transform<detail::list_wrap_void_if<F>, join<size>>;
+			template <typename Cond>
+			using count_if = transform<detail::list_wrap_void_if<Cond>, join<size<>>>;
 		}
 
 		/// filter elements from a list

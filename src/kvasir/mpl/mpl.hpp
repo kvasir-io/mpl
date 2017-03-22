@@ -17,6 +17,7 @@
 #include "algorithm/lookup.hpp"
 #include "algorithm/make_sequence.hpp"
 #include "algorithm/partition.hpp"
+#include "algorithm/product.hpp"
 #include "algorithm/remove_adjacent.hpp"
 #include "algorithm/remove_if.hpp"
 #include "algorithm/replace_if.hpp"
@@ -66,6 +67,7 @@
 
 #include "sequence/at.hpp"
 #include "sequence/create.hpp"
+#include "sequence/drop.hpp"
 #include "sequence/front.hpp"
 #include "sequence/is_list.hpp"
 #include "sequence/join.hpp"
@@ -73,6 +75,7 @@
 #include "sequence/push_back.hpp"
 #include "sequence/push_front.hpp"
 #include "sequence/size.hpp"
+#include "sequence/take.hpp"
 
 #include "types/bool.hpp"
 #include "types/int.hpp"

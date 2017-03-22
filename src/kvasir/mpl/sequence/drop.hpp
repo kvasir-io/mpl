@@ -1,8 +1,9 @@
-//          Copyright Odin Holmes 2017.
+//          Copyright Odin Holmes 2016.
 // Distributed under the Boost Software License, Version 1.0.
-//     (See accompanying file LICENSE.md or copy at
+//    (See accompanying file LICENSE.md or copy at
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
+
 #include "../types/int.hpp"
 #include "../functional/call.hpp"
 
@@ -11,76 +12,69 @@ namespace kvasir {
 		namespace c {
 			namespace detail {
 
-				constexpr unsigned select_next_rotate_step(unsigned N, unsigned) {
+				constexpr unsigned select_next_drop_step(unsigned N, unsigned) {
 					return N > 256 ? 256 : N > 64 ? 64 : N > 16 ? 16 : N > 8 ? 8 : N;
 				}
 
-				constexpr unsigned select_rotate_size(unsigned n, unsigned size) {
-					return n >= size ? (size == 0 ? 0 : n % size) : n;
-				}
-
 				template<unsigned N, typename C>
-				struct rotate_impl;
+				struct drop_impl;
 
 				template<typename C>
-				struct rotate_impl<0, C> {
+				struct drop_impl<0, C> {
 					template<unsigned N, typename...Ts>
-					using f = typename conditional<(sizeof...(Ts)<1000000)>::template f<C, void>::template f<Ts...>;
-				}; 
+					using f = typename conditional<(sizeof...(Ts) < 1000000)>::template f<C, void>::template f<Ts...>;
+				};
 
 				template<typename C>
-				struct rotate_impl<1, C> {
+				struct drop_impl<1, C> {
 					template<unsigned N, typename T, typename...Ts>
-					using f = typename conditional<(sizeof...(Ts)>0)>::template f<C, void>::template f< Ts..., T >;
-				}; 
+					using f = typename conditional<(sizeof...(Ts) > 0)>::template f<C, void>::template f< Ts...>;
+				};
 				template<typename C>
-				struct rotate_impl<2, C> {
+				struct drop_impl<2, C> {
 					template<unsigned N, typename T0, typename T1, typename...Ts>
-					using f = typename conditional<(sizeof...(Ts)>0)>::template f<C, void>::template f< Ts..., T0, T1>;
+					using f = typename conditional<(sizeof...(Ts) > 0)>::template f<C, void>::template f< Ts...>;
 				};
 				template<typename C>
-				struct rotate_impl<3, C> {
+				struct drop_impl<3, C> {
 					template<unsigned N, typename T0, typename T1, typename T2, typename...Ts>
-					using f = typename conditional<(sizeof...(Ts)>0)>::template f<C, void>::template f< Ts..., T0, T1, T2>;
+					using f = typename conditional<(sizeof...(Ts) > 0)>::template f<C, void>::template f< Ts...>;
 				};
 				template<typename C>
-				struct rotate_impl<4, C> {
+				struct drop_impl<4, C> {
 					template<unsigned N, typename T0, typename T1, typename T2, typename T3, typename...Ts>
-					using f = typename conditional<(sizeof...(Ts)>0)>::template f<C, void>::template f< Ts..., T0, T1, T2, T3>;
+					using f = typename conditional<(sizeof...(Ts) > 0)>::template f<C, void>::template f< Ts...>;
 				};
 				template<typename C>
-				struct rotate_impl<5, C> {
+				struct drop_impl<5, C> {
 					template<unsigned N, typename T0, typename T1, typename T2, typename T3, typename T4, typename...Ts>
-					using f = typename conditional<(sizeof...(Ts)>0)>::template f<C, void>::template f< Ts..., T0, T1, T2, T3, T4>;
+					using f = typename conditional<(sizeof...(Ts) > 0)>::template f<C, void>::template f< Ts...>;
 				};
 				template<typename C>
-				struct rotate_impl<6, C> {
+				struct drop_impl<6, C> {
 					template<unsigned N, typename T0, typename T1, typename T2, typename T3, typename T4, typename T5, typename...Ts>
-					using f = typename conditional<(sizeof...(Ts)>0)>::template f<C, void>::template f< Ts..., T0, T1, T2, T3, T4, T5>;
+					using f = typename conditional<(sizeof...(Ts) > 0)>::template f<C, void>::template f< Ts...>;
 				};
 				template<typename C>
-				struct rotate_impl<7, C> {
+				struct drop_impl<7, C> {
 					template<unsigned N, typename T0, typename T1, typename T2, typename T3, typename T4, typename T5, typename T6, typename...Ts>
-					using f = typename conditional<(sizeof...(Ts)>0)>::template f<C, void>::template f< Ts..., T0, T1, T2, T3, T4, T5, T6>;
+					using f = typename conditional<(sizeof...(Ts) > 0)>::template f<C, void>::template f< Ts...>;
 				};
 				template<typename C>
-				struct rotate_impl<8, C> {
+				struct drop_impl<8, C> {
 					template<unsigned N, typename T0, typename T1, typename T2, typename T3, typename T4, typename T5, typename T6,
 						typename T7, typename...Ts>
-					using f = typename conditional<(sizeof...(Ts)>0)>::template f<C, void>::template f< Ts..., T0, T1, T2, T3, T4, T5, T6,
-						T7 >;
+						using f = typename conditional<(sizeof...(Ts) > 0)>::template f<C, void>::template f< Ts...>;
 				};
 				template<typename C>
-				struct rotate_impl<16, C> {
+				struct drop_impl<16, C> {
 					template<unsigned N, typename T0, typename T1, typename T2, typename T3, typename T4, typename T5, typename T6,
 						typename T7, typename T8, typename T9, typename T10, typename T11, typename T12, typename T13,
 						typename T14, typename T15, typename...Ts>
-					using f = typename rotate_impl<select_next_rotate_step(N-16,sizeof...(Ts)),C>::template f<(N-16), Ts..., T0, T1, T2, T3, T4, T5, T6,
-						T7, T8, T9, T10, T11, T12, T13,
-						T14, T15 >;
+						using f = typename drop_impl<select_next_drop_step(N - 16, sizeof...(Ts)), C>::template f<(N - 16), Ts...>;
 				};
 				template<typename C>
-				struct rotate_impl<64, C> {
+				struct drop_impl<64, C> {
 					template<unsigned N, typename T0, typename T1, typename T2, typename T3, typename T4, typename T5, typename T6,
 						typename T7, typename T8, typename T9, typename T10, typename T11, typename T12, typename T13,
 						typename T14, typename T15, typename T16, typename T17, typename T18, typename T19, typename T20,
@@ -91,19 +85,10 @@ namespace kvasir {
 						typename T49, typename T50, typename T51, typename T52, typename T53, typename T54, typename T55,
 						typename T56, typename T57, typename T58, typename T59, typename T60, typename T61, typename T62,
 						typename T63, typename...Ts>
-					using f = typename rotate_impl<select_next_rotate_step(N - 64, sizeof...(Ts)), C>::template f<(N - 64), Ts..., T0, T1, T2, T3, T4, T5, T6,
-						T7, T8, T9, T10, T11, T12, T13,
-						T14, T15, T16, T17, T18, T19, T20,
-						T21, T22, T23, T24, T25, T26, T27,
-						T28, T29, T30, T31, T32, T33, T34,
-						T35, T36, T37, T38, T39, T40, T41,
-						T42, T43, T44, T45, T46, T47, T48,
-						T49, T50, T51, T52, T53, T54, T55,
-						T56, T57, T58, T59, T60, T61, T62,
-						T63 >;
+						using f = typename drop_impl<select_next_drop_step(N - 64, sizeof...(Ts)), C>::template f<(N - 64), Ts...>;
 				};
 				template<typename C>
-				struct rotate_impl<256, C> {
+				struct drop_impl<256, C> {
 					template<unsigned N, typename T0, typename T1, typename T2, typename T3, typename T4, typename T5, typename T6,
 						typename T7, typename T8, typename T9, typename T10, typename T11, typename T12, typename T13,
 						typename T14, typename T15, typename T16, typename T17, typename T18, typename T19, typename T20,
@@ -143,58 +128,19 @@ namespace kvasir {
 						typename T230, typename T231, typename T232, typename T233, typename T234, typename T235,
 						typename T236, typename T237, typename T238, typename T239, typename T240, typename T241,
 						typename T242, typename T243, typename T244, typename T245, typename T246, typename T247,
-						typename T248, typename T249, typename T250, typename T251, typename T252, typename T253, typename T254, typename T255, typename...Ts>
-					using f = typename rotate_impl<select_next_rotate_step(N - 256, sizeof...(Ts)), C>::template f<(N - 256), Ts...,  T0,  T1,  T2,  T3,  T4,  T5,  T6,
-						 T7,  T8,  T9,  T10,  T11,  T12,  T13,
-						 T14,  T15,  T16,  T17,  T18,  T19,  T20,
-						 T21,  T22,  T23,  T24,  T25,  T26,  T27,
-						 T28,  T29,  T30,  T31,  T32,  T33,  T34,
-						 T35,  T36,  T37,  T38,  T39,  T40,  T41,
-						 T42,  T43,  T44,  T45,  T46,  T47,  T48,
-						 T49,  T50,  T51,  T52,  T53,  T54,  T55,
-						 T56,  T57,  T58,  T59,  T60,  T61,  T62,
-						 T63,  T64,  T65,  T66,  T67,  T68,  T69,
-						 T70,  T71,  T72,  T73,  T74,  T75,  T76,
-						 T77,  T78,  T79,  T80,  T81,  T82,  T83,
-						 T84,  T85,  T86,  T87,  T88,  T89,  T90,
-						 T91,  T92,  T93,  T94,  T95,  T96,  T97,
-						 T98,  T99,  T100,  T101,  T102,  T103,
-						 T104,  T105,  T106,  T107,  T108,  T109,
-						 T110,  T111,  T112,  T113,  T114,  T115,
-						 T116,  T117,  T118,  T119,  T120,  T121,
-						 T122,  T123,  T124,  T125,  T126,  T127,
-						 T128,  T129,  T130,  T131,  T132,  T133,
-						 T134,  T135,  T136,  T137,  T138,  T139,
-						 T140,  T141,  T142,  T143,  T144,  T145,
-						 T146,  T147,  T148,  T149,  T150,  T151,
-						 T152,  T153,  T154,  T155,  T156,  T157,
-						 T158,  T159,  T160,  T161,  T162,  T163,
-						 T164,  T165,  T166,  T167,  T168,  T169,
-						 T170,  T171,  T172,  T173,  T174,  T175,
-						 T176,  T177,  T178,  T179,  T180,  T181,
-						 T182,  T183,  T184,  T185,  T186,  T187,
-						 T188,  T189,  T190,  T191,  T192,  T193,
-						 T194,  T195,  T196,  T197,  T198,  T199,
-						 T200,  T201,  T202,  T203,  T204,  T205,
-						 T206,  T207,  T208,  T209,  T210,  T211,
-						 T212,  T213,  T214,  T215,  T216,  T217,
-						 T218,  T219,  T220,  T221,  T222,  T223,
-						 T224,  T225,  T226,  T227,  T228,  T229,
-						 T230,  T231,  T232,  T233,  T234,  T235,
-						 T236,  T237,  T238,  T239,  T240,  T241,
-						 T242,  T243,  T244,  T245,  T246,  T247,
-						 T248,  T249,  T250,  T251,  T252,  T253,  T254,  T255 >;
+						typename T248, typename T249, typename T250, typename T251, typename T252, typename T253, typename T254, typename T255, typename...Ts >
+						using f = typename drop_impl<select_next_drop_step(N - 256, sizeof...(Ts)), C>::template f < (N - 256), Ts...> ;
 				};
 			}
 			template<typename N, typename C = listify>
-			struct rotate {
+			struct drop {
 				template<typename...Ts>
-				using f = typename detail::rotate_impl<detail::select_next_rotate_step(detail::select_rotate_size(N::value, sizeof...(Ts)),0), C>::template f<detail::select_rotate_size(N::value, sizeof...(Ts)), Ts...>;
-			}; 
+				using f = typename detail::drop_impl<detail::select_next_drop_step(N::value, sizeof...(Ts)), C>::template f<N::value, Ts...>;
+			};
 
 		}
 
 		template <typename List, unsigned Index>
-		using rotate = c::call<c::rotate<mpl::uint_<Index>>, List>;
+		using drop = c::call<c::drop<mpl::uint_<Index>>, List>;
 	}
 }
