@@ -29,7 +29,7 @@ namespace kvasir {
 					using type = list<list<>, Ls...>;
 				};
 
-				template <template <typename> class F>
+				template <template <typename...> class F>
 				struct split_if_pred {
 					template <typename T, typename U>
 					using f = typename std::conditional<F<U>::value, split_next<T>,
