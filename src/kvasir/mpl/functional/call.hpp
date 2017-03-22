@@ -22,8 +22,7 @@ namespace kvasir {
 				template <typename R, typename... C, template <typename...> class Seq,
 				          typename... Ls>
 				struct call_impl<fork<R, C...>, Seq<Ls...>> {
-					using type = typename dcall<R,sizeof...(C)>::template f<
-					        typename dcall<C,sizeof...(Ls)>::template f<Ls...>...>;
+					using type = typename R::template f<typename C::template f<Ls...>...>;
 				};
 			}
 			template <typename C, typename L, typename... Ls>
