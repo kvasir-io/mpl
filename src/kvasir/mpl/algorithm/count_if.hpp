@@ -26,7 +26,7 @@ namespace kvasir {
 				};
 			}
 			template <typename Cond>
-			using count_if = transform<detail::list_wrap_void_if<Cond>, join<size>>;
+			using count_if = transform<detail::list_wrap_void_if<Cond>, join<size<>>>;
 		}
 
 		/// filter elements from a list
