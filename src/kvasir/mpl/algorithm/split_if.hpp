@@ -9,6 +9,7 @@
 #include "../algorithm/fold_right.hpp"
 #include "../functional/call.hpp"
 #include "../types/list.hpp"
+#include "../sequence/push_front.hpp"
 
 namespace kvasir {
 	namespace mpl {
