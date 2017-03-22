@@ -18,6 +18,7 @@
 #include "algorithm/lookup.hpp"
 #include "algorithm/make_sequence.hpp"
 #include "algorithm/partition.hpp"
+#include "algorithm/product.hpp"
 #include "algorithm/remove_adjacent.hpp"
 #include "algorithm/remove_if.hpp"
 #include "algorithm/replace_if.hpp"
