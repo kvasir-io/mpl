@@ -24,7 +24,7 @@ namespace kvasir {
 				template <template <typename...> class Pred, typename T, typename U, typename C = listify>
 				struct remove_adjacent;
 				template <template <typename...> class Pred, typename... Ts, typename... Us, typename C>
-					struct remove_adjacent<Pred, list<Ts...>, list<Us...>> {
+					struct remove_adjacent<Pred, list<Ts...>, list<Us...>,C> {
 					using type = typename dcall<join<C>, sizeof...(Ts)>::
 						template f<typename binary_list_if_not<Pred, Ts, Us>::type...>;
 				};
