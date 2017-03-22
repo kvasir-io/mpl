@@ -12,49 +12,32 @@ namespace kvasir {
 		namespace c {
 			template<typename C, unsigned size>
 			using dcall = typename conditional<(size<100000)>::template f<C, void>;
+
+
+			template<bool>
+			struct dcallf;
+			template<>
+			struct dcallf<true> {
+				template<template<typename...> class F1, typename...Ts>
+				using f1 = F1<Ts...>;
+				template<template<typename...> class F1, template<typename...> class F2, typename...Ts>
+				using f2 = F1<F2<Ts...>>;
+			};
+			template<>
+			struct dcallf<false> {
+				template<template<typename...> class F1, typename...Ts>
+				using f1 = F1<>;
+				template<template<typename...> class F1, template<typename...> class F2, typename...Ts>
+				using f2 = F1<F2<>>;
+			};
+
+
+			
 		}
 	}
 }
-
-#if defined(KVASIR_MSVC_2017) || defined(KVASIR_MSVC_2015) || defined(KVASIR_MSVC_2013) || \
-        defined(KVASIR_CLANG_35) || defined(KVASIR_CLANG_36) || defined(KVASIR_CLANG_37)
-#include <limits>
-
-#include "../functional/bind.hpp"
-
-namespace kvasir {
-	namespace mpl {
-		namespace c {
-			namespace detail {
-				constexpr bool always_true(const std::size_t in) {
-					return in < std::numeric_limits<std::size_t>::max();
-				}
-				template <template <typename...> class F, typename... Ts>
-				struct lazify {
-					using type = F<Ts...>;
-				};
-				template <typename T, bool I>
-				struct dependent_call {};
-
-				template <typename T>
-				struct dependent_call<T, true> : T {};
-
-				template <template <typename...> class F, typename... As>
-				struct dependent_call<bind0n<F, As...>, true> {
-					template <typename... Ts>
-					using f = typename lazify<F, As..., Ts...>::type;
-				};
-			}
-		}
-	}
-}
-#define KVASIR_D_CALL(Continuation, Pack)              \
-	typename ::kvasir::mpl::c::detail::dependent_call< \
-	        Continuation, ::kvasir::mpl::c::detail::always_true(sizeof...(Pack))>::template f
-
-#else
 
 #define KVASIR_D_CALL(T, Pack) typename ::kvasir::mpl::c::dcall<T,sizeof...(Pack)>::template f
 
-#endif
+
 

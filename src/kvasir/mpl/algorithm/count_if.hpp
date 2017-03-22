@@ -20,18 +20,18 @@ namespace kvasir {
 					                                                                    list<>>;
 				};
 				template <template <typename...> class F>
-				struct list_wrap_void_if<lambda<F>> {
+				struct list_wrap_void_if<cfe<F, identity>> {
 					template <typename T>
 					using f = typename conditional<F<T>::value>::template f<list<void>, list<>>;
 				};
 			}
-			template <typename Cond>
-			using count_if = transform<detail::list_wrap_void_if<Cond>, join<size>>;
+			template <typename F = identity>
+			using count_if = transform<detail::list_wrap_void_if<F>, join<size>>;
 		}
 
 		/// filter elements from a list
 		/// takes a lambda that should return a type convertible to bool
 		template <typename List, template <typename...> class Cond = identity>
-		using count_if = c::call<c::count_if<lambda<Cond>>, List>;
+		using count_if = c::call<c::count_if<c::cfe<Cond>>, List>;
 	}
 }

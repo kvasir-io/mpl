@@ -20,7 +20,7 @@ namespace kvasir {
 					using f = typename conditional<F::template f<T>::value>::template f<Input, T>;
 				};
 				template<template <typename...> class F, typename Input>
-				struct replace_if_pred<lambda<F>,Input> {
+				struct replace_if_pred<cfe<F,identity>,Input> {
 					template <typename T>
 					using f = typename conditional<F<T>::value>::template f<Input, T>;
 				};
@@ -31,6 +31,6 @@ namespace kvasir {
 		}
 
 		template <typename List, typename Input, template <typename...> class Cond = identity>
-		using replace_if = c::call<c::replace_if<lambda<Cond>, Input>, List>;
+		using replace_if = c::call<c::replace_if<c::cfe<Cond>, Input>, List>;
 	}
 }

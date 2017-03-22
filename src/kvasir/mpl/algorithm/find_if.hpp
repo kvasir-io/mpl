@@ -249,16 +249,10 @@ namespace kvasir {
 				using f = typename detail::find_if_impl<detail::first_find(sizeof...(Ts)),
 				                                        C>::template f<F::template f, Ts...>;
 			};
-			template <template <typename...> class F, typename C>
-			struct find_if<lambda<F>, C> {
-				template <typename... Ts>
-				using f = typename detail::find_if_impl<detail::first_find(sizeof...(Ts)),
-				                                        C>::template f<F, Ts...>;
-			};
 		}
 
 		/// fold left over a list, initialized with State
 		template <typename List, template <typename...> class Cond = identity>
-		using find_if = c::call<c::find_if<lambda<Cond>>, List>;
+		using find_if = c::call<c::find_if<c::cfe<Cond>>, List>;
 	}
 }

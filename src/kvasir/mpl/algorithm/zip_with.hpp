@@ -26,21 +26,21 @@ namespace kvasir {
 				template <typename F, typename C, template <typename...> class Seq, typename... L0s,
 				          typename... L1s>
 				struct call_impl<zip_with<F, C>, Seq<L0s...>, Seq<L1s...>> {
-					using type = typename detail::make_bound<C>::template f<
-					        typename detail::make_bound<F>::template f<L0s, L1s>...>;
+					using type = typename dcall<C,sizeof...(L0s)>::template f<
+					        typename dcall<F,sizeof...(L0s)>::template f<L0s, L1s>...>;
 				};
 				template <typename F, typename C, template <typename...> class Seq, typename... L0s,
 				          typename... L1s, typename... L2s>
 				struct call_impl<zip_with<F, C>, Seq<L0s...>, Seq<L1s...>, Seq<L2s...>> {
-					using type = typename detail::make_bound<C>::template f<
-					        typename detail::make_bound<F>::template f<L0s, L1s, L2s>...>;
+					using type = typename C::template f<
+					        typename dcall<F, sizeof...(L0s)>::template f<L0s, L1s, L2s>...>;
 				};
 				template <typename F, typename C, template <typename...> class Seq, typename... L0s,
 				          typename... L1s, typename... L2s, typename... L3s>
 				struct call_impl<zip_with<F, C>, Seq<L0s...>, Seq<L1s...>, Seq<L2s...>,
 				                 Seq<L3s...>> {
-					using type = typename detail::make_bound<C>::template f<
-					        typename detail::make_bound<F>::template f<L0s, L1s, L2s, L3s>...>;
+					using type = typename C::template f<
+					        typename dcall<F, sizeof...(L0s)>::template f<L0s, L1s, L2s, L3s>...>;
 				};
 			}
 		}

@@ -10,7 +10,7 @@
 namespace kvasir {
 	namespace mpl {
 		namespace c {
-			template<typename Input, typename C>
+			template<typename Input, typename C = listify>
 			struct push_front {
 				template<typename...Ts>
 				using f = KVASIR_D_CALL(C, Ts) <Input, Ts... >;

@@ -5,6 +5,7 @@
 #pragma once
 
 #include "../types/list.hpp"
+#include "../functional/call.hpp"
 
 namespace kvasir {
 	namespace mpl {
@@ -140,12 +141,12 @@ namespace kvasir {
 				struct indexed_builder;
 				template<>
 				struct indexed_builder<0> {
-					template<typename Out>
-					using f = Out;
+					template<typename...>
+					using f = detail::rlist<void, detail::rlist<void, detail::rlist<void, detail::rlist<void, detail::rlist<void, detail::rlist<void, detail::rlist<void, detail::rlist_tail_of8>>>>>>>;
 				};
 				template <>
 				struct indexed_builder<3> {
-					template <typename Out, typename T0 = void, typename T1 = void,
+					template <typename T0 = void, typename T1 = void,
 						typename T2 = void, typename T3 = void, typename T4 = void, typename T5 = void,
 						typename T6 = void, typename T7 = void, typename T8 = void, typename T9 = void,
 						typename T10 = void, typename T11 = void, typename T12 = void, typename T13 = void,
@@ -211,7 +212,7 @@ namespace kvasir {
 						typename T250 = void, typename T251 = void, typename T252 = void, typename T253 = void,
 						typename T254 = void, typename T255 = void, typename... Ts >
 
-						using f = typename indexed_builder<(sizeof...(Ts) > 16 ? 3 : 0)>::template f<rlist<
+						using f = rlist<
 						indexed<
 						indexed< T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15>,
 						indexed< T16, T17, T18, T19, T20, T21, T22, T23, T24, T25, T26, T27, T28, T29, T30, T31>,
@@ -231,14 +232,20 @@ namespace kvasir {
 						indexed< T192, T193, T194, T195, T196, T197, T198, T199, T200, T201, T202, T203, T204, T205, T206, T207>,
 						indexed< T208, T209, T210, T211, T212, T213, T214, T215, T216, T217, T218, T219, T220, T221, T222, T223>,
 						indexed< T224, T225, T226, T227, T228, T229, T230, T231, T232, T233, T234, T235, T236, T237, T238, T239>,
-						indexed< T240, T241, T242, T243, T244, T245, T246, T247, T248, T249, T250, T251, T252, T253, T254, T255>>, Out>, Ts...>;
+						indexed< T240, T241, T242, T243, T244, T245, T246, T247, T248, T249, T250, T251, T252, T253, T254, T255>
+						>, 
+						typename indexed_builder<(sizeof...(Ts) > 16 ? 3 : 0)>::template f<Ts...>>;
 				};
 			}
-			template<typename...Ts>
-			using build_indexed = detail::indexed<typename detail::indexed_builder<(sizeof...(Ts)>16 ? 3 : 0)>::template f<detail::rlist<void, detail::rlist<void, detail::rlist<void, detail::rlist<void, detail::rlist<void, detail::rlist<void, detail::rlist<void, detail::rlist_tail_of8>>>>>>>, Ts...>>;
+			struct build_indexed{
+				template<typename...Ts>
+				using f = detail::indexed<typename detail::indexed_builder<(sizeof...(Ts)>16 ? 3 : 0)>::template f<Ts...>>;
+			};
 			template<typename T, unsigned I>
 			using lookup = typename T::template f<detail::index<(I >> 8)>::template f>::template f<detail::index<((I >> 4) & 0xF)>::template f>::template f<detail::index<(I & 0xF)>::template f>;
 
 		}
+		template<typename L, unsigned N>
+		using lookup = c::lookup<c::call<c::build_indexed, L>, N>;
 	}
 }
