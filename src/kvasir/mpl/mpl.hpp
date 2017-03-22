@@ -7,6 +7,7 @@
 #include "algorithm/all.hpp"
 #include "algorithm/any.hpp"
 #include "algorithm/count_if.hpp"
+#include "algorithm/drop.hpp"
 #include "algorithm/erase.hpp"
 #include "algorithm/filter.hpp"
 #include "algorithm/find_if.hpp"
