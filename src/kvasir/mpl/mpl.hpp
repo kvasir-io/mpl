@@ -82,4 +82,5 @@
 
 #include "utility/always.hpp"
 #include "utility/conditional.hpp"
+#include "utility/is_same.hpp"
 #include "utility/is_instance.hpp"
