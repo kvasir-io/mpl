@@ -28,43 +28,43 @@ namespace kvasir {
 				template<typename C>
 				struct drop_impl<1, C> {
 					template<unsigned N, typename T, typename...Ts>
-					using f = typename conditional<(sizeof...(Ts) > 0)>::template f<C, void>::template f< Ts...>;
+					using f = typename conditional<(sizeof...(Ts) < 1000000)>::template f<C, void>::template f< Ts...>;
 				};
 				template<typename C>
 				struct drop_impl<2, C> {
 					template<unsigned N, typename T0, typename T1, typename...Ts>
-					using f = typename conditional<(sizeof...(Ts) > 0)>::template f<C, void>::template f< Ts...>;
+					using f = typename conditional<(sizeof...(Ts) < 1000000)>::template f<C, void>::template f< Ts...>;
 				};
 				template<typename C>
 				struct drop_impl<3, C> {
 					template<unsigned N, typename T0, typename T1, typename T2, typename...Ts>
-					using f = typename conditional<(sizeof...(Ts) > 0)>::template f<C, void>::template f< Ts...>;
+					using f = typename conditional<(sizeof...(Ts) < 1000000)>::template f<C, void>::template f< Ts...>;
 				};
 				template<typename C>
 				struct drop_impl<4, C> {
 					template<unsigned N, typename T0, typename T1, typename T2, typename T3, typename...Ts>
-					using f = typename conditional<(sizeof...(Ts) > 0)>::template f<C, void>::template f< Ts...>;
+					using f = typename conditional<(sizeof...(Ts) < 1000000)>::template f<C, void>::template f< Ts...>;
 				};
 				template<typename C>
 				struct drop_impl<5, C> {
 					template<unsigned N, typename T0, typename T1, typename T2, typename T3, typename T4, typename...Ts>
-					using f = typename conditional<(sizeof...(Ts) > 0)>::template f<C, void>::template f< Ts...>;
+					using f = typename conditional<(sizeof...(Ts) < 1000000)>::template f<C, void>::template f< Ts...>;
 				};
 				template<typename C>
 				struct drop_impl<6, C> {
 					template<unsigned N, typename T0, typename T1, typename T2, typename T3, typename T4, typename T5, typename...Ts>
-					using f = typename conditional<(sizeof...(Ts) > 0)>::template f<C, void>::template f< Ts...>;
+					using f = typename conditional<(sizeof...(Ts) < 1000000)>::template f<C, void>::template f< Ts...>;
 				};
 				template<typename C>
 				struct drop_impl<7, C> {
 					template<unsigned N, typename T0, typename T1, typename T2, typename T3, typename T4, typename T5, typename T6, typename...Ts>
-					using f = typename conditional<(sizeof...(Ts) > 0)>::template f<C, void>::template f< Ts...>;
+					using f = typename conditional<(sizeof...(Ts) < 1000000)>::template f<C, void>::template f< Ts...>;
 				};
 				template<typename C>
 				struct drop_impl<8, C> {
 					template<unsigned N, typename T0, typename T1, typename T2, typename T3, typename T4, typename T5, typename T6,
 						typename T7, typename...Ts>
-						using f = typename conditional<(sizeof...(Ts) > 0)>::template f<C, void>::template f< Ts...>;
+						using f = typename conditional<(sizeof...(Ts) < 1000000)>::template f<C, void>::template f< Ts...>;
 				};
 				template<typename C>
 				struct drop_impl<16, C> {

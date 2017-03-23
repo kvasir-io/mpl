@@ -12,9 +12,8 @@ namespace kvasir {
 			template<typename N, typename C = listify>
 			struct take {
 				template<typename...Ts>
-				using f = typename dcall<rotate<N,drop<uint_<(sizeof...(Ts) - N::value)>,C>>, sizeof...(Ts)>::template f<Ts...>;
+				using f = typename dcall<rotate<N, drop<uint_<(sizeof...(Ts)-N::value)>, C>>, sizeof...(Ts)>::template f<Ts...>;
 			};
-
 		}
 
 		template <typename List, unsigned N>
