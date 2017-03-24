@@ -62,12 +62,12 @@ namespace kvasir {
 			template<template<typename...> class F, typename C = identity>
 			struct cfe {
 				template<typename...Ts>
-				using f = typename C::template f<F<Ts...>>;
+				using f = typename dcall<C, sizeof...(Ts)>::template f<typename dcallf<bool(sizeof...(Ts))>::template f1<F, Ts...>>;
 			};
 			template<template<typename...> class F>
 			struct cfe<F, identity> {
 				template<typename...Ts>
-				using f = typename dcallf<bool(sizeof...(Ts))>::template f1<F,Ts...>;
+				using f = typename dcallf<sizeof...(Ts)<1000000>::template f1<F,Ts...>;
 			};
 
 

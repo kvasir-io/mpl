@@ -13,7 +13,7 @@ namespace kvasir {
 			template<typename Input, typename C = listify>
 			struct push_front {
 				template<typename...Ts>
-				using f = KVASIR_D_CALL(C, Ts) <Input, Ts... >;
+				using f = typename dcall<C, sizeof...(Ts)>::template f<Input, Ts... >;
 			};
 		}
 		namespace impl {
