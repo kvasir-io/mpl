@@ -5,3 +5,13 @@
 #pragma once
 
 #include <kvasir/mpl/sequence/at.hpp>
+
+#include <type_traits>
+
+#include <kvasir/mpl/types/list.hpp>
+
+namespace {
+	namespace mpl = kvasir::mpl;
+
+	static_assert(std::is_same<mpl::at<mpl::list<void, char, short>, 1>, char>::value, "");
+}

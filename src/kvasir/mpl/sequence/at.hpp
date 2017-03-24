@@ -4,21 +4,20 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
-#include "../algorithm/rotate.hpp"
-#include "../types/int.hpp"
-#include "../sequence/front.hpp"
-#include "../sequence/size.hpp"
 #include "../functional/call.hpp"
+#include "../sequence/drop.hpp"
+#include "../sequence/front.hpp"
+#include "../types/int.hpp"
 
 namespace kvasir {
 	namespace mpl {
 		namespace c {
-			template<typename N>
-			using at = rotate<N, front>;
+			template <typename N>
+			using at = drop<N, front>;
 		}
 
 		/// get the n-th element of the list
 		template <typename List, unsigned N>
-		using at = c::call<c::at<mpl::int_<N>>, List>;
+		using at = c::call<c::at<mpl::uint_<N>>, List>;
 	}
 }
