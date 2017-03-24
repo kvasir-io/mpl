@@ -5,6 +5,7 @@
 #pragma once
 
 #include <kvasir/mpl/algorithm/lookup.hpp>
+#include <type_traits>
 
 namespace {
 	namespace mpl = kvasir::mpl;
