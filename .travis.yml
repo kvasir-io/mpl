@@ -37,6 +37,16 @@ matrix:
       env: TOOLSET=g++-6
 
     - os: linux
+      compiler: gcc
+      addons:
+        apt:
+          sources: ['ubuntu-toolchain-r-test', 'george-edison55-precise-backports']
+          packages: ['g++-6', 'cmake', 'cmake-data']
+      env:
+        - TOOLSET=g++-6
+        - CPP_EXTRA_FEATURES="cxx_relaxed_constexpr"
+
+    - os: linux
       compiler: clang
       addons:
         apt:
@@ -76,6 +86,16 @@ matrix:
           packages: ['clang-3.9', 'cmake', 'cmake-data']
       env: TOOLSET=clang++-3.9
 
+    - os: linux
+      compiler: clang
+      addons:
+        apt:
+          sources: ['ubuntu-toolchain-r-test', 'llvm-toolchain-precise-3.9', 'george-edison55-precise-backports']
+          packages: ['clang-3.9', 'cmake', 'cmake-data']
+      env:
+        - TOOLSET=clang++-3.9
+        - CPP_EXTRA_FEATURES="cxx_relaxed_constexpr"
+
     - os: osx
       compiler: clang
       env: TOOLSET=clang++
@@ -87,7 +107,7 @@ matrix:
 before_script:
   - mkdir build
   - cd build
-  - cmake .. -DCMAKE_CXX_COMPILER=$TOOLSET -DMAKE_INCLUDE_TESTS=ON
+  - cmake .. -DCMAKE_CXX_COMPILER=$TOOLSET -DCPP_EXTRA_FEATURES=$CPP_EXTRA_FEATURES -DMAKE_INCLUDE_TESTS=ON
 
 script:
   - make VERBOSE=1

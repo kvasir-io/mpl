@@ -17,7 +17,8 @@ target_compile_features(kvasir_mpl INTERFACE
 		cxx_right_angle_brackets
 		cxx_static_assert
 		cxx_uniform_initialization
-		cxx_user_literals)
+		cxx_user_literals
+		${CPP_EXTRA_FEATURES})
 
 add_executable(kvasir_mpl_test test/test.cpp)
 target_link_libraries(kvasir_mpl_test kvasir_mpl)
