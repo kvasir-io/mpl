@@ -8,15 +8,17 @@
 #include "../algorithm/rotate.hpp"
 namespace kvasir {
 	namespace mpl {
-		namespace c {
-			template<typename N, typename C = listify>
-			struct take {
-				template<typename...Ts>
-				using f = typename dcall<rotate<N, drop<uint_<(sizeof...(Ts)-N::value)>, C>>, sizeof...(Ts)>::template f<Ts...>;
-			};
-		}
 
-		template <typename List, unsigned N>
-		using take = c::call<c::take<mpl::uint_<N>>, List>;
+		template <typename N, typename C = listify>
+		struct take {
+			template <typename... Ts>
+			using f = typename dcall<rotate<N, drop<uint_<(sizeof...(Ts) - N::value)>, C>>,
+			                         sizeof...(Ts)>::template f<Ts...>;
+		};
+
+		namespace eager {
+			template <typename List, unsigned N>
+			using take = call<unpack<mpl::take<mpl::uint_<N>>>, List>;
+		}
 	}
 }

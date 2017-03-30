@@ -8,11 +8,9 @@
 
 namespace kvasir {
 	namespace mpl {
-		namespace c {
-			struct front {
-				template <typename T, typename... Ts>
-				using f = T;
-			};
-		}
+		struct front {
+			template <typename T, typename... Ts>
+			using f = T;
+		};
 	}
 }

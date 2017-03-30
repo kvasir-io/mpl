@@ -12,37 +12,38 @@
 
 namespace kvasir {
 	namespace mpl {
-		namespace c {
-			namespace detail {
-				struct nothing_found {
-					template <typename... Ts>
-					struct f {
-						constexpr static bool value = (sizeof...(Ts) == 0);
-					};
+		namespace detail {
+			template<typename C = identity>
+			struct nothing_found {
+				template <typename... Ts>
+				struct f {
+					constexpr static bool value = (sizeof...(Ts) == 0);
 				};
-				template <typename F>
-				struct not_ {
-					template <typename T>
-					struct f {
-						constexpr static bool value = (!(F::template f<T>::value));
-					};
-				};
-				template <template <typename...> class F>
-				struct not_<cfe<F,identity>> {
-					template <typename T>
-					struct f {
-						constexpr static bool value = (!F<T>::value);
-					};
-				};
-			}
-
+			};
 			template <typename F>
-			using all = find_if<detail::not_<F>, detail::nothing_found>;
+			struct not_ {
+				template <typename T>
+				struct f {
+					constexpr static bool value = (!(F::template f<T>::value));
+				};
+			};
+			template <template <typename...> class F>
+			struct not_<cfe<F, identity>> {
+				template <typename T>
+				struct f {
+					constexpr static bool value = (!F<T>::value);
+				};
+			};
 		}
 
-		/// resolves to std::true_type if all elements in the input list
-		/// fulfill the provided predicate
-		template <typename List, template <typename...> class Cond = identity>
-		using all = c::call<c::all<c::cfe<Cond>>, List>;
+		template <typename F, typename C = identity>
+		using all = find_if<detail::not_<F>, detail::nothing_found<>>;
+
+		namespace eager {
+			/// resolves to std::true_type if all elements in the input list
+			/// fulfill the provided predicate
+			template <typename List, template <typename...> class Cond = identity>
+			using all = call<unpack<mpl::all<cfe<Cond>>>, List>;
+		}
 	}
 }

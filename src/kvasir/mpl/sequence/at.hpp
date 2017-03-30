@@ -11,13 +11,13 @@
 
 namespace kvasir {
 	namespace mpl {
-		namespace c {
-			template <typename N>
-			using at = drop<N, front>;
-		}
+		template <typename N>
+		using at = drop<N, front>;
 
-		/// get the n-th element of the list
-		template <typename List, unsigned N>
-		using at = c::call<c::at<mpl::uint_<N>>, List>;
+		namespace eager {
+			/// get the n-th element of the list
+			template <typename List, unsigned N>
+			using at = call<unapck<mpl::at<mpl::uint_<N>>>, List>;
+		}
 	}
 }

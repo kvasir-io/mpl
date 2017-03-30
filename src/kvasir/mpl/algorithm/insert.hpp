@@ -4,23 +4,24 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 #include "rotate.hpp"
-#include "../types/int.hpp"
+#include "../functional/call.hpp"
 #include "../sequence/push_front.hpp"
 #include "../sequence/size.hpp"
-#include "../functional/call.hpp"
-
+#include "../types/int.hpp"
 
 namespace kvasir {
 	namespace mpl {
-		namespace c {
-			template<typename Index, typename Input, typename C = listify>
-			struct insert {
-				template<typename...Ts>
-				using f = typename rotate<Index, push_front<Input, rotate<uint_<(1 + sizeof...(Ts) - Index::value)>, C>>>::template f<Ts...>;
-			};
-		}
+		template <typename Index, typename Input, typename C = listify>
+		struct insert {
+			template <typename... Ts>
+			using f = typename rotate<
+			        Index, push_front<Input, rotate<uint_<(1 + sizeof...(Ts) - Index::value)>,
+			                                        C>>>::template f<Ts...>;
+		};
 
-		template <typename List, unsigned Index, typename Input>
-		using insert = c::call<c::insert<uint_<Index>,Input>, List>;
+		namespace eager {
+			template <typename List, unsigned Index, typename Input>
+			using insert = call<unpack<insert<uint_<Index>, Input>>, List>;
+		}
 	}
 }

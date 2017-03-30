@@ -8,34 +8,32 @@ namespace kvasir {
 	namespace mpl {
 		template <typename... Ts>
 		struct list {};
-		namespace c {
-			namespace detail {
-				// recursive list, for internal use only
-				template <typename Head, typename Tail>
-				struct rlist {};
+		namespace detail {
+			// recursive list, for internal use only
+			template <typename Head, typename Tail>
+			struct rlist {};
 
-				using rlist_tail_of8 = rlist<
-				        list<>,
-				        rlist<list<>,
-				              rlist<list<>,
-				                    rlist<list<>,
-				                          rlist<list<>,
-				                                rlist<list<>,
-				                                      rlist<list<>, rlist<list<>, void>>>>>>>>;
-			}
-			using listify = cfe<list>;
-
-			template <typename S>
-			struct sequencify;
-			template <template <typename...> class S, typename... Ts>
-			struct sequencify<S<Ts...>> {
-				using type = cfe<S>;
-			};
+			using rlist_tail_of8 = rlist<
+			        list<>,
+			        rlist<list<>,
+			              rlist<list<>,
+			                    rlist<list<>,
+			                          rlist<list<>,
+			                                rlist<list<>, rlist<list<>, rlist<list<>, void>>>>>>>>;
 		}
+		using listify = cfe<list>;
 
-		template <typename... Ts>
-		list<Ts...> make_list(Ts...) {
-			return {};
+		template <typename S>
+		struct sequencify;
+		template <template <typename...> class S, typename... Ts>
+		struct sequencify<S<Ts...>> {
+			using type = cfe<S>;
+		};
+		namespace eager {
+			template <typename... Ts>
+			list<Ts...> make_list(Ts...) {
+				return {};
+			}
 		}
 	}
 }

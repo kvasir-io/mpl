@@ -6,13 +6,13 @@
 
 namespace kvasir {
 	namespace mpl {
-		namespace c {
-			struct identity {
-				template <typename T>
-				using f = T;
-			};
+		struct identity {
+			template <typename T>
+			using f = T;
+		};
+		namespace eager {
+			template <typename T>
+			using identity = T;
 		}
-		template <typename T>
-		using identity = T;
 	}
 }

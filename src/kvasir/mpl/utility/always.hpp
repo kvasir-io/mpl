@@ -13,10 +13,11 @@ namespace kvasir {
 			template <typename...>
 			using f = T;
 		};
-
-		template <typename...>
-		struct always_false {
-			static constexpr bool value = false;
-		};
+		namespace eager {
+			template <typename...>
+			struct always_false {
+				static constexpr bool value = false;
+			};
+		}
 	}
 }

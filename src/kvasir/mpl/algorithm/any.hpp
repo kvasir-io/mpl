@@ -9,21 +9,19 @@
 
 namespace kvasir {
 	namespace mpl {
-		namespace c {
-			namespace detail {
-				struct one_or_more {
-					template <typename... Ts>
-					struct f {
-						constexpr static bool value = (sizeof...(Ts) > 0);
-					};
-				};
-			}
-			template <typename F>
-			using any = find_if<F, detail::one_or_more>;
+		namespace detail {
+			struct one_or_more {
+				template <typename... Ts>
+				using f = bool_<(sizeof...(Ts) > 0)>;
+			};
 		}
-		/// filter elements from a list
-		/// takes a lambda that should return a type convertible to bool
-		template <typename List, template <typename...> class Cond = identity>
-		using any = c::call<c::any<c::cfe<Cond>>, List>;
+		template <typename F>
+		using any = find_if<F, detail::one_or_more>;
+		namespace eager {
+			/// filter elements from a list
+			/// takes a lambda that should return a type convertible to bool
+			template <typename List, template <typename...> class Cond = identity>
+			using any = call<unpack<mpl::any<cfe<Cond>>>, List>;
+		}
 	}
 }

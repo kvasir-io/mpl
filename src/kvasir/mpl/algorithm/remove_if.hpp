@@ -12,50 +12,50 @@
 
 namespace kvasir {
 	namespace mpl {
-		namespace c {
-			namespace detail {
-				template <bool>
-				struct list_wrap_if;
-				template <>
-				struct list_wrap_if<true> {
-					template <typename T>
-					using f = list<T>;
-				};
-				template <>
-				struct list_wrap_if<false> {
-					template <typename>
-					using f = list<>;
-				};
-			}
-			template <typename F>
-			struct list_wrap_if {
+		namespace detail {
+			template <bool>
+			struct list_wrap_if;
+			template <>
+			struct list_wrap_if<true> {
 				template <typename T>
-				using f = typename detail::list_wrap_if<F::template f<T>::value>::template f<T>;
+				using f = list<T>;
 			};
-			template <template <typename> class F>
-			struct list_wrap_if<cfe<F,identity>> {
-				template <typename T>
-				using f = typename detail::list_wrap_if<F<T>::value>::template f<T>;
+			template <>
+			struct list_wrap_if<false> {
+				template <typename>
+				using f = list<>;
 			};
-			template <typename F>
-			struct list_wrap_if_not {
-				template <typename T>
-				using f = typename detail::list_wrap_if<(!F::template f<T>::value)>::template f<T>;
-			};
-			template <template <typename> class F>
-			struct list_wrap_if_not<cfe<F,identity>> {
-				template <typename T>
-				using f = typename detail::list_wrap_if<(!F<T>::value)>::template f<T>;
-			};
-
-			/// continuation version of remove_if, taking a continuation and predicate
-			template <typename Cond, typename C = listify>
-			using remove_if = transform<list_wrap_if_not<Cond>, join<C>>;
 		}
+		template <typename F>
+		struct list_wrap_if {
+			template <typename T>
+			using f = typename detail::list_wrap_if<F::template f<T>::value>::template f<T>;
+		};
+		template <template <typename> class F>
+		struct list_wrap_if<cfe<F, identity>> {
+			template <typename T>
+			using f = typename detail::list_wrap_if<F<T>::value>::template f<T>;
+		};
+		template <typename F>
+		struct list_wrap_if_not {
+			template <typename T>
+			using f = typename detail::list_wrap_if<(!F::template f<T>::value)>::template f<T>;
+		};
+		template <template <typename> class F>
+		struct list_wrap_if_not<cfe<F, identity>> {
+			template <typename T>
+			using f = typename detail::list_wrap_if<(!F<T>::value)>::template f<T>;
+		};
 
-		/// filter elements from a list
-		/// takes a lambda that should return a type convertible to bool
-		template <typename List, template <typename...> class Cond = identity>
-		using remove_if = c::call<c::remove_if<c::cfe<Cond>>, List>;
+		/// continuation version of remove_if, taking a continuation and predicate
+		template <typename Cond, typename C = listify>
+		using remove_if = transform<list_wrap_if_not<Cond>, join<C>>;
+
+		namespace eager {
+			/// filter elements from a list
+			/// takes a lambda that should return a type convertible to bool
+			template <typename List, template <typename...> class Cond = identity>
+			using remove_if = call<unpack<mpl::remove_if<cfe<Cond>>>, List>;
+		}
 	}
 }

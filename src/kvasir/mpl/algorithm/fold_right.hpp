@@ -13,76 +13,74 @@
 
 namespace kvasir {
 	namespace mpl {
-		namespace c {
-			namespace detail {
-				static constexpr int select_fold_right(const int in) {
-					return /*in >= 256 ? 256 :*/ in >= 64 ?
-					               64 :
-					               in >= 16 ? 16 : in >= 4 ? 4 : in >= 2 ? 2 : in == 1 ? 1 : 0;
-				}
-				template <int>
-				struct fold_right_impl;
-				template <>
-				struct fold_right_impl<0> {
-					template <template <typename...> class F, typename In>
-					using f = In;
-				};
-				template <>
-				struct fold_right_impl<1> {
-					template <template <typename...> class F, typename In, typename T0>
-					using f = F<In, T0>;
-				};
-				template <>
-				struct fold_right_impl<2> {
-					template <template <typename...> class F, typename In, typename T0, typename T1,
-					          typename... Ts>
-					using f = F<F<typename fold_right_impl<select_fold_right(
-					                      sizeof...(Ts))>::template f<F, In, Ts...>,
-					              T1>,
-					            T0>;
-				};
-				template <>
-				struct fold_right_impl<4> {
-					template <template <typename...> class F, typename In, typename T0, typename T1,
-					          typename T2, typename T3, typename... Ts>
-					using f = F<F<F<F<typename fold_right_impl<select_fold_right(
-					                          sizeof...(Ts))>::template f<F, In, Ts...>,
-					                  T3>,
-					                T2>,
-					              T1>,
-					            T0>;
-				};
-				template <>
-				struct fold_right_impl<16> {
-					template <template <typename...> class F, typename In, typename T0, typename T1,
-					          typename T2, typename T3, typename T4, typename T5, typename T6,
-					          typename T7, typename T8, typename T9, typename T10, typename T11,
-					          typename T12, typename T13, typename T14, typename T15,
-					          typename... Ts>
-					using f = F<
-					        F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<typename fold_right_impl<select_fold_right(
-					                                              sizeof...(Ts))>::
-					                                              template f<F, In, Ts...>,
-					                                      T15>,
-					                                    T14>,
-					                                  T13>,
-					                                T12>,
-					                              T11>,
-					                            T10>,
-					                          T9>,
-					                        T8>,
-					                      T7>,
-					                    T6>,
-					                  T5>,
-					                T4>,
-					              T3>,
-					            T2>,
-					          T1>,
-					        T0>;
-				};
-				template <>
-				struct fold_right_impl<64> {
-					template <template <typename...> class F, typename In, typename T0, typename T1,
+		namespace detail {
+			static constexpr int select_fold_right(const int in) {
+				return /*in >= 256 ? 256 :*/ in >= 64 ?
+				               64 :
+				               in >= 16 ? 16 : in >= 4 ? 4 : in >= 2 ? 2 : in == 1 ? 1 : 0;
+			}
+			template <int>
+			struct fold_right_impl;
+			template <>
+			struct fold_right_impl<0> {
+				template <template <typename...> class F, typename In>
+				using f = In;
+			};
+			template <>
+			struct fold_right_impl<1> {
+				template <template <typename...> class F, typename In, typename T0>
+				using f = F<In, T0>;
+			};
+			template <>
+			struct fold_right_impl<2> {
+				template <template <typename...> class F, typename In, typename T0, typename T1,
+				          typename... Ts>
+				using f = F<F<typename fold_right_impl<select_fold_right(
+				                      sizeof...(Ts))>::template f<F, In, Ts...>,
+				              T1>,
+				            T0>;
+			};
+			template <>
+			struct fold_right_impl<4> {
+				template <template <typename...> class F, typename In, typename T0, typename T1,
+				          typename T2, typename T3, typename... Ts>
+				using f = F<F<F<F<typename fold_right_impl<select_fold_right(
+				                          sizeof...(Ts))>::template f<F, In, Ts...>,
+				                  T3>,
+				                T2>,
+				              T1>,
+				            T0>;
+			};
+			template <>
+			struct fold_right_impl<16> {
+				template <template <typename...> class F, typename In, typename T0, typename T1,
+				          typename T2, typename T3, typename T4, typename T5, typename T6,
+				          typename T7, typename T8, typename T9, typename T10, typename T11,
+				          typename T12, typename T13, typename T14, typename T15, typename... Ts>
+				using f =
+				        F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<typename fold_right_impl<select_fold_right(
+				                                                sizeof...(Ts))>::template f<F, In,
+				                                                                            Ts...>,
+				                                        T15>,
+				                                      T14>,
+				                                    T13>,
+				                                  T12>,
+				                                T11>,
+				                              T10>,
+				                            T9>,
+				                          T8>,
+				                        T7>,
+				                      T6>,
+				                    T5>,
+				                  T4>,
+				                T3>,
+				              T2>,
+				            T1>,
+				          T0>;
+			};
+			template <>
+			struct fold_right_impl<64> {
+				    template <template <typename...> class F, typename In, typename T0, typename T1,
 					          typename T2, typename T3, typename T4, typename T5, typename T6,
 					          typename T7, typename T8, typename T9, typename T10, typename T11,
 					          typename T12, typename T13, typename T14, typename T15, typename T16,
@@ -166,24 +164,26 @@ namespace kvasir {
 					            T2>,
 					          T1>,
 					        T0>;
-				};
-			}
-			template <typename F, typename C = identity>
-			struct fold_right {
-				template <typename... Ts>
-				using f = typename C::template f<typename detail::fold_right_impl<detail::select_fold_right(
-				        sizeof...(Ts)-1)>::template f<F::template f, Ts...>>;
-			};
-			template <template <typename...> class F, typename C>
-			struct fold_right<cfe<F,identity>,C> {
-				template <typename... Ts>
-				using f = typename C::template f<typename detail::fold_right_impl<detail::select_fold_right(
-				        sizeof...(Ts)-1)>::template f<F, Ts...>>;
 			};
 		}
+		template <typename F, typename C = identity>
+		struct fold_right {
+			template <typename... Ts>
+			using f = typename C::template f<
+			        typename detail::fold_right_impl<detail::select_fold_right(
+			                sizeof...(Ts) - 1)>::template f<F::template f, Ts...>>;
+		};
+		template <template <typename...> class F, typename C>
+		struct fold_right<cfe<F, identity>, C> {
+			template <typename... Ts>
+			using f = typename C::template f<typename detail::fold_right_impl<
+			        detail::select_fold_right(sizeof...(Ts) - 1)>::template f<F, Ts...>>;
+		};
 
-		/// fold right over a list, initialized with State
-		template <typename List, typename State, template <typename...> class Func>
-		using fold_right = c::call<c::fold_right<c::cfe<Func>>, List, State>;
+		namespace eager {
+			/// fold right over a list, initialized with State
+			template <typename List, typename State, template <typename...> class Func>
+			using fold_right = call<unpack<fold_right<cfe<Func>>>, List, State>;
+		}
 	}
 }
