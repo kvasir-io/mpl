@@ -27,7 +27,7 @@ namespace {
 		using f = bar_list<Ts...>;
 	};
 
-	static_assert(std::is_same<mpl::c::ucall<mpl::c::product<foo_listify, bar_listify>,
+	static_assert(std::is_same<mpl::call<mpl::product<foo_listify, bar_listify>,
 	                                         mpl::list<void, char>, mpl::list<void, char>>,
 	                           bar_list<foo_list<void, void>, foo_list<void, char>,
 	                                    foo_list<char, void>, foo_list<char, char>>>::value,

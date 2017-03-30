@@ -11,6 +11,6 @@
 namespace {
 	namespace mpl = kvasir::mpl;
 	static_assert(std::is_same<
-		mpl::transform<mpl::list<void, char, short, int>, mpl::list>, mpl::list<
+		mpl::eager::transform<mpl::list<void, char, short, int>, mpl::list>, mpl::list<
 			mpl::list<void>, mpl::list<char>, mpl::list<short>, mpl::list<int>>>::value, "");
 }

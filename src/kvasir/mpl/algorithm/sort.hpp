@@ -61,9 +61,9 @@ namespace kvasir {
 				                         list<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9>,
 				                         list<U0, U1, U2, U3, U4, U5, U6, U7, U8, U9>, Comp>;
 				using type = typename merge_impl<
-				        typename c::join<c::listify>::template f<list<R...>, typename sub::out>,
-				        typename c::join<c::listify>::template f<typename sub::left, list<Ts...>>,
-				        typename c::join<c::listify>::template f<typename sub::right, list<Us...>>,
+				        typename join<listify>::template f<list<R...>, typename sub::out>,
+				        typename join<listify>::template f<typename sub::left, list<Ts...>>,
+				        typename join<listify>::template f<typename sub::right, list<Us...>>,
 				        Comp>::type;
 			};
 

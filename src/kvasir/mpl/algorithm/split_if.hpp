@@ -38,13 +38,13 @@ namespace kvasir {
 		template <typename F, typename C = listify>
 		struct split_if {
 			template <typename... Ts>
-			using f = typename dcall<c::fold_right<detail::split_if_pred<F::template f>,
-			                                       push_front<C, c::cfe<call>>>,
+			using f = typename dcall<fold_right<detail::split_if_pred<F::template f>,
+			                                       push_front<C, cfe<call>>>,
 			                         sizeof...(Ts)>::template f<list<list<>>, Ts...>;
 		};
 		namespace eager {
 			template <typename List, template <typename...> class F>
-			using split_if = call<unpack<mpl::split_if<c::cfe<F>>>, List>;
+			using split_if = call<unpack<mpl::split_if<cfe<F>>>, List>;
 		}
 	}
 }

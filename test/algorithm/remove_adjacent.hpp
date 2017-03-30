@@ -13,7 +13,7 @@
 namespace {
 	namespace mpl = kvasir::mpl;
 	static_assert(std::is_same<
-		              mpl::remove_adjacent<mpl::list<void, char, char, short>>, mpl::list<void, char, short>>{},
+		              mpl::eager::remove_adjacent<mpl::list<void, char, char, short>>, mpl::list<void, char, short>>{},
 	              "");
 
 	template<typename T1, typename T2>
@@ -30,6 +30,6 @@ namespace {
 
 // unoptimised version of remove_adjacent
 	static_assert(std::is_same<
-		mpl::remove_adjacent<mpl::list<void, char, char, short>, foo_is_same>,
+		mpl::eager::remove_adjacent<mpl::list<void, char, char, short>, foo_is_same>,
 		mpl::list<void, char, short>>{}, "");
 }

@@ -174,7 +174,7 @@ namespace kvasir {
 
 		namespace eager {
 			template <typename List, unsigned Index>
-			using drop = call < dependant<unapck<mpl::drop<mpl::uint_<Index>>>, List>;
+			using drop = call < unpack<mpl::drop<mpl::uint_<Index>>>, List>;
 		}
 	}
 }

@@ -25,7 +25,7 @@ namespace kvasir {
 			using fork_join = fork<join<C>, Ts...>;
 
 			template <typename L0, typename L1, typename... Ls>
-			using f = call<call<transform<cfe<transform_push>, cfe<fork_join>>, L1>, L0>;
+			using f = call<unpack<call<unpack<transform<cfe<transform_push>, cfe<fork_join>>>, L1>>, L0>;
 		};
 		namespace eager {
 			template <typename List, template <typename...> class F = list>

@@ -31,10 +31,10 @@ namespace {
 	using ss_expect_list =
 	mpl::list<int_<0>, int_<1>, int_<2>, int_<3>, int_<3>, int_<4>, int_<5>, int_<6>, int_<7>>;
 
-	static_assert(std::is_same<ss_test_list, mpl::stable_sort<ss_test_list, equal>>::value,
+	static_assert(std::is_same<ss_test_list, mpl::eager::stable_sort<ss_test_list, equal>>::value,
 	              "Stable sort is not stable");
-	static_assert(std::is_same<ss_expect_list, mpl::stable_sort<ss_test_list, less>>::value,
+	static_assert(std::is_same<ss_expect_list, mpl::eager::stable_sort<ss_test_list, less>>::value,
 	              "Stable sort is not sort");
 
-	using empty_ss_test = mpl::stable_sort<mpl::list<>>;
+	using empty_ss_test = mpl::eager::stable_sort<mpl::list<>>;
 }

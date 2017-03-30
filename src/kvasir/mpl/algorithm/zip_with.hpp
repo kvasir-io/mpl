@@ -53,13 +53,13 @@ namespace kvasir {
 					struct zip_with<false> {
 						template <template <typename...> class F, typename Result, typename List,
 						          typename... Lists>
-						using f = typename push_front_impl<
-						        F<typename pop_front_impl<List>::front,
-						          typename pop_front_impl<Lists>::front...>,
+						using f = typename impl::push_front_impl<
+						        F<typename impl::pop_front_impl<List>::front,
+						          typename impl::pop_front_impl<Lists>::front...>,
 						        typename zip_with<(
-						                size<typename pop_front_impl<List>::rest>::value == 0)>::
-						                template f<F, Result, typename pop_front_impl<List>::rest,
-						                           typename pop_front_impl<Lists>::rest...>>::f;
+						                size<typename impl::pop_front_impl<List>::rest>::value == 0)>::
+						                template f<F, Result, typename impl::pop_front_impl<List>::rest,
+						                           typename impl::pop_front_impl<Lists>::rest...>>::f;
 					};
 
 					template <>
@@ -79,7 +79,7 @@ namespace kvasir {
 				template <template <typename...> class F, typename List, typename... Lists>
 				struct zip_with<F, List, Lists...> {
 					using f = typename generic::zip_with<(size<List>::value == 0)>::template f<
-					        F, typename create_impl<List>::f, List, Lists...>;
+					        F, typename mpl::impl::create_impl<List>::f, List, Lists...>;
 				};
 
 				/// mpl::list optimization for only two lists
