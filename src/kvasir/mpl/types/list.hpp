@@ -29,11 +29,10 @@ namespace kvasir {
 		struct sequencify<S<Ts...>> {
 			using type = cfe<S>;
 		};
-		namespace eager {
-			template <typename... Ts>
-			list<Ts...> make_list(Ts...) {
-				return {};
-			}
+
+		template <typename... Ts>
+		list<Ts...> make_list(Ts...) {
+			return {};
 		}
 	}
 }
