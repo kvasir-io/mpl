@@ -6,6 +6,7 @@
 
 #include "find_if.hpp"
 #include "../functional/identity.hpp"
+#include "../types/bool.hpp"
 
 namespace kvasir {
 	namespace mpl {
