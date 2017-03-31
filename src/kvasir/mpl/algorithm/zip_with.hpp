@@ -16,32 +16,38 @@
 
 namespace kvasir {
 	namespace mpl {
-		template <typename F, typename C = listify>
-		struct zip_with {}; // just a placeholder, has no ::template f, we must use specialization
-
 		namespace detail {
+			template<typename F, typename C, typename...Ls>
+			struct zip_with_impl;
 			template <typename F, typename C, template <typename...> class Seq1,
-			          template <typename...> class Seq2, typename... L0s, typename... L1s>
-			struct call_impl<zip_with<F, C>, Seq1<Seq2<L0s...>, Seq2<L1s...>>> {
+				template <typename...> class Seq2, typename... L0s, typename... L1s>
+			struct zip_with_impl<F,C,Seq1<Seq2<L0s...>, Seq2<L1s...>>> {
 				using type = typename dcall<C, sizeof...(L0s)>::template f<
-				        typename dcall<F, sizeof...(L0s)>::template f<L0s, L1s>...>;
+					typename dcall<F, sizeof...(L0s)>::template f<L0s, L1s>...>;
 			};
 			template <typename F, typename C, template <typename...> class Seq1,
-			          template <typename...> class Seq2, typename... L0s, typename... L1s,
-			          typename... L2s>
-			struct call_impl<zip_with<F, C>, Seq1<Seq2<L0s...>, Seq2<L1s...>, Seq2<L2s...>>> {
+				template <typename...> class Seq2, typename... L0s, typename... L1s,
+				typename... L2s>
+				struct zip_with_impl<zip_with<F, C>, Seq1<Seq2<L0s...>, Seq2<L1s...>, Seq2<L2s...>>> {
 				using type = typename C::template f<
-				        typename dcall<F, sizeof...(L0s)>::template f<L0s, L1s, L2s>...>;
+					typename dcall<F, sizeof...(L0s)>::template f<L0s, L1s, L2s>...>;
 			};
 			template <typename F, typename C, template <typename...> class Seq1,
-			          template <typename...> class Seq2, typename... L0s, typename... L1s,
-			          typename... L2s, typename... L3s>
-			struct call_impl<zip_with<F, C>,
-			                 Seq1<Seq2<L0s...>, Seq2<L1s...>, Seq2<L2s...>, Seq2<L3s...>>> {
+				template <typename...> class Seq2, typename... L0s, typename... L1s,
+				typename... L2s, typename... L3s>
+				struct zip_with_impl<zip_with<F, C>,
+				Seq1<Seq2<L0s...>, Seq2<L1s...>, Seq2<L2s...>, Seq2<L3s...>>> {
 				using type = typename C::template f<
-				        typename dcall<F, sizeof...(L0s)>::template f<L0s, L1s, L2s, L3s>...>;
+					typename dcall<F, sizeof...(L0s)>::template f<L0s, L1s, L2s, L3s>...>;
 			};
 		}
+
+		template <typename F, typename C = listify>
+		struct zip_with {
+			template<typename...Ts>
+			using f = 
+		}; 
+
 
 		namespace eager {
 			namespace detail {
