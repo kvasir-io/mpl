@@ -15,7 +15,7 @@ namespace {
 
 	template<typename T>
 	struct foo {
-		static_assert(mpl::always_false<T>::value,
+		static_assert(mpl::eager::always_false<T>::value,
 		              "always_false should not have been instantiated");
 	};
 }

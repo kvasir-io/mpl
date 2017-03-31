@@ -39,7 +39,7 @@ namespace kvasir {
 		struct split_if {
 			template <typename... Ts>
 			using f = typename dcall<fold_right<detail::split_if_pred<F::template f>,
-			                                       push_front<C, cfe<call>>>,
+			                                       push_front<unpack<C>, cfe<call>>>,
 			                         sizeof...(Ts)>::template f<list<list<>>, Ts...>;
 		};
 		namespace eager {
