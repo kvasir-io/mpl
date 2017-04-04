@@ -9,6 +9,7 @@
 namespace kvasir {
 	namespace mpl {
 		template <typename A, typename B>
-		using less_than_or_equal = integral_constant<decltype(A::value <= B::value), (A::value <= B::value)>;
+		using less_than_or_equal =
+		        integral_constant<decltype(A::value <= B::value), (A::value <= B::value)>;
 	}
 }

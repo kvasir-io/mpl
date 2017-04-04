@@ -9,6 +9,7 @@
 namespace kvasir {
 	namespace mpl {
 		template <typename A, typename B>
-		using logical_and = integral_constant<decltype(A::value && B::value), (A::value && B::value)>;
+		using logical_and =
+		        integral_constant<decltype(A::value && B::value), (A::value && B::value)>;
 	}
 }

@@ -63,8 +63,6 @@
 #include "functions/logical/logical_not.hpp"
 #include "functions/logical/logical_or.hpp"
 
-
-
 #include "sequence/at.hpp"
 #include "sequence/create.hpp"
 #include "sequence/drop.hpp"
@@ -85,5 +83,5 @@
 
 #include "utility/always.hpp"
 #include "utility/conditional.hpp"
-#include "utility/is_same.hpp"
 #include "utility/is_instance.hpp"
+#include "utility/is_same.hpp"

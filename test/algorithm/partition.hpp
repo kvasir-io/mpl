@@ -10,7 +10,7 @@
 #include <kvasir/mpl/types/bool.hpp>
 #include <kvasir/mpl/types/int.hpp>
 
-namespace partition_test{
+namespace partition_test {
 	using namespace kvasir::mpl;
 	template <typename T>
 	using less_than_5 = bool_<(T::value < 5)>;

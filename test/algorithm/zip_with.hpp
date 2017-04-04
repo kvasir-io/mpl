@@ -8,7 +8,7 @@
 #include <kvasir/mpl/functional/bind.hpp>
 
 namespace {
-	namespace mpl  = kvasir::mpl;
+	namespace mpl      = kvasir::mpl;
 	using zip_a        = mpl::list<void, char, short, int>;
 	using zip_b        = mpl::list<int, void, char, short>;
 	using zip_shoud_be = mpl::list<mpl::list<void, int>, mpl::list<char, void>, mpl::list<short,
