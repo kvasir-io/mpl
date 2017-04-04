@@ -186,8 +186,9 @@ namespace kvasir {
 				};
 			}
 			template <typename List, template <typename...> class Comp = less_than>
-			using stable_sort = typename detail::flatten_bst<
-			        mpl::call<unpack<mpl::push_front<nothing, mpl::fold_left<detail::push_func<Comp>>>>, List>>::f;
+			using stable_sort = typename detail::flatten_bst<mpl::call<
+			        unpack<mpl::push_front<nothing, mpl::fold_left<detail::push_func<Comp>>>>,
+			        List>>::f;
 		}
 		template <template <typename...> class Comp, typename C = listify>
 		struct stable_sort {

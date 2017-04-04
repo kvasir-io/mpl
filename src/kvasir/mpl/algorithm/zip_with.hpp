@@ -45,8 +45,8 @@ namespace kvasir {
 			};
 			template <typename F, typename C, typename T, typename... Ts>
 			struct zip_with_unpack<F, C, T, Ts...> {
-				using f = typename zip_with_impl<F, C, call<unpack<transform<listify>>, T>,
-				                                 Ts...>::f;
+				using f =
+				        typename zip_with_impl<F, C, call<unpack<transform<listify>>, T>, Ts...>::f;
 			};
 		}
 

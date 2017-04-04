@@ -23,8 +23,6 @@ namespace kvasir {
 		using dcall =
 		        typename detail::dependant_impl<static_cast<bool>(size < 100000)>::template f<C>;
 
-
-
 		template <bool>
 		struct dcallf;
 		template <>

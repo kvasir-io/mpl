@@ -100,10 +100,9 @@ namespace kvasir {
 			template <class T0, class T1, class T2, class T3, class T4, class T5, class T6,
 			          class T7, class T8, class... Ts, template <typename...> class Comp>
 			struct mini_sort<list<T0, T1, T2, T3, T4, T5, T6, T7, T8, Ts...>, Comp>
-			        : merge_impl<
-			                  list<>,
-			                  typename mini_sort<list<T0, T1, T2, T3, T4, T5, T6, T7>, Comp>::type,
-			                  typename mini_sort<list<T8, Ts...>, Comp>::type, Comp> {};
+			        : merge_impl<list<>, typename mini_sort<list<T0, T1, T2, T3, T4, T5, T6, T7>,
+			                                                Comp>::type,
+			                     typename mini_sort<list<T8, Ts...>, Comp>::type, Comp> {};
 
 			template <class T0, class T1, class T2, class T3, class T4, class... Ts,
 			          template <typename...> class Comp>
@@ -137,9 +136,8 @@ namespace kvasir {
 			          class T7, class T8, class T9, class T10, class T11, class T12, class T13,
 			          class T14, class T15, class T16, class T17, class... Ts,
 			          template <typename...> class Comp>
-			struct sort_impl<list<>,
-			                 list<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14,
-			                      T15, T16, T17, Ts...>,
+			struct sort_impl<list<>, list<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12,
+			                              T13, T14, T15, T16, T17, Ts...>,
 			                 Comp>
 			        : sort_impl<
 			                  list<typename mini_sort<list<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9,
@@ -151,9 +149,8 @@ namespace kvasir {
 			          class T6, class T7, class T8, class T9, class T10, class T11, class T12,
 			          class T13, class T14, class T15, class T16, class T17, class... Ts,
 			          template <typename...> class Comp>
-			struct sort_impl<list<L0>,
-			                 list<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14,
-			                      T15, T16, T17, Ts...>,
+			struct sort_impl<list<L0>, list<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12,
+			                                T13, T14, T15, T16, T17, Ts...>,
 			                 Comp>
 			        : sort_impl<list<L0, typename mini_sort<
 			                                     list<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10,
@@ -165,24 +162,21 @@ namespace kvasir {
 			          class T5, class T6, class T7, class T8, class T9, class T10, class T11,
 			          class T12, class T13, class T14, class T15, class T16, class T17, class... Ts,
 			          template <typename...> class Comp>
-			struct sort_impl<list<L0, L1>,
-			                 list<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14,
-			                      T15, T16, T17, Ts...>,
+			struct sort_impl<list<L0, L1>, list<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11,
+			                                    T12, T13, T14, T15, T16, T17, Ts...>,
 			                 Comp>
-			        : sort_impl<
-			                  list<L0, L1,
-			                       typename mini_sort<list<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9,
-			                                               T10, T11, T12, T13, T14, T15, T16, T17>,
-			                                          Comp>::type>,
-			                  list<Ts...>, Comp> {};
+			        : sort_impl<list<L0, L1, typename mini_sort<
+			                                         list<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9,
+			                                              T10, T11, T12, T13, T14, T15, T16, T17>,
+			                                         Comp>::type>,
+			                    list<Ts...>, Comp> {};
 
 			template <class L0, class L1, class L2, class T0, class T1, class T2, class T3,
 			          class T4, class T5, class T6, class T7, class T8, class T9, class T10,
 			          class T11, class T12, class T13, class T14, class T15, class T16, class T17,
 			          class... Ts, template <typename...> class Comp>
-			struct sort_impl<list<L0, L1, L2>,
-			                 list<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14,
-			                      T15, T16, T17, Ts...>,
+			struct sort_impl<list<L0, L1, L2>, list<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10,
+			                                        T11, T12, T13, T14, T15, T16, T17, Ts...>,
 			                 Comp>
 			        : sort_impl<list<merge<L0, L1, Comp>,
 			                         merge<typename mini_sort<
@@ -370,9 +364,9 @@ namespace kvasir {
 			                F>,
 			        F>;
 			constexpr unsigned select_sort_loop(const unsigned in) {
-				return /*in >= 256 ? 256 :*/ in >= 64 ?
-				               64 :
-				               in >= 16 ? 16 : in >= 4 ? 4 : in >= 1 ? 1 : 0;
+				return /*in >= 256 ? 256 :*/ in >= 64 ? 64 : in >= 16 ? 16 : in >= 4 ? 4 : in >= 1 ?
+				                                                                       1 :
+				                                                                       0;
 			}
 			template <unsigned I, template <typename...> class F>
 			struct sort_loop;
@@ -453,7 +447,7 @@ namespace kvasir {
 		//			struct sort {
 		//				template <typename... Ts>
 		//				using f = typename
-		//detail::sort_loop<detail::select_sort_loop(sizeof...(Ts)),
+		// detail::sort_loop<detail::select_sort_loop(sizeof...(Ts)),
 		//				                                     F>::template f<Ts...>;
 		//			};
 		template <template <typename...> class Comp = less_than, typename C = listify>

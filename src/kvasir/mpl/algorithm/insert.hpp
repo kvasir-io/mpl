@@ -15,8 +15,8 @@ namespace kvasir {
 		struct insert {
 			template <typename... Ts>
 			using f = typename rotate<
-			        Index, push_front<Input, rotate<uint_<(1 + sizeof...(Ts) - Index::value)>,
-			                                        C>>>::template f<Ts...>;
+			        Index, push_front<Input, rotate<uint_<(1 + sizeof...(Ts)-Index::value)>, C>>>::
+			        template f<Ts...>;
 		};
 
 		namespace eager {

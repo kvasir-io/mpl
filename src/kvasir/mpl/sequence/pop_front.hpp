@@ -14,7 +14,7 @@ namespace kvasir {
 		template <typename C>
 		struct pop_front {
 			template <typename T, typename... Ts>
-			using f = typename dcall<C,sizeof...(Ts)>::template f<Ts...>;
+			using f = typename dcall<C, sizeof...(Ts)>::template f<Ts...>;
 		};
 
 		namespace eager {

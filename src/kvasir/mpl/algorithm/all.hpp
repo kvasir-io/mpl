@@ -12,8 +12,8 @@
 
 #if defined(KVASIR_CONSTEXPR_14)
 #include <initializer_list>
-namespace kvasir{
-	namespace mpl{
+namespace kvasir {
+	namespace mpl {
 		namespace detail {
 			constexpr int and_(std::initializer_list<bool> l) {
 				bool out = true;
@@ -23,26 +23,27 @@ namespace kvasir{
 				return out;
 			}
 		}
-		template<typename F>
+		template <typename F>
 		struct all {
-			template<typename...Ts>
-			using f = bool_<detail::and_({ static_cast<bool>(dcall<F,sizeof...(Ts)>::template f<Ts>::value)... })>;
+			template <typename... Ts>
+			using f = bool_<detail::and_(
+			        {static_cast<bool>(dcall<F, sizeof...(Ts)>::template f<Ts>::value)...})>;
 		};
 		template <template <typename...> class F>
 		struct all<cfe<F, identity>> {
-			template<typename...Ts>
-			using f = bool_<detail::and_({ static_cast<bool>(F<Ts>::value)... })>;
+			template <typename... Ts>
+			using f = bool_<detail::and_({static_cast<bool>(F<Ts>::value)...})>;
 		};
 #else
 namespace kvasir {
 	namespace mpl {
 		namespace detail {
-			template<typename C = identity>
+			template <typename C = identity>
 			struct nothing_found {
 				template <typename... Ts>
 				using f = typename C::template f<bool_<(sizeof...(Ts) == 0)>>;
 			};
-			template<>
+			template <>
 			struct nothing_found<identity> {
 				template <typename... Ts>
 				using f = bool_<(sizeof...(Ts) == 0)>;

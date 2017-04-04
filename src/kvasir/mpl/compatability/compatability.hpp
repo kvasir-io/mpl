@@ -5,11 +5,10 @@
 #pragma once
 
 #if defined(__cplusplus)
-#  if __cplusplus >= 201402L
-#    define KVASIR_CONSTEXPR_14
-#  endif
+#if __cplusplus >= 201402L
+#define KVASIR_CONSTEXPR_14
 #endif
-
+#endif
 
 #if defined(_MSC_VER) && !defined(__GNUC__) && !defined(__clang__)
 #if _MSC_VER == 1910

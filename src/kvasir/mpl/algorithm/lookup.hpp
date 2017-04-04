@@ -330,9 +330,9 @@ namespace kvasir {
 			        sizeof...(Ts) > 16 ? 3 : 1)>::template f<Ts...>>;
 		};
 		template <typename T, unsigned I>
-		using lookup = typename T::template f<detail::index<(I >> 8)>::template f>::
-		        template f<detail::index<((I >> 4) & 0xF)>::template f>::template f<
-		                detail::index<(I & 0xF)>::template f>;
+		using lookup = typename T::template f<detail::index<(I >> 8)>::template f>::template f<
+		        detail::index<((I >> 4) &
+		                       0xF)>::template f>::template f<detail::index<(I & 0xF)>::template f>;
 
 		namespace eager {
 			template <typename L, unsigned N>

@@ -29,12 +29,10 @@ namespace kvasir {
 			                            const bool b6, const bool b7, const bool b8, const bool b9,
 			                            const bool b10, const bool b11, const bool b12,
 			                            const bool b13, const bool b14, const bool b15) {
-				return b0 ? 1 :
-				            (b1 || b2 || b3) ? 2 :
-				                               (b4 || b5 || b6 || b7 || b8 || b9 || b10 || b11 ||
-				                                b12 || b13 || b14 || b15) ?
-				                               3 :
-				                               size >= 16 ? 4 : 3;
+				return b0 ? 1 : (b1 || b2 || b3) ? 2 : (b4 || b5 || b6 || b7 || b8 || b9 || b10 ||
+				                                        b11 || b12 || b13 || b14 || b15) ?
+				                                   3 :
+				                                   size >= 16 ? 4 : 3;
 			}
 			constexpr unsigned
 			find_any(const unsigned size, const bool b0, const bool b1, const bool b2,
@@ -51,8 +49,7 @@ namespace kvasir {
 			         const bool b53, const bool b54, const bool b55, const bool b56, const bool b57,
 			         const bool b58, const bool b59, const bool b60, const bool b61, const bool b62,
 			         const bool b63) {
-				return b0 ? 1 :
-				            (b1 || b2 || b3) ?
+				return b0 ? 1 : (b1 || b2 || b3) ?
 				            2 :
 				            (b4 || b5 || b6 || b7 || b8 || b9 || b10 || b11 || b12 || b13 || b14 ||
 				             b15) ?
