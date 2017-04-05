@@ -8,8 +8,13 @@
 
 namespace kvasir {
 	namespace mpl {
-		template <typename T>
+		template <typename T, typename C = identity>
 		struct always {
+			template <typename...>
+			using f = typename C::template f<T>;
+		};
+		template <typename T>
+		struct always<T,identity> {
 			template <typename...>
 			using f = T;
 		};

@@ -8,6 +8,7 @@
 
 #include "../functional/call.hpp"
 #include "../sequence/pop_front.hpp"
+#include "../sequence/push_front.hpp"
 #include "../sequence/size.hpp"
 #include "../types/list.hpp"
 
@@ -183,7 +184,7 @@ namespace kvasir {
 		namespace eager {
 			/// fold right over a list, initialized with State
 			template <typename List, typename State, template <typename...> class Func>
-			using fold_right = call<unpack<push_front<State, fold_right<cfe<Func>>>>, List>;
+			using fold_right = call<unpack<mpl::push_front<State, fold_right<cfe<Func>>>>, List>;
 		}
 	}
 }
