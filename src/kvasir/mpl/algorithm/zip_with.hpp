@@ -37,6 +37,40 @@ namespace kvasir {
 				using f = typename zip_with_impl<
 				        F, C, list<typename append<Result>::template f<Ts0>...>, Ts...>::f;
 			};
+			template <typename F, typename C, template <typename...> class Seq, typename... Result,
+			          template <typename...> class Seq0, typename... Ts0,
+			          template <typename...> class Seq1, typename... Ts1, typename... Ts>
+			struct zip_with_impl<F, C, Seq<Result...>, Seq0<Ts0...>, Seq1<Ts1...>, Ts...> {
+				using f = typename zip_with_impl<
+				        F, C, list<typename append<Result>::template f<Ts0, Ts1>...>, Ts...>::f;
+			};
+			template <typename F, typename C, template <typename...> class Seq, typename... Result,
+			          template <typename...> class Seq0, typename... Ts0,
+			          template <typename...> class Seq1, typename... Ts1,
+			          template <typename...> class Seq2, typename... Ts2,
+			          template <typename...> class Seq3, typename... Ts3, typename... Ts>
+			struct zip_with_impl<F, C, Seq<Result...>, Seq0<Ts0...>, Seq1<Ts1...>, Seq2<Ts2...>,
+			                     Seq3<Ts3...>, Ts...> {
+				using f = typename zip_with_impl<
+				        F, C, list<typename append<Result>::template f<Ts0, Ts1, Ts2, Ts3>...>,
+				        Ts...>::f;
+			};
+			template <typename F, typename C, template <typename...> class Seq, typename... Result,
+			          template <typename...> class Seq0, typename... Ts0,
+			          template <typename...> class Seq1, typename... Ts1,
+			          template <typename...> class Seq2, typename... Ts2,
+			          template <typename...> class Seq3, typename... Ts3,
+			          template <typename...> class Seq4, typename... Ts4,
+			          template <typename...> class Seq5, typename... Ts5,
+			          template <typename...> class Seq6, typename... Ts6,
+			          template <typename...> class Seq7, typename... Ts7, typename... Ts>
+			struct zip_with_impl<F, C, Seq<Result...>, Seq0<Ts0...>, Seq1<Ts1...>, Seq2<Ts2...>,
+			                     Seq3<Ts3...>, Seq4<Ts4...>, Seq5<Ts5...>, Seq6<Ts6...>,
+			                     Seq7<Ts7...>, Ts...> {
+				using f = typename zip_with_impl<
+				        F, C, list<typename append<Result>::template f<Ts0, Ts1, Ts2, Ts3>...>,
+				        Ts...>::f;
+			};
 
 			template <typename F, typename C, typename... Ts>
 			struct zip_with_unpack {
