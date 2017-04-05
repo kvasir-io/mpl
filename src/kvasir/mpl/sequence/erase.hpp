@@ -3,10 +3,9 @@
 //     (See accompanying file LICENSE.md or copy at
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
-#include "rotate.hpp"
+#include "../algorithm/rotate.hpp"
 #include "../functional/call.hpp"
 #include "../sequence/pop_front.hpp"
-#include "../sequence/size.hpp"
 #include "../types/int.hpp"
 
 namespace kvasir {
