@@ -6,6 +6,7 @@
 
 #include <kvasir/mpl/functions/logical/logical_or.hpp>
 #include <kvasir/mpl/types/integral_constant.hpp>
+#include <type_traits>
 
 
 static_assert(std::is_same<kvasir::mpl::eager::logical_or<kvasir::mpl::integral_constant<int, 0>, kvasir::mpl::integral_constant<int, 1>>, kvasir::mpl::bool_<1>>::value, "");

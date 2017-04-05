@@ -6,6 +6,7 @@
 
 #include <kvasir/mpl/functions/comparison/greater_than_or_equal.hpp>
 #include <kvasir/mpl/types/integral_constant.hpp>
+#include <type_traits>
 
 
 static_assert(std::is_same<kvasir::mpl::eager::greater_than_or_equal<kvasir::mpl::integral_constant<int, 1>, kvasir::mpl::integral_constant<int, 1>>, kvasir::mpl::bool_<1>>::value, "");
