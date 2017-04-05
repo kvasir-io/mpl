@@ -5,10 +5,18 @@
 #pragma once
 
 #include "../../types/integral_constant.hpp"
+#include "../../functional/identity.hpp"
 
 namespace kvasir {
 	namespace mpl {
-		template <typename A>
-		using increment = integral_constant<decltype(A::value + 1), (A::value + 1)>;
+		template<typename C = identity>
+		struct increment {
+			template <typename A>
+			using f = typename C::template f<integral_constant<decltype(A::value +1), (A::value +1)>>;
+		};
+		namespace eager {
+			template <typename A>
+			using increment = integral_constant<decltype(A::value + 1), (A::value + 1)>;
+		}
 	}
 }

@@ -5,10 +5,18 @@
 #pragma once
 
 #include "../../types/integral_constant.hpp"
+#include "../../functional/identity.hpp"
 
 namespace kvasir {
 	namespace mpl {
-		template <typename A, typename B>
-		using bitwise_or = integral_constant<decltype(A::value | B::value), (A::value | B::value)>;
+		template<typename C = identity>
+		struct bitwise_or {
+			template <typename A, typename B>
+			using f = typename C::template f<integral_constant<decltype(A::value | B::value), (A::value | B::value)>>;
+		};
+		namespace eager {
+			template <typename A, typename B>
+			using bitwise_or = integral_constant<decltype(A::value | B::value), (A::value | B::value)>;
+		}
 	}
 }

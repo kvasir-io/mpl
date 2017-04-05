@@ -5,10 +5,18 @@
 #pragma once
 
 #include "../../types/integral_constant.hpp"
+#include "../../functional/identity.hpp"
 
 namespace kvasir {
 	namespace mpl {
-		template <typename A>
-		using bitwise_complement = integral_constant<decltype(~A::value), (~A::value)>;
+		template<typename C = identity>
+		struct bitwise_complement {
+			template <typename A>
+			using f = typename C::template f<integral_constant<decltype(~A::value), (~A::value)>>;
+		};
+		namespace eager {
+			template <typename A>
+			using bitwise_complement = integral_constant<decltype(~A::value), (~A::value)>;
+		}
 	}
 }
