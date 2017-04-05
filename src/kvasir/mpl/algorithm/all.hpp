@@ -35,19 +35,10 @@ namespace kvasir {
 			using f = bool_<detail::and_({static_cast<bool>(F<Ts>::value)...})>;
 		};
 #else
+#include "../utility/always.hpp"
 namespace kvasir {
 	namespace mpl {
 		namespace detail {
-			template <typename C = identity>
-			struct nothing_found {
-				template <typename... Ts>
-				using f = typename C::template f<bool_<(sizeof...(Ts) == 0)>>;
-			};
-			template <>
-			struct nothing_found<identity> {
-				template <typename... Ts>
-				using f = bool_<(sizeof...(Ts) == 0)>;
-			};
 			template <typename F>
 			struct not_ {
 				template <typename T>
@@ -61,7 +52,7 @@ namespace kvasir {
 		}
 
 		template <typename F, typename C = identity>
-		using all = find_if<detail::not_<F>, detail::nothing_found<>>;
+		using all = find_if<detail::not_<F>, always<bool_<false>>,always<bool_<true>>>;
 #endif
 		namespace eager {
 			/// resolves to std::true_type if all elements in the input list

@@ -62,36 +62,36 @@ namespace kvasir {
 				            4 :
 				            size >= 64 ? 5 : 4;
 			}
-			template <unsigned, typename C>
+			template <unsigned, typename FC, typename NFC>
 			struct find_if_impl;
-			template <typename C>
-			struct find_if_impl<0, C> { // not found
+			template <typename FC, typename NFC>
+			struct find_if_impl<0, FC, NFC> { // not found
 				template <template <typename...> class F, typename... Ts>
-				using f = typename C::template f<>;
+				using f = typename NFC::template f<>;
 			};
-			template <typename C>
-			struct find_if_impl<1, C> {
+			template <typename FC, typename NFC>
+			struct find_if_impl<1, FC, NFC> {
 				template <template <typename...> class F, typename... Ts>
-				using f = typename C::template f<Ts...>;
+				using f = typename FC::template f<Ts...>;
 			}; // found
 
-			template <typename C>
-			struct find_if_impl<2, C> {
+			template <typename FC, typename NFC>
+			struct find_if_impl<2, FC, NFC> {
 				template <template <typename...> class F, typename R, typename T, typename... Ts>
 				using f = typename find_if_impl<find_any(sizeof...(Ts), F<T>::value),
-				                                C>::template f<F, T, Ts...>;
+					FC, NFC>::template f<F, T, Ts...>;
 			};
-			template <typename C>
-			struct find_if_impl<3, C> {
+			template <typename FC, typename NFC>
+			struct find_if_impl<3, FC, NFC> {
 				template <template <typename...> class F, typename R0, typename R1, typename R2,
 				          typename R3, typename T0, typename T1, typename T2, typename T3,
 				          typename... Ts>
 				using f = typename find_if_impl<find_any(sizeof...(Ts), F<T0>::value, F<T1>::value,
 				                                         F<T2>::value, F<T3>::value),
-				                                C>::template f<F, T0, T1, T2, T3, Ts...>;
+					FC, NFC>::template f<F, T0, T1, T2, T3, Ts...>;
 			};
-			template <typename C>
-			struct find_if_impl<4, C> {
+			template <typename FC, typename NFC>
+			struct find_if_impl<4, FC, NFC> {
 				template <template <typename...> class F, typename R0, typename R1, typename R2,
 				          typename R3, typename R4, typename R5, typename R6, typename R7,
 				          typename R8, typename R9, typename R10, typename R11, typename R12,
@@ -105,11 +105,11 @@ namespace kvasir {
 				                 F<T7>::value, F<T8>::value, F<T9>::value, F<T10>::value,
 				                 F<T11>::value, F<T12>::value, F<T13>::value, F<T14>::value,
 				                 F<T15>::value),
-				        C>::template f<F, T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12,
+					FC, NFC>::template f<F, T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12,
 				                       T13, T14, T15, Ts...>;
 			};
-			template <typename C>
-			struct find_if_impl<5, C> {
+			template <typename FC, typename NFC>
+			struct find_if_impl<5, FC, NFC> {
 				template <template <typename...> class F, typename R0, typename R1, typename R2,
 				          typename R3, typename R4, typename R5, typename R6, typename R7,
 				          typename R8, typename R9, typename R10, typename R11, typename R12,
@@ -155,29 +155,29 @@ namespace kvasir {
 				                 F<T55>::value, F<T56>::value, F<T57>::value, F<T58>::value,
 				                 F<T59>::value, F<T60>::value, F<T61>::value, F<T62>::value,
 				                 F<T63>::value),
-				        C>::template f<F, T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12,
+					FC, NFC>::template f<F, T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12,
 				                       T13, T14, T15, T16, T17, T18, T19, T20, T21, T22, T23, T24,
 				                       T25, T26, T27, T28, T29, T30, T31, T32, T33, T34, T35, T36,
 				                       T37, T38, T39, T40, T41, T42, T43, T44, T45, T46, T47, T48,
 				                       T49, T50, T51, T52, T53, T54, T55, T56, T57, T58, T59, T60,
 				                       T61, T62, T63, Ts...>;
 			};
-			template <typename C>
-			struct find_if_impl<11, C> { // start 1
+			template <typename FC, typename NFC>
+			struct find_if_impl<11, FC, NFC> { // start 1
 				template <template <typename...> class F, typename T0, typename... Ts>
 				using f = typename find_if_impl<find_any(sizeof...(Ts), F<T0>::value),
-				                                C>::template f<F, T0, Ts...>;
+					FC, NFC>::template f<F, T0, Ts...>;
 			};
-			template <typename C>
-			struct find_if_impl<12, C> { // start 4
+			template <typename FC, typename NFC>
+			struct find_if_impl<12, FC, NFC> { // start 4
 				template <template <typename...> class F, typename T0, typename T1, typename T2,
 				          typename T3, typename... Ts>
 				using f = typename find_if_impl<find_any(sizeof...(Ts), F<T0>::value, F<T1>::value,
 				                                         F<T2>::value, F<T3>::value),
-				                                C>::template f<F, T0, T1, T2, T3, Ts...>;
+					FC, NFC>::template f<F, T0, T1, T2, T3, Ts...>;
 			};
-			template <typename C>
-			struct find_if_impl<13, C> { // start 16
+			template <typename FC, typename NFC>
+			struct find_if_impl<13, FC, NFC> { // start 16
 				template <template <typename...> class F, typename T0, typename T1, typename T2,
 				          typename T3, typename T4, typename T5, typename T6, typename T7,
 				          typename T8, typename T9, typename T10, typename T11, typename T12,
@@ -188,11 +188,11 @@ namespace kvasir {
 				                 F<T7>::value, F<T8>::value, F<T9>::value, F<T10>::value,
 				                 F<T11>::value, F<T12>::value, F<T13>::value, F<T14>::value,
 				                 F<T15>::value),
-				        C>::template f<F, T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12,
+					FC, NFC>::template f<F, T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12,
 				                       T13, T14, T15, Ts...>;
 			};
-			template <typename C>
-			struct find_if_impl<14, C> { // start 64
+			template <typename FC, typename NFC>
+			struct find_if_impl<14, FC, NFC> { // start 64
 				template <template <typename...> class F, typename T0, typename T1, typename T2,
 				          typename T3, typename T4, typename T5, typename T6, typename T7,
 				          typename T8, typename T9, typename T10, typename T11, typename T12,
@@ -225,7 +225,7 @@ namespace kvasir {
 				                 F<T55>::value, F<T56>::value, F<T57>::value, F<T58>::value,
 				                 F<T59>::value, F<T60>::value, F<T61>::value, F<T62>::value,
 				                 F<T63>::value),
-				        C>::template f<F, T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12,
+					FC, NFC>::template f<F, T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12,
 				                       T13, T14, T15, T16, T17, T18, T19, T20, T21, T22, T23, T24,
 				                       T25, T26, T27, T28, T29, T30, T31, T32, T33, T34, T35, T36,
 				                       T37, T38, T39, T40, T41, T42, T43, T44, T45, T46, T47, T48,
@@ -233,11 +233,11 @@ namespace kvasir {
 				                       T61, T62, T63, Ts...>;
 			};
 		}
-		template <typename F, typename C = listify>
+		template <typename F, typename FC = listify, typename NFC = listify>
 		struct find_if {
 			template <typename... Ts>
 			using f = typename detail::find_if_impl<detail::first_find(sizeof...(Ts)),
-			                                        C>::template f<F::template f, Ts...>;
+			                                        FC,NFC>::template f<F::template f, Ts...>;
 		};
 
 		namespace eager {
