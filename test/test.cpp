@@ -56,7 +56,6 @@
 #include "functions/logical/logical_or.hpp"
 
 #include "sequence/at.hpp"
-#include "sequence/create.hpp"
 #include "sequence/is_list.hpp"
 #include "sequence/join.hpp"
 #include "sequence/pop_front.hpp"

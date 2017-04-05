@@ -1577,6 +1577,18 @@ namespace kvasir {
 			static constexpr int select_join_size(const int i) {
 				return i <= 4 ? 0 : i <= 16 ? 1 : i <= 64 ? 2 : i <= 256 ? 3 : 4;
 			}
+
+
+			template <typename C>
+			struct recursive_join {
+				template <typename T>
+				using f = typename detail::recursive_join_impl<C::template f, T>::type;
+			};
+			template <template <typename...> class C>
+			struct recursive_join<cfe<C, identity>> {
+				template <typename T>
+				using f = typename detail::recursive_join_impl<C, T>::type;
+			};
 		}
 		template <typename C = listify>
 		struct join {
@@ -1589,16 +1601,6 @@ namespace kvasir {
 			template <typename... Ts>
 			using f = typename detail::join_select<detail::select_join_size(
 			        sizeof...(Ts))>::template f<C, Ts...>;
-		};
-		template <typename C>
-		struct recursive_join {
-			template <typename T>
-			using f = typename detail::recursive_join_impl<C::template f, T>::type;
-		};
-		template <template <typename...> class C>
-		struct recursive_join<cfe<C, identity>> {
-			template <typename T>
-			using f = typename detail::recursive_join_impl<C, T>::type;
 		};
 
 		namespace eager {

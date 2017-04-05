@@ -11,7 +11,6 @@
 #include "../types/nothing.hpp"
 #include "../utility/always.hpp"
 
-#include "../sequence/create.hpp"
 #include "../sequence/pop_front.hpp"
 #include "../sequence/push_front.hpp"
 #include "../sequence/size.hpp"

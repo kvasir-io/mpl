@@ -323,20 +323,30 @@ namespace kvasir {
 				                        T250, T251, T252, T253, T254, T255>>,
 				        typename indexed_builder<(sizeof...(Ts) > 16 ? 3 : 1)>::template f<Ts...>>;
 			};
+
+			template <typename T, unsigned I>
+			using lookup3 = typename T::template f<detail::index<(I >> 8)>::template f>::template f<
+				detail::index<((I >> 4) &
+					0xF)>::template f>::template f<detail::index<(I & 0xF)>::template f>;
 		}
+		template<typename C = identity>
 		struct build_indexed {
 			template <typename... Ts>
-			using f = detail::indexed<typename detail::indexed_builder<(
-			        sizeof...(Ts) > 16 ? 3 : 1)>::template f<Ts...>>;
+			using f = typename C::template f<detail::indexed<typename detail::indexed_builder<(
+			        sizeof...(Ts) > 16 ? 3 : 1)>::template f<Ts...>>>;
 		};
-		template <typename T, unsigned I>
-		using lookup = typename T::template f<detail::index<(I >> 8)>::template f>::template f<
-		        detail::index<((I >> 4) &
-		                       0xF)>::template f>::template f<detail::index<(I & 0xF)>::template f>;
+
+		template<>
+		struct build_indexed<identity> {
+			template <typename... Ts>
+			using f = detail::indexed<typename detail::indexed_builder<(
+				sizeof...(Ts) > 16 ? 3 : 1)>::template f<Ts...>>;
+		};
+
 
 		namespace eager {
 			template <typename L, unsigned N>
-			using lookup = lookup<call<unpack<build_indexed>, L>, N>;
+			using lookup = mpl::detail::lookup3<call<unpack<build_indexed<>>, L>, N>;
 		}
 	}
 }

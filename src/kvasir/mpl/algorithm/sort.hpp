@@ -7,7 +7,6 @@
 #include "fold_left.hpp"
 #include "stable_sort.hpp"
 #include "../functions/comparison/less_than.hpp"
-#include "../sequence/create.hpp"
 #include "../sequence/join.hpp"
 #include "../sequence/push_front.hpp"
 #include "../types/bool.hpp"

@@ -81,7 +81,7 @@ namespace kvasir {
 		template <typename C = listify>
 		struct reverse {
 			template <typename... Ts>
-			using f = typename recursive_join<C>::template f<
+			using f = typename detail::recursive_join<C>::template f<
 			        typename detail::reverse_impl<detail::select_reverse(
 			                sizeof...(Ts))>::template f<detail::rlist_tail_of8, Ts...>>;
 		};

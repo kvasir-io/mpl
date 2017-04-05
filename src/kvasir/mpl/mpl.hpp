@@ -61,7 +61,6 @@
 #include "functions/logical/logical_or.hpp"
 
 #include "sequence/at.hpp"
-#include "sequence/create.hpp"
 #include "sequence/drop.hpp"
 #include "sequence/erase.hpp"
 #include "sequence/front.hpp"

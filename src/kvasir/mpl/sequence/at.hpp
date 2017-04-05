@@ -11,8 +11,8 @@
 
 namespace kvasir {
 	namespace mpl {
-		template <typename N>
-		using at = drop<N, front>;
+		template <typename N, typename C = identity>
+		using at = drop<N, front<C>>;
 
 		namespace eager {
 			/// get the n-th element of the list

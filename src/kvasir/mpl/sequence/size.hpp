@@ -24,12 +24,15 @@ namespace kvasir {
 
 		/// offset provides the difference between the origional length of a list
 		///(provided as the input parameter) and the pack supplied to f
-		template <typename T>
+		template <typename T, typename C = identity>
 		struct offset {
 			template <typename... Ts>
-			struct f {
-				constexpr static auto value = (T::value - sizeof...(Ts));
-			};
+			using f = typename C::template f<uint_<(T::value - sizeof...(Ts))>>;
+		}; 
+		template <typename T>
+		struct offset<T,identity> {
+			template <typename... Ts>
+			using f = uint_<(T::value - sizeof...(Ts))>;
 		};
 		namespace eager {
 			/// get the size of a list, the returned type is convertible to some unspecified int
