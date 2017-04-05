@@ -233,6 +233,10 @@ namespace kvasir {
 				                       T61, T62, T63, Ts...>;
 			};
 		}
+		/// \effects calls `FC` with all elements in the input pack except those which occure before the first element for which the provided predicate `F` holds.
+		/// if `F` doe not hold for any elements `NFC` is called instead of `FC`
+		/// \requires Type `F` shall be a `ContinuationPredicate` and `FC` and `NFC` shall be any `Continuation`.
+		/// \example call<find_if<same_as<int>,cfe<std::tuple>>,void,int,char> resolves to std::tuple<int,char>.
 		template <typename F, typename FC = listify, typename NFC = listify>
 		struct find_if {
 			template <typename... Ts>

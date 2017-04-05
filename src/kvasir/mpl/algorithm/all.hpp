@@ -51,11 +51,14 @@ namespace kvasir {
 			};
 		}
 
+		/// \effects resolves to true_ if all elements in the input pack fulfill the provided predicate, otherwise false_.
+		/// \requires Type `F` shall be a `ContinuationPredicate` and C shall be any `Continuation`.
+		/// \example call<all<same_as<void>>,void,void,void> resolves to true_.
 		template <typename F, typename C = identity>
-		using all = find_if<detail::not_<F>, always<bool_<false>>,always<bool_<true>>>;
+		using all = find_if<detail::not_<F>, always<bool_<false>,C>,always<bool_<true>,C>>;
 #endif
 		namespace eager {
-			/// resolves to std::true_type if all elements in the input list
+			/// resolves to true_ if all elements in the input list
 			/// fulfill the provided predicate
 			template <typename List, template <typename...> class Cond = identity>
 			using all = call<unpack<mpl::all<cfe<Cond>>>, List>;

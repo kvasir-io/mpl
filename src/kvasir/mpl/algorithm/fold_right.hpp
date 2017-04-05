@@ -166,6 +166,7 @@ namespace kvasir {
 				        T0>;
 			};
 		}
+		//fold left consideres the first element in the input pack the state, use push_front to add state if needed
 		template <typename F, typename C = identity>
 		struct fold_right {
 			template <typename... Ts>
@@ -182,7 +183,7 @@ namespace kvasir {
 		namespace eager {
 			/// fold right over a list, initialized with State
 			template <typename List, typename State, template <typename...> class Func>
-			using fold_right = call<unpack<fold_right<cfe<Func>>>, List, State>;
+			using fold_right = call<unpack<push_front<State, fold_right<cfe<Func>>>>, List>;
 		}
 	}
 }

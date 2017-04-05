@@ -20,6 +20,10 @@ namespace kvasir {
 				        Ts))>::template f<list, typename flatten_element_impl<L, Ts>::type...>;
 			};
 		}
+
+		/// \effects 
+		/// \requires 
+		/// \example call<flatten<>,list<void>,list<list<int>,char>,bool> resolves to list<void,int,char,bool>.
 		template <typename SequenceType = cfe<list>, typename C = listify>
 		struct flatten;
 

@@ -78,7 +78,7 @@ namespace kvasir {
 				        Ts...>;
 			};
 		}
-		template <typename C>
+		template <typename C = listify>
 		struct reverse {
 			template <typename... Ts>
 			using f = typename recursive_join<C>::template f<
@@ -88,7 +88,7 @@ namespace kvasir {
 
 		namespace eager {
 			template <typename List>
-			using reverse = call<unpack<mpl::reverse<listify>>, List>;
+			using reverse = call<unpack<mpl::reverse<>>, List>;
 		}
 	}
 }

@@ -9,15 +9,17 @@
 
 namespace kvasir {
 	namespace mpl {
-		/// continuation version of filter, taking a continuation and predicate
-		template <typename Cond, typename C = listify>
-		using filter = transform<list_wrap_if<Cond>, join<C>>;
+		/// \effects calls `C` with all elements in the input pack for which the provided predicate `F` holds.
+		/// \requires Type `F` shall be a `ContinuationPredicate` and C shall be any `Continuation`.
+		/// \example call<filter<same_as<int>,cfe<std::tuple>>,void,int,char> resolves to std::tuple<int>.
+		template <typename F, typename C = listify>
+		using filter = transform<list_wrap_if<F>, join<C>>;
 
 		namespace eager {
 			/// filter elements from a list
 			/// takes a lambda that should return a type convertible to bool
-			template <typename List, template <typename...> class Cond = identity>
-			using filter = call<unpack<mpl::filter<cfe<Cond>>>, List>;
+			template <typename List, template <typename...> class F = identity>
+			using filter = call<unpack<mpl::filter<cfe<F>>>, List>;
 		}
 	}
 }
