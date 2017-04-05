@@ -5,6 +5,7 @@
 #pragma once
 
 #include "../types/bool.hpp"
+#include "../functional/identity.hpp"
 
 namespace kvasir {
 	namespace mpl {
