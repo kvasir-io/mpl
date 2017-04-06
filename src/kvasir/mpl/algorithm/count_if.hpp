@@ -28,7 +28,7 @@ namespace kvasir {
 		/// \effects resolves to uint_<X> where X is the number of elements in the input pack which fulfill the provided predicate.
 		/// \requires Type `F` shall be a `ContinuationPredicate` and C shall be any `Continuation`.
 		/// \example call<count_if<same_as<void>>,void,int,char> resolves to uint_<1>.
-		template <typename F, typename C = identity>
+		template <typename F = identity, typename C = identity>
 		using count_if = transform<detail::list_wrap_void_if<F>, join<size<C>>>;
 
 		namespace eager {

@@ -22,7 +22,7 @@ namespace kvasir {
 
 		// output is equivalent to the input parameter pack with every element
 		// replaced with Input where the predicate F holds.
-		template <typename F, typename Input, typename C = listify>
+		template <typename Input, typename F = identity, typename C = listify>
 		using replace_if = transform<detail::replace_if_pred<F, Input>, C>;
 
 		// composition matching for common case

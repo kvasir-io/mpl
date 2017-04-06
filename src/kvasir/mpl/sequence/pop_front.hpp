@@ -11,7 +11,7 @@
 
 namespace kvasir {
 	namespace mpl {
-		template <typename C>
+		template <typename C = listify>
 		struct pop_front {
 			template <typename T, typename... Ts>
 			using f = typename dcall<C, sizeof...(Ts)>::template f<Ts...>;

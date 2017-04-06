@@ -12,7 +12,7 @@ namespace kvasir {
 		/// \effects calls `C` with all elements in the input pack for which the provided predicate `F` holds.
 		/// \requires Type `F` shall be a `ContinuationPredicate` and C shall be any `Continuation`.
 		/// \example call<filter<same_as<int>,cfe<std::tuple>>,void,int,char> resolves to std::tuple<int>.
-		template <typename F, typename C = listify>
+		template <typename F = identity, typename C = listify>
 		using filter = transform<list_wrap_if<F>, join<C>>;
 
 		namespace eager {

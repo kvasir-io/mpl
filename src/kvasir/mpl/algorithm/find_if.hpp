@@ -237,7 +237,7 @@ namespace kvasir {
 		/// if `F` doe not hold for any elements `NFC` is called instead of `FC`
 		/// \requires Type `F` shall be a `ContinuationPredicate` and `FC` and `NFC` shall be any `Continuation`.
 		/// \example call<find_if<same_as<int>,cfe<std::tuple>>,void,int,char> resolves to std::tuple<int,char>.
-		template <typename F, typename FC = listify, typename NFC = listify>
+		template <typename F = identity, typename FC = listify, typename NFC = FC>
 		struct find_if {
 			template <typename... Ts>
 			using f = typename detail::find_if_impl<detail::first_find(sizeof...(Ts)),

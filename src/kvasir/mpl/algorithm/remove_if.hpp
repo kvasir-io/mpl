@@ -48,7 +48,7 @@ namespace kvasir {
 		};
 
 		/// continuation version of remove_if, taking a continuation and predicate
-		template <typename F, typename C = listify>
+		template <typename F = identity, typename C = listify>
 		using remove_if = transform<list_wrap_if_not<F>, join<C>>;
 
 		namespace eager {

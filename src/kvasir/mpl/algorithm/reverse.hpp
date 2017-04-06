@@ -88,7 +88,7 @@ namespace kvasir {
 
 		namespace eager {
 			template <typename List>
-			using reverse = call<unpack<mpl::reverse<>>, List>;
+			using reverse = call<unpack<mpl::reverse<typename sequencify<List>::type>>, List>;
 		}
 	}
 }

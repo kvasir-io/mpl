@@ -23,7 +23,7 @@ namespace kvasir {
 				return out;
 			}
 		}
-		template <typename F>
+		template <typename F = identity>
 		struct all {
 			template <typename... Ts>
 			using f = bool_<detail::and_(
