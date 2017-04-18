@@ -67,13 +67,13 @@ namespace kvasir {
 			template <typename FC, typename NFC>
 			struct find_if_impl<0, FC, NFC> { // not found
 				template <template <typename...> class F, typename... Ts>
-				using f = typename NFC::template f<>;
+				using f = typename dcall<NFC, sizeof...(Ts)>::template f<>;
 			};
 			template <typename FC, typename NFC>
-			struct find_if_impl<1, FC, NFC> {
+			struct find_if_impl<1, FC, NFC> { // found
 				template <template <typename...> class F, typename... Ts>
-				using f = typename FC::template f<Ts...>;
-			}; // found
+				using f = typename dcall<FC, sizeof...(Ts)>::template f<Ts...>;
+			};
 
 			template <typename FC, typename NFC>
 			struct find_if_impl<2, FC, NFC> {
