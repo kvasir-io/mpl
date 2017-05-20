@@ -11,22 +11,22 @@ namespace kvasir {
 	namespace mpl {
 		namespace detail {
 			template <typename C, typename L, typename... Ts>
-			struct call_impl;
+			struct unpack_impl;
 			template <typename C, template <typename...> class Seq, typename... Ls, typename... Ts>
-			struct call_impl<C, Seq<Ls...>, Ts...> {
+			struct unpack_impl<C, Seq<Ls...>, Ts...> {
 				using type = typename dcall<C, sizeof...(Ls)>::template f<Ts..., Ls...>;
 			};
 			// forking version of call expects a "combining" continuation as its first arguement
 			// and a variadic pack of continuations which are executed in paralell
-			template <typename R, typename... C, template <typename...> class Seq, typename... Ls>
-			struct call_impl<fork<R, C...>, Seq<Ls...>> {
-				using type = typename R::template f<typename C::template f<Ls...>...>;
+			template <typename C, typename... Fs, template <typename...> class Seq, typename... Ls>
+			struct unpack_impl<fork<list<Fs...>,C>, Seq<Ls...>> {
+				using type = typename C::template f<typename Fs::template f<Ls...>...>;
 			};
 		}
 		template <typename C>
 		struct unpack {
 			template <typename... Ls>
-			using f = typename detail::call_impl<C, Ls...>::type;
+			using f = typename detail::unpack_impl<C, Ls...>::type;
 		};
 
 		// call a continuation (left parameter) with a variadic pack
