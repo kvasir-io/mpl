@@ -11,8 +11,8 @@
 
 namespace kvasir {
 	namespace mpl {
-		template <typename F = identity, typename R = listify>
-		using partition = fork<R, remove_if<F>, filter<F>>;
+		template <typename F = identity, typename C = listify>
+		using partition = fork<list<remove_if<F>, filter<F>>, C>;
 		namespace eager {
 			template <typename List, template <typename...> class Cond = identity>
 			using partition = call<unpack<mpl::partition<cfe<Cond>>>, List>;
