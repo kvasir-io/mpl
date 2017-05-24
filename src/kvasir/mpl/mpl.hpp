@@ -79,6 +79,7 @@
 #include "types/integral_constant.hpp"
 #include "types/list.hpp"
 #include "types/nothing.hpp"
+#include "types/traits.hpp"
 
 #include "utility/always.hpp"
 #include "utility/conditional.hpp"
