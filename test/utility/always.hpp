@@ -13,9 +13,9 @@ namespace {
 
 	static_assert(std::is_same<mpl::always<int>::template f<void>, int>::value, "");
 
-	template<typename T>
+	template <typename T>
 	struct foo {
-		static_assert(mpl::always_false<T>::value,
+		static_assert(mpl::eager::always_false<T>::value,
 		              "always_false should not have been instantiated");
 	};
 }

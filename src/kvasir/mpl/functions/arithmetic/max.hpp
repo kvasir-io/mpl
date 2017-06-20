@@ -5,28 +5,20 @@
 #pragma once
 
 #include "../../types/integral_constant.hpp"
+#include "../../utility/conditional.hpp"
+#include "../../functional/identity.hpp"
 
 namespace kvasir {
 	namespace mpl {
-		namespace detail {
 
-			template <bool>
-			struct max_impl;
-
-			template <>
-			struct max_impl<true> {
-				template <typename A, typename B>
-				using f = A;
-			};
-
-			template <>
-			struct max_impl<false> {
-				template <typename A, typename B>
-				using f = B;
-			};
+		template<typename C = identity>
+		struct max {
+			template <typename A, typename B>
+			using f = typename C::template f<typename conditional<(A::value > B::value)>::template f<A, B>>;
+		};
+		namespace eager {
+			template <typename A, typename B>
+			using max = typename conditional<(A::value > B::value)>::template f<A, B>;
 		}
-
-		template <typename A, typename B>
-		using max = typename detail::max_impl<(A::value > B::value)>::template f<A, B>;
 	}
 }

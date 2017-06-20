@@ -6,24 +6,20 @@
 
 #include "find_if.hpp"
 #include "../functional/identity.hpp"
+#include "../types/bool.hpp"
+#include "../utility/always.hpp"
 
 namespace kvasir {
 	namespace mpl {
-		namespace c {
-			namespace detail {
-				struct one_or_more {
-					template <typename... Ts>
-					struct f {
-						constexpr static bool value = (sizeof...(Ts) > 0);
-					};
-				};
-			}
-			template <typename F>
-			using any = find_if<F, detail::one_or_more>;
+		/// \effects resolves to true_ if any element in the input pack fulfills the provided predicate, otherwise false_.
+		/// \requires Type `F` shall be a `ContinuationPredicate` and C shall be any `Continuation`.
+		/// \example call<any<same_as<void>>,void,int,char> resolves to true_.
+		template <typename F = identity>
+		using any = find_if<F, always<bool_<true>>,always<bool_<false>>>;
+		namespace eager {
+			/// resolves to true_ if any element in the input pack fulfills the provided predicate, otherwise false_
+			template <typename List, template <typename...> class Cond = identity>
+			using any = call<unpack<mpl::any<cfe<Cond>>>, List>;
 		}
-		/// filter elements from a list
-		/// takes a lambda that should return a type convertible to bool
-		template <typename List, template <typename...> class Cond = identity>
-		using any = c::call<c::any<c::cfe<Cond>>, List>;
 	}
 }

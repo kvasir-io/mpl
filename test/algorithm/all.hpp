@@ -16,6 +16,6 @@ namespace {
 	using comp = std::is_same<int, T>;
 
 	using namespace kvasir;
-	static_assert(mpl::all<mpl::list<int, int, int, int>, comp>::value, "");
-	static_assert(!mpl::all<mpl::list<int, int, bool, int>, comp>::value, "");
+	static_assert(mpl::eager::all<mpl::list<int, int, int, int>, comp>::value, "");
+	static_assert(!mpl::eager::all<mpl::list<int, int, bool, int>, comp>::value, "");
 }

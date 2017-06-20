@@ -9,35 +9,37 @@
 
 namespace kvasir {
 	namespace mpl {
-		namespace c {
-			template<typename C, unsigned size>
-			using dcall = typename conditional<(size<100000)>::template f<C, void>;
-
-
-			template<bool>
-			struct dcallf;
-			template<>
-			struct dcallf<true> {
-				template<template<typename...> class F1, typename...Ts>
-				using f1 = F1<Ts...>;
-				template<template<typename...> class F1, template<typename...> class F2, typename...Ts>
-				using f2 = F1<F2<Ts...>>;
+		namespace detail {
+			template <bool b>
+			struct dependant_impl;
+			template <>
+			struct dependant_impl<true> {
+				template <typename C>
+				using f = C;
 			};
-			template<>
-			struct dcallf<false> {
-				template<template<typename...> class F1, typename...Ts>
-				using f1 = F1<>;
-				template<template<typename...> class F1, template<typename...> class F2, typename...Ts>
-				using f2 = F1<F2<>>;
-			};
-
-
-			
 		}
+
+		template <typename C, unsigned size>
+		using dcall =
+		        typename detail::dependant_impl<static_cast<bool>(size < 100000)>::template f<C>;
+
+		template <bool>
+		struct dcallf;
+		template <>
+		struct dcallf<true> {
+			template <template <typename...> class F1, typename... Ts>
+			using f1 = F1<Ts...>;
+			template <template <typename...> class F1, template <typename...> class F2,
+			          typename... Ts>
+			using f2 = F1<F2<Ts...>>;
+		};
+		template <>
+		struct dcallf<false> {
+			template <template <typename...> class F1, typename... Ts>
+			using f1 = F1<>;
+			template <template <typename...> class F1, template <typename...> class F2,
+			          typename... Ts>
+			using f2 = F1<F2<>>;
+		};
 	}
 }
-
-#define KVASIR_D_CALL(T, Pack) typename ::kvasir::mpl::c::dcall<T,sizeof...(Pack)>::template f
-
-
-

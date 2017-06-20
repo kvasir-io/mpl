@@ -8,5 +8,5 @@
 #include <kvasir/mpl/utility/is_instance.hpp>
 
 using namespace kvasir::mpl;
-static_assert(is_instance<list, list<void>>::value, "");
-static_assert(!is_instance<list, void>::value, "");
+static_assert(eager::is_instance<list, list<void>>::value, "");
+static_assert(!eager::is_instance<list, void>::value, "");

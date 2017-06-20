@@ -4,11 +4,19 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
-#include "../../types/integral_constant.hpp"
+#include "../../types/bool.hpp"
+#include "../../functional/identity.hpp"
 
 namespace kvasir {
 	namespace mpl {
-		template <typename A, typename B>
-		using not_equal = integral_constant<decltype(A::value != B::value), (A::value != B::value)>;
+		template<typename C = identity>
+		struct not_equal {
+			template <typename A, typename B>
+			using f = typename C::template f<bool_<(A::value != B::value)>>;
+		};
+		namespace eager{
+			template <typename A, typename B>
+			using not_equal = bool_<(A::value != B::value)>;
+		}
 	}
 }

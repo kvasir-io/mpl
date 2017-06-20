@@ -8,40 +8,45 @@
 
 namespace kvasir {
 	namespace mpl {
-		namespace c {
-			namespace detail {
-				template <template <class...> class L, class T>
-				struct flatten_element_impl {
-					using type = L<T>;
-				};
+		namespace detail {
+			template <template <class...> class L, class T>
+			struct flatten_element_impl {
+				using type = L<T>;
+			};
 
-				template <template <class...> class L, class... Ts>
-				struct flatten_element_impl<L, L<Ts...>> {
-					using type = typename c::detail::join_select<c::detail::select_join_size(sizeof...(
-						Ts))>::template f<list, typename flatten_element_impl<L, Ts>::type...>;
+			template <template <class...> class L, class... Ts>
+			struct flatten_element_impl<L, L<Ts...>> {
+				using type = typename detail::join_select<detail::select_join_size(sizeof...(
+				        Ts))>::template f<list, typename flatten_element_impl<L, Ts>::type...>;
+			};
+		}
+
+		/// \effects 
+		/// \requires 
+		/// \example call<flatten<>,list<void>,list<list<int>,char>,bool> resolves to list<void,int,char,bool>.
+		template <typename SequenceType = cfe<list>, typename C = listify>
+		struct flatten;
+
+		template <template <typename...> class S, typename C>
+		struct flatten<cfe<S, identity>, C> {
+			template <typename... Ts>
+			using f = typename detail::join_select<detail::select_join_size(sizeof...(
+			        Ts))>::template f<C::template f,
+			                          typename detail::flatten_element_impl<S, Ts>::type...>;
+		};
+
+		namespace eager {
+			namespace detail {
+				template <typename T>
+				struct flatten_impl;
+				template <template <typename...> class S, typename... Ts>
+				struct flatten_impl<S<Ts...>> {
+					using type = typename mpl::flatten<cfe<S>>::template f<Ts...>;
 				};
 			}
-			template<typename SequenceType = cfe<list>, typename C = listify>
-			struct flatten;
-			
-			template<template<typename...> class S, typename C>
-			struct flatten<cfe<S,identity>, C> {
-				template<typename...Ts>
-				using f = typename detail::join_select<detail::select_join_size(sizeof...(Ts))>::template f<C::template f,
-					typename detail::flatten_element_impl<S, Ts>::type...>;
-			};
-		}
 
-		namespace detail {
-			template<typename T>
-			struct flatten_impl;
-			template<template<typename...> class S, typename...Ts>
-			struct flatten_impl<S<Ts...>> {
-				using type = typename c::flatten<c::cfe<S>>::template f<Ts...>;
-			};
+			template <typename Sequence>
+			using flatten = typename detail::flatten_impl<Sequence>::type;
 		}
-
-		template <typename Sequence>
-		using flatten = typename detail::flatten_impl<Sequence>::type;
 	}
 }

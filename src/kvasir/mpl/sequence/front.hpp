@@ -5,14 +5,19 @@
 #pragma once
 
 #include "../types/list.hpp"
+#include "../functional/identity.hpp"
 
 namespace kvasir {
 	namespace mpl {
-		namespace c {
-			struct front {
-				template <typename T, typename... Ts>
-				using f = T;
-			};
-		}
+		template<typename C = identity>
+		struct front {
+			template <typename T, typename... Ts>
+			using f = typename C::template f<T>;
+		};
+		template<>
+		struct front<identity> {
+			template <typename T, typename... Ts>
+			using f = T;
+		};
 	}
 }

@@ -10,39 +10,58 @@
 #include "../functional/identity.hpp"
 #include "../types/bool.hpp"
 
+#if defined(KVASIR_CONSTEXPR_14)
+#include <initializer_list>
 namespace kvasir {
 	namespace mpl {
-		namespace c {
-			namespace detail {
-				struct nothing_found {
-					template <typename... Ts>
-					struct f {
-						constexpr static bool value = (sizeof...(Ts) == 0);
-					};
-				};
-				template <typename F>
-				struct not_ {
-					template <typename T>
-					struct f {
-						constexpr static bool value = (!(F::template f<T>::value));
-					};
-				};
-				template <template <typename...> class F>
-				struct not_<cfe<F,identity>> {
-					template <typename T>
-					struct f {
-						constexpr static bool value = (!F<T>::value);
-					};
-				};
+		namespace detail {
+			constexpr int and_(std::initializer_list<bool> l) {
+				bool out = true;
+				for (auto i : l) {
+					out = out && i;
+				}
+				return out;
 			}
-
+		}
+		template <typename F = identity>
+		struct all {
+			template <typename... Ts>
+			using f = bool_<detail::and_(
+			        {static_cast<bool>(dcall<F, sizeof...(Ts)>::template f<Ts>::value)...})>;
+		};
+		template <template <typename...> class F>
+		struct all<cfe<F, identity>> {
+			template <typename... Ts>
+			using f = bool_<detail::and_({static_cast<bool>(F<Ts>::value)...})>;
+		};
+#else
+#include "../utility/always.hpp"
+namespace kvasir {
+	namespace mpl {
+		namespace detail {
 			template <typename F>
-			using all = find_if<detail::not_<F>, detail::nothing_found>;
+			struct not_ {
+				template <typename T>
+				using f = bool_<(!(F::template f<T>::value))>;
+			};
+			template <template <typename...> class F>
+			struct not_<cfe<F, identity>> {
+				template <typename T>
+				using f = bool_<(!F<T>::value)>;
+			};
 		}
 
-		/// resolves to std::true_type if all elements in the input list
-		/// fulfill the provided predicate
-		template <typename List, template <typename...> class Cond = identity>
-		using all = c::call<c::all<c::cfe<Cond>>, List>;
+		/// \effects resolves to true_ if all elements in the input pack fulfill the provided predicate, otherwise false_.
+		/// \requires Type `F` shall be a `ContinuationPredicate` and C shall be any `Continuation`.
+		/// \example call<all<same_as<void>>,void,void,void> resolves to true_.
+		template <typename F, typename C = identity>
+		using all = find_if<detail::not_<F>, always<bool_<false>,C>,always<bool_<true>,C>>;
+#endif
+		namespace eager {
+			/// resolves to true_ if all elements in the input list
+			/// fulfill the provided predicate
+			template <typename List, template <typename...> class Cond = identity>
+			using all = call<unpack<mpl::all<cfe<Cond>>>, List>;
+		}
 	}
 }
