@@ -34,7 +34,7 @@ namespace kvasir {
 
 		namespace eager {
 			template <typename List, typename Input, template <typename...> class Cond = identity>
-			using replace_if = call<unpack<mpl::replace_if<cfe<Cond>, Input>>, List>;
+			using replace_if = call<unpack<mpl::replace_if<Input, cfe<Cond>>>, List>;
 		}
 	}
 }
