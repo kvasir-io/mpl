@@ -4,6 +4,11 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
+
+#ifndef __has_feature
+#define __has_feature(x) 0
+#endif
+
 #if defined(__cplusplus)
 #if __cplusplus >= 201402L
 #define KVASIR_CONSTEXPR_14
