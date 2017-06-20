@@ -6,6 +6,8 @@
 #include <type_traits>
 #include "bool.hpp"
 #include "../functional/identity.hpp"
+#include "../compatability/compatability.hpp"
+
 namespace kvasir {
 	namespace mpl {
 		template <typename C = identity>
@@ -118,11 +120,13 @@ namespace kvasir {
 			template <typename T>
 			using f = typename C::template f<bool_<std::is_trivial<T>::value>>;
 		};
+#if defined(KVASIR_CLANG) || defined(KVASIR_GCC5)|| defined(KVASIR_GCC6)|| defined(KVASIR_GCC7)
 		template <typename C = identity>
 		struct is_trivially_copyable {
 			template <typename T>
 			using f = typename C::template f<bool_<std::is_trivially_copyable<T>::value>>;
 		};
+#endif
 		template <typename C = identity>
 		struct is_standard_layout {
 			template <typename T>
@@ -168,11 +172,13 @@ namespace kvasir {
 			template <typename T>
 			using f = typename C::template f<bool_<std::is_constructible<T>::value>>;
 		};
+#if defined(KVASIR_CLANG) || defined(KVASIR_GCC5)|| defined(KVASIR_GCC6)|| defined(KVASIR_GCC7)
 		template <typename C = identity>
 		struct is_trivially_constructible {
 			template <typename T>
 			using f = typename C::template f<bool_<std::is_trivially_constructible<T>::value>>;
 		};
+#endif
 		template <typename C = identity>
 		struct is_nothrow_constructible {
 			template <typename T>
@@ -183,12 +189,14 @@ namespace kvasir {
 			template <typename T>
 			using f = typename C::template f<bool_<std::is_default_constructible<T>::value>>;
 		};
+#if defined(KVASIR_CLANG) || defined(KVASIR_GCC5)|| defined(KVASIR_GCC6)|| defined(KVASIR_GCC7)
 		template <typename C = identity>
 		struct is_trivially_default_constructible {
 			template <typename T>
 			using f = typename C::template f<
 			        bool_<std::is_trivially_default_constructible<T>::value>>;
 		};
+#endif
 		template <typename C = identity>
 		struct is_nothrow_default_constructible {
 			template <typename T>
@@ -200,11 +208,13 @@ namespace kvasir {
 			template <typename T>
 			using f = typename C::template f<bool_<std::is_copy_constructible<T>::value>>;
 		};
+#if defined(KVASIR_CLANG) || defined(KVASIR_GCC5)|| defined(KVASIR_GCC6)|| defined(KVASIR_GCC7)
 		template <typename C = identity>
 		struct is_trivially_copy_constructible {
 			template <typename T>
 			using f = typename C::template f<bool_<std::is_trivially_copy_constructible<T>::value>>;
 		};
+#endif
 		template <typename C = identity>
 		struct is_nothrow_copy_constructible {
 			template <typename T>
@@ -215,11 +225,13 @@ namespace kvasir {
 			template <typename T>
 			using f = typename C::template f<bool_<std::is_move_constructible<T>::value>>;
 		};
+#if defined(KVASIR_CLANG) || defined(KVASIR_GCC5)|| defined(KVASIR_GCC6)|| defined(KVASIR_GCC7)
 		template <typename C = identity>
 		struct is_trivially_move_constructible {
 			template <typename T>
 			using f = typename C::template f<bool_<std::is_trivially_move_constructible<T>::value>>;
 		};
+#endif
 		template <typename C = identity>
 		struct is_nothrow_move_constructible {
 			template <typename T>
@@ -230,11 +242,13 @@ namespace kvasir {
 			template <typename T, typename U>
 			using f = typename C::template f<bool_<std::is_assignable<T, U>::value>>;
 		};
+#if defined(KVASIR_CLANG) || defined(KVASIR_GCC5)|| defined(KVASIR_GCC6)|| defined(KVASIR_GCC7)
 		template <typename C = identity>
 		struct is_trivially_assignable {
 			template <typename T, typename U>
 			using f = typename C::template f<bool_<std::is_trivially_assignable<T, U>::value>>;
 		};
+#endif
 		template <typename C = identity>
 		struct is_nothrow_assignable {
 			template <typename T, typename U>
@@ -245,11 +259,13 @@ namespace kvasir {
 			template <typename T>
 			using f = typename C::template f<bool_<std::is_copy_assignable<T>::value>>;
 		};
+#if defined(KVASIR_CLANG) || defined(KVASIR_GCC5)|| defined(KVASIR_GCC6)|| defined(KVASIR_GCC7)
 		template <typename C = identity>
 		struct is_trivially_copy_assignable {
 			template <typename T>
 			using f = typename C::template f<bool_<std::is_trivially_copy_assignable<T>::value>>;
 		};
+#endif
 		template <typename C = identity>
 		struct is_nothrow_copy_assignable {
 			template <typename T>
@@ -260,11 +276,13 @@ namespace kvasir {
 			template <typename T>
 			using f = typename C::template f<bool_<std::is_move_assignable<T>::value>>;
 		};
+#if defined(KVASIR_CLANG) || defined(KVASIR_GCC5)|| defined(KVASIR_GCC6)|| defined(KVASIR_GCC7)
 		template <typename C = identity>
 		struct is_trivially_move_assignable {
 			template <typename T>
 			using f = typename C::template f<bool_<std::is_trivially_move_assignable<T>::value>>;
 		};
+#endif
 		template <typename C = identity>
 		struct is_nothrow_move_assignable {
 			template <typename T>
