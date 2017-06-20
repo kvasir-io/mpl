@@ -120,7 +120,7 @@ namespace kvasir {
 			template <typename T>
 			using f = typename C::template f<bool_<std::is_trivial<T>::value>>;
 		};
-#if defined(KVASIR_CLANG) || defined(KVASIR_GCC5)|| defined(KVASIR_GCC6)|| defined(KVASIR_GCC7)
+#if (__has_feature(is_trivially_copyable) && defined(_LIBCPP_VERSION)) || (defined(__GNUC__) && __GNUC__ >= 5)     
 		template <typename C = identity>
 		struct is_trivially_copyable {
 			template <typename T>
@@ -172,7 +172,7 @@ namespace kvasir {
 			template <typename T>
 			using f = typename C::template f<bool_<std::is_constructible<T>::value>>;
 		};
-#if defined(KVASIR_CLANG) || defined(KVASIR_GCC5)|| defined(KVASIR_GCC6)|| defined(KVASIR_GCC7)
+#if (__has_feature(is_trivially_constructible) && defined(_LIBCPP_VERSION)) || (defined(__GNUC__) && __GNUC__ >= 5)     
 		template <typename C = identity>
 		struct is_trivially_constructible {
 			template <typename T>
@@ -189,7 +189,7 @@ namespace kvasir {
 			template <typename T>
 			using f = typename C::template f<bool_<std::is_default_constructible<T>::value>>;
 		};
-#if defined(KVASIR_CLANG) || defined(KVASIR_GCC5)|| defined(KVASIR_GCC6)|| defined(KVASIR_GCC7)
+#if (__has_feature(is_trivially_default_constructible) && defined(_LIBCPP_VERSION)) || (defined(__GNUC__) && __GNUC__ >= 5)     
 		template <typename C = identity>
 		struct is_trivially_default_constructible {
 			template <typename T>
@@ -208,7 +208,7 @@ namespace kvasir {
 			template <typename T>
 			using f = typename C::template f<bool_<std::is_copy_constructible<T>::value>>;
 		};
-#if defined(KVASIR_CLANG) || defined(KVASIR_GCC5)|| defined(KVASIR_GCC6)|| defined(KVASIR_GCC7)
+#if (__has_feature(is_trivially_copy_constructible) && defined(_LIBCPP_VERSION)) || (defined(__GNUC__) && __GNUC__ >= 5)     
 		template <typename C = identity>
 		struct is_trivially_copy_constructible {
 			template <typename T>
@@ -225,7 +225,7 @@ namespace kvasir {
 			template <typename T>
 			using f = typename C::template f<bool_<std::is_move_constructible<T>::value>>;
 		};
-#if defined(KVASIR_CLANG) || defined(KVASIR_GCC5)|| defined(KVASIR_GCC6)|| defined(KVASIR_GCC7)
+#if (__has_feature(is_trivially_move_constructible) && defined(_LIBCPP_VERSION)) || (defined(__GNUC__) && __GNUC__ >= 5)     
 		template <typename C = identity>
 		struct is_trivially_move_constructible {
 			template <typename T>
@@ -242,7 +242,7 @@ namespace kvasir {
 			template <typename T, typename U>
 			using f = typename C::template f<bool_<std::is_assignable<T, U>::value>>;
 		};
-#if defined(KVASIR_CLANG) || defined(KVASIR_GCC5)|| defined(KVASIR_GCC6)|| defined(KVASIR_GCC7)
+#if (__has_feature(is_trivially_assignable) && defined(_LIBCPP_VERSION)) || (defined(__GNUC__) && __GNUC__ >= 5)     
 		template <typename C = identity>
 		struct is_trivially_assignable {
 			template <typename T, typename U>
@@ -259,7 +259,7 @@ namespace kvasir {
 			template <typename T>
 			using f = typename C::template f<bool_<std::is_copy_assignable<T>::value>>;
 		};
-#if defined(KVASIR_CLANG) || defined(KVASIR_GCC5)|| defined(KVASIR_GCC6)|| defined(KVASIR_GCC7)
+#if (__has_feature(is_trivially_copy_assignable) && defined(_LIBCPP_VERSION)) || (defined(__GNUC__) && __GNUC__ >= 5)     
 		template <typename C = identity>
 		struct is_trivially_copy_assignable {
 			template <typename T>
@@ -276,7 +276,7 @@ namespace kvasir {
 			template <typename T>
 			using f = typename C::template f<bool_<std::is_move_assignable<T>::value>>;
 		};
-#if defined(KVASIR_CLANG) || defined(KVASIR_GCC5)|| defined(KVASIR_GCC6)|| defined(KVASIR_GCC7)
+#if (__has_feature(is_trivially_move_assignable) && defined(_LIBCPP_VERSION)) || (defined(__GNUC__) && __GNUC__ >= 5)     
 		template <typename C = identity>
 		struct is_trivially_move_assignable {
 			template <typename T>
