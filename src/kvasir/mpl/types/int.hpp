@@ -13,7 +13,7 @@ namespace kvasir {
 
 		template <long long Value>
 		struct int_ {
-			static constexpr unsigned long long value = Value;
+			static constexpr long long value = Value;
 		};
 	}
 }
