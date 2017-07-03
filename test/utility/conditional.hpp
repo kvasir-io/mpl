@@ -5,6 +5,7 @@
 #pragma once
 
 #include <kvasir/mpl/utility/conditional.hpp>
+#include <kvasir/mpl/types/bool.hpp>
 
 namespace conditional_test {
 	using namespace kvasir::mpl;
