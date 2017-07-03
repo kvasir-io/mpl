@@ -5,34 +5,63 @@
 #pragma once
 #include "../functional/bind.hpp"
 #include "../types/list.hpp"
+#include "../algorithm/rotate.hpp"
 
 namespace kvasir {
 	namespace mpl {
 		namespace detail {
-			template<typename F, typename T>
-			using each_impl = typename F::template f<T>;
+			template<typename C, typename... Fs>
+			struct each_impl {
+				template<typename...Ts>
+				using f = typename dcall<C, sizeof...(Ts)>::template f<
+					typename Fs::template f<Ts>...>;
+			};
+
+			template<typename C, typename...Fs>
+			struct fork_impl {
+				template <typename... Ts>
+				using f = typename dcall<C, sizeof...(Fs)>::template f<
+					typename dcall<Fs, sizeof...(Ts)>::template f<Ts...>...>;
+			};
 		}
-		template <typename List, typename C>
-		struct fork; 
-		template <typename... Fs, typename C>
-		struct fork<list<Fs...>, C> {
+		template <typename...Ts>
+		struct fork : rotate<uint_<sizeof...(Ts)-1>, cfe<detail::fork_impl>>::template f<Ts...>{};
+
+		template<typename F0, typename C>
+		struct fork<F0, C> {
 			template <typename... Ts>
-			using f = typename dcall<C, sizeof...(Fs)>::template f<
-				typename dcall<Fs, sizeof...(Ts)>::template f<Ts...>...>;
+			using f = typename C::template f<
+				typename dcall<F0, sizeof...(Ts)>::template f<Ts...>>;
 		};
-		template <typename List, typename C>
-		struct each;
-		template <typename... Fs, typename C>
-		struct each<list<Fs...>,C> {
+		template<typename F0, typename F1, typename C>
+		struct fork<F0, F1, C> {
 			template <typename... Ts>
-			using f = typename dcall<C, sizeof...(Ts)>::template f<
-				typename Fs::template f<Ts>...>;
+			using f = typename C::template f<
+				typename dcall<F0, sizeof...(Ts)>::template f<Ts...>, typename dcall<F1, sizeof...(Ts)>::template f<Ts...>>;
 		};
+		
+		template <typename...Ts>
+		struct each : rotate<uint_<sizeof...(Ts)-1>, cfe<detail::each_impl>>::template f<Ts...>{};
+
+		template<typename F0, typename C>
+		struct each<F0, C> {
+			template<typename...Ts>
+			using f = typename C::template f<
+				typename F0::template f<Ts>...>;
+		};
+		template<typename F0, typename F1, typename C>
+		struct each<F0, F1, C> {
+			template<typename T0, typename T1, typename...Ts>
+			using f = typename C::template f<
+				typename F0::template f<T0>, typename F1::template f<T1>>;
+		};
+		
 		template <typename F, typename C>
 		struct fork_front {
 			template <typename... Ts>
 			using f = typename dcall<C, sizeof...(Ts)>::template f<
 			        typename dcall<F, sizeof...(Ts)>::template f<Ts...>, Ts...>;
 		};
+
 	}
 }

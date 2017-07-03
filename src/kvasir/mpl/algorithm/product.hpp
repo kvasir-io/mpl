@@ -22,7 +22,7 @@ namespace kvasir {
 
 			// call all the functions Ts with some input, joining the output
 			template <typename... Ts>
-			using fork_join = fork<list<Ts...>, join<C>>;
+			using fork_join = fork<Ts..., join<C>>;
 
 			template <typename L0, typename L1, typename... Ls>
 			using f = call<unpack<call<unpack<transform<cfe<transform_push>, cfe<fork_join>>>, L1>>,
