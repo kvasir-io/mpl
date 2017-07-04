@@ -57,3 +57,24 @@ if (MAKE_INCLUDE_TESTS)
 		add_dependencies(kvasir_mpl_test ${basename})
 	endforeach ()
 endif ()
+
+# Add Standardese target
+find_program(STANDARDESE standardese HINTS ${STANDARDESE_ROOT})
+
+if (STANDARDESE)
+	set(KVASIR_MPL_DOCS_DIR ${CMAKE_BINARY_DIR}/doc/standardese)
+	message(STATUS "Found standardese for documentation generation")
+	message(STATUS "Documentation dir is: ${KVASIR_MPL_DOCS_DIR}")
+	file(MAKE_DIRECTORY ${KVASIR_MPL_DOCS_DIR})
+	add_custom_target(
+			standardese
+			COMMAND ${STANDARDESE}
+			-I${CMAKE_SOURCE_DIR}/src/kvasir/mpl
+			--input.blacklist_namespace=detail
+			--compilation.comments_in_macro=false
+			--output.require_comment_for_full_synopsis=false
+			--output.format=html
+			${CMAKE_SOURCE_DIR}/src/kvasir/mpl
+			WORKING_DIRECTORY ${KVASIR_MPL_DOCS_DIR}
+	)
+endif (STANDARDESE)
