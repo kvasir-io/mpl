@@ -6,6 +6,7 @@
 
 #include "../functional/call.hpp"
 #include "../types/int.hpp"
+#include "../sequence/front.hpp"
 
 namespace kvasir {
 	namespace mpl {
@@ -168,8 +169,57 @@ namespace kvasir {
 		struct drop {
 			template <typename... Ts>
 			using f = typename detail::drop_impl<detail::select_next_drop_step(N::value,
-			                                                                   sizeof...(Ts)),
-			                                     C>::template f<N::value, Ts...>;
+				sizeof...(Ts)),
+				C>::template f<N::value, Ts...>;
+		};
+
+		//composition matching for common lambda cases
+		template <typename C>
+		struct drop<uint_<0>, front<C>> {
+			template <typename T, typename... Ts>
+			using f = typename C::template f<T>;
+		};
+
+		template <typename C>
+		struct drop<uint_<1>, front<C>> {
+			template <typename T0, typename T1, typename... Ts>
+			using f = typename C::template f<T1>;
+		};
+
+		template <typename C>
+		struct drop<uint_<2>, front<C>> {
+			template <typename T0, typename T1, typename T2, typename... Ts>
+			using f = typename C::template f<T2>;
+		};
+
+		template <typename C>
+		struct drop<uint_<3>, front<C>> {
+			template <typename T0, typename T1, typename T2, typename T3, typename... Ts>
+			using f = typename C::template f<T3>;
+		};
+
+		template <>
+		struct drop<uint_<0>, front<identity>> {
+			template <typename T, typename... Ts>
+			using f = T;
+		};
+
+		template <>
+		struct drop<uint_<1>, front<identity>> {
+			template <typename T0, typename T1, typename... Ts>
+			using f = T1;
+		};
+
+		template <>
+		struct drop<uint_<2>, front<identity>> {
+			template <typename T0, typename T1, typename T2, typename... Ts>
+			using f = T2;
+		};
+
+		template <>
+		struct drop<uint_<3>, front<identity>> {
+			template <typename T0, typename T1, typename T2, typename T3, typename... Ts>
+			using f = T3;
 		};
 
 		namespace eager {
