@@ -10,31 +10,6 @@
 #include "../functional/identity.hpp"
 #include "../types/bool.hpp"
 
-#if defined(KVASIR_CONSTEXPR_14)
-#include <initializer_list>
-namespace kvasir {
-	namespace mpl {
-		namespace detail {
-			constexpr int and_(std::initializer_list<bool> l) {
-				bool out = true;
-				for (auto i : l) {
-					out = out && i;
-				}
-				return out;
-			}
-		}
-		template <typename F = identity>
-		struct all {
-			template <typename... Ts>
-			using f = bool_<detail::and_(
-			        {static_cast<bool>(dcall<F, sizeof...(Ts)>::template f<Ts>::value)...})>;
-		};
-		template <template <typename...> class F>
-		struct all<cfe<F, identity>> {
-			template <typename... Ts>
-			using f = bool_<detail::and_({static_cast<bool>(F<Ts>::value)...})>;
-		};
-#else
 #include "../utility/always.hpp"
 namespace kvasir {
 	namespace mpl {
@@ -56,7 +31,6 @@ namespace kvasir {
 		/// \example call<all<same_as<void>>,void,void,void> resolves to true_.
 		template <typename F, typename C = identity>
 		using all = find_if<detail::not_<F>, always<bool_<false>,C>,always<bool_<true>,C>>;
-#endif
 		namespace eager {
 			/// resolves to true_ if all elements in the input list
 			/// fulfill the provided predicate
