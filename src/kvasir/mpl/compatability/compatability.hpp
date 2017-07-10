@@ -28,13 +28,13 @@
 #elif __GNUC__
 #ifndef __clang__
 #define KVASIR_GCC
-#ifdef __GNUC__ < 5
+#if __GNUC__ < 5
 //old GCC
 #else
-#ifdef __GNUC__ < 6
+#if __GNUC__ < 6
 #define KVASIR_GCC5
 #else
-#ifdef __GNUC__ < 7
+#if __GNUC__ < 7
 #define KVASIR_GCC6
 #else
 #define KVASIR_GCC7
