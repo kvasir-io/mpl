@@ -152,17 +152,17 @@ namespace kvasir {
 			};
 		}
 		//fold left consideres the first element in the input pack the state, use push_front to add state if needed
-		template <typename F>
+		template <typename F, typename C = identity>
 		struct fold_left {
 			template <typename... Ts>
-			using f = typename detail::fold_impl<detail::select_fold(
-			        sizeof...(Ts)-1)>::template f<F::template f, Ts...>;
+			using f = typename C::template f<typename detail::fold_impl<detail::select_fold(
+			        sizeof...(Ts)-1)>::template f<F::template f, Ts...>>;
 		};
-		template <template <typename...> class F>
-		struct fold_left<cfe<F, identity>> {
+		template <template <typename...> class F, typename C>
+		struct fold_left<cfe<F, identity>, C> {
 			template <typename... Ts>
-			using f = typename detail::fold_impl<detail::select_fold(
-			        sizeof...(Ts)-1)>::template f<F, Ts...>;
+			using f = typename C::template f<typename detail::fold_impl<detail::select_fold(
+			        sizeof...(Ts)-1)>::template f<F, Ts...>>;
 		};
 
 		namespace eager {
