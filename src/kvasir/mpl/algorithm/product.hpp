@@ -33,35 +33,11 @@ namespace kvasir {
 				        typename State::template push<product_pusher_list, Ts0...>...>;
 			};
 
-			template <typename C, template <typename...> class L0, typename... Ts0,
-			          template <typename...> class L1, typename... Ts1>
-			struct product_pusher<product_pusher<C, L1<Ts1...>>, L0<Ts0...>> {
-				template <typename... State>
-				using ts1_pusher =
-				        typename product_pusher_list<State...>::template push<product_pusher_list,
-				                                                              Ts1...>;
-
-				template <typename... State>
-				using f = typename join<join<C>>::template f<
-				        typename State::template push<ts1_pusher, Ts0...>...>;
-			};
-
 			template <template <typename...> class F, typename C, template <typename...> class L,
 			          typename... Ts>
 			struct product_pusher<product_end_cont<F, C>, L<Ts...>> {
 				template <typename... Ts1>
 				using f = typename join<C>::template f<typename Ts1::template push<F, Ts...>...>;
-			};
-
-			template <template <typename...> class F, typename C, template <typename...> class L0,
-			          typename... Ts0, template <typename...> class L1, typename... Ts1>
-			struct product_pusher<product_pusher<product_end_cont<F, C>, L1<Ts1...>>, L0<Ts0...>> {
-				template <typename... State>
-				using ts1_pusher = typename product_pusher_list<State...>::template push<F, Ts1...>;
-
-				template <typename... State>
-				using f = typename join<join<C>>::template f<
-				        typename State::template push<ts1_pusher, Ts0...>...>;
 			};
 		}
 
