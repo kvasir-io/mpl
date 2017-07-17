@@ -24,36 +24,37 @@ namespace kvasir {
 			struct product_end_cont {};
 
 			template <typename C, typename L>
-			struct product_pusher {};
+			struct product_pusher;
 
 			template <typename C, template <typename...> class L0, typename... Ts0>
 			struct product_pusher<C, L0<Ts0...>> {
 				template <typename... State>
-				using f = typename join<C>::template f<
+				using f = typename dcall<join<C>, sizeof...(State)>::template f<
 				        typename State::template push<product_pusher_list, Ts0...>...>;
 			};
 
 			template <template <typename...> class F, typename C, template <typename...> class L,
 			          typename... Ts>
 			struct product_pusher<product_end_cont<F, C>, L<Ts...>> {
-				template <typename... Ts1>
-				using f = typename join<C>::template f<typename Ts1::template push<F, Ts...>...>;
+				template <typename... State>
+				using f = typename dcall<join<C>, sizeof...(State)>::template f<
+				        typename State::template push<F, Ts...>...>;
 			};
 		}
 
 		template <typename F = listify, typename C = listify>
 		struct product {
 			template <typename... Ts>
-			using f = call<call<fold_right<cfe<detail::product_pusher>>,
-			                    detail::product_end_cont<F::template f, C>, Ts...>,
+			using f = call<typename dcall<fold_right<cfe<detail::product_pusher>>, sizeof...(Ts)>::
+			                       template f<detail::product_end_cont<F::template f, C>, Ts...>,
 			               detail::product_pusher_list<>>;
 		};
 
 		template <template <typename...> class F, typename C>
 		struct product<cfe<F, identity>, C> {
 			template <typename... Ts>
-			using f = call<call<fold_right<cfe<detail::product_pusher>>,
-			                    detail::product_end_cont<F, C>, Ts...>,
+			using f = call<typename dcall<fold_right<cfe<detail::product_pusher>>, sizeof...(Ts)>::
+			                       template f<detail::product_end_cont<F, C>, Ts...>,
 			               detail::product_pusher_list<>>;
 		};
 
