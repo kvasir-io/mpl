@@ -29,12 +29,12 @@ namespace kvasir {
 		template<typename C = identity>
 		struct call_f {
 			template<typename...Ts>
-			using f = typename C::template f<dcallf<(sizeof...(Ts)<10000)>::template f<call, Ts...>>;
+			using f = typename C::template f<dcallf<(sizeof...(Ts)<10000)>::template f1<call, Ts...>>;
 		};
 		template<>
 		struct call_f<identity>{
 			template<typename...Ts>
-			using f = typename dcallf<(sizeof...(Ts)<10000)>::template f<Ts...>;
+			using f = typename dcallf<(sizeof...(Ts)<10000)>::template f1<call, Ts...>;
 		};
 	}
 }
