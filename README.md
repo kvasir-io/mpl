@@ -29,6 +29,7 @@ This library was also presented at C++Now2017 which can be found [here](https://
 ## Contributors
 We'd like to thank the following contributors, in alphabetical order:
 
+- Nils Deppe ([@nilsdeppe](https://github.com/nilsdeppe))
 - Chiel Douwes ([@chieltbest](https://github.com/chieltbest))
 - Emil Fresk ([@korken89](https://github.com/korken89))
 - Odin Holmes ([@odinthenerd](https://github.com/odinthenerd))
