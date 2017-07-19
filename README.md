@@ -5,7 +5,7 @@ Kvasir is a collection of zero cost statically checked libraries for resource co
 More information at kvasir.io.
 
 ## Introduction
-This repository contains the template metaprogramming library used in Kvasir. Although this started as an experiement in TMP optimization [(with quite satisfactory results)](https://metaben.ch) and we did not aim for mainstream use from the beginning this library is currently evolving to meet the needs of a broader audience. This library is intended for anyone developing C++ libraries which have a metaprogramming component and do not need the fusion style heterogenious support offered by boost.hana. 
+This repository contains the template metaprogramming library used in Kvasir. Although this started as an experiement in TMP optimization [(with quite satisfactory results)](metaben.ch) and we did not aim for mainstream use from the beginning this library is currently evolving to meet the needs of a broader audience. This library is intended for anyone developing C++ libraries which have a metaprogramming component and do not need the fusion style heterogenious support offered by boost.hana. 
 
 A short list of key design decisions:
 - compile time speed is paramount
