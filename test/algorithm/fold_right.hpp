@@ -8,6 +8,7 @@
 
 #include <kvasir/mpl/algorithm/fold_right.hpp>
 #include <kvasir/mpl/functional/bind.hpp>
+#include <kvasir/mpl/functions/arithmetic/plus.hpp>
 #include <kvasir/mpl/types/int.hpp>
 #include <kvasir/mpl/types/list.hpp>
 
@@ -63,4 +64,23 @@ namespace {
 	                     mpl::list<uint_<1>, uint_<2>, uint_<3>, uint_<4>, uint_<5>, uint_<6>,
 	                               uint_<7>>>::value,
 	        "");
+
+	template <typename C, typename T>
+	struct fold_right_foo {
+		template <typename... Ts>
+		using f = mpl::call<C, Ts..., T>;
+	};
+
+	static_assert(std::is_same<mpl::call<mpl::call<mpl::fold_right<mpl::cfe<fold_right_foo>>,
+	                                               mpl::listify, char, short, int>,
+	                                     void>,
+	                           mpl::list<void, char, short, int>>::value,
+	              "");
+
+	template<typename T>
+	struct fold_right_cont_test {
+		template <typename... Ts>
+		using f = typename mpl::dcall<mpl::fold_right<mpl::cfe<add>>,
+		                         sizeof...(Ts)>::template f<uint_<1>, Ts...>;
+	};
 }

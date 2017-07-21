@@ -4,30 +4,60 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
+#include "../algorithm/fold_right.hpp"
 #include "../algorithm/transform.hpp"
-#include "../functional/bind.hpp"
-#include "../functional/fork.hpp"
 #include "../sequence/join.hpp"
 #include "../sequence/push_back.hpp"
 #include "../sequence/push_front.hpp"
 
 namespace kvasir {
 	namespace mpl {
+		namespace detail {
+			/// adds all the ts into the param list
+			template <typename... Ts0>
+			struct product_pusher_list {
+				template <template <typename...> class F, typename... Ts1>
+				using push = list<F<Ts0..., Ts1>...>;
+			};
+
+			template <template <typename...> class F, typename C>
+			struct product_end_cont {};
+
+			template <typename C, typename L>
+			struct product_pusher;
+
+			template <typename C, template <typename...> class L0, typename... Ts0>
+			struct product_pusher<C, L0<Ts0...>> {
+				template <typename... State>
+				using f = typename dcall<join<C>, sizeof...(State)>::template f<
+				        typename State::template push<product_pusher_list, Ts0...>...>;
+			};
+
+			template <template <typename...> class F, typename C, template <typename...> class L,
+			          typename... Ts>
+			struct product_pusher<product_end_cont<F, C>, L<Ts...>> {
+				template <typename... State>
+				using f = typename dcall<join<C>, sizeof...(State)>::template f<
+				        typename State::template push<F, Ts...>...>;
+			};
+		}
 
 		template <typename F = listify, typename C = listify>
 		struct product {
-			// push front the element from the first list, continue into F
-			template <typename T>
-			using transform_push = transform<push_front<T, F>>;
-
-			// call all the functions Ts with some input, joining the output
 			template <typename... Ts>
-			using fork_join = fork<Ts..., join<C>>;
-
-			template <typename L0, typename L1, typename... Ls>
-			using f = call<unpack<call<unpack<transform<cfe<transform_push>, cfe<fork_join>>>, L1>>,
-			               L0>;
+			using f = call<typename dcall<fold_right<cfe<detail::product_pusher>>, sizeof...(Ts)>::
+			                       template f<detail::product_end_cont<F::template f, C>, Ts...>,
+			               detail::product_pusher_list<>>;
 		};
+
+		template <template <typename...> class F, typename C>
+		struct product<cfe<F, identity>, C> {
+			template <typename... Ts>
+			using f = call<typename dcall<fold_right<cfe<detail::product_pusher>>, sizeof...(Ts)>::
+			                       template f<detail::product_end_cont<F, C>, Ts...>,
+			               detail::product_pusher_list<>>;
+		};
+
 		namespace eager {
 			template <typename List, template <typename...> class F = list>
 			using product = call<unpack<mpl::product<cfe<F>>>, List>;
