@@ -15,7 +15,7 @@ namespace kvasir {
 		template <typename F, typename C = listify>
 		struct transform {
 			template <typename... Ts>
-			using f = typename dcall<C, sizeof...(Ts)>::template f<typename F::template f<Ts>...>;
+			using f = typename dcall<C, sizeof...(Ts)>::template f<typename dcall<F, sizeof...(Ts)>::template f<Ts>...>;
 		};
 		template <template <typename...> class F, typename C>
 		struct transform<cfe<F, identity>, C> {
