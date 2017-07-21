@@ -17,7 +17,7 @@ namespace kvasir {
 			template <template <class...> class L, class... Ts>
 			struct flatten_element_impl<L, L<Ts...>> {
 				using type = typename detail::join_select<detail::select_join_size(sizeof...(
-				        Ts))>::template f<list, typename flatten_element_impl<L, Ts>::type...>;
+				        Ts))>::template f<list, typename flatten_element_impl<L, Ts>::type...>::type;
 			};
 		}
 
@@ -32,7 +32,7 @@ namespace kvasir {
 			template <typename... Ts>
 			using f = typename detail::join_select<detail::select_join_size(sizeof...(
 			        Ts))>::template f<C::template f,
-			                          typename detail::flatten_element_impl<S, Ts>::type...>;
+			                          typename detail::flatten_element_impl<S, Ts>::type...>::type;
 		};
 
 		namespace eager {
