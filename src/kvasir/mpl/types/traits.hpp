@@ -430,15 +430,28 @@ namespace kvasir {
 			using f = typename C::template f<typename std::alignment_of<T>::type>;
 		};
 #if __cplusplus >= 201402L
+#ifdef __cpp_lib_is_null_pointer
 		template<typename C = identity>
 		struct is_null_pointer {
 			template<
-				typename T> using f = typename C::template f<bool_<std::is_null_pointer<T>::value>>;
+					typename T> using f = typename C::template f<bool_<std::is_null_pointer<T>::value>>;
 		};
+		template<>
+		struct is_null_pointer<identity> {
+			template<
+					typename T> using f = bool_<std::is_null_pointer<T>::value>;
+		};
+#endif
+#ifdef __cpp_lib_is_final
 		template<typename C = identity>
 		struct is_final {
-			template<typename T> using f = typename C::template f<bool_<std::is_final<T>::value>>;
+			template<typename T> using f = typename C::template f<bool_<__is_final(T)>>;
 		};
+		template<>
+		struct is_final<identity> {
+			template<typename T> using f = bool_<__is_final(T)>;
+		};
+#endif
 #endif
 	}
 }
