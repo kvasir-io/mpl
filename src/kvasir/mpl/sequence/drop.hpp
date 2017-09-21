@@ -76,8 +76,7 @@ namespace kvasir {
 			struct drop_impl<8, C> {
 				template <unsigned N, typename T0, typename T1, typename T2, typename T3,
 				          typename T4, typename T5, typename T6, typename T7, typename... Ts>
-				using f = typename conditional<(sizeof...(Ts) <
-				                                1000000)>::template f<C, void>::template f<Ts...>;
+				using f = typename drop_impl<N-8, C>::template f<(N-8), Ts...>;
 			};
 			template <typename C>
 			struct drop_impl<16, C> {
