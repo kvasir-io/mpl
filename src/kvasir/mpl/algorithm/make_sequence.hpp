@@ -9,24 +9,64 @@
 
 namespace kvasir {
 	namespace mpl {
+		namespace detail {
+			// has to be a seperate function as cfe does not accept non-type template parameters
+			struct make_uint {
+				template <typename N>
+				using f = uint_<N::value>;
+			};
+
+			template <typename L1, typename L2>
+			struct seq_join;
+
+			template <typename... Ls1, typename... Ls2>
+			struct seq_join<list<Ls1...>, list<Ls2...>> {
+				using type = list<Ls1..., Ls2...>;
+			};
+
+			template <typename F, unsigned min, unsigned max>
+			struct make_part_int_seq {
+				using type = typename seq_join<
+				        typename make_part_int_seq<F, min, min + (max - min) / 2>::type,
+				        typename make_part_int_seq<F, min + (max - min) / 2 + 1, max>::type>::type;
+			};
+
+			template <typename F, unsigned n>
+			struct make_part_int_seq<F, n, n> {
+				using type = list<call<F, uint_<n>>>;
+			};
+
+			template <unsigned n>
+			struct make_part_int_seq<make_uint, n, n> {
+				using type = list<uint_<n>>;
+			};
+
+			template <unsigned n, typename F>
+			struct make_int_seq_impl {
+				using type = typename make_part_int_seq<F, 0, n - 1>::type;
+			};
+
+			template <typename F>
+			struct make_int_seq_impl<0, F> {
+				using type = list<>;
+			};
+		}
+
+		template <typename F = detail::make_uint, typename C = listify>
+		struct make_int_sequence {
+			template <typename N>
+			using f = call<unpack<C>, detail::make_int_seq_impl<N::value, F>>;
+		};
+
+		template <typename F>
+		struct make_int_sequence<F, listify> {
+			template <typename N>
+			using f = typename detail::make_int_seq_impl<N::value, F>::type;
+		};
+
 		namespace eager {
-			namespace detail {
-				template <typename T, template <T> class W, template <typename...> class S,
-				          bool Continue = true>
-				struct make_sequence {
-					template <T N, typename... Ts>
-					using f = typename make_sequence<T, W, S, (N > 1)>::template f<N - 1, W<N>,
-					                                                               Ts...>;
-				};
-				template <typename T, template <T> class W, template <typename...> class S>
-				struct make_sequence<T, W, S, false> {
-					template <T N, typename... Ts>
-					using f = S<Ts...>;
-				};
-			}
-			template <typename T>
-			using make_int_sequence =
-			        detail::make_sequence<long long, int_, list>::template f<T::value>;
+			template <typename N>
+			using make_int_sequence = call<make_int_sequence<>, N>;
 		}
 	}
 }
