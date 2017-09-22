@@ -38,7 +38,7 @@ namespace kvasir {
 			};
 
 			template <unsigned n>
-			struct make_part_int_seq<make_uint, n, n> {
+			struct make_part_int_seq<identity, n, n> {
 				using type = list<uint_<n>>;
 			};
 
@@ -53,7 +53,7 @@ namespace kvasir {
 			};
 		}
 
-		template <typename F = detail::make_uint, typename C = listify>
+		template <typename F = identity, typename C = listify>
 		struct make_int_sequence {
 			template <typename N>
 			using f = call<unpack<C>, typename detail::make_int_seq_impl<N::value, F>::type>;
