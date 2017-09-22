@@ -11,12 +11,6 @@
 namespace kvasir {
 	namespace mpl {
 		namespace detail {
-			// has to be a seperate function as cfe does not accept non-type template parameters
-			struct make_uint {
-				template <typename N>
-				using f = uint_<N::value>;
-			};
-
 			template <typename L1, typename L2>
 			struct seq_join;
 
