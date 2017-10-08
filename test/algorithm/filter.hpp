@@ -10,12 +10,40 @@
 #include <kvasir/mpl/types/bool.hpp>
 #include <kvasir/mpl/types/int.hpp>
 
-namespace {
-	using namespace kvasir::mpl;
-	template <typename T>
-	using less_than_5 = bool_<(T::value < 5)>;
+#include <metacheck.hpp>
 
-	static_assert(std::is_same<eager::filter<list<int_<1>, int_<2>, int_<7>, int_<8>>, less_than_5>,
-	                           list<int_<1>, int_<2>>>::value,
-	              "");
+namespace filter {
+	namespace mpl = kvasir::mpl;
+
+	template <typename L>
+	using same_size = mc::mpl::equal<mpl::eager::size<L>, mpl::eager::size<mpl::eager::filter<L>>>;
+
+	constexpr auto same_size_test =
+	        mc::test<same_size, 20, mc::gen::list_of<mc::gen::just<mpl::bool_<true>>>>;
+
+	template <typename L1, typename L2>
+	using distributive = mc::prop::distributive<mpl::unpack<mpl::filter<>>::template f,
+	                                            mpl::eager::join, mpl::eager::join, L1, L2>;
+
+	constexpr auto distributive_test = mc::test<distributive, 20, mc::gen::list_of<mc::gen::bool_>,
+	                                            mc::gen::list_of<mc::gen::bool_>>;
+
+	template <typename L1, typename L2>
+	using commutative =
+	        mc::prop::commutative<mpl::join<mpl::filter<mpl::identity, mpl::size<>>>::template f,
+	                              L1, L2>;
+
+	constexpr auto commutative_test = mc::test<commutative, 20, mc::gen::list_of<mc::gen::bool_>,
+	                                           mc::gen::list_of<mc::gen::bool_>>;
+
+	template <typename L>
+	using associative =
+	        mc::prop::associative<mpl::unpack<mpl::filter<>>::template f,
+	                              mpl::unpack<mpl::filter<mpl::logical_not<>>>::template f, L>;
+
+	constexpr auto associative_test = mc::test<associative, 20, mc::gen::list_of<mc::gen::bool_>>;
 }
+
+constexpr auto filter_section =
+        mc::section("filter", filter::same_size_test, filter::distributive_test,
+                    filter::commutative_test, filter::associative_test);

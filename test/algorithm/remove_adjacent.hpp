@@ -6,32 +6,20 @@
 
 #include <type_traits>
 
-#include <kvasir/mpl/algorithm/remove_adjacent.hpp>
-#include <kvasir/mpl/types/bool.hpp>
-#include <kvasir/mpl/types/list.hpp>
+#include <metacheck.hpp>
 
-namespace {
+namespace remove_adjacent {
 	namespace mpl = kvasir::mpl;
-	static_assert(std::is_same<mpl::eager::remove_adjacent<mpl::list<void, char, char, short>>,
-	                           mpl::list<void, char, short>>{},
-	              "");
 
-	template <typename T1, typename T2>
-	struct foo_is_same_impl {
-		using f = mpl::bool_<false>;
-	};
+	template <typename L>
+	using same = mc::mpl::equal<
+	        mpl::call<mpl::unpack<mpl::remove_adjacent<
+	                          mpl::is_same<>,
+	                          mpl::remove_adjacent<mpl::is_same<mpl::invert<>>>>>,
+	                  L>,
+	        mpl::list<>>;
 
-	template <typename T>
-	struct foo_is_same_impl<T, T> {
-		using f = mpl::bool_<true>;
-	};
-
-	template <typename T1, typename T2>
-	using foo_is_same = typename foo_is_same_impl<T1, T2>::f;
-
-	// unoptimised version of remove_adjacent
-	static_assert(std::is_same<mpl::eager::remove_adjacent<mpl::list<void, char, char, short>,
-	                                                       foo_is_same>,
-	                           mpl::list<void, char, short>>{},
-	              "");
+	constexpr auto same_test = mc::test<same, 20, mc::gen::list_of<mc::gen::bool_>>;
 }
+
+constexpr auto remove_adjacent_section = mc::section("remove_adjacent", remove_adjacent::same_test);

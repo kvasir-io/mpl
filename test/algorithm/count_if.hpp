@@ -8,11 +8,31 @@
 
 #include <kvasir/mpl/algorithm/count_if.hpp>
 
-namespace {
-	template <typename T>
-	using comp = std::is_same<int, T>;
+#include <metacheck.hpp>
 
-	using namespace kvasir;
-	static_assert(mpl::eager::count_if<mpl::list<void, char, int, float>, comp>::value == 1, "");
-	static_assert(mpl::eager::count_if<mpl::list<void, char, bool, float>, comp>::value == 0, "");
+namespace count_if {
+	namespace mpl = kvasir::mpl;
+
+	template <typename L>
+	using same_size = mc::mpl::equal<mpl::eager::size<L>, mpl::eager::count_if<L>>;
+
+	constexpr auto same_size_test =
+	        mc::test<same_size, 20, mc::gen::list_of<mc::gen::just<mpl::bool_<true>>>>;
+
+	template <typename L1, typename L2>
+	using distributive = mc::prop::distributive<mpl::unpack<mpl::count_if<>>::template f,
+	                                            mpl::eager::join, mpl::eager::plus, L1, L2>;
+
+	constexpr auto distributive_test = mc::test<distributive, 20, mc::gen::list_of<mc::gen::bool_>,
+	                                            mc::gen::list_of<mc::gen::bool_>>;
+
+	template <typename L1, typename L2>
+	using commutative = mc::prop::commutative<mpl::join<mpl::count_if<>>::template f, L1, L2>;
+
+	constexpr auto commutative_test = mc::test<commutative, 20, mc::gen::list_of<mc::gen::bool_>,
+	                                           mc::gen::list_of<mc::gen::bool_>>;
 }
+
+constexpr auto count_if_section =
+        mc::section("count_if", count_if::same_size_test, count_if::distributive_test,
+                    count_if::commutative_test);

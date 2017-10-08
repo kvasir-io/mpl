@@ -4,17 +4,36 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
-#include <kvasir/mpl/algorithm/split_if.hpp>
-#include <kvasir/mpl/types/bool.hpp>
-#include <kvasir/mpl/types/int.hpp>
-#include <kvasir/mpl/types/list.hpp>
+#include <metacheck.hpp>
 
-namespace split_if_test {
-	using namespace kvasir::mpl;
+namespace split_if {
+	namespace mpl = kvasir::mpl;
 	template <typename T>
-	using is_99 = bool_<T::value == 99>;
-	using a = eager::split_if<list<int_<1>, int_<2>, int_<99>, int_<3>, int_<4>, int_<99>, int_<5>>,
-	                          is_99>;
-	using b = list<list<int_<1>, int_<2>>, list<int_<3>, int_<4>>, list<int_<5>>>;
-	static_assert(std::is_same<a, b>{}, "");
+	using is_0 = mpl::bool_<T::value == 0>;
+
+	template <typename L1, typename L2>
+	using distributive = mc::prop::distributive<
+	        mpl::unpack<mpl::split_if<mpl::cfe<is_0>>>::template f, mpl::eager::join,
+	        mpl::fork<
+	                mpl::at0<mpl::unpack<mpl::fork_front<
+	                        mpl::size<mpl::push_back<
+	                                mpl::uint_<1>,
+	                                mpl::minus<mpl::fork<
+	                                        mpl::cfe<mpl::take>,
+	                                        mpl::push_back<mpl::identity, mpl::cfe<mpl::drop>>,
+	                                        mpl::always<mpl::listify>, mpl::cfe<mpl::fork>>>>>,
+	                        mpl::call_f<>>>>,
+	                mpl::at1<mpl::unpack<mpl::fork<mpl::pop_front<>, mpl::front<>, mpl::listify>>>,
+	                mpl::fork<mpl::at0<mpl::unpack<mpl::at0<mpl::identity>>>,
+	                          mpl::transform<mpl::unpack<mpl::at1<mpl::identity>>,
+	                                         mpl::join<mpl::cfe<mpl::list, mpl::listify>>>,
+	                          mpl::at1<mpl::unpack<mpl::at0<mpl::identity>>>,
+	                          mpl::join<>>>::template f,
+	        L1, L2>;
+
+	constexpr auto distributive_test =
+	        mc::test<distributive, 20, mc::gen::list_of<mc::gen::uint_<>, mc::gen::uint_<128>>,
+	                 mc::gen::list_of<mc::gen::uint_<>, mc::gen::uint_<128>>>;
 }
+
+constexpr auto split_if_section = mc::section("split_if", split_if::distributive_test);

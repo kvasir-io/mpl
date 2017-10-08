@@ -11,7 +11,6 @@
 #include "algorithm/flatten.hpp"
 #include "algorithm/fold_left.hpp"
 #include "algorithm/fold_right.hpp"
-#include "algorithm/lookup.hpp"
 #include "algorithm/make_sequence.hpp"
 #include "algorithm/partition.hpp"
 #include "algorithm/product.hpp"
@@ -58,6 +57,7 @@
 #include "sequence/at.hpp"
 #include "sequence/is_list.hpp"
 #include "sequence/join.hpp"
+#include "sequence/lookup.hpp"
 #include "sequence/pop_front.hpp"
 #include "sequence/push_back.hpp"
 #include "sequence/push_front.hpp"
@@ -72,7 +72,18 @@
 #include "utility/always.hpp"
 #include "utility/is_instance.hpp"
 
+#include <iostream>
+#include <metacheck.hpp>
+
+constexpr auto testing_result =
+        mc::test_all(all_section, any_section, count_if_section, filter_section, find_if_section,
+                     flatten_section, fold_left_section, fold_right_section, make_sequence_section,
+                     partition_section, product_section, remove_adjacent_section, remove_if_section,
+                     reverse_section, sort_section, split_if_section, stable_sort_section,
+                     transform_section, zip_with_section, lookup_section);
+
 int main() {
-	// for now, if everything compiles it's fine
-	return 0;
+	std::cout << testing_result << std::endl;
+
+	return testing_result;
 }

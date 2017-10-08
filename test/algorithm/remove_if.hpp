@@ -5,28 +5,19 @@
 #pragma once
 
 #include <type_traits>
-#include <kvasir/mpl/algorithm/remove_if.hpp>
-#include <kvasir/mpl/types/bool.hpp>
-#include <kvasir/mpl/types/int.hpp>
+
+#include <metacheck.hpp>
+
 namespace remove_if_test {
-	using namespace kvasir::mpl;
-	template <typename T>
-	using less_than_5 = bool_<(T::value < 5)>;
+	namespace mpl = kvasir::mpl;
 
-	struct less_than_5_c {
-		template<typename T>
-		using f = less_than_5<T>;
-	};
+	template <typename L1, typename L2>
+	using distributive =
+	        mc::prop::distributive<mpl::unpack<mpl::remove_if<mpl::identity>>::template f,
+	                               mpl::eager::join, mpl::eager::join, L1, L2>;
 
-	static_assert(
-		std::is_same<eager::remove_if<list<int_<1>, int_<2>, int_<7>, int_<8>>, less_than_5>,
-		list<int_<7>, int_<8>>>::value,
-		"");
-
-	template<typename...Ts>
-	using test = call<remove_if<less_than_5_c>, Ts...>;
-	static_assert(
-		std::is_same<test<int_<1>, int_<2>, int_<7>, int_<8>>,
-		list<int_<7>, int_<8>>>::value,
-		"");
+	constexpr auto distributive_test = mc::test<distributive, 20, mc::gen::list_of<mc::gen::bool_>,
+	                                            mc::gen::list_of<mc::gen::bool_>>;
 }
+
+constexpr auto remove_if_section = mc::section("remove_if", remove_if_test::distributive_test);

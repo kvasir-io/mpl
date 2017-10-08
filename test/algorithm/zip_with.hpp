@@ -4,18 +4,17 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
-#include <kvasir/mpl/algorithm/zip_with.hpp>
-#include <kvasir/mpl/functional/bind.hpp>
+#include <metacheck.hpp>
 
-namespace {
-	namespace mpl      = kvasir::mpl;
-	using zip_a        = mpl::list<void, char, short, int>;
-	using zip_b        = mpl::list<int, void, char, short>;
-	using zip_shoud_be = mpl::list<mpl::list<void, int>, mpl::list<char, void>,
-	                               mpl::list<short, char>, mpl::list<int, short>>;
-	static_assert(std::is_same<mpl::eager::zip_with<mpl::list, zip_a, zip_b>, zip_shoud_be>::value,
-	              "");
-	static_assert(std::is_same<mpl::call<mpl::zip_with<mpl::cfe<mpl::list>>, zip_a, zip_b>,
-	                           zip_shoud_be>::value,
-	              "");
+namespace zip_with {
+	namespace mpl = kvasir::mpl;
+
+	template <typename L>
+	using same = mpl::call<mpl::fork<mpl::identity, mpl::identity,
+	                                 mpl::zip_with<mpl::is_same<>, mpl::all<mpl::identity>>>,
+	                       L>;
+
+	constexpr auto same_test = mc::test<same, 20, mc::gen::list_of<mc::gen::anything>>;
 }
+
+constexpr auto zip_with_section = mc::section("zip_with", zip_with::same_test);

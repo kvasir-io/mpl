@@ -4,21 +4,35 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
-#include <type_traits>
-
 #include <kvasir/mpl/algorithm/fold_left.hpp>
+#include <kvasir/mpl/functions/arithmetic/plus.hpp>
 #include <kvasir/mpl/types/int.hpp>
+#include <kvasir/mpl/types/list.hpp>
 
-namespace {
-	using namespace kvasir;
-	using mpl::uint_;
+#include <metacheck.hpp>
 
-	template <typename T1, typename T2>
-	using add = uint_<(T1::value + T2::value)>;
+namespace fold_left {
+	namespace mpl = kvasir::mpl;
 
-	static_assert(
-	        std::is_same<mpl::eager::fold_left<mpl::list<uint_<1>, uint_<2>, uint_<3>, uint_<4>>,
-	                                           uint_<0>, add>,
-	                     uint_<10>>::value,
-	        "");
+	template <typename L1, typename L2>
+	using distributive = mc::prop::distributive<
+	        mpl::unpack<mpl::push_front<mpl::uint_<0>, mpl::fold_left<mpl::plus<>>>>::template f,
+	        mpl::eager::join, mpl::eager::plus, L1, L2>;
+
+	constexpr auto distributive_test =
+	        mc::test<distributive, 20, mc::gen::list_of<mc::gen::uint_<>>,
+	                 mc::gen::list_of<mc::gen::uint_<>>>;
+
+	template <typename L>
+	using ordering = mc::mpl::equal<
+	        L, mpl::call<mpl::unpack<mpl::push_front<
+	                             mpl::list<>,
+	                             mpl::fold_left<mpl::fork<mpl::at1<>, mpl::at0<>,
+	                                                      mpl::cfe<mpl::eager::push_back>>>>>,
+	                     L>>;
+
+	constexpr auto ordering_test = mc::test<ordering, 20, mc::gen::list_of<mc::gen::anything>>;
 }
+
+constexpr auto fold_left_section =
+        mc::section("fold_left", fold_left::distributive_test, fold_left::ordering_test);

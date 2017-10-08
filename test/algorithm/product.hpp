@@ -4,14 +4,11 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
-#include <kvasir/mpl/algorithm/product.hpp>
-
 #include <type_traits>
 
-#include <kvasir/mpl/functional/call.hpp>
-#include <kvasir/mpl/types/list.hpp>
+#include <metacheck.hpp>
 
-namespace {
+namespace product {
 	namespace mpl = kvasir::mpl;
 
 	template <typename...>
@@ -20,16 +17,20 @@ namespace {
 		template <typename... Ts>
 		using f = foo_list<Ts...>;
 	};
-	template <typename...>
-	struct bar_list {};
-	struct bar_listify {
-		template <typename... Ts>
-		using f = bar_list<Ts...>;
-	};
 
-	static_assert(std::is_same<mpl::call<mpl::product<foo_listify, bar_listify>,
-	                                     mpl::list<void, char>, mpl::list<void, char>>,
-	                           bar_list<foo_list<void, void>, foo_list<void, char>,
-	                                    foo_list<char, void>, foo_list<char, char>>>::value,
-	              "");
+	template <typename Ls>
+	using size = mpl::call<
+	        mpl::unpack<mpl::fork<
+	                mpl::product<mpl::listify, mpl::size<>>,
+	                mpl::transform<mpl::unpack<mpl::size<>>,
+	                               mpl::push_front<mpl::uint_<1>, mpl::fold_left<mpl::times<>>>>,
+	                mpl::cfe<mc::mpl::equal>>>,
+	        Ls>;
+
+	constexpr auto size_test =
+	        mc::test<size, 20,
+	                 mc::gen::list_of<mc::gen::list_of<mc::gen::anything, mc::gen::uint_<16>>,
+	                                  mc::gen::uint_<4>>>;
 }
+
+constexpr auto product_section = mc::section("product", product::size_test);

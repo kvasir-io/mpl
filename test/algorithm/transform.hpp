@@ -6,12 +6,35 @@
 
 #include <type_traits>
 
-#include <kvasir/mpl/algorithm/transform.hpp>
+#include <metacheck.hpp>
 
-namespace {
+namespace transform {
 	namespace mpl = kvasir::mpl;
-	static_assert(std::is_same<mpl::eager::transform<mpl::list<void, char, short, int>, mpl::list>,
-	                           mpl::list<mpl::list<void>, mpl::list<char>, mpl::list<short>,
-	                                     mpl::list<int>>>::value,
-	              "");
+
+	template <typename L1, typename L2>
+	using distributive =
+	        mc::prop::distributive<mpl::unpack<mpl::transform<mpl::listify>>::template f,
+	                               mpl::eager::join, mpl::eager::join, L1, L2>;
+
+	constexpr auto distributive_test =
+	        mc::test<distributive, 20, mc::gen::list_of<mc::gen::anything>,
+	                 mc::gen::list_of<mc::gen::anything>>;
+
+	template <typename L>
+	using size =
+	        mc::mpl::equal<mpl::eager::size<L>,
+	                       mpl::call<mpl::unpack<mpl::transform<mpl::listify, mpl::size<>>>, L>>;
+
+	constexpr auto size_test = mc::test<size, 20, mc::gen::list_of<mc::gen::anything>>;
+
+	template<typename L>
+	using not_same = mpl::call<mpl::unpack<mpl::fork<mpl::listify,
+	                                                 mpl::transform<mpl::listify>,
+	                                                 mpl::zip_with<mpl::is_same<mpl::invert<>>,
+	                                                               mpl::all<mpl::identity>>>>, L>;
+
+	constexpr auto not_same_test = mc::test<not_same, 20, mc::gen::list_of<mc::gen::anything>>;
 }
+
+constexpr auto transform_section = mc::section("transform", transform::distributive_test,
+                                               transform::size_test, transform::not_same_test);

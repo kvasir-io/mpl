@@ -6,10 +6,27 @@
 
 #include <type_traits>
 
-#include <kvasir/mpl/algorithm/flatten.hpp>
-#include <kvasir/mpl/types/list.hpp>
+#include <kvasir/mpl/mpl.hpp>
 
-using namespace kvasir;
-static_assert(std::is_same<mpl::eager::flatten<mpl::list<mpl::list<float>, mpl::list<int>>>,
-                           mpl::list<float, int>>{},
-              "flatten test failed");
+#include <metacheck.hpp>
+
+namespace flatten {
+	namespace mpl = kvasir::mpl;
+
+	template <unsigned depth = 5>
+	struct recursive_list {
+		template <typename seed>
+		using generate =
+		        typename mc::gen::list_of<mc::gen::any<mc::gen::bool_, recursive_list<depth - 1>>,
+		                                  mc::gen::uint_<depth>>::template generate<seed>;
+	};
+
+	template <typename L1, typename L2>
+	using distributive =
+	        mc::prop::distributive<mpl::eager::flatten, mpl::eager::join, mpl::eager::join, L1, L2>;
+
+	constexpr auto distributive_test =
+	        mc::test<distributive, 20, recursive_list<>, recursive_list<>>;
+}
+
+constexpr auto flatten_section = mc::section("flatten", flatten::distributive_test);

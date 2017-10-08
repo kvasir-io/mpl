@@ -10,11 +10,29 @@
 #include <kvasir/mpl/functional/bind.hpp>
 #include <kvasir/mpl/types/list.hpp>
 
-namespace {
-	template <typename T>
-	using comp = std::is_same<int, T>;
+#include <metacheck.hpp>
 
-	using namespace kvasir;
-	static_assert(mpl::eager::any<mpl::list<void, char, int, float>, comp>::value, "");
-	static_assert(!mpl::eager::any<mpl::list<void, char, bool, float>, comp>::value, "");
+namespace any {
+	namespace mpl = kvasir::mpl;
+
+	template <typename Front, typename Elem, typename Back>
+	struct bools_impl;
+	template <typename... Front, typename Elem, typename... Back>
+	struct bools_impl<mpl::list<Front...>, Elem, mpl::list<Back...>> {
+		using type = mc::mpl::equal<Elem, mpl::call<mpl::any<>, Front..., Elem, Back...>>;
+	};
+
+	template <typename Front, typename Elem, typename Back>
+	using bools = typename bools_impl<Front, Elem, Back>::type;
+
+	constexpr auto bools_test =
+	        mc::test<bools, 20, mc::gen::list_of<mc::gen::just<mpl::bool_<false>>>, mc::gen::bool_,
+	                 mc::gen::list_of<mc::gen::just<mpl::bool_<false>>>>;
+
+	template <typename List>
+	using prepend = mpl::call<mpl::unpack<mpl::push_front<mpl::bool_<true>, mpl::any<>>>, List>;
+
+	constexpr auto prepend_test = mc::test<prepend, 20, mc::gen::list_of<mc::gen::bool_>>;
 }
+
+constexpr auto any_section = mc::section("any", any::bools_test, any::prepend_test);

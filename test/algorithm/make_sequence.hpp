@@ -7,16 +7,43 @@
 #include <type_traits>
 
 #include <kvasir/mpl/algorithm/make_sequence.hpp>
-#include <kvasir/mpl/types/bool.hpp>
-#include <kvasir/mpl/types/int.hpp>
 #include <kvasir/mpl/types/list.hpp>
 
-namespace {
+#include <metacheck.hpp>
+
+namespace make_sequence {
 	namespace mpl = kvasir::mpl;
 
-	using a = mpl::eager::make_int_sequence<mpl::int_<5>>;
-	using b = mpl::list<mpl::uint_<0>, mpl::uint_<1>, mpl::uint_<2>, mpl::uint_<3>, mpl::uint_<4>>;
-	static_assert(std::is_same<a, b>{}, "");
+	// series of tests to prove correctness by induction
 
-	static_assert(std::is_same<mpl::eager::make_int_sequence<mpl::int_<0>>, mpl::list<>>{}, "");
+	// the total size of the list must be N
+	template <typename N>
+	using equal_size =
+	        mc::mpl::equal<mpl::call<mpl::make_int_sequence<mpl::identity, mpl::size<>>, N>, N>;
+
+	constexpr auto equal_size_test = mc::test<equal_size, 20, mc::gen::uint_<>>;
+
+	// the first element must always be zero on non-zero length lists
+	template <typename N>
+	using front_zero = mc::mpl::equal<mpl::call<mpl::make_int_sequence<mpl::identity, mpl::front<>>,
+	                                            mpl::uint_<N::value + 1>>,
+	                                  mpl::uint_<0>>;
+
+	constexpr auto front_zero_test = mc::test<front_zero, 20, mc::gen::uint_<>>;
+
+	// all subsequent elements must be incremental
+	template <typename N>
+	using incremental = mpl::call<
+	        mpl::fork<mpl::push_front<mpl::uint_<1>, mpl::plus<mpl::make_int_sequence<
+	                                                         mpl::identity, mpl::pop_front<>>>>,
+	                  mpl::make_int_sequence<>,
+	                  mpl::zip_with<mpl::minus<mpl::push_front<mpl::uint_<1>, mpl::equal<>>>,
+	                                mpl::all<mpl::identity>>>,
+	        mpl::uint_<N::value + 1>>;
+
+	constexpr auto incremental_test = mc::test<incremental, 20, mc::gen::uint_<>>;
 }
+
+constexpr auto make_sequence_section =
+        mc::section("make_sequence", make_sequence::equal_size_test, make_sequence::front_zero_test,
+                    make_sequence::incremental_test);

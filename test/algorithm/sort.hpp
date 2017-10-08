@@ -6,21 +6,37 @@
 
 #include <type_traits>
 
-#include <kvasir/mpl/algorithm/sort.hpp>
-#include <kvasir/mpl/types/bool.hpp>
-#include <kvasir/mpl/types/int.hpp>
-#include <kvasir/mpl/types/list.hpp>
+#include <metacheck.hpp>
 
-using namespace kvasir::mpl;
+namespace sort {
+    namespace mpl = kvasir::mpl;
 
-template <typename E1, typename E2>
-using compare_func = bool_<(E1::value < E2::value)>;
+    template<bool...>
+    struct bool_list {
+    };
 
-using test_list =
-        list<int_<3>, int_<0>, int_<7>, int_<2>, int_<1>, int_<3>, int_<4>, int_<6>, int_<5>>;
-using expect_list =
-        list<int_<0>, int_<1>, int_<2>, int_<3>, int_<3>, int_<4>, int_<5>, int_<6>, int_<7>>;
+    template<typename... Ts1>
+    struct ordered_impl {
+        template<typename... Ts2> using f = std::is_same<
+            bool_list<true, (Ts1::value <= Ts2::value)...>,
+            bool_list<(Ts1::value <= Ts2::value)..., true>>;
+    };
 
-static_assert(std::is_same<eager::sort<test_list>, expect_list>::value, "");
+    template<typename...>
+    struct ordered {
+        using type = mpl::bool_<true>;
+    };
 
-using empty_sort_test = eager::sort<list<>>;
+    template<typename T, typename... Ts>
+    struct ordered<T, Ts...> {
+        using type = typename ordered_impl<T, Ts...>::template f<
+            Ts..., mpl::uint_<std::numeric_limits<unsigned>::max()>>;
+    };
+
+    template<typename L>
+    using order = mpl::call<mpl::unpack<mpl::sort<mpl::eager::less_than, mpl::cfl<ordered>>>, L>;
+
+    constexpr auto order_test = mc::test<order, 20, mc::gen::list_of<mc::gen::uint_<>>>;
+}
+
+constexpr auto sort_section = mc::section("sort", sort::order_test);

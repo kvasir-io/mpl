@@ -21,7 +21,10 @@ namespace kvasir {
 			};
 
 			template <template <typename...> class F, typename C>
-			struct product_end_cont {};
+			struct product_end_cont {
+				template<typename...Ts>
+				using f = mpl::call<mpl::transform<mpl::unpack<mpl::cfe<F>>, C>, Ts...>;
+			};
 
 			template <typename C, typename L>
 			struct product_pusher;
