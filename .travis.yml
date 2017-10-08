@@ -51,7 +51,7 @@ matrix:
       addons:
         apt:
           sources: ['ubuntu-toolchain-r-test', 'llvm-toolchain-precise-3.5', 'george-edison55-precise-backports']
-          packages: ['clang-3.5', 'cmake', 'cmake-data']
+          packages: ['clang-3.5', 'cmake', 'cmake-data', 'libstdc++-6-dev']
       env: TOOLSET=clang++-3.5
 
     - os: linux
@@ -59,7 +59,7 @@ matrix:
       addons:
         apt:
           sources: ['ubuntu-toolchain-r-test', 'llvm-toolchain-precise-3.6', 'george-edison55-precise-backports']
-          packages: ['clang-3.6', 'cmake', 'cmake-data']
+          packages: ['clang-3.6', 'cmake', 'cmake-data', 'libstdc++-6-dev']
       env: TOOLSET=clang++-3.6
 
     - os: linux
@@ -67,7 +67,7 @@ matrix:
       addons:
         apt:
           sources: ['ubuntu-toolchain-r-test', 'llvm-toolchain-precise-3.7', 'george-edison55-precise-backports']
-          packages: ['clang-3.7', 'cmake', 'cmake-data']
+          packages: ['clang-3.7', 'cmake', 'cmake-data', 'libstdc++-6-dev']
       env: TOOLSET=clang++-3.7
 
     - os: linux
@@ -75,7 +75,7 @@ matrix:
       addons:
         apt:
           sources: ['ubuntu-toolchain-r-test', 'llvm-toolchain-precise-3.8', 'george-edison55-precise-backports']
-          packages: ['clang-3.8', 'cmake', 'cmake-data']
+          packages: ['clang-3.8', 'cmake', 'cmake-data', 'libstdc++-6-dev']
       env: TOOLSET=clang++-3.8
 
     - os: linux
@@ -83,7 +83,7 @@ matrix:
       addons:
         apt:
           sources: ['ubuntu-toolchain-r-test', 'llvm-toolchain-precise-3.9', 'george-edison55-precise-backports']
-          packages: ['clang-3.9', 'cmake', 'cmake-data']
+          packages: ['clang-3.9', 'cmake', 'cmake-data', 'libstdc++-6-dev']
       env: TOOLSET=clang++-3.9
 
     - os: linux
@@ -91,7 +91,7 @@ matrix:
       addons:
         apt:
           sources: ['ubuntu-toolchain-r-test', 'llvm-toolchain-precise-3.9', 'george-edison55-precise-backports']
-          packages: ['clang-3.9', 'cmake', 'cmake-data']
+          packages: ['clang-3.9', 'cmake', 'cmake-data', 'libstdc++-6-dev']
       env:
         - TOOLSET=clang++-3.9
         - CPP_EXTRA_FEATURES="cxx_relaxed_constexpr"
