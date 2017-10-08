@@ -106,6 +106,8 @@ target_link_libraries(kvasir_mpl_test kvasir_mpl)
 add_dependencies(kvasir_mpl_test metacheck kvasir_mpl_test_always_run)
 target_include_directories(kvasir_mpl_test PRIVATE ${CMAKE_BINARY_DIR}/metacheck/src/metacheck/src)
 set_target_properties(kvasir_mpl_test PROPERTIES CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD_REQUIRED YES)
+set(CMAKE_CXX_EXTENSIONS NO)
 
 option(MAKE_INCLUDE_TESTS OFF)
 if (MAKE_INCLUDE_TESTS)
