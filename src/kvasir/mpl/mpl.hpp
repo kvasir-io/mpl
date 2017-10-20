@@ -32,6 +32,7 @@
 #include "functional/bind.hpp"
 #include "functional/call.hpp"
 #include "functional/compose.hpp"
+#include "functional/flow.hpp"
 #include "functional/fork.hpp"
 #include "functional/identity.hpp"
 
