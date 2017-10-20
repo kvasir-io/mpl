@@ -29,6 +29,7 @@
 #include "functional/compose.hpp"
 #include "functional/fork.hpp"
 #include "functional/identity.hpp"
+#include "functional/flow.hpp"
 
 #include "functions/arithmetic/decrement.hpp"
 #include "functions/arithmetic/divide.hpp"
