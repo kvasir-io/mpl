@@ -68,10 +68,10 @@ if (STANDARDESE)
 	file(MAKE_DIRECTORY ${KVASIR_MPL_DOCS_DIR})
 	add_custom_target(
 			standardese
-			COMMAND ${STANDARDESE}
+			COMMAND standardese
 			-I${CMAKE_SOURCE_DIR}/src/kvasir/mpl
 			--input.blacklist_namespace=detail
-			--compilation.comments_in_macro=false
+                        --input.blacklist_namespace=eager
 			--output.require_comment_for_full_synopsis=false
 			--output.format=html
 			${CMAKE_SOURCE_DIR}/src/kvasir/mpl
