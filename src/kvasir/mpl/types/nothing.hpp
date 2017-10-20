@@ -9,5 +9,5 @@ namespace kvasir {
 		/// class used when a function errors, as in the haskell nothing
 		/// all functions that take nothing as a parameter should return nothing
 		struct nothing {};
-	}
-}
+	} // namespace mpl
+} // namespace kvasir

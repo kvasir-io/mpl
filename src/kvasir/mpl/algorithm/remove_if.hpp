@@ -25,12 +25,13 @@ namespace kvasir {
 				template <typename>
 				using f = list<>;
 			};
-		}
+		} // namespace detail
 		template <typename F>
 		struct list_wrap_if {
 			template <typename T>
 			using f = typename detail::list_wrap_if<F::template f<T>::value>::template f<T>;
 		};
+		/// \exclude
 		template <template <typename> class F>
 		struct list_wrap_if<cfe<F, identity>> {
 			template <typename T>
@@ -41,21 +42,20 @@ namespace kvasir {
 			template <typename T>
 			using f = typename detail::list_wrap_if<(!F::template f<T>::value)>::template f<T>;
 		};
+		/// \exclude
 		template <template <typename> class F>
 		struct list_wrap_if_not<cfe<F, identity>> {
 			template <typename T>
 			using f = typename detail::list_wrap_if<(!F<T>::value)>::template f<T>;
 		};
 
-		/// continuation version of remove_if, taking a continuation and predicate
+		/// \brief removes all elements for which a predicate holds
 		template <typename F = identity, typename C = listify>
 		using remove_if = transform<list_wrap_if_not<F>, join<C>>;
 
 		namespace eager {
-			/// filter elements from a list
-			/// takes a lambda that should return a type convertible to bool
 			template <typename List, template <typename...> class Cond = identity>
 			using remove_if = call<unpack<mpl::remove_if<cfe<Cond>>>, List>;
 		}
-	}
-}
+	} // namespace mpl
+} // namespace kvasir

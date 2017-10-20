@@ -183,16 +183,17 @@ namespace kvasir {
 					template <typename Result, typename Elem>
 					using f = typename push_bst<Result>::template f<Comp, Elem>;
 				};
-			}
+			} // namespace detail
 			template <typename List, template <typename...> class Comp = less_than>
 			using stable_sort = typename detail::flatten_bst<mpl::call<
 			        unpack<mpl::push_front<nothing, mpl::fold_left<detail::push_func<Comp>>>>,
 			        List>>::f;
-		}
+		} // namespace eager
+		/// \brief stable sorts a pack of elements
 		template <template <typename...> class Comp, typename C = listify>
 		struct stable_sort {
 			template <typename... Ts>
 			using f = call<unpack<C>, eager::stable_sort<list<Ts...>, Comp>>;
 		};
-	}
-}
+	} // namespace mpl
+} // namespace kvasir

@@ -14,13 +14,13 @@ namespace kvasir {
 		struct insert {
 			template <typename... Ts>
 			using f = typename rotate<
-			        Index, push_front<Input, rotate<uint_<(1 + sizeof...(Ts)-Index::value)>, C>>>::
-			        template f<Ts...>;
+			        Index, push_front<Input, rotate<uint_<(1 + sizeof...(Ts) - Index::value)>,
+			                                        C>>>::template f<Ts...>;
 		};
 
 		namespace eager {
 			template <typename List, unsigned Index, typename Input>
 			using insert = call<unpack<insert<uint_<Index>, Input>>, List>;
 		}
-	}
-}
+	} // namespace mpl
+} // namespace kvasir

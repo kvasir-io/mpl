@@ -7,10 +7,9 @@
 namespace kvasir {
 	namespace mpl {
 		template <typename T, T val>
-		struct integral_constant { 
+		struct integral_constant {
 			static constexpr T value = val;
 		};
-
 
 		namespace eager {
 			template <typename T>
@@ -32,6 +31,6 @@ namespace kvasir {
 			struct is_integral<integral_constant<decltype(nullptr), nullptr>> {
 				static constexpr bool value = true;
 			};
-		}
-	}
-}
+		} // namespace eager
+	} // namespace mpl
+} // namespace kvasir

@@ -29,10 +29,10 @@ namespace kvasir {
 					template <template <typename...> class Result>
 					using f = compose_impl<Result, F>;
 				};
-			}
+			} // namespace impl
 
 			template <template <typename...> class F, template <typename...> class... Fs>
 			using compose = typename impl::compose_n_impl<Fs...>::template f<F>;
-		}
-	}
-}
+		} // namespace eager
+	} // namespace mpl
+} // namespace kvasir

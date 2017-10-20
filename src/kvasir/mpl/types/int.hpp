@@ -15,5 +15,5 @@ namespace kvasir {
 		struct int_ {
 			static constexpr long long value = Value;
 		};
-	}
-}
+	} // namespace mpl
+} // namespace kvasir

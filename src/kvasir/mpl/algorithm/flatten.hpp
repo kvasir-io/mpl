@@ -16,17 +16,16 @@ namespace kvasir {
 
 			template <template <class...> class L, class... Ts>
 			struct flatten_element_impl<L, L<Ts...>> {
-				using type = typename detail::join_select<detail::select_join_size(sizeof...(
-				        Ts))>::template f<list, typename flatten_element_impl<L, Ts>::type...>::type;
+				using type = typename detail::join_select<detail::select_join_size(sizeof...(Ts))>::
+				        template f<list, typename flatten_element_impl<L, Ts>::type...>::type;
 			};
-		}
-
-		/// \effects 
-		/// \requires 
-		/// \example call<flatten<>,list<void>,list<list<int>,char>,bool> resolves to list<void,int,char,bool>.
+		} // namespace detail
+		/// \brief converts a tree or list of lists into one list containing the contents of all
+		/// children \effects \requires example call<flatten<>,list<void>,list<list<int>,char>,bool>
+		/// resolves to list<void,int,char,bool>.
 		template <typename SequenceType = cfe<list>, typename C = listify>
 		struct flatten;
-
+		/// \exclude
 		template <template <typename...> class S, typename C>
 		struct flatten<cfe<S, identity>, C> {
 			template <typename... Ts>
@@ -43,10 +42,10 @@ namespace kvasir {
 				struct flatten_impl<S<Ts...>> {
 					using type = typename mpl::flatten<cfe<S>>::template f<Ts...>;
 				};
-			}
+			} // namespace detail
 
 			template <typename Sequence>
 			using flatten = typename detail::flatten_impl<Sequence>::type;
-		}
-	}
-}
+		} // namespace eager
+	} // namespace mpl
+} // namespace kvasir

@@ -34,7 +34,9 @@ namespace kvasir {
 				using f = typename std::conditional<F<U>::value, split_next<T>,
 				                                    split_push<T, U>>::type::type;
 			};
-		}
+		} // namespace detail
+		/// \brief splits a lits into multiple lists at every point for which the provided predicate
+		/// holds
 		template <typename F = identity, typename C = listify>
 		struct split_if {
 			template <typename... Ts>
@@ -46,5 +48,5 @@ namespace kvasir {
 			template <typename List, template <typename...> class F = identity>
 			using split_if = call<unpack<mpl::split_if<cfe<F>>>, List>;
 		}
-	}
-}
+	} // namespace mpl
+} // namespace kvasir

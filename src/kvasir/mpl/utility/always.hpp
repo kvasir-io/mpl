@@ -4,18 +4,22 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
-#include "../types/bool.hpp"
 #include "../functional/identity.hpp"
+#include "../types/bool.hpp"
 
 namespace kvasir {
 	namespace mpl {
+		/// \group utility
+		/// \brief ignores input and passes a fixed output
+		///
 		template <typename T, typename C = identity>
 		struct always {
 			template <typename...>
 			using f = typename C::template f<T>;
 		};
+		/// \exclude
 		template <typename T>
-		struct always<T,identity> {
+		struct always<T, identity> {
 			template <typename...>
 			using f = T;
 		};
@@ -24,6 +28,6 @@ namespace kvasir {
 			struct always_false {
 				static constexpr bool value = false;
 			};
-		}
-	}
-}
+		} // namespace eager
+	} // namespace mpl
+} // namespace kvasir

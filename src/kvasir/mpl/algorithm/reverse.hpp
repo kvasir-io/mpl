@@ -11,9 +11,9 @@ namespace kvasir {
 	namespace mpl {
 		namespace detail {
 			static constexpr int select_reverse(const int in) {
-				return /*in >= 256 ? 256 :*/ in >= 64 ? 64 : in >= 16 ?
-				                                        16 :
-				                                        in >= 4 ? 4 : in >= 2 ? 2 : in == 1 ? 1 : 0;
+				return /*in >= 256 ? 256 :*/ in >= 64 ?
+				               64 :
+				               in >= 16 ? 16 : in >= 4 ? 4 : in >= 2 ? 2 : in == 1 ? 1 : 0;
 			}
 			template <int>
 			struct reverse_impl;
@@ -77,7 +77,8 @@ namespace kvasir {
 				              Tail>,
 				        Ts...>;
 			};
-		}
+		} // namespace detail
+		/// \brief reverses the order of elements in a pack
 		template <typename C = listify>
 		struct reverse {
 			template <typename... Ts>
@@ -90,5 +91,5 @@ namespace kvasir {
 			template <typename List>
 			using reverse = call<unpack<mpl::reverse<typename sequencify<List>::type>>, List>;
 		}
-	}
-}
+	} // namespace mpl
+} // namespace kvasir

@@ -87,10 +87,9 @@ namespace kvasir {
 				          typename T4, typename T5, typename T6, typename T7, typename T8,
 				          typename T9, typename T10, typename T11, typename T12, typename T13,
 				          typename T14, typename T15, typename... Ts>
-				using f = typename rotate_impl<select_next_rotate_step(N - 16, sizeof...(Ts)),
-				                               C>::template f<(N - 16), Ts..., T0, T1, T2, T3, T4,
-				                                              T5, T6, T7, T8, T9, T10, T11, T12,
-				                                              T13, T14, T15>;
+				using f = typename rotate_impl<select_next_rotate_step(N - 16, sizeof...(Ts)), C>::
+				        template f<(N - 16), Ts..., T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10,
+				                   T11, T12, T13, T14, T15>;
 			};
 			template <typename C>
 			struct rotate_impl<64, C> {
@@ -195,7 +194,8 @@ namespace kvasir {
 				                   T244, T245, T246, T247, T248, T249, T250, T251, T252, T253, T254,
 				                   T255>;
 			};
-		}
+		} // namespace detail
+		/// \brief moves N elements from the front of a list to the back of the list
 		template <typename N, typename C = listify>
 		struct rotate {
 			template <typename... Ts>
@@ -209,5 +209,5 @@ namespace kvasir {
 			template <typename List, unsigned Index>
 			using rotate = call<unpack<mpl::rotate<mpl::uint_<Index>>>, List>;
 		}
-	}
-}
+	} // namespace mpl
+} // namespace kvasir

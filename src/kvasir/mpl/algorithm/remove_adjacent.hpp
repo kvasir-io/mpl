@@ -45,6 +45,7 @@ namespace kvasir {
 			};
 #endif
 		}
+		/// \brief removes each element in a list which is the same type as the privious element
 		template <typename F, typename C = listify>
 		struct remove_adjacent {
 			template <typename... Ts>
@@ -52,6 +53,7 @@ namespace kvasir {
 			        F::template f, list<Ts...>,
 			        typename dcall<rotate<uint_<1>>, sizeof...(Ts)>::template f<Ts...>, C>::type;
 		};
+		/// \exclude
 		template <template <typename... Ts> class F, typename C>
 		struct remove_adjacent<cfe<F, identity>, C> {
 			template <typename... Ts>
@@ -66,6 +68,6 @@ namespace kvasir {
 			/// then the first of the two elements is removed
 			template <typename List, template <typename...> class Pred = std::is_same>
 			using remove_adjacent = call<unpack<mpl::remove_adjacent<cfe<Pred>>>, List>;
-		}
-	}
-}
+		} // namespace eager
+	} // namespace mpl
+} // namespace kvasir

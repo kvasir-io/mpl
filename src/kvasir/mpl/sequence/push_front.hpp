@@ -24,11 +24,11 @@ namespace kvasir {
 				struct push_front_impl<Elem, mpl::list<Ts...>> {
 					using f = mpl::list<Elem, Ts...>;
 				};
-			}
+			} // namespace impl
 
 			/// push an element to the back of a list
 			template <typename Elem, typename List>
 			using push_front = typename impl::push_front_impl<Elem, List>::f;
-		}
-	}
-}
+		} // namespace eager
+	} // namespace mpl
+} // namespace kvasir

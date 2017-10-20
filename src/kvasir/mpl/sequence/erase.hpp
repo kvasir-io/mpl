@@ -14,12 +14,12 @@ namespace kvasir {
 		struct erase {
 			template <typename... Ts>
 			using f = typename rotate<
-			        Index, pop_front<rotate<mpl::uint_<(sizeof...(Ts)-Index::value - 1)>, C>>>::
+			        Index, pop_front<rotate<mpl::uint_<(sizeof...(Ts) - Index::value - 1)>, C>>>::
 			        template f<Ts...>;
 		};
 		namespace eager {
 			template <typename List, unsigned Index>
 			using erase = call<unpack<mpl::erase<uint_<Index>>>, List>;
 		}
-	}
-}
+	} // namespace mpl
+} // namespace kvasir

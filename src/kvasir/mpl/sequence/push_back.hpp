@@ -27,7 +27,7 @@ namespace kvasir {
 				struct push_back_impl<Elem, mpl::list<Ts...>> {
 					using f = mpl::list<Ts..., Elem>;
 				};
-			}
+			} // namespace impl
 
 			/// push an element to the back of a list
 			/// be wary that pushing to the back of a list can be a linear operation, and is
@@ -35,6 +35,6 @@ namespace kvasir {
 			/// to recurse backwards and push to the front instead
 			template <typename Elem, typename List>
 			using push_back = typename impl::push_back_impl<Elem, List>::f;
-		}
-	}
-}
+		} // namespace eager
+	} // namespace mpl
+} // namespace kvasir

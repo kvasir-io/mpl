@@ -19,10 +19,10 @@ namespace kvasir {
 				struct is_instance_impl<Type, Type<Ts...>> {
 					using f = bool_<true>;
 				};
-			}
+			} // namespace impl
 
 			template <template <typename...> class Type, typename T>
 			using is_instance = typename impl::is_instance_impl<Type, T>::f;
-		}
-	}
-}
+		} // namespace eager
+	} // namespace mpl
+} // namespace kvasir

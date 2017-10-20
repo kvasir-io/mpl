@@ -8,17 +8,17 @@
 
 #include "../functional/call.hpp"
 #include "../sequence/pop_front.hpp"
+#include "../sequence/push_front.hpp"
 #include "../sequence/size.hpp"
 #include "../types/list.hpp"
-#include "../sequence/push_front.hpp"
 
 namespace kvasir {
 	namespace mpl {
 		namespace detail {
 			static constexpr int select_fold(const int in) {
-				return /*in >= 256 ? 256 :*/ in >= 64 ? 64 : in >= 16 ?
-				                                        16 :
-				                                        in >= 4 ? 4 : in >= 2 ? 2 : in == 1 ? 1 : 0;
+				return /*in >= 256 ? 256 :*/ in >= 64 ?
+				               64 :
+				               in >= 16 ? 16 : in >= 4 ? 4 : in >= 2 ? 2 : in == 1 ? 1 : 0;
 			}
 			template <int>
 			struct fold_impl;
@@ -34,25 +34,24 @@ namespace kvasir {
 			};
 			template <>
 			struct fold_impl<2> {
-				template <template <typename...> class F, typename In, typename T0,
-				          typename T1, typename... Ts>
+				template <template <typename...> class F, typename In, typename T0, typename T1,
+				          typename... Ts>
 				using f = typename fold_impl<select_fold(
 				        sizeof...(Ts))>::template f<F, F<F<In, T0>, T1>, Ts...>;
 			};
 			template <>
 			struct fold_impl<4> {
-				template <template <typename...> class F, typename In, typename T0,
-				          typename T1, typename T2, typename T3, typename... Ts>
+				template <template <typename...> class F, typename In, typename T0, typename T1,
+				          typename T2, typename T3, typename... Ts>
 				using f = typename fold_impl<select_fold(
 				        sizeof...(Ts))>::template f<F, F<F<F<F<In, T0>, T1>, T2>, T3>, Ts...>;
 			};
 			template <>
 			struct fold_impl<16> {
-				template <template <typename...> class F, typename In, typename T0,
-				          typename T1, typename T2, typename T3, typename T4, typename T5,
-				          typename T6, typename T7, typename T8, typename T9, typename T10,
-				          typename T11, typename T12, typename T13, typename T14, typename T15,
-				          typename... Ts>
+				template <template <typename...> class F, typename In, typename T0, typename T1,
+				          typename T2, typename T3, typename T4, typename T5, typename T6,
+				          typename T7, typename T8, typename T9, typename T10, typename T11,
+				          typename T12, typename T13, typename T14, typename T15, typename... Ts>
 				using f = typename fold_impl<select_fold(sizeof...(Ts))>::template f<
 				        F,
 				        F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<F<In, T0>, T1>, T2>, T3>, T4>, T5>, T6>, T7>,
@@ -150,25 +149,27 @@ namespace kvasir {
 				          T63>,
 				        Ts...>;
 			};
-		}
-		//fold left consideres the first element in the input pack the state, use push_front to add state if needed
+		} // namespace detail
+		/// \brief folds left over a list using a binary predicate /
+		/// fold left consideres the first element in the input pack the state, use `push_front<>`
+		/// to add state if needed
 		template <typename F, typename C = identity>
 		struct fold_left {
 			template <typename... Ts>
 			using f = typename C::template f<typename detail::fold_impl<detail::select_fold(
-			        sizeof...(Ts)-1)>::template f<F::template f, Ts...>>;
+			        sizeof...(Ts) - 1)>::template f<F::template f, Ts...>>;
 		};
+		/// \exclude
 		template <template <typename...> class F, typename C>
 		struct fold_left<cfe<F, identity>, C> {
 			template <typename... Ts>
 			using f = typename C::template f<typename detail::fold_impl<detail::select_fold(
-			        sizeof...(Ts)-1)>::template f<F, Ts...>>;
+			        sizeof...(Ts) - 1)>::template f<F, Ts...>>;
 		};
 
 		namespace eager {
-			/// fold left over a list, initialized with State
 			template <typename List, typename State, template <typename...> class Func>
 			using fold_left = call<unpack<mpl::push_front<State, mpl::fold_left<cfe<Func>>>>, List>;
 		}
-	}
-}
+	} // namespace mpl
+} // namespace kvasir

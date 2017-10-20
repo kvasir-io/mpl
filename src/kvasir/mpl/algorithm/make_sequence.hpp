@@ -45,14 +45,16 @@ namespace kvasir {
 			struct make_int_seq_impl<0, F> {
 				using type = list<>;
 			};
-		}
+		} // namespace detail
 
+		/// \brief creates a sequence of uint_
 		template <typename F = identity, typename C = listify>
 		struct make_int_sequence {
 			template <typename N>
 			using f = call<unpack<C>, typename detail::make_int_seq_impl<N::value, F>::type>;
 		};
 
+		/// \exclude
 		template <typename F>
 		struct make_int_sequence<F, listify> {
 			template <typename N>
@@ -63,5 +65,5 @@ namespace kvasir {
 			template <typename N>
 			using make_int_sequence = call<make_int_sequence<>, N>;
 		}
-	}
-}
+	} // namespace mpl
+} // namespace kvasir

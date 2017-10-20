@@ -27,5 +27,5 @@ namespace kvasir {
 			template <typename T>
 			using f = std::is_same<M, T>;
 		};
-	}
-}
+	} // namespace mpl
+} // namespace kvasir

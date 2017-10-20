@@ -40,8 +40,9 @@ namespace kvasir {
 				using f = typename dcall<join<C>, sizeof...(State)>::template f<
 				        typename State::template push<F, Ts...>...>;
 			};
-		}
+		} // namespace detail
 
+		/// \brief creates an n-ary cartesian product
 		template <typename F = listify, typename C = listify>
 		struct product {
 			template <typename... Ts>
@@ -50,6 +51,7 @@ namespace kvasir {
 			               detail::product_pusher_list<>>;
 		};
 
+		/// \exclude
 		template <template <typename...> class F, typename C>
 		struct product<cfe<F, identity>, C> {
 			template <typename... Ts>
@@ -62,5 +64,5 @@ namespace kvasir {
 			template <typename List, template <typename...> class F = list>
 			using product = call<unpack<mpl::product<cfe<F>>>, List>;
 		}
-	}
-}
+	} // namespace mpl
+} // namespace kvasir

@@ -81,8 +81,9 @@ namespace kvasir {
 				using f =
 				        typename zip_with_impl<F, C, call<unpack<transform<listify>>, T>, Ts...>::f;
 			};
-		}
+		} // namespace detail
 
+		/// \brief n-ary version of transform
 		template <typename F = listify, typename C = listify>
 		struct zip_with {
 			template <typename... Ts>
@@ -93,5 +94,5 @@ namespace kvasir {
 			template <template <typename...> class Func, typename... Lists>
 			using zip_with = call<zip_with<cfe<Func>>, Lists...>;
 		}
-	}
-}
+	} // namespace mpl
+} // namespace kvasir

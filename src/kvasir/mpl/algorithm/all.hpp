@@ -24,18 +24,19 @@ namespace kvasir {
 				template <typename T>
 				using f = bool_<(!F<T>::value)>;
 			};
-		}
-
-		/// \effects resolves to true_ if all elements in the input pack fulfill the provided predicate, otherwise false_.
-		/// \requires Type `F` shall be a `ContinuationPredicate` and C shall be any `Continuation`.
-		/// \example call<all<same_as<void>>,void,void,void> resolves to true_.
+		} // namespace detail
+		/// \brief tests if a predicate holds for all elements in a pack
+		/// \effects resolves to true_ if all elements in the input pack fulfill the provided
+		/// predicate, otherwise false_. \requires Type `F` shall be a `continuation predicate` and
+		/// C shall be any `continuation`. example: call<all<same_as<void>>,void,void,void> resolves
+		/// to true_.
 		template <typename F, typename C = identity>
-		using all = find_if<detail::not_<F>, always<bool_<false>,C>,always<bool_<true>,C>>;
+		using all = find_if<detail::not_<F>, always<bool_<false>, C>, always<bool_<true>, C>>;
 		namespace eager {
 			/// resolves to true_ if all elements in the input list
 			/// fulfill the provided predicate
 			template <typename List, template <typename...> class Cond = identity>
 			using all = call<unpack<mpl::all<cfe<Cond>>>, List>;
-		}
-	}
-}
+		} // namespace eager
+	} // namespace mpl
+} // namespace kvasir

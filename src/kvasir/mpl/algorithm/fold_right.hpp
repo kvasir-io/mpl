@@ -16,9 +16,9 @@ namespace kvasir {
 	namespace mpl {
 		namespace detail {
 			static constexpr int select_fold_right(const int in) {
-				return /*in >= 256 ? 256 :*/ in >= 64 ? 64 : in >= 16 ?
-				                                        16 :
-				                                        in >= 4 ? 4 : in >= 2 ? 2 : in == 1 ? 1 : 0;
+				return /*in >= 256 ? 256 :*/ in >= 64 ?
+				               64 :
+				               in >= 16 ? 16 : in >= 4 ? 4 : in >= 2 ? 2 : in == 1 ? 1 : 0;
 			}
 			template <int>
 			struct fold_right_impl;
@@ -166,25 +166,28 @@ namespace kvasir {
 				          T1>,
 				        T0>;
 			};
-		}
-		//fold left consideres the first element in the input pack the state, use push_front to add state if needed
+		} // namespace detail
+		/// \breif fold right consideres the first element in the input pack the state, use
+		/// push_front to add state if needed
 		template <typename F, typename C = identity>
 		struct fold_right {
 			template <typename... Ts>
-			using f = typename C::template f<typename detail::fold_right_impl<
-			        detail::select_fold_right(sizeof...(Ts)-1)>::template f<F::template f, Ts...>>;
+			using f = typename C::template f<
+			        typename detail::fold_right_impl<detail::select_fold_right(
+			                sizeof...(Ts) - 1)>::template f<F::template f, Ts...>>;
 		};
+		/// \exclude
 		template <template <typename...> class F, typename C>
 		struct fold_right<cfe<F, identity>, C> {
 			template <typename... Ts>
 			using f = typename C::template f<typename detail::fold_right_impl<
-			        detail::select_fold_right(sizeof...(Ts)-1)>::template f<F, Ts...>>;
+			        detail::select_fold_right(sizeof...(Ts) - 1)>::template f<F, Ts...>>;
 		};
 
 		namespace eager {
 			/// fold right over a list, initialized with State
 			template <typename List, typename State, template <typename...> class Func>
 			using fold_right = call<unpack<mpl::push_front<State, fold_right<cfe<Func>>>>, List>;
-		}
-	}
-}
+		} // namespace eager
+	} // namespace mpl
+} // namespace kvasir
