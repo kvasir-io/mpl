@@ -5,6 +5,7 @@
 #pragma once
 
 #include <kvasir/mpl/algorithm/make_sequence.hpp>
+#include <kvasir/mpl/algorithm/transform.hpp>
 #include <kvasir/mpl/sequence/join.hpp>
 
 namespace {
