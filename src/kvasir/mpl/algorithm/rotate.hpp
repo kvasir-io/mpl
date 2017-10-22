@@ -11,7 +11,7 @@ namespace kvasir {
 		namespace detail {
 
 			constexpr unsigned select_next_rotate_step(unsigned N, unsigned) {
-				return N > 256 ? 256 : N > 64 ? 64 : N > 16 ? 16 : N > 8 ? 8 : N;
+				return N >= 256 ? 256 : N >= 64 ? 64 : N >= 16 ? 16 : N >= 8 ? 8 : N;
 			}
 
 			constexpr unsigned select_rotate_size(unsigned n, unsigned size) {
@@ -78,8 +78,8 @@ namespace kvasir {
 			struct rotate_impl<8, C> {
 				template <unsigned N, typename T0, typename T1, typename T2, typename T3,
 				          typename T4, typename T5, typename T6, typename T7, typename... Ts>
-				using f = typename conditional<(sizeof...(Ts) > 0)>::template f<
-				        C, void>::template f<Ts..., T0, T1, T2, T3, T4, T5, T6, T7>;
+				using f = typename rotate_impl<select_next_rotate_step(N - 8, sizeof...(Ts)), C>::
+				        template f<(N - 8), Ts..., T0, T1, T2, T3, T4, T5, T6, T7>;
 			};
 			template <typename C>
 			struct rotate_impl<16, C> {
