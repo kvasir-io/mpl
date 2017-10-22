@@ -18,6 +18,7 @@
 #include "algorithm/remove_adjacent.hpp"
 #include "algorithm/remove_if.hpp"
 #include "algorithm/reverse.hpp"
+#include "algorithm/rotate.hpp"
 #include "algorithm/sort.hpp"
 #include "algorithm/split_if.hpp"
 #include "algorithm/stable_sort.hpp"
