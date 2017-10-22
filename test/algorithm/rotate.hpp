@@ -7,6 +7,7 @@
 #include <kvasir/mpl/algorithm/make_sequence.hpp>
 #include <kvasir/mpl/algorithm/rotate.hpp>
 #include <kvasir/mpl/sequence/drop.hpp>
+#include <kvasir/mpl/sequence/join.hpp>
 
 namespace {
 	struct rotate_test {
