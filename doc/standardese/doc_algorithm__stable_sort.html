@@ -1,0 +1,19 @@
+<h1>Header file <code>algorithm/stable_sort.hpp</code><a id="algorithm/stable_sort.hpp"></a></h1>
+<pre><code class="language-cpp">namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>kvasir</a>
+{
+    namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>mpl</a>
+    {
+        template &lt;template &lt;typename&gt; class Comp, typename C = listify&gt;
+        struct <a href='doc_algorithm__stable_sort.html#kvasir::mpl::stable_sort-Comp,C-'>stable_sort</a>;
+    }
+}</code></pre>
+<h2>Class template <code>kvasir::mpl::stable_sort</code><a id="kvasir::mpl::stable_sort-Comp,C-"></a></h2>
+<pre><code class="language-cpp">template &lt;template &lt;typename&gt; class Comp, typename C = listify&gt;
+struct stable_sort
+{
+    template &lt;typename ... Ts&gt;
+    using <a href='doc_algorithm__stable_sort.html#kvasir::mpl::stable_sort-Comp,C-'>f</a> = call&lt;unpack&lt;C&gt;, eager::stable_sort&lt;list&lt;Ts...&gt;, Comp&gt;&gt;;
+};</code></pre>
+<p>stable sorts a pack of elements</p>
+<hr />
+<hr />

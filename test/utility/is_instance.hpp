@@ -4,9 +4,9 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
-#include <kvasir/mpl/utility/is_instance.hpp>
 #include <kvasir/mpl/types/list.hpp>
+#include <kvasir/mpl/utility/is_instance.hpp>
 
 using namespace kvasir::mpl;
-static_assert(is_instance<list, list<void>>{}, "");
-static_assert(!is_instance<list, void>{}, "");
+static_assert(eager::is_instance<list, list<void>>::value, "");
+static_assert(!eager::is_instance<list, void>::value, "");

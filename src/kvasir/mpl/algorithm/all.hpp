@@ -4,26 +4,39 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
-#include "remove_if.hpp"
-#include "../sequence/size.hpp"
-#include "../functional/compose.hpp"
-#include "../utility/invert.hpp"
+#include "../algorithm/find_if.hpp"
+#include "../functional/bind.hpp"
+#include "../functional/call.hpp"
+#include "../functional/identity.hpp"
+#include "../types/bool.hpp"
 
+#include "../utility/always.hpp"
 namespace kvasir {
 	namespace mpl {
-		namespace impl {
-			/// generic implementation for any list type
-			template <template <typename...> class Cond, typename List>
-			struct all_impl {
-				constexpr operator bool() const {
-					return size_impl<remove_if_impl<Cond, List>>{} == 0;
-				}
+		namespace detail {
+			template <typename F>
+			struct not_ {
+				template <typename T>
+				using f = bool_<(!(F::template f<T>::value))>;
 			};
-		};
-
-		/// filter elements from a list
-		/// takes a lambda that should return a type convertible to bool
-		template <template <typename...> class Cond, typename List>
-		using all = impl::all_impl<Cond, List>;
-	}
-}
+			template <template <typename...> class F>
+			struct not_<cfe<F, identity>> {
+				template <typename T>
+				using f = bool_<(!F<T>::value)>;
+			};
+		} // namespace detail
+		/// \brief tests if a predicate holds for all elements in a pack
+		/// \effects resolves to true_ if all elements in the input pack fulfill the provided
+		/// predicate, otherwise false_. \requires Type `F` shall be a `continuation predicate` and
+		/// C shall be any `continuation`. example: call<all<same_as<void>>,void,void,void> resolves
+		/// to true_.
+		template <typename F, typename C = identity>
+		using all = find_if<detail::not_<F>, always<bool_<false>, C>, always<bool_<true>, C>>;
+		namespace eager {
+			/// resolves to true_ if all elements in the input list
+			/// fulfill the provided predicate
+			template <typename List, template <typename...> class Cond = identity>
+			using all = call<unpack<mpl::all<cfe<Cond>>>, List>;
+		} // namespace eager
+	} // namespace mpl
+} // namespace kvasir

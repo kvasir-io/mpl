@@ -5,3 +5,17 @@
 #pragma once
 
 #include <kvasir/mpl/algorithm/all.hpp>
+
+#include <type_traits>
+
+#include <kvasir/mpl/functional/bind.hpp>
+#include <kvasir/mpl/types/list.hpp>
+
+namespace {
+	template <typename T>
+	using comp = std::is_same<int, T>;
+
+	using namespace kvasir;
+	static_assert(mpl::eager::all<mpl::list<int, int, int, int>, comp>::value, "");
+	static_assert(!mpl::eager::all<mpl::list<int, int, bool, int>, comp>::value, "");
+}

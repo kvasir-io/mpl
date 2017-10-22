@@ -1,0 +1,14 @@
+<h1>Header file <code>sequence/push_front.hpp</code><a id="sequence/push_front.hpp"></a></h1>
+<pre><code class="language-cpp">namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>kvasir</a>
+{
+    namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>mpl</a>
+    {
+        template &lt;typename Input, typename C = listify&gt;
+        struct <a href='doc_sequence__push_front.html#sequence/push_front.hpp'>push_front</a>
+        {
+            template &lt;typename ... Ts&gt;
+            using <a href='doc_sequence__push_front.html#sequence/push_front.hpp'>f</a> = typename dcall&lt;C, sizeof...(Ts)&gt;::template f&lt;Input, Ts...&gt;;
+        };
+    }
+}</code></pre>
+<hr />

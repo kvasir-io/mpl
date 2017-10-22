@@ -4,46 +4,48 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
-#include "../sequence/create.hpp"
-#include "../sequence/is_list.hpp"
-#include "fold_left.hpp"
+#include "../sequence/join.hpp"
 
 namespace kvasir {
 	namespace mpl {
-		namespace impl {
-			template <typename Elem, typename Result>
-			struct flatten;
-
-			namespace generic {
-				template <bool list>
-				struct flatten;
-
-				template <typename Result, typename Elem>
-				using flatten_func = typename impl::flatten<Elem, Result>::f;
-
-				template <>
-				struct flatten<true> {
-					// the passed element is a list
-					template <typename List, typename Result>
-					using f = typename impl::fold_left_impl<List>::template f<flatten_func, Result>;
-				};
-
-				template <>
-				struct flatten<false> {
-					// the passed element is not a list
-					template <typename Elem, typename Result>
-					using f = typename push_back_impl<Elem, Result>::f;
-				};
-			}
-
-			template <typename Elem, typename Result>
-			struct flatten {
-				using f = typename generic::flatten<typename impl::is_list<Elem>::f{}>::template f<
-				        Elem, Result>;
+		namespace detail {
+			template <template <class...> class L, class T>
+			struct flatten_element_impl {
+				using type = L<T>;
 			};
-		}
 
-		template <typename List, typename Result = typename impl::create_impl<List>::f>
-		using flatten = typename impl::flatten<List, Result>::f;
-	}
-}
+			template <template <class...> class L, class... Ts>
+			struct flatten_element_impl<L, L<Ts...>> {
+				using type = typename detail::join_select<detail::select_join_size(sizeof...(Ts))>::
+				        template f<list, typename flatten_element_impl<L, Ts>::type...>::type;
+			};
+		} // namespace detail
+		/// \brief converts a tree or list of lists into one list containing the contents of all
+		/// children \effects \requires example call<flatten<>,list<void>,list<list<int>,char>,bool>
+		/// resolves to list<void,int,char,bool>.
+		template <typename SequenceType = cfe<list>, typename C = listify>
+		struct flatten;
+		/// \exclude
+		template <template <typename...> class S, typename C>
+		struct flatten<cfe<S, identity>, C> {
+			template <typename... Ts>
+			using f = typename detail::join_select<detail::select_join_size(sizeof...(
+			        Ts))>::template f<C::template f,
+			                          typename detail::flatten_element_impl<S, Ts>::type...>::type;
+		};
+
+		namespace eager {
+			namespace detail {
+				template <typename T>
+				struct flatten_impl;
+				template <template <typename...> class S, typename... Ts>
+				struct flatten_impl<S<Ts...>> {
+					using type = typename mpl::flatten<cfe<S>>::template f<Ts...>;
+				};
+			} // namespace detail
+
+			template <typename Sequence>
+			using flatten = typename detail::flatten_impl<Sequence>::type;
+		} // namespace eager
+	} // namespace mpl
+} // namespace kvasir

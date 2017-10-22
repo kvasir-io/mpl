@@ -1,45 +1,42 @@
+[![Build Status](https://travis-ci.org/kvasir-io/mpl.svg?branch=development)](https://travis-ci.org/kvasir-io/mpl)
 # Kvasir::mpl
 This library is part of the Kvasir project.
 Kvasir is a collection of zero cost statically checked libraries for resource constrained systems including microcontrollers.
 More information at kvasir.io.
 
 ## Introduction
-This repository contains the template metaprogramming library used in Kvasir.
-Having Kvasir as the only dependency (at least initially) allows us to experiment more freely with
-improvements in the metaprogramming field. This library is not intended to be used by the end user
-but serves more as a foundation for those developing the library and drivers.
+This repository contains the template metaprogramming library used in Kvasir. Although this started as an experiement in TMP optimization [(with quite satisfactory results)](http://metaben.ch) and we did not aim for mainstream use from the beginning this library is currently evolving to meet the needs of a broader audience. This library is intended for anyone developing C++ libraries which have a metaprogramming component and do not need the fusion style heterogenious support offered by boost.hana. 
 
-A short list of key design decisions: 
-- compile time speed above all else (especially for large lists)
-- all eager interfaces (inspired by [Bruno Dutra's metal library](https://github.com/brunocodutra/metal))
-- initially only trivial lambdas (as seen before in Peter Dimov's mp11 library)
+A short list of key design decisions:
+- compile time speed is paramount
+- continuation style public interface
+- zero cost composition of algorithms and lambdas
+- seamless integration of 'continuations as lambda' syntax
 
 
 ## code guidelines
-To keep the library performant, clean and easy to use, several guidelines have to be taken into 
+To keep the library performant, clean and easy to use, several guidelines have to be taken into
 consideration.
 
 - All kvasir mpl code will go into the kvasir::mpl namespace.
-- All user-facing functions must be eager.
+- All user-facing functions must be continuations except the explicit chain termination 'identity'.
 - Anything that is not eager should have '_impl' or similar appended, and be in the ::detail namespace
-- Returning objects:
-  - Functions returning a type should inherently be that type, see the all eager functions above
-  - Functions returning a value should be implicitly convertible to it's return value
-  - Functions returning a function should be a type that has a templated member ::f
-    For instance, when calling a function `foo` that returns a function one would do as such:
-    `remove_if<bind<std::is_same, Elem>::f, List>`
-- Any function taking a list should refer to a generic struct, as to allow for special 
-  implementations.
-- Templated structs (except for function backend structs) should have no more than one 
-  parameter. Instead the "meta monad" style should be used.
+
+## learning resources
+Throughout the design process [@odinthenerd](https://github.com/odinthenerd) has kept a [pretty thorough blog](http://odinthenerd.blogspot.de/) explaining the optimization techniques and design decisions that went into kvasir::mpl. Keep in mind that each blog piece was a snapshot in time and a few things were deprecated or changed along the way.
+This library was also presented at C++Now2017 which can be found [here](https://www.youtube.com/watch?v=EtU4RDCCsiU). 
 
 ## Contributors
 We'd like to thank the following contributors, in alphabetical order:
 
+- Nils Deppe ([@nilsdeppe](https://github.com/nilsdeppe))
 - Chiel Douwes ([@chieltbest](https://github.com/chieltbest))
+- Emil Fresk ([@korken89](https://github.com/korken89))
 - Odin Holmes ([@odinthenerd](https://github.com/odinthenerd))
+- Jonathan Poelen ([@jonathanpoelen](https://github.com/jonathanpoelen))
 
 ## Maintainer
-This library is maintained by Chiel Douwes ([@chieltbest](https://github.com/chieltbest)). 
+This library is maintained by Chiel Douwes ([@chieltbest](https://github.com/chieltbest)).
 Requests for push rights could be addressed to him. The maintainer is also the only one who could approve pull requests to
 master.
+

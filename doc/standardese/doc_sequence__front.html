@@ -1,0 +1,21 @@
+<h1>Header file <code>sequence/front.hpp</code><a id="sequence/front.hpp"></a></h1>
+<pre><code class="language-cpp">namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>kvasir</a>
+{
+    namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>mpl</a>
+    {
+        template &lt;typename C = identity&gt;
+        struct <a href='doc_sequence__front.html#sequence/front.hpp'>front</a>
+        {
+            template &lt;typename T, typename ... Ts&gt;
+            using <a href='doc_sequence__front.html#sequence/front.hpp'>f</a> = typename C::template f&lt;T&gt;;
+        };
+        
+        template &lt;&gt;
+        struct <a href='doc_sequence__front.html#sequence/front.hpp'>front&lt;identity&gt;</a>
+        {
+            template &lt;typename T, typename ... Ts&gt;
+            using <a href='doc_sequence__front.html#sequence/front.hpp'>f</a> = T;
+        };
+    }
+}</code></pre>
+<hr />

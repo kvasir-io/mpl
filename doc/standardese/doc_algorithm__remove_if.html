@@ -1,0 +1,29 @@
+<h1>Header file <code>algorithm/remove_if.hpp</code><a id="algorithm/remove_if.hpp"></a></h1>
+<pre><code class="language-cpp">namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>kvasir</a>
+{
+    namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>mpl</a>
+    {
+        template &lt;typename F&gt;
+        struct <a href='doc_algorithm__remove_if.html#algorithm/remove_if.hpp'>list_wrap_if</a>
+        {
+            template &lt;typename T&gt;
+            using <a href='doc_algorithm__remove_if.html#algorithm/remove_if.hpp'>f</a> = typename detail::list_wrap_if&lt;F::template f&lt;T&gt;::value&gt;::template f&lt;T&gt;;
+        };
+        
+        template &lt;typename F&gt;
+        struct <a href='doc_algorithm__remove_if.html#algorithm/remove_if.hpp'>list_wrap_if_not</a>
+        {
+            template &lt;typename T&gt;
+            using <a href='doc_algorithm__remove_if.html#algorithm/remove_if.hpp'>f</a> = typename detail::list_wrap_if&lt;(!F::template f&lt;T&gt;::value)&gt;::template f&lt;T&gt;;
+        };
+        
+        template &lt;typename F = identity, typename C = listify&gt;
+        using <a href='doc_algorithm__remove_if.html#kvasir::mpl::remove_if-F,C-'>remove_if</a> = transform&lt;list_wrap_if_not&lt;F&gt;, join&lt;C&gt;&gt;;
+    }
+}</code></pre>
+<h2>Alias template <code>kvasir::mpl::remove_if</code><a id="kvasir::mpl::remove_if-F,C-"></a></h2>
+<pre><code class="language-cpp">template &lt;typename F = identity, typename C = listify&gt;
+using remove_if = transform&lt;list_wrap_if_not&lt;F&gt;, join&lt;C&gt;&gt;;</code></pre>
+<p>removes all elements for which a predicate holds</p>
+<hr />
+<hr />

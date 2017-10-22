@@ -4,68 +4,70 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
-#include "fold_right.hpp"
-#include "../sequence/push_front.hpp"
-#include "../types/list.hpp"
+#include <type_traits>
+
+#include "remove_if.hpp"
+#include "../algorithm/rotate.hpp"
+#include "../compatability/dependent_call.hpp"
+#include "../utility/conditional.hpp"
 
 namespace kvasir {
 	namespace mpl {
-		namespace impl {
-			namespace generic {
-				template <bool>
-				struct omit_if;
-
-				template <>
-				struct omit_if<false> {
-					template <typename T, typename List>
-					using f = typename push_front_impl<T, List>::f;
-				};
-
-				template <>
-				struct omit_if<true> {
-					template <typename T, typename List>
-					using f = List;
-				};
-
-				template <template <typename...> class Pred>
-				struct remove_adjacent_func {
-					template <typename State, typename Elem>
-					using f = typename omit_if<Pred<typename pop_front_impl<State>::front,
-					                                Elem>{}>::template f<Elem, State>;
-				};
-
-				/// function that combines push_if and is_same
-				/// inserts T1 into List if the two element are not the same
-				template <typename T1, typename T2, typename List>
-				struct omit_if_same {
-					using f = typename push_front_impl<T1, List>::f;
-				};
-
-				template <typename T, typename List>
-				struct omit_if_same<T, T, List> {
-					using f = List;
-				};
-
-				/// simple optimisation for when using std::is_same (which is most of the time)
-				template <>
-				struct remove_adjacent_func<std::is_same> {
-					template <typename State, typename Elem>
-					using f = typename omit_if_same<Elem, typename pop_front_impl<State>::front,
-					                                State>::f;
-				};
-			}
-
-			template <template <typename...> class Pred, typename List>
-			struct remove_adjacent {
-				using f = typename fold_right_impl<List>::template f<
-				        generic::remove_adjacent_func<Pred>::template f, mpl::list<>>;
+		namespace detail {
+#if defined(KVASIR_MSVC_2017) || defined(KVASIR_MSVC_2015) || defined(KVASIR_MSVC_2013)
+			template <template <typename...> class Pred, typename T, typename U>
+			struct binary_list_if_not {
+				using type = typename conditional<Pred<T, U>::value>::template f<list<>, list<T>>;
 			};
-		}
 
-		/// takes a boolean predicate with two parameters
-		/// if the predicate return true for any two adjacent elements,
-		/// then the first of the two elements is removed
-		template <template <typename...> class Pred, typename List>
-		using remove_adjacent = typename impl::remove_adjacent<Pred, List>::f;
-	}
-}
+			template <template <typename...> class Pred, typename T, typename U,
+			          typename C = listify>
+			struct remove_adjacent;
+			template <template <typename...> class Pred, typename... Ts, typename... Us, typename C>
+			struct remove_adjacent<Pred, list<Ts...>, list<Us...>, C> {
+				using type = typename dcall<join<C>, sizeof...(Ts)>::template f<
+				        typename binary_list_if_not<Pred, Ts, Us>::type...>;
+			};
+#else
+			template <template <typename...> class Pred>
+			struct binary_list_if_not {
+				template <typename T, typename U>
+				using f = typename conditional<Pred<T, U>::value>::template f<list<>, list<T>>;
+			};
+
+			template <template <typename...> class Pred, typename T, typename U,
+			          typename C = listify>
+			struct remove_adjacent;
+			template <template <typename...> class Pred, typename... Ts, typename... Us, typename C>
+			struct remove_adjacent<Pred, list<Ts...>, list<Us...>, C> {
+				using type = typename dcall<join<C>, sizeof...(Ts)>::template f<
+				        typename binary_list_if_not<Pred>::template f<Ts, Us>...>;
+			};
+#endif
+		}
+		/// \brief removes each element in a list which is the same type as the privious element
+		template <typename F, typename C = listify>
+		struct remove_adjacent {
+			template <typename... Ts>
+			using f = typename detail::remove_adjacent<
+			        F::template f, list<Ts...>,
+			        typename dcall<rotate<uint_<1>>, sizeof...(Ts)>::template f<Ts...>, C>::type;
+		};
+		/// \exclude
+		template <template <typename... Ts> class F, typename C>
+		struct remove_adjacent<cfe<F, identity>, C> {
+			template <typename... Ts>
+			using f = typename detail::remove_adjacent<
+			        F, list<Ts...>,
+			        typename dcall<rotate<uint_<1>>, sizeof...(Ts)>::template f<Ts...>, C>::type;
+		};
+
+		namespace eager {
+			/// takes a boolean predicate with two parameters
+			/// if the predicate return true for any two adjacent elements,
+			/// then the first of the two elements is removed
+			template <typename List, template <typename...> class Pred = std::is_same>
+			using remove_adjacent = call<unpack<mpl::remove_adjacent<cfe<Pred>>>, List>;
+		} // namespace eager
+	} // namespace mpl
+} // namespace kvasir

@@ -4,27 +4,41 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
-#include <cstddef>
-
+#include "../functional/call.hpp"
+#include "../functional/identity.hpp"
+#include "../types/int.hpp"
 #include "../types/list.hpp"
 
 namespace kvasir {
 	namespace mpl {
-		namespace impl {
-			template <typename List>
-			struct size_impl;
-
-			/// kvasir::mpl::list implementation
+		template <typename C = identity>
+		struct size {
 			template <typename... Ts>
-			struct size_impl<mpl::list<Ts...>> {
-				constexpr operator std::size_t() const {
-					return sizeof...(Ts);
-				}
-			};
-		}
+			using f = typename C::template f<uint_<sizeof...(Ts)>>;
+		};
+		template <>
+		struct size<identity> {
+			template <typename... Ts>
+			using f = uint_<sizeof...(Ts)>;
+		};
 
-		/// get the size of a list, the returned type is convertible to some unspecified int type
-		template <typename List>
-		using size = typename impl::size_impl<List>::f;
-	}
-}
+		/// offset provides the difference between the origional length of a list
+		///(provided as the input parameter) and the pack supplied to f
+		template <typename T, typename C = identity>
+		struct offset {
+			template <typename... Ts>
+			using f = typename C::template f<uint_<(T::value - sizeof...(Ts))>>;
+		};
+		template <typename T>
+		struct offset<T, identity> {
+			template <typename... Ts>
+			using f = uint_<(T::value - sizeof...(Ts))>;
+		};
+		namespace eager {
+			/// get the size of a list, the returned type is convertible to some unspecified int
+			/// type
+			template <typename List>
+			using size = call<unpack<mpl::size<>>, List>;
+		} // namespace eager
+	} // namespace mpl
+} // namespace kvasir

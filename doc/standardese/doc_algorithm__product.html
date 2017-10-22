@@ -1,0 +1,19 @@
+<h1>Header file <code>algorithm/product.hpp</code><a id="algorithm/product.hpp"></a></h1>
+<pre><code class="language-cpp">namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>kvasir</a>
+{
+    namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>mpl</a>
+    {
+        template &lt;typename F = listify, typename C = listify&gt;
+        struct <a href='doc_algorithm__product.html#kvasir::mpl::product-F,C-'>product</a>;
+    }
+}</code></pre>
+<h2>Class template <code>kvasir::mpl::product</code><a id="kvasir::mpl::product-F,C-"></a></h2>
+<pre><code class="language-cpp">template &lt;typename F = listify, typename C = listify&gt;
+struct product
+{
+    template &lt;typename ... Ts&gt;
+    using <a href='doc_algorithm__product.html#kvasir::mpl::product-F,C-'>f</a> = call&lt;typename dcall&lt;fold_right&lt;cfe&lt;detail::product_pusher&gt;&gt;, sizeof...(Ts)&gt;::template f&lt;detail::product_end_cont&lt;F::template f, C&gt;, Ts...&gt;, detail::product_pusher_list&lt;&gt;&gt;;
+};</code></pre>
+<p>creates an n-ary cartesian product</p>
+<hr />
+<hr />

@@ -4,24 +4,37 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
-#include "remove_if.hpp"
+#include "filter.hpp"
+#include "../functional/bind.hpp"
 #include "../sequence/size.hpp"
-#include "../functional/compose.hpp"
-#include "../utility/invert.hpp"
+#include "../utility/conditional.hpp"
 
 namespace kvasir {
 	namespace mpl {
-		namespace impl {
-			/// generic implementation for any list type
-			template <template <typename...> class Cond, typename List>
-			struct count_if_impl {
-				using f = size_impl<remove_if_impl<compose<Cond, invert>::template f, List>>;
+		namespace detail {
+			template <typename F>
+			struct list_wrap_void_if {
+				template <typename T>
+				using f = typename conditional<F::template f<T>::value>::template f<list<void>,
+				                                                                    list<>>;
 			};
-		}
+			template <template <typename...> class F>
+			struct list_wrap_void_if<cfe<F, identity>> {
+				template <typename T>
+				using f = typename conditional<F<T>::value>::template f<list<void>, list<>>;
+			};
+		} // namespace detail
+		/// \brief counts elements for which the predicate holds
+		/// \effects resolves to uint_<X> where X is the number of elements in the input pack which
+		/// fulfill the provided predicate. \requires Type `F` shall be a `continuation predicate`
+		/// and `C` shall be any `continuation`. example call<count_if<same_as<void>>,void,int,char>
+		/// resolves to uint_<1>.
+		template <typename F = identity, typename C = identity>
+		using count_if = transform<detail::list_wrap_void_if<F>, join<size<C>>>;
 
-		/// filter elements from a list
-		/// takes a lambda that should return a type convertible to bool
-		template <template <typename...> class Cond, typename List>
-		using count_if = typename impl::count_if_impl<Cond, List>::f;
-	}
-}
+		namespace eager {
+			template <typename List, template <typename...> class Cond = identity>
+			using count_if = call<unpack<mpl::count_if<cfe<Cond>>>, List>;
+		}
+	} // namespace mpl
+} // namespace kvasir

@@ -1,0 +1,19 @@
+<h1>Header file <code>algorithm/transform.hpp</code><a id="algorithm/transform.hpp"></a></h1>
+<pre><code class="language-cpp">namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>kvasir</a>
+{
+    namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>mpl</a>
+    {
+        template &lt;typename F, typename C = listify&gt;
+        struct <a href='doc_algorithm__transform.html#kvasir::mpl::transform-F,C-'>transform</a>;
+    }
+}</code></pre>
+<h2>Class template <code>kvasir::mpl::transform</code><a id="kvasir::mpl::transform-F,C-"></a></h2>
+<pre><code class="language-cpp">template &lt;typename F, typename C = listify&gt;
+struct transform
+{
+    template &lt;typename ... Ts&gt;
+    using <a href='doc_algorithm__transform.html#kvasir::mpl::transform-F,C-'>f</a> = typename dcall&lt;C, sizeof...(Ts)&gt;::template f&lt;typename F::template f&lt;Ts&gt;...&gt;;
+};</code></pre>
+<p>executes the continuation <code>F</code> on every element in the input pack passing the results to the continuation <code>C</code></p>
+<hr />
+<hr />

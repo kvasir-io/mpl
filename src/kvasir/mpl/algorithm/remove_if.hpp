@@ -4,42 +4,58 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
-#include "../sequence/push_back.hpp"
-#include "../sequence/create.hpp"
-#include "../algorithm/fold_left.hpp"
+#include "../algorithm/transform.hpp"
+#include "../functional/bind.hpp"
+#include "../functional/call.hpp"
+#include "../functional/identity.hpp"
+#include "../sequence/join.hpp"
 
 namespace kvasir {
 	namespace mpl {
-		namespace impl {
-			namespace generic {
-				template <bool cond>
-				struct push_if;
-				template <>
-				struct push_if<true> {
-					template <typename Elem, typename List>
-					using f = typename push_back_impl<Elem, List>::f;
-				};
-				template <>
-				struct push_if<false> {
-					template <typename Elem, typename List>
-					using f = List;
-				};
-			}
-
-			template <template <typename...> class Cond, typename List>
-			struct remove_if_impl {
-				template <typename Result, typename Elem>
-				using cond_add_pred =
-				        typename generic::push_if<Cond<Elem>{}>::template f<Elem, Result>;
-
-				using f = typename fold_left_impl<List>::template f<cond_add_pred,
-				                                                    typename create_impl<List>::f>;
+		namespace detail {
+			template <bool>
+			struct list_wrap_if;
+			template <>
+			struct list_wrap_if<true> {
+				template <typename T>
+				using f = list<T>;
 			};
-		}
+			template <>
+			struct list_wrap_if<false> {
+				template <typename>
+				using f = list<>;
+			};
+		} // namespace detail
+		template <typename F>
+		struct list_wrap_if {
+			template <typename T>
+			using f = typename detail::list_wrap_if<F::template f<T>::value>::template f<T>;
+		};
+		/// \exclude
+		template <template <typename> class F>
+		struct list_wrap_if<cfe<F, identity>> {
+			template <typename T>
+			using f = typename detail::list_wrap_if<F<T>::value>::template f<T>;
+		};
+		template <typename F>
+		struct list_wrap_if_not {
+			template <typename T>
+			using f = typename detail::list_wrap_if<(!F::template f<T>::value)>::template f<T>;
+		};
+		/// \exclude
+		template <template <typename> class F>
+		struct list_wrap_if_not<cfe<F, identity>> {
+			template <typename T>
+			using f = typename detail::list_wrap_if<(!F<T>::value)>::template f<T>;
+		};
 
-		/// filter elements from a list
-		/// takes a lambda that should return a type convertible to bool
-		template <template <typename...> class Cond, typename List>
-		using remove_if = typename impl::remove_if_impl<Cond, List>::f;
-	}
-}
+		/// \brief removes all elements for which a predicate holds
+		template <typename F = identity, typename C = listify>
+		using remove_if = transform<list_wrap_if_not<F>, join<C>>;
+
+		namespace eager {
+			template <typename List, template <typename...> class Cond = identity>
+			using remove_if = call<unpack<mpl::remove_if<cfe<Cond>>>, List>;
+		}
+	} // namespace mpl
+} // namespace kvasir

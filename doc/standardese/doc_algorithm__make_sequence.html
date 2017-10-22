@@ -1,0 +1,19 @@
+<h1>Header file <code>algorithm/make_sequence.hpp</code><a id="algorithm/make_sequence.hpp"></a></h1>
+<pre><code class="language-cpp">namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>kvasir</a>
+{
+    namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>mpl</a>
+    {
+        template &lt;typename F = identity, typename C = listify&gt;
+        struct <a href='doc_algorithm__make_sequence.html#kvasir::mpl::make_int_sequence-F,C-'>make_int_sequence</a>;
+    }
+}</code></pre>
+<h2>Class template <code>kvasir::mpl::make_int_sequence</code><a id="kvasir::mpl::make_int_sequence-F,C-"></a></h2>
+<pre><code class="language-cpp">template &lt;typename F = identity, typename C = listify&gt;
+struct make_int_sequence
+{
+    template &lt;typename N&gt;
+    using <a href='doc_algorithm__make_sequence.html#kvasir::mpl::make_int_sequence-F,C-'>f</a> = call&lt;unpack&lt;C&gt;, typename detail::make_int_seq_impl&lt;N::value, F&gt;::type&gt;;
+};</code></pre>
+<p>creates a sequence of uint_</p>
+<hr />
+<hr />

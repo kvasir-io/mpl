@@ -1,0 +1,16 @@
+<h1>Header file <code>algorithm/filter.hpp</code><a id="algorithm/filter.hpp"></a></h1>
+<pre><code class="language-cpp">namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>kvasir</a>
+{
+    namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>mpl</a>
+    {
+        template &lt;typename F = identity, typename C = listify&gt;
+        using <a href='doc_algorithm__filter.html#kvasir::mpl::filter-F,C-'>filter</a> = transform&lt;list_wrap_if&lt;F&gt;, join&lt;C&gt;&gt;;
+    }
+}</code></pre>
+<h2>Alias template <code>kvasir::mpl::filter</code><a id="kvasir::mpl::filter-F,C-"></a></h2>
+<pre><code class="language-cpp">template &lt;typename F = identity, typename C = listify&gt;
+using filter = transform&lt;list_wrap_if&lt;F&gt;, join&lt;C&gt;&gt;;</code></pre>
+<p>removes all elements in a list for which a predicate does not hald</p>
+<p><em>Effects</em>: calls <code>C</code> with all elements in the input pack for which the provided predicate <code>F</code> holds. \requires Type <code>F</code> shall be a <code>ContinuationPredicate</code> and C shall be any <code>Continuation</code>. example call&lt;filter&lt;same_as&lt;int&gt;,cfe&lt;std::tuple&gt;&gt;,void,int,char&gt; resolves to std::tuple&lt;int&gt;.</p>
+<hr />
+<hr />

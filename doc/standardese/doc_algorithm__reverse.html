@@ -1,0 +1,19 @@
+<h1>Header file <code>algorithm/reverse.hpp</code><a id="algorithm/reverse.hpp"></a></h1>
+<pre><code class="language-cpp">namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>kvasir</a>
+{
+    namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>mpl</a>
+    {
+        template &lt;typename C = listify&gt;
+        struct <a href='doc_algorithm__reverse.html#kvasir::mpl::reverse-C-'>reverse</a>;
+    }
+}</code></pre>
+<h2>Class template <code>kvasir::mpl::reverse</code><a id="kvasir::mpl::reverse-C-"></a></h2>
+<pre><code class="language-cpp">template &lt;typename C = listify&gt;
+struct reverse
+{
+    template &lt;typename ... Ts&gt;
+    using <a href='doc_algorithm__reverse.html#kvasir::mpl::reverse-C-'>f</a> = typename detail::recursive_join&lt;C&gt;::template f&lt;typename detail::reverse_impl&lt;detail::select_reverse(sizeof...(Ts))&gt;::template f&lt;detail::rlist_tail_of8, Ts...&gt;&gt;;
+};</code></pre>
+<p>reverses the order of elements in a pack</p>
+<hr />
+<hr />

@@ -4,13 +4,17 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
+#include <type_traits>
+
 #include <kvasir/mpl/algorithm/any.hpp>
-#include <kvasir/mpl/types/list.hpp>
-#include <kvasir/mpl/types/bool.hpp>
 #include <kvasir/mpl/functional/bind.hpp>
+#include <kvasir/mpl/types/list.hpp>
 
-template <typename T>
-using comp = std::is_same<int, T>;
+namespace {
+	template <typename T>
+	using comp = std::is_same<int, T>;
 
-using namespace kvasir;
-static_assert(mpl::any<comp, mpl::list<void, char, int, float>>{}, "");
+	using namespace kvasir;
+	static_assert(mpl::eager::any<mpl::list<void, char, int, float>, comp>::value, "");
+	static_assert(!mpl::eager::any<mpl::list<void, char, bool, float>, comp>::value, "");
+}

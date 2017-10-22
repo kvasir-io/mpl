@@ -1,0 +1,592 @@
+<h1>Header file <code>types/traits.hpp</code><a id="types/traits.hpp"></a></h1>
+<pre><code class="language-cpp">namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>kvasir</a>
+{
+    namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>mpl</a>
+    {
+        template &lt;typename C = identity&gt;
+        struct <a href='doc_types__traits.html#kvasir::mpl::is_void-C-'>is_void</a>;
+        
+        template &lt;typename C = identity&gt;
+        struct <a href='doc_types__traits.html#kvasir::mpl::is_integral-C-'>is_integral</a>;
+        
+        template &lt;typename C = identity&gt;
+        struct <a href='doc_types__traits.html#kvasir::mpl::is_floating_point-C-'>is_floating_point</a>;
+        
+        template &lt;typename C = identity&gt;
+        struct <a href='doc_types__traits.html#kvasir::mpl::is_array-C-'>is_array</a>;
+        
+        template &lt;typename C = identity&gt;
+        struct <a href='doc_types__traits.html#kvasir::mpl::is_enum-C-'>is_enum</a>;
+        
+        template &lt;typename C = identity&gt;
+        struct <a href='doc_types__traits.html#kvasir::mpl::is_union-C-'>is_union</a>;
+        
+        template &lt;typename C = identity&gt;
+        struct <a href='doc_types__traits.html#kvasir::mpl::is_class-C-'>is_class</a>;
+        
+        template &lt;typename C = identity&gt;
+        struct <a href='doc_types__traits.html#kvasir::mpl::is_function-C-'>is_function</a>;
+        
+        template &lt;typename C = identity&gt;
+        struct <a href='doc_types__traits.html#kvasir::mpl::is_pointer-C-'>is_pointer</a>;
+        
+        template &lt;typename C = identity&gt;
+        struct <a href='doc_types__traits.html#kvasir::mpl::is_lvalue_reference-C-'>is_lvalue_reference</a>;
+        
+        template &lt;typename C = identity&gt;
+        struct <a href='doc_types__traits.html#kvasir::mpl::is_rvalue_reference-C-'>is_rvalue_reference</a>;
+        
+        template &lt;typename C = identity&gt;
+        struct <a href='doc_types__traits.html#types/traits.hpp'>is_member_object_pointer</a>
+        {
+            template &lt;typename T&gt;
+            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;bool_&lt;std::is_member_object_pointer&lt;T&gt;::value&gt;&gt;;
+        };
+        
+        template &lt;typename C = identity&gt;
+        struct <a href='doc_types__traits.html#types/traits.hpp'>is_member_function_pointer</a>
+        {
+            template &lt;typename T&gt;
+            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;bool_&lt;std::is_member_function_pointer&lt;T&gt;::value&gt;&gt;;
+        };
+        
+        template &lt;typename C = identity&gt;
+        struct <a href='doc_types__traits.html#types/traits.hpp'>is_fundamental</a>
+        {
+            template &lt;typename T&gt;
+            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;bool_&lt;std::is_fundamental&lt;T&gt;::value&gt;&gt;;
+        };
+        
+        template &lt;typename C = identity&gt;
+        struct <a href='doc_types__traits.html#types/traits.hpp'>is_arithmetic</a>
+        {
+            template &lt;typename T&gt;
+            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;bool_&lt;std::is_arithmetic&lt;T&gt;::value&gt;&gt;;
+        };
+        
+        template &lt;typename C = identity&gt;
+        struct <a href='doc_types__traits.html#types/traits.hpp'>is_scalar</a>
+        {
+            template &lt;typename T&gt;
+            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;bool_&lt;std::is_scalar&lt;T&gt;::value&gt;&gt;;
+        };
+        
+        template &lt;typename C = identity&gt;
+        struct <a href='doc_types__traits.html#types/traits.hpp'>is_object</a>
+        {
+            template &lt;typename T&gt;
+            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;bool_&lt;std::is_object&lt;T&gt;::value&gt;&gt;;
+        };
+        
+        template &lt;typename C = identity&gt;
+        struct <a href='doc_types__traits.html#types/traits.hpp'>is_compound</a>
+        {
+            template &lt;typename T&gt;
+            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;bool_&lt;std::is_compound&lt;T&gt;::value&gt;&gt;;
+        };
+        
+        template &lt;typename C = identity&gt;
+        struct <a href='doc_types__traits.html#types/traits.hpp'>is_reference</a>
+        {
+            template &lt;typename T&gt;
+            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;bool_&lt;std::is_reference&lt;T&gt;::value&gt;&gt;;
+        };
+        
+        template &lt;typename C = identity&gt;
+        struct <a href='doc_types__traits.html#types/traits.hpp'>is_member_pointer</a>
+        {
+            template &lt;typename T&gt;
+            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;bool_&lt;std::is_member_pointer&lt;T&gt;::value&gt;&gt;;
+        };
+        
+        template &lt;typename C = identity&gt;
+        struct <a href='doc_types__traits.html#types/traits.hpp'>is_volatile</a>
+        {
+            template &lt;typename T&gt;
+            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;bool_&lt;std::is_const&lt;T&gt;::value&gt;&gt;;
+        };
+        
+        template &lt;typename C = identity&gt;
+        struct <a href='doc_types__traits.html#types/traits.hpp'>is_trivial</a>
+        {
+            template &lt;typename T&gt;
+            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;bool_&lt;std::is_trivial&lt;T&gt;::value&gt;&gt;;
+        };
+        
+        template &lt;typename C = identity&gt;
+        struct <a href='doc_types__traits.html#types/traits.hpp'>is_standard_layout</a>
+        {
+            template &lt;typename T&gt;
+            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;bool_&lt;std::is_standard_layout&lt;T&gt;::value&gt;&gt;;
+        };
+        
+        template &lt;typename C = identity&gt;
+        struct <a href='doc_types__traits.html#types/traits.hpp'>is_pod</a>
+        {
+            template &lt;typename T&gt;
+            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;bool_&lt;std::is_pod&lt;T&gt;::value&gt;&gt;;
+        };
+        
+        template &lt;typename C = identity&gt;
+        struct <a href='doc_types__traits.html#types/traits.hpp'>is_literal_type</a>
+        {
+            template &lt;typename T&gt;
+            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;bool_&lt;std::is_literal_type&lt;T&gt;::value&gt;&gt;;
+        };
+        
+        template &lt;typename C = identity&gt;
+        struct <a href='doc_types__traits.html#types/traits.hpp'>is_empty</a>
+        {
+            template &lt;typename T&gt;
+            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;bool_&lt;std::is_empty&lt;T&gt;::value&gt;&gt;;
+        };
+        
+        template &lt;typename C = identity&gt;
+        struct <a href='doc_types__traits.html#types/traits.hpp'>is_polymorphic</a>
+        {
+            template &lt;typename T&gt;
+            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;bool_&lt;std::is_polymorphic&lt;T&gt;::value&gt;&gt;;
+        };
+        
+        template &lt;typename C = identity&gt;
+        struct <a href='doc_types__traits.html#types/traits.hpp'>is_abstract</a>
+        {
+            template &lt;typename T&gt;
+            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;bool_&lt;std::is_abstract&lt;T&gt;::value&gt;&gt;;
+        };
+        
+        template &lt;typename C = identity&gt;
+        struct <a href='doc_types__traits.html#types/traits.hpp'>is_signed</a>
+        {
+            template &lt;typename T&gt;
+            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;bool_&lt;std::is_signed&lt;T&gt;::value&gt;&gt;;
+        };
+        
+        template &lt;typename C = identity&gt;
+        struct <a href='doc_types__traits.html#types/traits.hpp'>is_unsigned</a>
+        {
+            template &lt;typename T&gt;
+            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;bool_&lt;std::is_unsigned&lt;T&gt;::value&gt;&gt;;
+        };
+        
+        template &lt;typename C = identity&gt;
+        struct <a href='doc_types__traits.html#types/traits.hpp'>is_constructible</a>
+        {
+            template &lt;typename T&gt;
+            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;bool_&lt;std::is_constructible&lt;T&gt;::value&gt;&gt;;
+        };
+        
+        template &lt;typename C = identity&gt;
+        struct <a href='doc_types__traits.html#types/traits.hpp'>is_nothrow_constructible</a>
+        {
+            template &lt;typename T&gt;
+            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;bool_&lt;std::is_nothrow_constructible&lt;T&gt;::value&gt;&gt;;
+        };
+        
+        template &lt;typename C = identity&gt;
+        struct <a href='doc_types__traits.html#types/traits.hpp'>is_default_constructible</a>
+        {
+            template &lt;typename T&gt;
+            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;bool_&lt;std::is_default_constructible&lt;T&gt;::value&gt;&gt;;
+        };
+        
+        template &lt;typename C = identity&gt;
+        struct <a href='doc_types__traits.html#types/traits.hpp'>is_nothrow_default_constructible</a>
+        {
+            template &lt;typename T&gt;
+            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;bool_&lt;std::is_nothrow_default_constructible&lt;T&gt;::value&gt;&gt;;
+        };
+        
+        template &lt;typename C = identity&gt;
+        struct <a href='doc_types__traits.html#types/traits.hpp'>is_copy_constructible</a>
+        {
+            template &lt;typename T&gt;
+            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;bool_&lt;std::is_copy_constructible&lt;T&gt;::value&gt;&gt;;
+        };
+        
+        template &lt;typename C = identity&gt;
+        struct <a href='doc_types__traits.html#types/traits.hpp'>is_nothrow_copy_constructible</a>
+        {
+            template &lt;typename T&gt;
+            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;bool_&lt;std::is_nothrow_copy_constructible&lt;T&gt;::value&gt;&gt;;
+        };
+        
+        template &lt;typename C = identity&gt;
+        struct <a href='doc_types__traits.html#types/traits.hpp'>is_move_constructible</a>
+        {
+            template &lt;typename T&gt;
+            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;bool_&lt;std::is_move_constructible&lt;T&gt;::value&gt;&gt;;
+        };
+        
+        template &lt;typename C = identity&gt;
+        struct <a href='doc_types__traits.html#types/traits.hpp'>is_nothrow_move_constructible</a>
+        {
+            template &lt;typename T&gt;
+            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;bool_&lt;std::is_nothrow_move_constructible&lt;T&gt;::value&gt;&gt;;
+        };
+        
+        template &lt;typename C = identity&gt;
+        struct <a href='doc_types__traits.html#types/traits.hpp'>is_assignable</a>
+        {
+            template &lt;typename T, typename U&gt;
+            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;bool_&lt;std::is_assignable&lt;T, U&gt;::value&gt;&gt;;
+        };
+        
+        template &lt;typename C = identity&gt;
+        struct <a href='doc_types__traits.html#types/traits.hpp'>is_nothrow_assignable</a>
+        {
+            template &lt;typename T, typename U&gt;
+            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;bool_&lt;std::is_nothrow_assignable&lt;T, U&gt;::value&gt;&gt;;
+        };
+        
+        template &lt;typename C = identity&gt;
+        struct <a href='doc_types__traits.html#types/traits.hpp'>is_copy_assignable</a>
+        {
+            template &lt;typename T&gt;
+            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;bool_&lt;std::is_copy_assignable&lt;T&gt;::value&gt;&gt;;
+        };
+        
+        template &lt;typename C = identity&gt;
+        struct <a href='doc_types__traits.html#types/traits.hpp'>is_nothrow_copy_assignable</a>
+        {
+            template &lt;typename T&gt;
+            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;bool_&lt;std::is_nothrow_copy_assignable&lt;T&gt;::value&gt;&gt;;
+        };
+        
+        template &lt;typename C = identity&gt;
+        struct <a href='doc_types__traits.html#types/traits.hpp'>is_move_assignable</a>
+        {
+            template &lt;typename T&gt;
+            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;bool_&lt;std::is_move_assignable&lt;T&gt;::value&gt;&gt;;
+        };
+        
+        template &lt;typename C = identity&gt;
+        struct <a href='doc_types__traits.html#types/traits.hpp'>is_nothrow_move_assignable</a>
+        {
+            template &lt;typename T&gt;
+            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;bool_&lt;std::is_nothrow_move_assignable&lt;T&gt;::value&gt;&gt;;
+        };
+        
+        template &lt;typename C = identity&gt;
+        struct <a href='doc_types__traits.html#types/traits.hpp'>is_destructible</a>
+        {
+            template &lt;typename T&gt;
+            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;bool_&lt;std::is_destructible&lt;T&gt;::value&gt;&gt;;
+        };
+        
+        template &lt;typename C = identity&gt;
+        struct <a href='doc_types__traits.html#types/traits.hpp'>is_trivially_destructible</a>
+        {
+            template &lt;typename T&gt;
+            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;bool_&lt;std::is_trivially_destructible&lt;T&gt;::value&gt;&gt;;
+        };
+        
+        template &lt;typename C = identity&gt;
+        struct <a href='doc_types__traits.html#types/traits.hpp'>is_nothrow_destructible</a>
+        {
+            template &lt;typename T&gt;
+            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;bool_&lt;std::is_nothrow_destructible&lt;T&gt;::value&gt;&gt;;
+        };
+        
+        template &lt;typename C = identity&gt;
+        struct <a href='doc_types__traits.html#types/traits.hpp'>has_virtual_destructor</a>
+        {
+            template &lt;typename T&gt;
+            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;bool_&lt;std::has_virtual_destructor&lt;T&gt;::value&gt;&gt;;
+        };
+        
+        template &lt;typename C = identity&gt;
+        struct <a href='doc_types__traits.html#types/traits.hpp'>is_base_of</a>
+        {
+            template &lt;typename T, typename U&gt;
+            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;bool_&lt;std::is_base_of&lt;T, U&gt;::value&gt;&gt;;
+        };
+        
+        template &lt;typename C = identity&gt;
+        struct <a href='doc_types__traits.html#types/traits.hpp'>is_convertible</a>
+        {
+            template &lt;typename T, typename U&gt;
+            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;bool_&lt;std::is_convertible&lt;T, U&gt;::value&gt;&gt;;
+        };
+        
+        template &lt;typename C = identity&gt;
+        struct <a href='doc_types__traits.html#types/traits.hpp'>alignment_of</a>
+        {
+            template &lt;typename T&gt;
+            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;typename std::alignment_of&lt;T&gt;::type&gt;;
+        };
+        
+        template &lt;typename C = identity&gt;
+        struct <a href='doc_types__traits.html#types/traits.hpp'>rank</a>
+        {
+            template &lt;typename T&gt;
+            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;typename std::rank&lt;T&gt;::type&gt;;
+        };
+        
+        template &lt;typename C = identity&gt;
+        struct <a href='doc_types__traits.html#types/traits.hpp'>extent</a>
+        {
+            template &lt;typename T&gt;
+            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;typename std::extent&lt;T&gt;::type&gt;;
+        };
+        
+        template &lt;typename C = identity&gt;
+        struct <a href='doc_types__traits.html#types/traits.hpp'>remove_cv</a>
+        {
+            template &lt;typename T&gt;
+            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;typename std::remove_cv&lt;T&gt;::type&gt;;
+        };
+        
+        template &lt;typename C = identity&gt;
+        struct <a href='doc_types__traits.html#types/traits.hpp'>remove_const</a>
+        {
+            template &lt;typename T&gt;
+            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;typename std::remove_const&lt;T&gt;::type&gt;;
+        };
+        
+        template &lt;typename C = identity&gt;
+        struct <a href='doc_types__traits.html#types/traits.hpp'>remove_volatile</a>
+        {
+            template &lt;typename T&gt;
+            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;typename std::remove_volatile&lt;T&gt;::type&gt;;
+        };
+        
+        template &lt;typename C = identity&gt;
+        struct <a href='doc_types__traits.html#types/traits.hpp'>add_cv</a>
+        {
+            template &lt;typename T&gt;
+            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;typename std::add_cv&lt;T&gt;::type&gt;;
+        };
+        
+        template &lt;typename C = identity&gt;
+        struct <a href='doc_types__traits.html#types/traits.hpp'>add_const</a>
+        {
+            template &lt;typename T&gt;
+            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;typename std::add_const&lt;T&gt;::type&gt;;
+        };
+        
+        template &lt;typename C = identity&gt;
+        struct <a href='doc_types__traits.html#types/traits.hpp'>add_volatile</a>
+        {
+            template &lt;typename T&gt;
+            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;typename std::add_volatile&lt;T&gt;::type&gt;;
+        };
+        
+        template &lt;typename C = identity&gt;
+        struct <a href='doc_types__traits.html#types/traits.hpp'>remove_reference</a>
+        {
+            template &lt;typename T&gt;
+            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;typename std::remove_reference&lt;T&gt;::type&gt;;
+        };
+        
+        template &lt;typename C = identity&gt;
+        struct <a href='doc_types__traits.html#types/traits.hpp'>add_lvalue_reference</a>
+        {
+            template &lt;typename T&gt;
+            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;typename std::add_lvalue_reference&lt;T&gt;::type&gt;;
+        };
+        
+        template &lt;typename C = identity&gt;
+        struct <a href='doc_types__traits.html#types/traits.hpp'>add_rvalue_reference</a>
+        {
+            template &lt;typename T&gt;
+            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;typename std::add_rvalue_reference&lt;T&gt;::type&gt;;
+        };
+        
+        template &lt;typename C = identity&gt;
+        struct <a href='doc_types__traits.html#types/traits.hpp'>remove_pointer</a>
+        {
+            template &lt;typename T&gt;
+            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;typename std::remove_pointer&lt;T&gt;::type&gt;;
+        };
+        
+        template &lt;typename C = identity&gt;
+        struct <a href='doc_types__traits.html#types/traits.hpp'>add_pointer</a>
+        {
+            template &lt;typename T&gt;
+            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;typename std::add_pointer&lt;T&gt;::type&gt;;
+        };
+        
+        template &lt;typename C = identity&gt;
+        struct <a href='doc_types__traits.html#types/traits.hpp'>make_signed</a>
+        {
+            template &lt;typename T&gt;
+            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;typename std::make_signed&lt;T&gt;::type&gt;;
+        };
+        
+        template &lt;typename C = identity&gt;
+        struct <a href='doc_types__traits.html#types/traits.hpp'>make_unsigned</a>
+        {
+            template &lt;typename T&gt;
+            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;typename std::make_unsigned&lt;T&gt;::type&gt;;
+        };
+        
+        template &lt;typename C = identity&gt;
+        struct <a href='doc_types__traits.html#types/traits.hpp'>remove_extent</a>
+        {
+            template &lt;typename T&gt;
+            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;typename std::remove_extent&lt;T&gt;::type&gt;;
+        };
+        
+        template &lt;typename C = identity&gt;
+        struct <a href='doc_types__traits.html#types/traits.hpp'>remove_all_extents</a>
+        {
+            template &lt;typename T&gt;
+            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;typename std::remove_all_extents&lt;T&gt;::type&gt;;
+        };
+        
+        template &lt;typename C = identity&gt;
+        struct <a href='doc_types__traits.html#types/traits.hpp'>decay</a>
+        {
+            template &lt;typename T&gt;
+            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;typename std::decay&lt;T&gt;::type&gt;;
+        };
+        
+        template &lt;typename C = identity&gt;
+        struct <a href='doc_types__traits.html#types/traits.hpp'>common_type</a>
+        {
+            template &lt;typename T&gt;
+            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;typename std::alignment_of&lt;T&gt;::type&gt;;
+        };
+        
+        template &lt;typename C = identity&gt;
+        struct <a href='doc_types__traits.html#types/traits.hpp'>underlying_type</a>
+        {
+            template &lt;typename T&gt;
+            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;typename std::alignment_of&lt;T&gt;::type&gt;;
+        };
+        
+        template &lt;typename C = identity&gt;
+        struct <a href='doc_types__traits.html#types/traits.hpp'>is_null_pointer</a>
+        {
+            template &lt;typename T&gt;
+            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;bool_&lt;std::is_null_pointer&lt;T&gt;::value&gt;&gt;;
+        };
+        
+        template &lt;&gt;
+        struct <a href='doc_types__traits.html#types/traits.hpp'>is_null_pointer&lt;identity&gt;</a>
+        {
+            template &lt;typename T&gt;
+            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = <a href='doc_types__bool.html#kvasir::mpl::bool_-Value-'>bool_&lt;std::is_null_pointer&lt;T&gt;::value&gt;</a>;
+        };
+        
+        template &lt;typename C = identity&gt;
+        struct <a href='doc_types__traits.html#types/traits.hpp'>is_final</a>
+        {
+            template &lt;typename T&gt;
+            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;bool_&lt;__is_final(T)&gt;&gt;;
+        };
+    }
+}</code></pre>
+<h2>Class template <code>kvasir::mpl::is_void</code><a id="kvasir::mpl::is_void-C-"></a></h2>
+<pre><code class="language-cpp">template &lt;typename C = identity&gt;
+struct is_void
+{
+    template &lt;typename T&gt;
+    using <a href='doc_types__traits.html#kvasir::mpl::is_void-C-'>f</a> = typename C::template f&lt;bool_&lt;std::is_void&lt;T&gt;::value&gt;&gt;;
+};</code></pre>
+<p>tests if a type is void</p>
+<p><em>Effects</em>: results in true_ if dynamic input is void</p>
+<p><em>Requires</em>: fixed parameters: optional continuation, dynamic parameters: the type to be tested \notes this is the same as std::is_void except the return is true_ or false_ and may be faster\</p>
+<h2>Class template <code>kvasir::mpl::is_integral</code><a id="kvasir::mpl::is_integral-C-"></a></h2>
+<pre><code class="language-cpp">template &lt;typename C = identity&gt;
+struct is_integral
+{
+    template &lt;typename T&gt;
+    using <a href='doc_types__traits.html#kvasir::mpl::is_integral-C-'>f</a> = typename C::template f&lt;bool_&lt;std::is_integral&lt;T&gt;::value&gt;&gt;;
+};</code></pre>
+<p>tests if a type is an integral type</p>
+<p><em>Effects</em>: results in true_ if dynamic input is an integral type</p>
+<p><em>Requires</em>: fixed parameters: optional continuation, dynamic parameters: the type to be tested \notes this is the same as std::is_integral except the return is true_ or false_ and may be faster\</p>
+<h2>Class template <code>kvasir::mpl::is_floating_point</code><a id="kvasir::mpl::is_floating_point-C-"></a></h2>
+<pre><code class="language-cpp">template &lt;typename C = identity&gt;
+struct is_floating_point
+{
+    template &lt;typename T&gt;
+    using <a href='doc_types__traits.html#kvasir::mpl::is_floating_point-C-'>f</a> = typename C::template f&lt;bool_&lt;std::is_floating_point&lt;T&gt;::value&gt;&gt;;
+};</code></pre>
+<p>tests if a type is a floating point type</p>
+<p><em>Effects</em>: results in true_ if dynamic input is a floating point type</p>
+<p><em>Requires</em>: fixed parameters: optional continuation, dynamic parameters: the type to be tested \notes this is the same as std::is_floating_point except the return is true_ or false_ and may be faster\</p>
+<h2>Class template <code>kvasir::mpl::is_array</code><a id="kvasir::mpl::is_array-C-"></a></h2>
+<pre><code class="language-cpp">template &lt;typename C = identity&gt;
+struct is_array
+{
+    template &lt;typename T&gt;
+    using <a href='doc_types__traits.html#kvasir::mpl::is_array-C-'>f</a> = typename C::template f&lt;bool_&lt;std::is_array&lt;T&gt;::value&gt;&gt;;
+};</code></pre>
+<p>tests if a type is an array</p>
+<p><em>Effects</em>: results in true_ if dynamic input is an array</p>
+<p><em>Requires</em>: fixed parameters: optional continuation, dynamic parameters: the type to be tested \notes this is the same as std::is_array except the return is true_ or false_ and may be faster\</p>
+<h2>Class template <code>kvasir::mpl::is_enum</code><a id="kvasir::mpl::is_enum-C-"></a></h2>
+<pre><code class="language-cpp">template &lt;typename C = identity&gt;
+struct is_enum
+{
+    template &lt;typename T&gt;
+    using <a href='doc_types__traits.html#kvasir::mpl::is_enum-C-'>f</a> = typename C::template f&lt;bool_&lt;std::is_enum&lt;T&gt;::value&gt;&gt;;
+};</code></pre>
+<p>tests if a type is an enum</p>
+<p><em>Effects</em>: results in true_ if dynamic input is an enum</p>
+<p><em>Requires</em>: fixed parameters: optional continuation, dynamic parameters: the type to be tested \notes this is the same as std::is_enum except the return is true_ or false_ and may be faster\</p>
+<h2>Class template <code>kvasir::mpl::is_union</code><a id="kvasir::mpl::is_union-C-"></a></h2>
+<pre><code class="language-cpp">template &lt;typename C = identity&gt;
+struct is_union
+{
+    template &lt;typename T&gt;
+    using <a href='doc_types__traits.html#kvasir::mpl::is_union-C-'>f</a> = typename C::template f&lt;bool_&lt;std::is_union&lt;T&gt;::value&gt;&gt;;
+};</code></pre>
+<p>tests if a type is a union</p>
+<p><em>Effects</em>: results in true_ if dynamic input is a union</p>
+<p><em>Requires</em>: fixed parameters: optional continuation, dynamic parameters: the type to be tested \notes this is the same as std::is_union except the return is true_ or false_ and may be faster\</p>
+<h2>Class template <code>kvasir::mpl::is_class</code><a id="kvasir::mpl::is_class-C-"></a></h2>
+<pre><code class="language-cpp">template &lt;typename C = identity&gt;
+struct is_class
+{
+    template &lt;typename T&gt;
+    using <a href='doc_types__traits.html#kvasir::mpl::is_class-C-'>f</a> = typename C::template f&lt;bool_&lt;std::is_class&lt;T&gt;::value&gt;&gt;;
+};</code></pre>
+<p>tests if a type is a class</p>
+<p><em>Effects</em>: results in true_ if dynamic input is a class</p>
+<p><em>Requires</em>: fixed parameters: optional continuation, dynamic parameters: the type to be tested \notes this is the same as std::is_class except the return is true_ or false_ and may be faster\</p>
+<h2>Class template <code>kvasir::mpl::is_function</code><a id="kvasir::mpl::is_function-C-"></a></h2>
+<pre><code class="language-cpp">template &lt;typename C = identity&gt;
+struct is_function
+{
+    template &lt;typename T&gt;
+    using <a href='doc_types__traits.html#kvasir::mpl::is_function-C-'>f</a> = typename C::template f&lt;bool_&lt;std::is_function&lt;T&gt;::value&gt;&gt;;
+};</code></pre>
+<p>tests if a type is a function</p>
+<p><em>Effects</em>: results in true_ if dynamic input is a function</p>
+<p><em>Requires</em>: fixed parameters: optional continuation, dynamic parameters: the type to be tested \notes this is the same as std::is_funtion except the return is true_ or false_ and may be faster\</p>
+<h2>Class template <code>kvasir::mpl::is_pointer</code><a id="kvasir::mpl::is_pointer-C-"></a></h2>
+<pre><code class="language-cpp">template &lt;typename C = identity&gt;
+struct is_pointer
+{
+    template &lt;typename T&gt;
+    using <a href='doc_types__traits.html#kvasir::mpl::is_pointer-C-'>f</a> = typename C::template f&lt;bool_&lt;std::is_pointer&lt;T&gt;::value&gt;&gt;;
+};</code></pre>
+<p>tests if a type is a pointer</p>
+<p><em>Effects</em>: results in true_ if dynamic input is a pointer</p>
+<p><em>Requires</em>: fixed parameters: optional continuation, dynamic parameters: the type to be tested \notes this is the same as std::is_pointer except the return is true_ or false_ and may be faster\</p>
+<h2>Class template <code>kvasir::mpl::is_lvalue_reference</code><a id="kvasir::mpl::is_lvalue_reference-C-"></a></h2>
+<pre><code class="language-cpp">template &lt;typename C = identity&gt;
+struct is_lvalue_reference
+{
+    template &lt;typename T&gt;
+    using <a href='doc_types__traits.html#kvasir::mpl::is_lvalue_reference-C-'>f</a> = typename C::template f&lt;bool_&lt;std::is_lvalue_reference&lt;T&gt;::value&gt;&gt;;
+};</code></pre>
+<p>tests if a type is an lvalue reference</p>
+<p><em>Effects</em>: results in true_ if dynamic input is an lvalue reference</p>
+<p><em>Requires</em>: fixed parameters: optional continuation, dynamic parameters: the type to be tested \notes this is the same as std::is_lvalue_reference except the return is true_ or false_ and may be faster\</p>
+<h2>Class template <code>kvasir::mpl::is_rvalue_reference</code><a id="kvasir::mpl::is_rvalue_reference-C-"></a></h2>
+<pre><code class="language-cpp">template &lt;typename C = identity&gt;
+struct is_rvalue_reference
+{
+    template &lt;typename T&gt;
+    using <a href='doc_types__traits.html#kvasir::mpl::is_rvalue_reference-C-'>f</a> = typename C::template f&lt;bool_&lt;std::is_rvalue_reference&lt;T&gt;::value&gt;&gt;;
+};</code></pre>
+<p>tests if a type is an rvalue reference</p>
+<p><em>Effects</em>: results in true_ if dynamic input is an rvalue reference</p>
+<p><em>Requires</em>: fixed parameters: optional continuation, dynamic parameters: the type to be tested \notes this is the same as std::is_rvalue_reference except the return is true_ or false_ and may be faster\</p>
+<hr />
+<hr />

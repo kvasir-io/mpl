@@ -1,0 +1,15 @@
+<h1>Header file <code>algorithm/replace_if.hpp</code><a id="algorithm/replace_if.hpp"></a></h1>
+<pre><code class="language-cpp">namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>kvasir</a>
+{
+    namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>mpl</a>
+    {
+        template &lt;typename Input, typename F = identity, typename C = listify&gt;
+        using <a href='doc_algorithm__replace_if.html#kvasir::mpl::replace_if-Input,F,C-'>replace_if</a> = transform&lt;detail::replace_if_pred&lt;F, Input&gt;, C&gt;;
+    }
+}</code></pre>
+<h2>Alias template <code>kvasir::mpl::replace_if</code><a id="kvasir::mpl::replace_if-Input,F,C-"></a></h2>
+<pre><code class="language-cpp">template &lt;typename Input, typename F = identity, typename C = listify&gt;
+using replace_if = transform&lt;detail::replace_if_pred&lt;F, Input&gt;, C&gt;;</code></pre>
+<p>output is equivalent to the input parameter pack with every element replaced with Input where the predicate F holds.</p>
+<hr />
+<hr />

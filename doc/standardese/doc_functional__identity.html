@@ -1,0 +1,18 @@
+<h1>Header file <code>functional/identity.hpp</code><a id="functional/identity.hpp"></a></h1>
+<pre><code class="language-cpp">namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>kvasir</a>
+{
+    namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>mpl</a>
+    {
+        struct <a href='doc_functional__identity.html#kvasir::mpl::identity'>identity</a>;
+    }
+}</code></pre>
+<h2>Struct <code>kvasir::mpl::identity</code><a id="kvasir::mpl::identity"></a></h2>
+<pre><code class="language-cpp">struct identity
+{
+    template &lt;typename T&gt;
+    using <a href='doc_functional__identity.html#kvasir::mpl::identity'>f</a> = T;
+};</code></pre>
+<p>results in the dynamic input. Use to break recursive chains or forward args </p>
+<p>identity is one of the core concepts of cmpl. It is used as the default continuation and when reached it breaks the chain as it has not continuation it self. it also comes in handy as a place holder in each if one only wants to modify some of the arguments. It is also used as a default predicate in algorithms like all where a predicate may be unneeded.</p>
+<hr />
+<hr />

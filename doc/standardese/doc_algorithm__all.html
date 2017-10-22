@@ -1,0 +1,16 @@
+<h1>Header file <code>algorithm/all.hpp</code><a id="algorithm/all.hpp"></a></h1>
+<pre><code class="language-cpp">namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>kvasir</a>
+{
+    namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>mpl</a>
+    {
+        template &lt;typename F, typename C = identity&gt;
+        using <a href='doc_algorithm__all.html#kvasir::mpl::all-F,C-'>all</a> = find_if&lt;detail::not_&lt;F&gt;, always&lt;bool_&lt;false&gt;, C&gt;, always&lt;bool_&lt;true&gt;, C&gt;&gt;;
+    }
+}</code></pre>
+<h2>Alias template <code>kvasir::mpl::all</code><a id="kvasir::mpl::all-F,C-"></a></h2>
+<pre><code class="language-cpp">template &lt;typename F, typename C = identity&gt;
+using all = find_if&lt;detail::not_&lt;F&gt;, always&lt;bool_&lt;false&gt;, C&gt;, always&lt;bool_&lt;true&gt;, C&gt;&gt;;</code></pre>
+<p>tests if a predicate holds for all elements in a pack</p>
+<p><em>Effects</em>: resolves to true_ if all elements in the input pack fulfill the provided predicate, otherwise false_. \requires Type <code>F</code> shall be a <code>continuation predicate</code> and C shall be any <code>continuation</code>. example: call&lt;all&lt;same_as&lt;void&gt;&gt;,void,void,void&gt; resolves to true_.</p>
+<hr />
+<hr />

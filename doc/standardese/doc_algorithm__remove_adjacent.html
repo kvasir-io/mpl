@@ -1,0 +1,19 @@
+<h1>Header file <code>algorithm/remove_adjacent.hpp</code><a id="algorithm/remove_adjacent.hpp"></a></h1>
+<pre><code class="language-cpp">namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>kvasir</a>
+{
+    namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>mpl</a>
+    {
+        template &lt;typename F, typename C = listify&gt;
+        struct <a href='doc_algorithm__remove_adjacent.html#kvasir::mpl::remove_adjacent-F,C-'>remove_adjacent</a>;
+    }
+}</code></pre>
+<h2>Class template <code>kvasir::mpl::remove_adjacent</code><a id="kvasir::mpl::remove_adjacent-F,C-"></a></h2>
+<pre><code class="language-cpp">template &lt;typename F, typename C = listify&gt;
+struct remove_adjacent
+{
+    template &lt;typename ... Ts&gt;
+    using <a href='doc_algorithm__remove_adjacent.html#kvasir::mpl::remove_adjacent-F,C-'>f</a> = typename detail::remove_adjacent&lt;F::template f, list&lt;Ts...&gt;, typename dcall&lt;rotate&lt;uint_&lt;1&gt;&gt;, sizeof...(Ts)&gt;::template f&lt;Ts...&gt;, C&gt;::type;
+};</code></pre>
+<p>removes each element in a list which is the same type as the privious element</p>
+<hr />
+<hr />

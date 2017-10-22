@@ -4,22 +4,16 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
-#include "integral_constant.hpp"
-
 namespace kvasir {
 	namespace mpl {
-		template <unsigned long long value>
+		template <unsigned long long Value>
 		struct uint_ {
-			constexpr operator unsigned() const {
-				return value;
-			}
+			static constexpr unsigned long long value = Value;
 		};
 
-		template <long long value>
+		template <long long Value>
 		struct int_ {
-			constexpr operator unsigned() const {
-				return value;
-			}
+			static constexpr long long value = Value;
 		};
-	}
-}
+	} // namespace mpl
+} // namespace kvasir

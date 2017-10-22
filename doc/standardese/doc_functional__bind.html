@@ -1,0 +1,44 @@
+<h1>Header file <code>functional/bind.hpp</code><a id="functional/bind.hpp"></a></h1>
+<pre><code class="language-cpp">namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>kvasir</a>
+{
+    namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>mpl</a>
+    {
+        template &lt;template &lt;typename&gt; class F, typename C = identity&gt;
+        struct <a href='doc_functional__bind.html#kvasir::mpl::cfl-F,C-'>cfl</a>;
+        
+        template &lt;template &lt;typename&gt; class F, typename C = identity&gt;
+        struct <a href='doc_functional__bind.html#kvasir::mpl::cfe-F,C-'>cfe</a>;
+        
+        template &lt;template &lt;typename&gt; class F, typename C = identity&gt;
+        struct <a href='doc_functional__bind.html#functional/bind.hpp'>cfe1</a>
+        {
+            template &lt;typename T&gt;
+            using <a href='doc_functional__bind.html#functional/bind.hpp'>f</a> = typename C::template f&lt;F&lt;T&gt;&gt;;
+        };
+    }
+}</code></pre>
+<h2>Class template <code>kvasir::mpl::cfl</code><a id="kvasir::mpl::cfl-F,C-"></a></h2>
+<pre><code class="language-cpp">template &lt;template &lt;typename&gt; class F, typename C = identity&gt;
+struct cfl
+{
+    template &lt;typename ... Ts&gt;
+    using <a href='doc_functional__bind.html#kvasir::mpl::cfl-F,C-'>f</a> = typename C::template f&lt;typename F&lt;Ts...&gt;::type&gt;;
+};</code></pre>
+<p>makes a continuation from a lazy metafunction </p>
+<p>wraps a template template parameter in such a way that it can be used as a continuation capable meta closure.</p>
+<p><em>Requires</em>: fixed parameters: a template template parameter which contains a nestesd ::type (the lazy metafunction) dynamic parameters: a variadic pack of type parameters</p>
+<p><em>Effects</em>: the result will be whatever the ::type of the lazy metafunction maps to when passed the dynamic parameters</p>
+<h2>Class template <code>kvasir::mpl::cfe</code><a id="kvasir::mpl::cfe-F,C-"></a></h2>
+<pre><code class="language-cpp">template &lt;template &lt;typename&gt; class F, typename C = identity&gt;
+struct cfe
+{
+    template &lt;typename ... Ts&gt;
+    using <a href='doc_functional__bind.html#kvasir::mpl::cfe-F,C-'>f</a> = typename dcall&lt;C, sizeof...(Ts)&gt;::template f&lt;typename dcallf&lt;bool(sizeof...(Ts)&gt;0)&gt;::template f1&lt;F, Ts...&gt;&gt;;
+};</code></pre>
+<p>makes a continuation from an eager metafunction </p>
+<p>wraps a template template parameter in such a way that it can be used as a continuation capable meta closure.</p>
+<p><em>Requires</em>: fixed parameters: a template template parameter (the eager metafunction) dynamic parameters: a variadic pack of type parameters</p>
+<p><em>Effects</em>: the result will be whatever the eager metafunction maps to when passed the dynamic parameters</p>
+<p><em>Notes</em>: when passed an alias the result is the same as a traditional call to the at metafunction/ \notes it is perfectly valid to pass a template such as tuple or pair as a 'metafunction'</p>
+<hr />
+<hr />

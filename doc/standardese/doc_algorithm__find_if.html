@@ -1,0 +1,20 @@
+<h1>Header file <code>algorithm/find_if.hpp</code><a id="algorithm/find_if.hpp"></a></h1>
+<pre><code class="language-cpp">namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>kvasir</a>
+{
+    namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>mpl</a>
+    {
+        template &lt;typename F = identity, typename FC = listify, typename NFC = FC&gt;
+        struct <a href='doc_algorithm__find_if.html#kvasir::mpl::find_if-F,FC,NFC-'>find_if</a>;
+    }
+}</code></pre>
+<h2>Class template <code>kvasir::mpl::find_if</code><a id="kvasir::mpl::find_if-F,FC,NFC-"></a></h2>
+<pre><code class="language-cpp">template &lt;typename F = identity, typename FC = listify, typename NFC = FC&gt;
+struct find_if
+{
+    template &lt;typename ... Ts&gt;
+    using <a href='doc_algorithm__find_if.html#kvasir::mpl::find_if-F,FC,NFC-'>f</a> = typename detail::find_if_impl&lt;detail::first_find(sizeof...(Ts)), FC, NFC&gt;::template f&lt;F::template f, Ts...&gt;;
+};</code></pre>
+<p>finds the first element in a list for which a predicate holds</p>
+<p><em>Effects</em>: calls <code>FC</code> with all elements in the input pack except those which occure before the first element for which the provided predicate <code>F</code> holds. if <code>F</code> doe not hold for any elements <code>NFC</code> is called instead of <code>FC</code> \requires Type <code>F</code> shall be a <code>continuation predicate</code> and <code>FC</code> and <code>NFC</code> shall be any <code>continuation</code>. \example call&lt;find_if&lt;same_as&lt;int&gt;,cfe&lt;std::tuple&gt;&gt;,void,int,char&gt; resolves to std::tuple&lt;int,char&gt;.</p>
+<hr />
+<hr />

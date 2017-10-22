@@ -4,25 +4,50 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
-#include "../types/list.hpp"
-#include "pop_front.hpp"
+#include "../functional/call.hpp"
+#include "../sequence/drop.hpp"
+#include "../sequence/front.hpp"
+#include "../types/int.hpp"
 
 namespace kvasir {
 	namespace mpl {
-		namespace impl {
-			template <unsigned N, typename List>
-			struct at_impl {
-				using f = typename at_impl<N - 1, typename pop_front_impl<List>::rest>::f;
-			};
+		template <typename N, typename C = identity>
+		using at = drop<N, front<C>>;
 
-			template <typename List>
-			struct at_impl<0, List> {
-				using f = typename pop_front_impl<List>::front;
-			};
-		}
+		template <typename C = identity>
+		using at0 = drop<uint_<0>, front<C>>;
 
-		/// get the n-th element of the list
-		template <unsigned N, typename List>
-		using at = typename impl::at_impl<N, List>::f;
-	}
-}
+		template <typename C = identity>
+		using at1 = drop<uint_<1>, front<C>>;
+
+		template <typename C = identity>
+		using at2 = drop<uint_<2>, front<C>>;
+
+		template <typename C = identity>
+		using at3 = drop<uint_<3>, front<C>>;
+
+		template <typename C = identity>
+		using at4 = drop<uint_<4>, front<C>>;
+
+		template <typename C = identity>
+		using at5 = drop<uint_<5>, front<C>>;
+
+		template <typename C = identity>
+		using at6 = drop<uint_<6>, front<C>>;
+
+		template <typename C = identity>
+		using at7 = drop<uint_<7>, front<C>>;
+
+		template <typename C = identity>
+		using at8 = drop<uint_<8>, front<C>>;
+
+		template <typename C = identity>
+		using at9 = drop<uint_<9>, front<C>>;
+
+		namespace eager {
+			/// get the n-th element of the list
+			template <typename List, unsigned N>
+			using at = call<unpack<mpl::at<mpl::uint_<N>>>, List>;
+		} // namespace eager
+	} // namespace mpl
+} // namespace kvasir

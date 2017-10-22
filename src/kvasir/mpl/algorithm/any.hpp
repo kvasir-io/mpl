@@ -4,13 +4,22 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
-#include "contains.hpp"
+#include "find_if.hpp"
+#include "../functional/identity.hpp"
+#include "../types/bool.hpp"
+#include "../utility/always.hpp"
 
 namespace kvasir {
 	namespace mpl {
-		/// filter elements from a list
-		/// takes a lambda that should return a type convertible to bool
-		template <template <typename...> class Cond, typename List>
-		using any = impl::contains_impl<Cond, List>;
-	}
-}
+		/// \brief resolves to true_ if any element in the input pack fulfills the provided
+		/// predicate, otherwise false_. \requires Type `F` shall be a `continuation predicate` and
+		/// C shall be any `continuation`. example call<any<same_as<void>>,void,int,char> resolves
+		/// to true_.
+		template <typename F = identity>
+		using any = find_if<F, always<bool_<true>>, always<bool_<false>>>;
+		namespace eager {
+			template <typename List, template <typename...> class Cond = identity>
+			using any = call<unpack<mpl::any<cfe<Cond>>>, List>;
+		}
+	} // namespace mpl
+} // namespace kvasir

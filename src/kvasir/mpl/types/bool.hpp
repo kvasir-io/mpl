@@ -4,15 +4,16 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
-#include "integral_constant.hpp"
-
 namespace kvasir {
 	namespace mpl {
-		template <bool value>
+		/// \brief wrapper which represents bool types
+		template <bool Value>
 		struct bool_ {
-			constexpr operator bool() const {
-				return value;
-			}
+			static constexpr bool value = Value;
 		};
-	}
-}
+		/// \brief universal true type in the library
+		using true_ = bool_<true>;
+		/// \breif universal false type in the library
+		using false_ = bool_<false>;
+	} // namespace mpl
+} // namespace kvasir
