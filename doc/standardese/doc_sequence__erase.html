@@ -1,0 +1,14 @@
+<h1>Header file <code>sequence/erase.hpp</code><a id="sequence/erase.hpp"></a></h1>
+<pre><code class="language-cpp">namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>kvasir</a>
+{
+    namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>mpl</a>
+    {
+        template &lt;typename Index, typename C = listify&gt;
+        struct <a href='doc_sequence__erase.html#sequence/erase.hpp'>erase</a>
+        {
+            template &lt;typename ... Ts&gt;
+            using <a href='doc_sequence__erase.html#sequence/erase.hpp'>f</a> = typename rotate&lt;Index, pop_front&lt;rotate&lt;mpl::uint_&lt;(sizeof...(Ts)-Index::value-1)&gt;, C&gt;&gt;&gt;::template f&lt;Ts...&gt;;
+        };
+    }
+}</code></pre>
+<hr />

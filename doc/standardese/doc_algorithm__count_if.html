@@ -1,0 +1,16 @@
+<h1>Header file <code>algorithm/count_if.hpp</code><a id="algorithm/count_if.hpp"></a></h1>
+<pre><code class="language-cpp">namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>kvasir</a>
+{
+    namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>mpl</a>
+    {
+        template &lt;typename F = identity, typename C = identity&gt;
+        using <a href='doc_algorithm__count_if.html#kvasir::mpl::count_if-F,C-'>count_if</a> = transform&lt;detail::list_wrap_void_if&lt;F&gt;, join&lt;size&lt;C&gt;&gt;&gt;;
+    }
+}</code></pre>
+<h2>Alias template <code>kvasir::mpl::count_if</code><a id="kvasir::mpl::count_if-F,C-"></a></h2>
+<pre><code class="language-cpp">template &lt;typename F = identity, typename C = identity&gt;
+using count_if = transform&lt;detail::list_wrap_void_if&lt;F&gt;, join&lt;size&lt;C&gt;&gt;&gt;;</code></pre>
+<p>counts elements for which the predicate holds</p>
+<p><em>Effects</em>: resolves to uint_&lt;X&gt; where X is the number of elements in the input pack which fulfill the provided predicate. \requires Type <code>F</code> shall be a <code>continuation predicate</code> and <code>C</code> shall be any <code>continuation</code>. example call&lt;count_if&lt;same_as&lt;void&gt;&gt;,void,int,char&gt; resolves to uint_&lt;1&gt;.</p>
+<hr />
+<hr />

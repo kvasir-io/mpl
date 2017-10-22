@@ -1,0 +1,34 @@
+<h1>Header file <code>functional/call.hpp</code><a id="functional/call.hpp"></a></h1>
+<pre><code class="language-cpp">namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>kvasir</a>
+{
+    namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>mpl</a>
+    {
+        template &lt;typename C&gt;
+        struct <a href='doc_functional__call.html#kvasir::mpl::unpack-C-'>unpack</a>;
+        
+        template &lt;typename C, typename ... Ts&gt;
+        using <a href='doc_functional__call.html#kvasir::mpl::call-C,Ts...-'>call</a> = typename dcall&lt;C, sizeof...(Ts)&gt;::template f&lt;Ts...&gt;;
+        
+        template &lt;typename C = identity&gt;
+        struct <a href='doc_functional__call.html#functional/call.hpp'>call_f</a>
+        {
+            template &lt;typename ... Ts&gt;
+            using <a href='doc_functional__call.html#functional/call.hpp'>f</a> = typename C::template f&lt;dcallf&lt;(sizeof...(Ts)&lt;10000)&gt;::template f1&lt;call, Ts...&gt;&gt;;
+        };
+    }
+}</code></pre>
+<h2>Class template <code>kvasir::mpl::unpack</code><a id="kvasir::mpl::unpack-C-"></a></h2>
+<pre><code class="language-cpp">template &lt;typename C&gt;
+struct unpack
+{
+    template &lt;typename ... Ls&gt;
+    using <a href='doc_functional__call.html#kvasir::mpl::unpack-C-'>f</a> = typename detail::unpack_impl&lt;C, Ls...&gt;::type;
+};</code></pre>
+<p>turns a list of types into a variadic pack of those types </p>
+<p>example: call&lt;all&lt;&gt;,ture_,false_,true_&gt; is equivalent to call&lt;unpack&lt;all&lt;&gt;&gt;,list&lt;true_,false_,true_&gt;&gt;</p>
+<h2>Alias template <code>kvasir::mpl::call</code><a id="kvasir::mpl::call-C,Ts...-"></a></h2>
+<pre><code class="language-cpp">template &lt;typename C, typename ... Ts&gt;
+using call = typename dcall&lt;C, sizeof...(Ts)&gt;::template f&lt;Ts...&gt;;</code></pre>
+<p>call a continuation (left parameter) with a variadic pack</p>
+<hr />
+<hr />

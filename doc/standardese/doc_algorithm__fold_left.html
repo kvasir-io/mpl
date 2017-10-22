@@ -1,0 +1,20 @@
+<h1>Header file <code>algorithm/fold_left.hpp</code><a id="algorithm/fold_left.hpp"></a></h1>
+<pre><code class="language-cpp">namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>kvasir</a>
+{
+    namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>mpl</a>
+    {
+        template &lt;typename F, typename C = identity&gt;
+        struct <a href='doc_algorithm__fold_left.html#kvasir::mpl::fold_left-F,C-'>fold_left</a>;
+    }
+}</code></pre>
+<h2>Class template <code>kvasir::mpl::fold_left</code><a id="kvasir::mpl::fold_left-F,C-"></a></h2>
+<pre><code class="language-cpp">template &lt;typename F, typename C = identity&gt;
+struct fold_left
+{
+    template &lt;typename ... Ts&gt;
+    using <a href='doc_algorithm__fold_left.html#kvasir::mpl::fold_left-F,C-'>f</a> = typename C::template f&lt;typename detail::fold_impl&lt;detail::select_fold(sizeof...(Ts)-1)&gt;::template f&lt;F::template f, Ts...&gt;&gt;;
+};</code></pre>
+<p>folds left over a list using a binary predicate </p>
+<p>fold left consideres the first element in the input pack the state, use <code>push_front&lt;&gt;</code> to add state if needed</p>
+<hr />
+<hr />

@@ -1,0 +1,19 @@
+<h1>Header file <code>utility/always.hpp</code><a id="utility/always.hpp"></a></h1>
+<pre><code class="language-cpp">namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>kvasir</a>
+{
+    namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>mpl</a>
+    {
+        template &lt;typename T, typename C = identity&gt;
+        struct <a href='doc_utility__always.html#kvasir::mpl::always-T,C-'>always</a>;
+    }
+}</code></pre>
+<h2>Class template <code>kvasir::mpl::always</code><a id="kvasir::mpl::always-T,C-"></a></h2>
+<pre><code class="language-cpp">(1)  template &lt;typename T, typename C = identity&gt;
+     struct always
+     {
+         template &lt;typename&gt;
+         using <a href='doc_utility__always.html#kvasir::mpl::always-T,C-'>f</a> = typename C::template f&lt;T&gt;;
+     };</code></pre>
+<p>ignores input and passes a fixed output</p>
+<hr />
+<hr />

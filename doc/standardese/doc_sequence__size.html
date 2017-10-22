@@ -1,0 +1,40 @@
+<h1>Header file <code>sequence/size.hpp</code><a id="sequence/size.hpp"></a></h1>
+<pre><code class="language-cpp">namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>kvasir</a>
+{
+    namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>mpl</a>
+    {
+        template &lt;typename C = identity&gt;
+        struct <a href='doc_sequence__size.html#sequence/size.hpp'>size</a>
+        {
+            template &lt;typename ... Ts&gt;
+            using <a href='doc_sequence__size.html#sequence/size.hpp'>f</a> = typename C::template f&lt;uint_&lt;sizeof...(Ts)&gt;&gt;;
+        };
+        
+        template &lt;&gt;
+        struct <a href='doc_sequence__size.html#sequence/size.hpp'>size&lt;identity&gt;</a>
+        {
+            template &lt;typename ... Ts&gt;
+            using <a href='doc_sequence__size.html#sequence/size.hpp'>f</a> = uint_&lt;sizeof...(Ts)&gt;;
+        };
+        
+        template &lt;typename T, typename C = identity&gt;
+        struct <a href='doc_sequence__size.html#kvasir::mpl::offset-T,C-'>offset</a>;
+        
+        template &lt;typename T&gt;
+        struct <a href='doc_sequence__size.html#sequence/size.hpp'>offset&lt;T, identity&gt;</a>
+        {
+            template &lt;typename ... Ts&gt;
+            using <a href='doc_sequence__size.html#sequence/size.hpp'>f</a> = uint_&lt;(T::value-sizeof...(Ts))&gt;;
+        };
+    }
+}</code></pre>
+<h2>Class template <code>kvasir::mpl::offset</code><a id="kvasir::mpl::offset-T,C-"></a></h2>
+<pre><code class="language-cpp">template &lt;typename T, typename C = identity&gt;
+struct offset
+{
+    template &lt;typename ... Ts&gt;
+    using <a href='doc_sequence__size.html#kvasir::mpl::offset-T,C-'>f</a> = typename C::template f&lt;uint_&lt;(T::value-sizeof...(Ts))&gt;&gt;;
+};</code></pre>
+<p>offset provides the difference between the origional length of a list (provided as the input parameter) and the pack supplied to f</p>
+<hr />
+<hr />

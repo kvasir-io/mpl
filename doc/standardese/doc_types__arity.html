@@ -1,0 +1,27 @@
+<h1>Header file <code>types/arity.hpp</code><a id="types/arity.hpp"></a></h1>
+<pre><code class="language-cpp">namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>kvasir</a>
+{
+    namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>mpl</a>
+    {
+        template &lt;int L, int H&gt;
+        struct <a href='doc_types__arity.html#types/arity.hpp'>arity</a>
+        {
+            static constexpr int <a href='doc_types__arity.html#types/arity.hpp'>low</a> = L;
+            
+            static constexpr int <a href='doc_types__arity.html#types/arity.hpp'>high</a> = H;
+        };
+        
+        template &lt;typename T, typename = void&gt;
+        struct <a href='doc_types__arity.html#types/arity.hpp'>arity_traits</a>
+        {
+            using <a href='doc_types__arity.html#types/arity.hpp'>type</a> = <a href='doc_types__arity.html#types/arity.hpp'>arity&lt;-1, -1&gt;</a>;
+        };
+        
+        template &lt;typename T&gt;
+        struct <a href='doc_types__arity.html#types/arity.hpp'>arity_traits&lt;T, detail::voidt&lt;typename T::arity&gt;&gt;</a>
+        {
+            using <a href='doc_types__arity.html#types/arity.hpp'>type</a> = typename T::arity;
+        };
+    }
+}</code></pre>
+<hr />

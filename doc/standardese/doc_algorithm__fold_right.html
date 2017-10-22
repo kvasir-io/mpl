@@ -1,0 +1,19 @@
+<h1>Header file <code>algorithm/fold_right.hpp</code><a id="algorithm/fold_right.hpp"></a></h1>
+<pre><code class="language-cpp">namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>kvasir</a>
+{
+    namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>mpl</a>
+    {
+        template &lt;typename F, typename C = identity&gt;
+        struct <a href='doc_algorithm__fold_right.html#kvasir::mpl::fold_right-F,C-'>fold_right</a>;
+    }
+}</code></pre>
+<h2>Class template <code>kvasir::mpl::fold_right</code><a id="kvasir::mpl::fold_right-F,C-"></a></h2>
+<pre><code class="language-cpp">template &lt;typename F, typename C = identity&gt;
+struct fold_right
+{
+    template &lt;typename ... Ts&gt;
+    using <a href='doc_algorithm__fold_right.html#kvasir::mpl::fold_right-F,C-'>f</a> = typename C::template f&lt;typename detail::fold_right_impl&lt;detail::select_fold_right(sizeof...(Ts)-1)&gt;::template f&lt;F::template f, Ts...&gt;&gt;;
+};</code></pre>
+<p>push_front to add state if needed</p>
+<hr />
+<hr />

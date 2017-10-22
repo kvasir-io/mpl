@@ -1,0 +1,21 @@
+<h1>Header file <code>sequence/join.hpp</code><a id="sequence/join.hpp"></a></h1>
+<pre><code class="language-cpp">namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>kvasir</a>
+{
+    namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>mpl</a>
+    {
+        template &lt;typename C = listify&gt;
+        struct <a href='doc_sequence__join.html#sequence/join.hpp'>join</a>
+        {
+            template &lt;typename ... Ts&gt;
+            using <a href='doc_sequence__join.html#sequence/join.hpp'>f</a> = typename detail::join_select&lt;detail::select_join_size(sizeof...(Ts))&gt;::template f&lt;C::template f, Ts...&gt;::type;
+        };
+        
+        template &lt;template &lt;typename&gt; class C&gt;
+        struct <a href='doc_sequence__join.html#sequence/join.hpp'>join&lt;cfe&lt;C, identity&gt;&gt;</a>
+        {
+            template &lt;typename ... Ts&gt;
+            using <a href='doc_sequence__join.html#sequence/join.hpp'>f</a> = typename detail::join_select&lt;detail::select_join_size(sizeof...(Ts))&gt;::template f&lt;C, Ts...&gt;::type;
+        };
+    }
+}</code></pre>
+<hr />

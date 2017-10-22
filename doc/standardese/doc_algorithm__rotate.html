@@ -1,0 +1,19 @@
+<h1>Header file <code>algorithm/rotate.hpp</code><a id="algorithm/rotate.hpp"></a></h1>
+<pre><code class="language-cpp">namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>kvasir</a>
+{
+    namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>mpl</a>
+    {
+        template &lt;typename N, typename C = listify&gt;
+        struct <a href='doc_algorithm__rotate.html#kvasir::mpl::rotate-N,C-'>rotate</a>;
+    }
+}</code></pre>
+<h2>Class template <code>kvasir::mpl::rotate</code><a id="kvasir::mpl::rotate-N,C-"></a></h2>
+<pre><code class="language-cpp">template &lt;typename N, typename C = listify&gt;
+struct rotate
+{
+    template &lt;typename ... Ts&gt;
+    using <a href='doc_algorithm__rotate.html#kvasir::mpl::rotate-N,C-'>f</a> = typename detail::rotate_impl&lt;detail::select_next_rotate_step(detail::select_rotate_size(N::value, sizeof...(Ts)), 0), C&gt;::template f&lt;detail::select_rotate_size(N::value, sizeof...(Ts)), Ts...&gt;;
+};</code></pre>
+<p>moves N elements from the front of a list to the back of the list</p>
+<hr />
+<hr />

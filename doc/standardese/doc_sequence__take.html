@@ -1,0 +1,14 @@
+<h1>Header file <code>sequence/take.hpp</code><a id="sequence/take.hpp"></a></h1>
+<pre><code class="language-cpp">namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>kvasir</a>
+{
+    namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>mpl</a>
+    {
+        template &lt;typename N, typename C = listify&gt;
+        struct <a href='doc_sequence__take.html#sequence/take.hpp'>take</a>
+        {
+            template &lt;typename ... Ts&gt;
+            using <a href='doc_sequence__take.html#sequence/take.hpp'>f</a> = typename dcall&lt;rotate&lt;N, drop&lt;uint_&lt;(sizeof...(Ts)-N::value)&gt;, C&gt;&gt;, sizeof...(Ts)&gt;::template f&lt;Ts...&gt;;
+        };
+    }
+}</code></pre>
+<hr />

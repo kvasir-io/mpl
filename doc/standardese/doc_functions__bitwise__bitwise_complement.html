@@ -1,0 +1,14 @@
+<h1>Header file <code>functions/bitwise/bitwise_complement.hpp</code><a id="functions/bitwise/bitwise_complement.hpp"></a></h1>
+<pre><code class="language-cpp">namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>kvasir</a>
+{
+    namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>mpl</a>
+    {
+        template &lt;typename C = identity&gt;
+        struct <a href='doc_functions__bitwise__bitwise_complement.html#functions/bitwise/bitwise_complement.hpp'>bitwise_complement</a>
+        {
+            template &lt;typename A&gt;
+            using <a href='doc_functions__bitwise__bitwise_complement.html#functions/bitwise/bitwise_complement.hpp'>f</a> = typename C::template f&lt;integral_constant&lt;decltype(~A::value), (~A::value)&gt;&gt;;
+        };
+    }
+}</code></pre>
+<hr />

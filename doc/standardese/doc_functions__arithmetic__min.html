@@ -1,0 +1,14 @@
+<h1>Header file <code>functions/arithmetic/min.hpp</code><a id="functions/arithmetic/min.hpp"></a></h1>
+<pre><code class="language-cpp">namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>kvasir</a>
+{
+    namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>mpl</a>
+    {
+        template &lt;typename C = identity&gt;
+        struct <a href='doc_functions__arithmetic__min.html#functions/arithmetic/min.hpp'>min</a>
+        {
+            template &lt;typename A, typename B&gt;
+            using <a href='doc_functions__arithmetic__min.html#functions/arithmetic/min.hpp'>f</a> = typename C::template f&lt;typename conditional&lt;(A::value&lt;B::value)&gt;::template f&lt;A, B&gt;&gt;;
+        };
+    }
+}</code></pre>
+<hr />

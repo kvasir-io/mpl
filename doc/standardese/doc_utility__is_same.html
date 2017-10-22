@@ -1,0 +1,35 @@
+<h1>Header file <code>utility/is_same.hpp</code><a id="utility/is_same.hpp"></a></h1>
+<pre><code class="language-cpp">namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>kvasir</a>
+{
+    namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>mpl</a>
+    {
+        template &lt;typename C = identity&gt;
+        struct <a href='doc_utility__is_same.html#utility/is_same.hpp'>is_same</a>
+        {
+            template &lt;typename T, typename U&gt;
+            using <a href='doc_utility__is_same.html#utility/is_same.hpp'>f</a> = typename C::template f&lt;std::is_same&lt;T, U&gt;&gt;;
+        };
+        
+        template &lt;&gt;
+        struct <a href='doc_utility__is_same.html#utility/is_same.hpp'>is_same&lt;identity&gt;</a>
+        {
+            template &lt;typename T, typename U&gt;
+            using <a href='doc_utility__is_same.html#utility/is_same.hpp'>f</a> = <a href='http://en.cppreference.com/mwiki/index.php?title=Special%3ASearch&search=std::is_same%3cT,U%3e'>std::is_same&lt;T, U&gt;</a>;
+        };
+        
+        template &lt;typename M, typename C = identity&gt;
+        struct <a href='doc_utility__is_same.html#utility/is_same.hpp'>same_as</a>
+        {
+            template &lt;typename T&gt;
+            using <a href='doc_utility__is_same.html#utility/is_same.hpp'>f</a> = typename C::template f&lt;std::is_same&lt;M, T&gt;&gt;;
+        };
+        
+        template &lt;typename M&gt;
+        struct <a href='doc_utility__is_same.html#utility/is_same.hpp'>same_as&lt;M, identity&gt;</a>
+        {
+            template &lt;typename T&gt;
+            using <a href='doc_utility__is_same.html#utility/is_same.hpp'>f</a> = <a href='http://en.cppreference.com/mwiki/index.php?title=Special%3ASearch&search=std::is_same%3cM,T%3e'>std::is_same&lt;M, T&gt;</a>;
+        };
+    }
+}</code></pre>
+<hr />

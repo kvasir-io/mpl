@@ -1,0 +1,14 @@
+<h1>Header file <code>functions/arithmetic/decrement.hpp</code><a id="functions/arithmetic/decrement.hpp"></a></h1>
+<pre><code class="language-cpp">namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>kvasir</a>
+{
+    namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>mpl</a>
+    {
+        template &lt;typename C = identity&gt;
+        struct <a href='doc_functions__arithmetic__decrement.html#functions/arithmetic/decrement.hpp'>decrement</a>
+        {
+            template &lt;typename A&gt;
+            using <a href='doc_functions__arithmetic__decrement.html#functions/arithmetic/decrement.hpp'>f</a> = typename C::template f&lt;integral_constant&lt;decltype(A::value-1), (A::value-1)&gt;&gt;;
+        };
+    }
+}</code></pre>
+<hr />

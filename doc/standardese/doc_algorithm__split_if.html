@@ -1,0 +1,19 @@
+<h1>Header file <code>algorithm/split_if.hpp</code><a id="algorithm/split_if.hpp"></a></h1>
+<pre><code class="language-cpp">namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>kvasir</a>
+{
+    namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>mpl</a>
+    {
+        template &lt;typename F = identity, typename C = listify&gt;
+        struct <a href='doc_algorithm__split_if.html#kvasir::mpl::split_if-F,C-'>split_if</a>;
+    }
+}</code></pre>
+<h2>Class template <code>kvasir::mpl::split_if</code><a id="kvasir::mpl::split_if-F,C-"></a></h2>
+<pre><code class="language-cpp">template &lt;typename F = identity, typename C = listify&gt;
+struct split_if
+{
+    template &lt;typename ... Ts&gt;
+    using <a href='doc_algorithm__split_if.html#kvasir::mpl::split_if-F,C-'>f</a> = typename dcall&lt;fold_right&lt;detail::split_if_pred&lt;F::template f&gt;, push_front&lt;unpack&lt;C&gt;, cfe&lt;call&gt;&gt;&gt;, sizeof...(Ts)&gt;::template f&lt;list&lt;list&lt;&gt;&gt;, Ts...&gt;;
+};</code></pre>
+<p>splits a lits into multiple lists at every point for which the provided predicate holds</p>
+<hr />
+<hr />
