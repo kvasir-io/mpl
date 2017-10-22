@@ -6,6 +6,7 @@
 
 #include "../compatability/dependent_call.hpp"
 #include "../functional/identity.hpp"
+#include "../types/arity.hpp"
 
 namespace kvasir {
 	namespace mpl {
@@ -44,11 +45,33 @@ namespace kvasir {
 			using f = typename dcall<C, sizeof...(Ts)>::template f<
 			        typename dcallf<bool(sizeof...(Ts) > 0)>::template f1<F, Ts...>>;
 		};
+	
+
 		/// \exclude
 		template <template <typename...> class F>
 		struct cfe<F, identity> {
 			template <typename... Ts>
 			using f = typename dcallf<bool(sizeof...(Ts) > 0)>::template f1<F, Ts...>;
 		};
+
+		template <template <typename...> class F, typename C = identity>
+		struct cfe1 {
+			template <typename T>
+			using f = typename C::template f<F<T>>;
+		};
+
+		template<template<typename...> class F, typename C>
+		struct arity_traits<cfe1<F,C>,void>{
+			using type = arity<1,1>;
+		};
+	
+
+		/// \exclude
+		template <template <typename...> class F>
+		struct cfe1<F,identity> {
+			template <typename T>
+			using f = F<T>;
+		};
+	
 	} // namespace mpl
 } // namespace kvasir

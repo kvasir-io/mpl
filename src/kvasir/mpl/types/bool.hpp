@@ -6,14 +6,14 @@
 
 namespace kvasir {
 	namespace mpl {
-		/// wrapper which represents bool types
+		/// \brief wrapper which represents bool types
 		template <bool Value>
 		struct bool_ {
 			static constexpr bool value = Value;
 		};
-		/// universal true type in the library
+		/// \brief universal true type in the library
 		using true_ = bool_<true>;
-		/// universal false type in the library
+		/// \breif universal false type in the library
 		using false_ = bool_<false>;
 	} // namespace mpl
 } // namespace kvasir
