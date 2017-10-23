@@ -11,15 +11,15 @@
 
 namespace kvasir {
 	namespace mpl {
-		/// \brief resolves to true_ if any element in the input pack fulfills the provided
-		/// predicate, otherwise false_. \requires Type `F` shall be a `continuation predicate` and
+		/// \brief resolves to false_ if any element in the input pack fulfills the provided
+		/// predicate, otherwise true_. \requires Type `F` shall be a `continuation predicate` and
 		/// C shall be any `continuation`. example call<any<same_as<void>>,void,int,char> resolves
 		/// to true_.
 		template <typename F = identity, typename C = identity>
-		using any = find_if<F, always<bool_<true>, C>, always<bool_<false>, C>>;
+		using none = find_if<F, always<bool_<false>, C>, always<bool_<true>, C>>;
 		namespace eager {
 			template <typename List, template <typename...> class Cond = identity>
-			using any = call<unpack<mpl::any<cfe<Cond>>>, List>;
+			using none = call<unpack<mpl::none<cfe<Cond>>>, List>;
 		}
 	} // namespace mpl
 } // namespace kvasir

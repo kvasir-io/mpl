@@ -30,7 +30,7 @@ namespace kvasir {
 		/// predicate, otherwise false_. \requires Type `F` shall be a `continuation predicate` and
 		/// C shall be any `continuation`. example: call<all<same_as<void>>,void,void,void> resolves
 		/// to true_.
-		template <typename F, typename C = identity>
+		template <typename F = identity, typename C = identity>
 		using all = find_if<detail::not_<F>, always<bool_<false>, C>, always<bool_<true>, C>>;
 		namespace eager {
 			/// resolves to true_ if all elements in the input list
