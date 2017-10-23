@@ -6,11 +6,12 @@
 
 namespace kvasir {
 	namespace mpl {
+		/// \brief universal unsigned integer type
 		template <unsigned long long Value>
 		struct uint_ {
 			static constexpr unsigned long long value = Value;
 		};
-
+		/// \brief universal integer type
 		template <long long Value>
 		struct int_ {
 			static constexpr long long value = Value;

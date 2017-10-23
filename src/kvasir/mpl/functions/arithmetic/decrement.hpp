@@ -9,6 +9,7 @@
 
 namespace kvasir {
 	namespace mpl {
+		/// \brief decriment the ::value of an input type resulting in an integral_constant
 		template <typename C = identity>
 		struct decrement {
 			template <typename A>

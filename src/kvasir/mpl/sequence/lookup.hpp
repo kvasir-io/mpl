@@ -329,13 +329,14 @@ namespace kvasir {
 			        template f<detail::index<((I >> 4) & 0xF)>::template f>::template f<
 			                detail::index<(I & 0xF)>::template f>;
 		} // namespace detail
+		/// \exclude
 		template <typename C = identity>
 		struct build_indexed {
 			template <typename... Ts>
 			using f = typename C::template f<detail::indexed<typename detail::indexed_builder<(
 			        sizeof...(Ts) > 16 ? 3 : 1)>::template f<Ts...>>>;
 		};
-
+		/// \exclude
 		template <>
 		struct build_indexed<identity> {
 			template <typename... Ts>

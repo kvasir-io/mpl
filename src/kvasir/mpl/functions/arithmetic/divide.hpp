@@ -9,6 +9,7 @@
 
 namespace kvasir {
 	namespace mpl {
+		/// \brief devide the first input types ::value by the ::value of the second input type
 		template <typename C = identity>
 		struct divide {
 			template <typename A, typename B>

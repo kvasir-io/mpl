@@ -9,6 +9,7 @@
 
 namespace kvasir {
 	namespace mpl {
+		/// \brief returns `true_` if the ::value of both input parameters are equal
 		template <typename C = identity>
 		struct equal {
 			template <typename A, typename B>

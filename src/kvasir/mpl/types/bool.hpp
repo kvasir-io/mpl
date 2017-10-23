@@ -13,7 +13,7 @@ namespace kvasir {
 		};
 		/// \brief universal true type in the library
 		using true_ = bool_<true>;
-		/// \breif universal false type in the library
+		/// \brief universal false type in the library
 		using false_ = bool_<false>;
 	} // namespace mpl
 } // namespace kvasir

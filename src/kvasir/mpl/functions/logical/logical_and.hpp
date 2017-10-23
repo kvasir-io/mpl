@@ -9,6 +9,7 @@
 
 namespace kvasir {
 	namespace mpl {
+		/// \brief logical and of the ::value of two inputs
 		template <typename C = identity>
 		struct logical_and {
 			template <typename A, typename B>

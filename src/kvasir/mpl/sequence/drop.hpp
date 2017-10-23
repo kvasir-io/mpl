@@ -164,6 +164,7 @@ namespace kvasir {
 				                             C>::template f<(N - 256), Ts...>;
 			};
 		} // namespace detail
+		/// \brief remove N elements from a pack
 		template <typename N, typename C = listify>
 		struct drop {
 			template <typename... Ts>
@@ -173,48 +174,56 @@ namespace kvasir {
 		};
 
 		// composition matching for common lambda cases
+		/// \exclude
 		template <typename C>
 		struct drop<uint_<0>, front<C>> {
 			template <typename T, typename... Ts>
 			using f = typename C::template f<T>;
 		};
 
+		/// \exclude
 		template <typename C>
 		struct drop<uint_<1>, front<C>> {
 			template <typename T0, typename T1, typename... Ts>
 			using f = typename C::template f<T1>;
 		};
 
+		/// \exclude
 		template <typename C>
 		struct drop<uint_<2>, front<C>> {
 			template <typename T0, typename T1, typename T2, typename... Ts>
 			using f = typename C::template f<T2>;
 		};
 
+		/// \exclude
 		template <typename C>
 		struct drop<uint_<3>, front<C>> {
 			template <typename T0, typename T1, typename T2, typename T3, typename... Ts>
 			using f = typename C::template f<T3>;
 		};
 
+		/// \exclude
 		template <>
 		struct drop<uint_<0>, front<identity>> {
 			template <typename T, typename... Ts>
 			using f = T;
 		};
 
+		/// \exclude
 		template <>
 		struct drop<uint_<1>, front<identity>> {
 			template <typename T0, typename T1, typename... Ts>
 			using f = T1;
 		};
 
+		/// \exclude
 		template <>
 		struct drop<uint_<2>, front<identity>> {
 			template <typename T0, typename T1, typename T2, typename... Ts>
 			using f = T2;
 		};
 
+		/// \exclude
 		template <>
 		struct drop<uint_<3>, front<identity>> {
 			template <typename T0, typename T1, typename T2, typename T3, typename... Ts>

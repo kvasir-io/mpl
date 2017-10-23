@@ -59,8 +59,7 @@ namespace kvasir {
 			using f = typename C::template f<typename F0::template f<T0>,
 			                                 typename F1::template f<T1>>;
 		};
-		/// \exclude
-		// not documented, could change
+		/// \exclude  not documented, could change
 		template <typename F, typename C>
 		struct fork_front {
 			template <typename... Ts>

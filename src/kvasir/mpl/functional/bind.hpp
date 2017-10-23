@@ -54,12 +54,14 @@ namespace kvasir {
 			using f = typename dcallf<bool(sizeof...(Ts) > 0)>::template f1<F, Ts...>;
 		};
 
+		/// \brief explicit 1-ary version of cfe
 		template <template <typename...> class F, typename C = identity>
 		struct cfe1 {
 			template <typename T>
 			using f = typename C::template f<F<T>>;
 		};
 
+		/// \exclude
 		template<template<typename...> class F, typename C>
 		struct arity_traits<cfe1<F,C>,void>{
 			using type = arity<1,1>;

@@ -9,6 +9,7 @@
 
 namespace kvasir {
 	namespace mpl {
+		/// \brief logical not of the ::value of the input parameter
 		template <typename C = identity>
 		struct logical_not {
 			template <typename A>

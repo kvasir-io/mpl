@@ -6,15 +6,16 @@
 
 namespace kvasir {
 	namespace mpl {
+		/// \brief continuation version fo std::conditional
 		template <bool>
 		struct conditional;
-
+		/// \exclude
 		template <>
 		struct conditional<true> {
 			template <typename A, typename B>
 			using f = A;
 		};
-
+		/// \exclude
 		template <>
 		struct conditional<false> {
 			template <typename A, typename B>

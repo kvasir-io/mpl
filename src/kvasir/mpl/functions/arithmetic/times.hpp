@@ -9,6 +9,7 @@
 
 namespace kvasir {
 	namespace mpl {
+		/// \brief multiply the ::value of two input types
 		template <typename C = identity>
 		struct times {
 			template <typename A, typename B>

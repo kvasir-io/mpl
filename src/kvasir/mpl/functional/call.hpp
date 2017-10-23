@@ -29,6 +29,7 @@ namespace kvasir {
 		template <typename C, typename... Ts>
 		using call = typename dcall<C, sizeof...(Ts)>::template f<Ts...>;
 
+		//// \brief experimental, may be depricated or changed
 		template <typename C = identity>
 		struct call_f {
 			template <typename... Ts>

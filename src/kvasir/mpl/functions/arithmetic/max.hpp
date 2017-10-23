@@ -11,6 +11,7 @@
 namespace kvasir {
 	namespace mpl {
 
+		/// \brief returns the type which has a greater ::value, is equal returns the second input type 
 		template <typename C = identity>
 		struct max {
 			template <typename A, typename B>

@@ -9,6 +9,7 @@
 
 namespace kvasir {
 	namespace mpl {
+		/// \brief increments the ::value of the input type into an integral_constant
 		template <typename C = identity>
 		struct increment {
 			template <typename A>

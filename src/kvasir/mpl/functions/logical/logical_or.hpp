@@ -9,6 +9,7 @@
 
 namespace kvasir {
 	namespace mpl {
+		/// \brief logical or of the ::value of two inputs
 		template <typename C = identity>
 		struct logical_or {
 			template <typename A, typename B>

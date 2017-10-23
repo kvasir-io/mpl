@@ -9,6 +9,7 @@
 
 namespace kvasir {
 	namespace mpl {
+		/// \brief bitwise xor of the ::value of two inputs
 		template <typename C = identity>
 		struct bitwise_xor {
 			template <typename A, typename B>

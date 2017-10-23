@@ -9,6 +9,7 @@
 
 namespace kvasir {
 	namespace mpl {
+		/// \brief bitwise complement of the ::value of two inputs
 		template <typename C = identity>
 		struct bitwise_complement {
 			template <typename A>

@@ -9,6 +9,7 @@
 
 namespace kvasir {
 	namespace mpl {
+		/// \brief bitwise and of the ::value of two inputs
 		template <typename C = identity>
 		struct bitwise_and {
 			template <typename A, typename B>

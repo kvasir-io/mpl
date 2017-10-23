@@ -11,36 +11,47 @@
 
 namespace kvasir {
 	namespace mpl {
+		/// \brief reterns element at a given index from an input pack
 		template <typename N, typename C = identity>
 		using at = drop<N, front<C>>;
 
+		/// \exclude   exclude for now, may be renamed
 		template <typename C = identity>
 		using at0 = drop<uint_<0>, front<C>>;
 
+		/// \exclude   exclude for now, may be renamed
 		template <typename C = identity>
 		using at1 = drop<uint_<1>, front<C>>;
 
+		/// \exclude   exclude for now, may be renamed
 		template <typename C = identity>
 		using at2 = drop<uint_<2>, front<C>>;
 
+		/// \exclude   exclude for now, may be renamed
 		template <typename C = identity>
 		using at3 = drop<uint_<3>, front<C>>;
 
+		/// \exclude   exclude for now, may be renamed
 		template <typename C = identity>
 		using at4 = drop<uint_<4>, front<C>>;
 
+		/// \exclude   exclude for now, may be renamed
 		template <typename C = identity>
 		using at5 = drop<uint_<5>, front<C>>;
 
+		/// \exclude   exclude for now, may be renamed
 		template <typename C = identity>
 		using at6 = drop<uint_<6>, front<C>>;
 
+		/// \exclude   exclude for now, may be renamed
 		template <typename C = identity>
 		using at7 = drop<uint_<7>, front<C>>;
 
+		/// \exclude   exclude for now, may be renamed
 		template <typename C = identity>
 		using at8 = drop<uint_<8>, front<C>>;
 
+		/// \exclude   exclude for now, may be renamed
 		template <typename C = identity>
 		using at9 = drop<uint_<9>, front<C>>;
 

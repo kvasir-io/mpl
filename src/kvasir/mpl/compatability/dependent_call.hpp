@@ -16,11 +16,13 @@ namespace kvasir {
 			struct dependant_impl<true, C> : C {};
 		} // namespace detail
 
+		/// \exclude
 		template <typename C, unsigned size>
 		using dcall = typename detail::dependant_impl<static_cast<bool>(size < 100000), C>;
-
+		/// \exclude
 		template <bool>
 		struct dcallf;
+		/// \exclude
 		template <>
 		struct dcallf<true> {
 			template <template <typename...> class F1, typename... Ts>
@@ -29,6 +31,7 @@ namespace kvasir {
 			          typename... Ts>
 			using f2 = F1<F2<Ts...>>;
 		};
+		/// \exclude
 		template <>
 		struct dcallf<false> {
 			template <template <typename...> class F1, typename... Ts>

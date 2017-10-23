@@ -10,6 +10,7 @@
 
 namespace kvasir {
 	namespace mpl {
+		/// \brief remove element at a given index
 		template <typename Index, typename C = listify>
 		struct erase {
 			template <typename... Ts>
