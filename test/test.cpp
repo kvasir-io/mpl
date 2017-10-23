@@ -11,6 +11,7 @@
 #include "algorithm/flatten.hpp"
 #include "algorithm/fold_left.hpp"
 #include "algorithm/fold_right.hpp"
+#include "algorithm/group.hpp"
 #include "algorithm/lookup.hpp"
 #include "algorithm/make_sequence.hpp"
 #include "algorithm/partition.hpp"
