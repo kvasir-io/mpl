@@ -1,14 +1,19 @@
 <h1>Header file <code>sequence/pop_front.hpp</code><a id="sequence/pop_front.hpp"></a></h1>
-<pre><code class="language-cpp">namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>kvasir</a>
+<pre><code class="language-cpp">namespace <a href='doc_algorithm__all.html#algorithm/all.hpp'>kvasir</a>
 {
-    namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>mpl</a>
+    namespace <a href='doc_algorithm__all.html#algorithm/all.hpp'>mpl</a>
     {
         template &lt;typename C = listify&gt;
-        struct <a href='doc_sequence__pop_front.html#sequence/pop_front.hpp'>pop_front</a>
-        {
-            template &lt;typename T, typename ... Ts&gt;
-            using <a href='doc_sequence__pop_front.html#sequence/pop_front.hpp'>f</a> = typename dcall&lt;C, sizeof...(Ts)&gt;::template f&lt;Ts...&gt;;
-        };
+        struct <a href='doc_sequence__pop_front.html#kvasir::mpl::pop_front-C-'>pop_front</a>;
     }
 }</code></pre>
+<h2>Class template <code>kvasir::mpl::pop_front</code><a id="kvasir::mpl::pop_front-C-"></a></h2>
+<pre><code class="language-cpp">template &lt;typename C = listify&gt;
+struct pop_front
+{
+    template &lt;typename T, typename ... Ts&gt;
+    using <a href='doc_sequence__pop_front.html#kvasir::mpl::pop_front-C-'>f</a> = typename dcall&lt;C, sizeof...(Ts)&gt;::template f&lt;Ts...&gt;;
+};</code></pre>
+<p>remove the first element of the input pack</p>
+<hr />
 <hr />

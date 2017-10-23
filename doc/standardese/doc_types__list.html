@@ -1,23 +1,25 @@
 <h1>Header file <code>types/list.hpp</code><a id="types/list.hpp"></a></h1>
-<pre><code class="language-cpp">namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>kvasir</a>
+<pre><code class="language-cpp">namespace <a href='doc_algorithm__all.html#algorithm/all.hpp'>kvasir</a>
 {
-    namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>mpl</a>
+    namespace <a href='doc_algorithm__all.html#algorithm/all.hpp'>mpl</a>
     {
         template &lt;typename ... Ts&gt;
-        struct <a href='doc_types__list.html#types/list.hpp'>list</a>
-        {
-        };
+        struct <a href='doc_types__list.html#kvasir::mpl::list-Ts...-'>list</a>;
         
-        using <a href='doc_types__list.html#types/list.hpp'>listify</a> = <a href='doc_functional__bind.html#kvasir::mpl::cfe-F,C-'>cfe&lt;list&gt;</a>;
-        
-        template &lt;template &lt;typename&gt; class S, typename ... Ts&gt;
-        struct <a href='doc_types__list.html#types/list.hpp'>sequencify&lt;S&lt;Ts...&gt;&gt;</a>
-        {
-            using <a href='doc_types__list.html#types/list.hpp'>type</a> = <a href='doc_functional__bind.html#kvasir::mpl::cfe-F,C-'>cfe&lt;S&gt;</a>;
-        };
+        using <a href='doc_types__list.html#kvasir::mpl::listify'>listify</a> = <a href='doc_functional__bind.html#kvasir::mpl::cfe-F,C-'>cfe&lt;list&gt;</a>;
         
         template &lt;typename ... Ts&gt;
-        <a href='doc_types__list.html#types/list.hpp'>list&lt;Ts...&gt;</a> <a href='doc_types__list.html#types/list.hpp'>make_list</a>(Ts...);
+        <a href='doc_types__list.html#kvasir::mpl::list-Ts...-'>list&lt;Ts...&gt;</a> <a href='doc_types__list.html#types/list.hpp'>make_list</a>(Ts...);
     }
 }</code></pre>
+<h2>Class template <code>kvasir::mpl::list</code><a id="kvasir::mpl::list-Ts...-"></a></h2>
+<pre><code class="language-cpp">template &lt;typename ... Ts&gt;
+struct list
+{
+};</code></pre>
+<p>universal list tspe</p>
+<h2>Type alias <code>kvasir::mpl::listify</code><a id="kvasir::mpl::listify"></a></h2>
+<pre><code class="language-cpp">using listify = <a href='doc_functional__bind.html#kvasir::mpl::cfe-F,C-'>cfe&lt;list&gt;</a>;</code></pre>
+<p>continuation which returns its input pack wrapped in a list</p>
+<hr />
 <hr />

@@ -1,14 +1,19 @@
 <h1>Header file <code>functions/bitwise/bitwise_or.hpp</code><a id="functions/bitwise/bitwise_or.hpp"></a></h1>
-<pre><code class="language-cpp">namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>kvasir</a>
+<pre><code class="language-cpp">namespace <a href='doc_algorithm__all.html#algorithm/all.hpp'>kvasir</a>
 {
-    namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>mpl</a>
+    namespace <a href='doc_algorithm__all.html#algorithm/all.hpp'>mpl</a>
     {
         template &lt;typename C = identity&gt;
-        struct <a href='doc_functions__bitwise__bitwise_or.html#functions/bitwise/bitwise_or.hpp'>bitwise_or</a>
-        {
-            template &lt;typename A, typename B&gt;
-            using <a href='doc_functions__bitwise__bitwise_or.html#functions/bitwise/bitwise_or.hpp'>f</a> = typename C::template f&lt;integral_constant&lt;decltype(A::value|B::value), (A::value|B::value)&gt;&gt;;
-        };
+        struct <a href='doc_functions__bitwise__bitwise_or.html#kvasir::mpl::bitwise_or-C-'>bitwise_or</a>;
     }
 }</code></pre>
+<h2>Class template <code>kvasir::mpl::bitwise_or</code><a id="kvasir::mpl::bitwise_or-C-"></a></h2>
+<pre><code class="language-cpp">template &lt;typename C = identity&gt;
+struct bitwise_or
+{
+    template &lt;typename A, typename B&gt;
+    using <a href='doc_functions__bitwise__bitwise_or.html#kvasir::mpl::bitwise_or-C-'>f</a> = typename C::template f&lt;integral_constant&lt;decltype(A::value|B::value), (A::value|B::value)&gt;&gt;;
+};</code></pre>
+<p>bitwise or of the ::value of two inputs</p>
+<hr />
 <hr />

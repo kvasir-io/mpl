@@ -1,70 +1,19 @@
 <h1>Header file <code>sequence/drop.hpp</code><a id="sequence/drop.hpp"></a></h1>
-<pre><code class="language-cpp">namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>kvasir</a>
+<pre><code class="language-cpp">namespace <a href='doc_algorithm__all.html#algorithm/all.hpp'>kvasir</a>
 {
-    namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>mpl</a>
+    namespace <a href='doc_algorithm__all.html#algorithm/all.hpp'>mpl</a>
     {
         template &lt;typename N, typename C = listify&gt;
-        struct <a href='doc_sequence__drop.html#sequence/drop.hpp'>drop</a>
-        {
-            template &lt;typename ... Ts&gt;
-            using <a href='doc_sequence__drop.html#sequence/drop.hpp'>f</a> = typename detail::drop_impl&lt;detail::select_next_drop_step(N::value, sizeof...(Ts)), C&gt;::template f&lt;N::value, Ts...&gt;;
-        };
-        
-        template &lt;typename C&gt;
-        struct <a href='doc_sequence__drop.html#sequence/drop.hpp'>drop&lt;uint_&lt;0&gt;, front&lt;C&gt;&gt;</a>
-        {
-            template &lt;typename T, typename ... Ts&gt;
-            using <a href='doc_sequence__drop.html#sequence/drop.hpp'>f</a> = typename C::template f&lt;T&gt;;
-        };
-        
-        template &lt;typename C&gt;
-        struct <a href='doc_sequence__drop.html#sequence/drop.hpp'>drop&lt;uint_&lt;1&gt;, front&lt;C&gt;&gt;</a>
-        {
-            template &lt;typename T0, typename T1, typename ... Ts&gt;
-            using <a href='doc_sequence__drop.html#sequence/drop.hpp'>f</a> = typename C::template f&lt;T1&gt;;
-        };
-        
-        template &lt;typename C&gt;
-        struct <a href='doc_sequence__drop.html#sequence/drop.hpp'>drop&lt;uint_&lt;2&gt;, front&lt;C&gt;&gt;</a>
-        {
-            template &lt;typename T0, typename T1, typename T2, typename ... Ts&gt;
-            using <a href='doc_sequence__drop.html#sequence/drop.hpp'>f</a> = typename C::template f&lt;T2&gt;;
-        };
-        
-        template &lt;typename C&gt;
-        struct <a href='doc_sequence__drop.html#sequence/drop.hpp'>drop&lt;uint_&lt;3&gt;, front&lt;C&gt;&gt;</a>
-        {
-            template &lt;typename T0, typename T1, typename T2, typename T3, typename ... Ts&gt;
-            using <a href='doc_sequence__drop.html#sequence/drop.hpp'>f</a> = typename C::template f&lt;T3&gt;;
-        };
-        
-        template &lt;&gt;
-        struct <a href='doc_sequence__drop.html#sequence/drop.hpp'>drop&lt;uint_&lt;0&gt;, front&lt;identity&gt;&gt;</a>
-        {
-            template &lt;typename T, typename ... Ts&gt;
-            using <a href='doc_sequence__drop.html#sequence/drop.hpp'>f</a> = T;
-        };
-        
-        template &lt;&gt;
-        struct <a href='doc_sequence__drop.html#sequence/drop.hpp'>drop&lt;uint_&lt;1&gt;, front&lt;identity&gt;&gt;</a>
-        {
-            template &lt;typename T0, typename T1, typename ... Ts&gt;
-            using <a href='doc_sequence__drop.html#sequence/drop.hpp'>f</a> = T1;
-        };
-        
-        template &lt;&gt;
-        struct <a href='doc_sequence__drop.html#sequence/drop.hpp'>drop&lt;uint_&lt;2&gt;, front&lt;identity&gt;&gt;</a>
-        {
-            template &lt;typename T0, typename T1, typename T2, typename ... Ts&gt;
-            using <a href='doc_sequence__drop.html#sequence/drop.hpp'>f</a> = T2;
-        };
-        
-        template &lt;&gt;
-        struct <a href='doc_sequence__drop.html#sequence/drop.hpp'>drop&lt;uint_&lt;3&gt;, front&lt;identity&gt;&gt;</a>
-        {
-            template &lt;typename T0, typename T1, typename T2, typename T3, typename ... Ts&gt;
-            using <a href='doc_sequence__drop.html#sequence/drop.hpp'>f</a> = T3;
-        };
+        struct <a href='doc_sequence__drop.html#kvasir::mpl::drop-N,C-'>drop</a>;
     }
 }</code></pre>
+<h2>Class template <code>kvasir::mpl::drop</code><a id="kvasir::mpl::drop-N,C-"></a></h2>
+<pre><code class="language-cpp">template &lt;typename N, typename C = listify&gt;
+struct drop
+{
+    template &lt;typename ... Ts&gt;
+    using <a href='doc_sequence__drop.html#kvasir::mpl::drop-N,C-'>f</a> = typename detail::drop_impl&lt;detail::select_next_drop_step(N::value, sizeof...(Ts)), C&gt;::template f&lt;N::value, Ts...&gt;;
+};</code></pre>
+<p>remove N elements from a pack</p>
+<hr />
 <hr />

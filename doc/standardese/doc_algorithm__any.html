@@ -1,7 +1,7 @@
 <h1>Header file <code>algorithm/any.hpp</code><a id="algorithm/any.hpp"></a></h1>
-<pre><code class="language-cpp">namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>kvasir</a>
+<pre><code class="language-cpp">namespace <a href='doc_algorithm__all.html#algorithm/all.hpp'>kvasir</a>
 {
-    namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>mpl</a>
+    namespace <a href='doc_algorithm__all.html#algorithm/all.hpp'>mpl</a>
     {
         template &lt;typename F = identity&gt;
         using <a href='doc_algorithm__any.html#kvasir::mpl::any-F-'>any</a> = find_if&lt;F, always&lt;bool_&lt;true&gt;&gt;, always&lt;bool_&lt;false&gt;&gt;&gt;;
@@ -10,6 +10,7 @@
 <h2>Alias template <code>kvasir::mpl::any</code><a id="kvasir::mpl::any-F-"></a></h2>
 <pre><code class="language-cpp">template &lt;typename F = identity&gt;
 using any = find_if&lt;F, always&lt;bool_&lt;true&gt;&gt;, always&lt;bool_&lt;false&gt;&gt;&gt;;</code></pre>
-<p>resolves to true_ if any element in the input pack fulfills the provided predicate, otherwise false_. \requires Type <code>F</code> shall be a <code>continuation predicate</code> and C shall be any <code>continuation</code>. example call&lt;any&lt;same_as&lt;void&gt;&gt;,void,int,char&gt; resolves to true_.</p>
+<p>resolves to true_ if any element in the input pack fulfills the provided </p>
+<p>predicate, otherwise false_. \requires Type <code>F</code> shall be a <code>continuation predicate</code> and C shall be any <code>continuation</code>. example <code>call&lt;any&lt;same_as&lt;void&gt;&gt;,void,int,char&gt;</code> resolves to <code>true_</code>.</p>
 <hr />
 <hr />

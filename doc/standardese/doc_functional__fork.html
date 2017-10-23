@@ -1,20 +1,13 @@
 <h1>Header file <code>functional/fork.hpp</code><a id="functional/fork.hpp"></a></h1>
-<pre><code class="language-cpp">namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>kvasir</a>
+<pre><code class="language-cpp">namespace <a href='doc_algorithm__all.html#algorithm/all.hpp'>kvasir</a>
 {
-    namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>mpl</a>
+    namespace <a href='doc_algorithm__all.html#algorithm/all.hpp'>mpl</a>
     {
         template &lt;typename ... Ts&gt;
         struct <a href='doc_functional__fork.html#kvasir::mpl::fork-Ts...-'>fork</a>;
         
         template &lt;typename ... Ts&gt;
         struct <a href='doc_functional__fork.html#kvasir::mpl::each-Ts...-'>each</a>;
-        
-        template &lt;typename F, typename C&gt;
-        struct <a href='doc_functional__fork.html#functional/fork.hpp'>fork_front</a>
-        {
-            template &lt;typename ... Ts&gt;
-            using <a href='doc_functional__fork.html#functional/fork.hpp'>f</a> = typename dcall&lt;C, sizeof...(Ts)&gt;::template f&lt;typename dcall&lt;F, sizeof...(Ts)&gt;::template f&lt;Ts...&gt;, Ts...&gt;;
-        };
     }
 }</code></pre>
 <h2>Class template <code>kvasir::mpl::fork</code><a id="kvasir::mpl::fork-Ts...-"></a></h2>

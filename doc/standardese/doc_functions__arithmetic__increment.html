@@ -1,14 +1,19 @@
 <h1>Header file <code>functions/arithmetic/increment.hpp</code><a id="functions/arithmetic/increment.hpp"></a></h1>
-<pre><code class="language-cpp">namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>kvasir</a>
+<pre><code class="language-cpp">namespace <a href='doc_algorithm__all.html#algorithm/all.hpp'>kvasir</a>
 {
-    namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>mpl</a>
+    namespace <a href='doc_algorithm__all.html#algorithm/all.hpp'>mpl</a>
     {
         template &lt;typename C = identity&gt;
-        struct <a href='doc_functions__arithmetic__increment.html#functions/arithmetic/increment.hpp'>increment</a>
-        {
-            template &lt;typename A&gt;
-            using <a href='doc_functions__arithmetic__increment.html#functions/arithmetic/increment.hpp'>f</a> = typename C::template f&lt;integral_constant&lt;decltype(A::value+1), (A::value+1)&gt;&gt;;
-        };
+        struct <a href='doc_functions__arithmetic__increment.html#kvasir::mpl::increment-C-'>increment</a>;
     }
 }</code></pre>
+<h2>Class template <code>kvasir::mpl::increment</code><a id="kvasir::mpl::increment-C-"></a></h2>
+<pre><code class="language-cpp">template &lt;typename C = identity&gt;
+struct increment
+{
+    template &lt;typename A&gt;
+    using <a href='doc_functions__arithmetic__increment.html#kvasir::mpl::increment-C-'>f</a> = typename C::template f&lt;integral_constant&lt;decltype(A::value+1), (A::value+1)&gt;&gt;;
+};</code></pre>
+<p>increments the ::value of the input type into an integral_constant</p>
+<hr />
 <hr />

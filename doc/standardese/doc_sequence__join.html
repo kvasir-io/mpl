@@ -1,21 +1,19 @@
 <h1>Header file <code>sequence/join.hpp</code><a id="sequence/join.hpp"></a></h1>
-<pre><code class="language-cpp">namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>kvasir</a>
+<pre><code class="language-cpp">namespace <a href='doc_algorithm__all.html#algorithm/all.hpp'>kvasir</a>
 {
-    namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>mpl</a>
+    namespace <a href='doc_algorithm__all.html#algorithm/all.hpp'>mpl</a>
     {
         template &lt;typename C = listify&gt;
-        struct <a href='doc_sequence__join.html#sequence/join.hpp'>join</a>
-        {
-            template &lt;typename ... Ts&gt;
-            using <a href='doc_sequence__join.html#sequence/join.hpp'>f</a> = typename detail::join_select&lt;detail::select_join_size(sizeof...(Ts))&gt;::template f&lt;C::template f, Ts...&gt;::type;
-        };
-        
-        template &lt;template &lt;typename&gt; class C&gt;
-        struct <a href='doc_sequence__join.html#sequence/join.hpp'>join&lt;cfe&lt;C, identity&gt;&gt;</a>
-        {
-            template &lt;typename ... Ts&gt;
-            using <a href='doc_sequence__join.html#sequence/join.hpp'>f</a> = typename detail::join_select&lt;detail::select_join_size(sizeof...(Ts))&gt;::template f&lt;C, Ts...&gt;::type;
-        };
+        struct <a href='doc_sequence__join.html#kvasir::mpl::join-C-'>join</a>;
     }
 }</code></pre>
+<h2>Class template <code>kvasir::mpl::join</code><a id="kvasir::mpl::join-C-"></a></h2>
+<pre><code class="language-cpp">template &lt;typename C = listify&gt;
+struct join
+{
+    template &lt;typename ... Ts&gt;
+    using <a href='doc_sequence__join.html#kvasir::mpl::join-C-'>f</a> = typename detail::join_select&lt;detail::select_join_size(sizeof...(Ts))&gt;::template f&lt;C::template f, Ts...&gt;::type;
+};</code></pre>
+<p>unpacks the elements of each list in the danamic input and concatinates them to one pack</p>
+<hr />
 <hr />

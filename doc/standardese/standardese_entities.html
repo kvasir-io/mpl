@@ -3,25 +3,25 @@
 <p><code>kvasir::mpl</code></p>
 <ul>
 <li>
-<p><a href="doc_types__traits.html#types/traits.hpp" title="kvasir::mpl::add_const&lt;C&gt;">add_const</a></p>
+<p><a href="doc_types__traits.html#kvasir::mpl::add_const-C-" title="kvasir::mpl::add_const&lt;C&gt;">add_const</a> - returns the input type with const qualifiers added</p>
 </li>
 <li>
-<p><a href="doc_types__traits.html#types/traits.hpp" title="kvasir::mpl::add_cv&lt;C&gt;">add_cv</a></p>
+<p><a href="doc_types__traits.html#kvasir::mpl::add_cv-C-" title="kvasir::mpl::add_cv&lt;C&gt;">add_cv</a> - returns the input type with const and volatile qualifiers added</p>
 </li>
 <li>
-<p><a href="doc_types__traits.html#types/traits.hpp" title="kvasir::mpl::add_lvalue_reference&lt;C&gt;">add_lvalue_reference</a></p>
+<p><a href="doc_types__traits.html#kvasir::mpl::add_lvalue_reference-C-" title="kvasir::mpl::add_lvalue_reference&lt;C&gt;">add_lvalue_reference</a> - returns the input type as an lvalue reference</p>
 </li>
 <li>
-<p><a href="doc_types__traits.html#types/traits.hpp" title="kvasir::mpl::add_pointer&lt;C&gt;">add_pointer</a></p>
+<p><a href="doc_types__traits.html#kvasir::mpl::add_pointer-C-" title="kvasir::mpl::add_pointer&lt;C&gt;">add_pointer</a> - returns the input type with a pointer added</p>
 </li>
 <li>
-<p><a href="doc_types__traits.html#types/traits.hpp" title="kvasir::mpl::add_rvalue_reference&lt;C&gt;">add_rvalue_reference</a></p>
+<p><a href="doc_types__traits.html#kvasir::mpl::add_rvalue_reference-C-" title="kvasir::mpl::add_rvalue_reference&lt;C&gt;">add_rvalue_reference</a> - returns the input type as an rvalue reference</p>
 </li>
 <li>
-<p><a href="doc_types__traits.html#types/traits.hpp" title="kvasir::mpl::add_volatile&lt;C&gt;">add_volatile</a></p>
+<p><a href="doc_types__traits.html#kvasir::mpl::add_volatile-C-" title="kvasir::mpl::add_volatile&lt;C&gt;">add_volatile</a> - returns the input type with volatile qualifiers added</p>
 </li>
 <li>
-<p><a href="doc_types__traits.html#types/traits.hpp" title="kvasir::mpl::alignment_of&lt;C&gt;">alignment_of</a></p>
+<p><a href="doc_types__traits.html#kvasir::mpl::alignment_of-C-" title="kvasir::mpl::alignment_of&lt;C&gt;">alignment_of</a> - returns the allignment of a type</p>
 </li>
 <li>
 <p><a href="doc_algorithm__all.html#kvasir::mpl::all-F,C-" title="kvasir::mpl::all&lt;F, C&gt;">all</a> - tests if a predicate holds for all elements in a pack</p>
@@ -30,79 +30,34 @@
 <p><a href="doc_utility__always.html#kvasir::mpl::always-T,C-" title="kvasir::mpl::always&lt;T, C&gt;">always</a> - ignores input and passes a fixed output</p>
 </li>
 <li>
-<p><a href="doc_algorithm__any.html#kvasir::mpl::any-F-" title="kvasir::mpl::any&lt;F&gt;">any</a> - resolves to true_ if any element in the input pack fulfills the provided predicate, otherwise false_. \requires Type <code>F</code> shall be a <code>continuation predicate</code> and C shall be any <code>continuation</code>. example call&lt;any&lt;same_as&lt;void&gt;&gt;,void,int,char&gt; resolves to true_.</p>
+<p><a href="doc_algorithm__any.html#kvasir::mpl::any-F-" title="kvasir::mpl::any&lt;F&gt;">any</a> - resolves to true_ if any element in the input pack fulfills the provided </p>
 </li>
 <li>
-<p><a href="doc_types__arity.html#types/arity.hpp" title="kvasir::mpl::arity&lt;L, H&gt;">arity</a></p>
+<p><a href="doc_sequence__at.html#kvasir::mpl::at-N,C-" title="kvasir::mpl::at&lt;N, C&gt;">at</a> - reterns element at a given index from an input pack</p>
 </li>
 <li>
-<p><a href="doc_types__arity.html#types/arity.hpp" title="kvasir::mpl::arity_traits&lt;T, detail::voidt&lt;typename T::arity&gt;&gt;">arity_traits&lt;T, detail::voidt&lt;typename T::arity&gt;&gt;</a></p>
+<p><a href="doc_functions__bitwise__bitwise_and.html#kvasir::mpl::bitwise_and-C-" title="kvasir::mpl::bitwise_and&lt;C&gt;">bitwise_and</a> - bitwise and of the ::value of two inputs</p>
 </li>
 <li>
-<p><a href="doc_types__arity.html#types/arity.hpp" title="kvasir::mpl::arity_traits&lt;T&gt;">arity_traits</a></p>
+<p><a href="doc_functions__bitwise__bitwise_complement.html#kvasir::mpl::bitwise_complement-C-" title="kvasir::mpl::bitwise_complement&lt;C&gt;">bitwise_complement</a> - bitwise complement of the ::value of two inputs</p>
 </li>
 <li>
-<p><a href="doc_sequence__at.html#sequence/at.hpp" title="kvasir::mpl::at0&lt;C&gt;">at0</a></p>
+<p><a href="doc_functions__bitwise__bitwise_or.html#kvasir::mpl::bitwise_or-C-" title="kvasir::mpl::bitwise_or&lt;C&gt;">bitwise_or</a> - bitwise or of the ::value of two inputs</p>
 </li>
 <li>
-<p><a href="doc_sequence__at.html#sequence/at.hpp" title="kvasir::mpl::at1&lt;C&gt;">at1</a></p>
-</li>
-<li>
-<p><a href="doc_sequence__at.html#sequence/at.hpp" title="kvasir::mpl::at2&lt;C&gt;">at2</a></p>
-</li>
-<li>
-<p><a href="doc_sequence__at.html#sequence/at.hpp" title="kvasir::mpl::at3&lt;C&gt;">at3</a></p>
-</li>
-<li>
-<p><a href="doc_sequence__at.html#sequence/at.hpp" title="kvasir::mpl::at4&lt;C&gt;">at4</a></p>
-</li>
-<li>
-<p><a href="doc_sequence__at.html#sequence/at.hpp" title="kvasir::mpl::at5&lt;C&gt;">at5</a></p>
-</li>
-<li>
-<p><a href="doc_sequence__at.html#sequence/at.hpp" title="kvasir::mpl::at6&lt;C&gt;">at6</a></p>
-</li>
-<li>
-<p><a href="doc_sequence__at.html#sequence/at.hpp" title="kvasir::mpl::at7&lt;C&gt;">at7</a></p>
-</li>
-<li>
-<p><a href="doc_sequence__at.html#sequence/at.hpp" title="kvasir::mpl::at8&lt;C&gt;">at8</a></p>
-</li>
-<li>
-<p><a href="doc_sequence__at.html#sequence/at.hpp" title="kvasir::mpl::at9&lt;C&gt;">at9</a></p>
-</li>
-<li>
-<p><a href="doc_sequence__at.html#sequence/at.hpp" title="kvasir::mpl::at&lt;N, C&gt;">at</a></p>
-</li>
-<li>
-<p><a href="doc_functions__bitwise__bitwise_and.html#functions/bitwise/bitwise_and.hpp" title="kvasir::mpl::bitwise_and&lt;C&gt;">bitwise_and</a></p>
-</li>
-<li>
-<p><a href="doc_functions__bitwise__bitwise_complement.html#functions/bitwise/bitwise_complement.hpp" title="kvasir::mpl::bitwise_complement&lt;C&gt;">bitwise_complement</a></p>
-</li>
-<li>
-<p><a href="doc_functions__bitwise__bitwise_or.html#functions/bitwise/bitwise_or.hpp" title="kvasir::mpl::bitwise_or&lt;C&gt;">bitwise_or</a></p>
-</li>
-<li>
-<p><a href="doc_functions__bitwise__bitwise_xor.html#functions/bitwise/bitwise_xor.hpp" title="kvasir::mpl::bitwise_xor&lt;C&gt;">bitwise_xor</a></p>
+<p><a href="doc_functions__bitwise__bitwise_xor.html#kvasir::mpl::bitwise_xor-C-" title="kvasir::mpl::bitwise_xor&lt;C&gt;">bitwise_xor</a> - bitwise xor of the ::value of two inputs</p>
 </li>
 <li>
 <p><a href="doc_types__bool.html#kvasir::mpl::bool_-Value-" title="kvasir::mpl::bool_&lt;Value&gt;">bool_</a> - wrapper which represents bool types</p>
 </li>
 <li>
-<p><a href="doc_sequence__lookup.html#sequence/lookup.hpp" title="kvasir::mpl::build_indexed&lt;C&gt;">build_indexed</a></p>
-</li>
-<li>
-<p><a href="doc_sequence__lookup.html#sequence/lookup.hpp" title="kvasir::mpl::build_indexed&lt;identity&gt;">build_indexed&lt;identity&gt;</a></p>
-</li>
-<li>
 <p><a href="doc_functional__call.html#kvasir::mpl::call-C,Ts...-" title="kvasir::mpl::call&lt;C, Ts...&gt;">call</a> - call a continuation (left parameter) with a variadic pack</p>
 </li>
 <li>
-<p><a href="doc_functional__call.html#functional/call.hpp" title="kvasir::mpl::call_f&lt;C&gt;">call_f</a></p>
+<p><a href="doc_functional__call.html#kvasir::mpl::call_f-C-" title="kvasir::mpl::call_f&lt;C&gt;">call_f</a> - / \brief experimental, may be depricated or changed</p>
 </li>
 <li>
-<p><a href="doc_functional__bind.html#functional/bind.hpp" title="kvasir::mpl::cfe1&lt;F, C&gt;">cfe1</a></p>
+<p><a href="doc_functional__bind.html#kvasir::mpl::cfe1-F,C-" title="kvasir::mpl::cfe1&lt;F, C&gt;">cfe1</a> - explicit 1-ary version of cfe</p>
 </li>
 <li>
 <p><a href="doc_functional__bind.html#kvasir::mpl::cfe-F,C-" title="kvasir::mpl::cfe&lt;F, C&gt;">cfe</a> - makes a continuation from an eager metafunction </p>
@@ -114,73 +69,34 @@
 <p><a href="doc_types__traits.html#types/traits.hpp" title="kvasir::mpl::common_type&lt;C&gt;">common_type</a></p>
 </li>
 <li>
-<p><a href="doc_utility__conditional.html#utility/conditional.hpp" title="kvasir::mpl::conditional&lt;false&gt;">conditional&lt;false&gt;</a></p>
-</li>
-<li>
-<p><a href="doc_utility__conditional.html#utility/conditional.hpp" title="kvasir::mpl::conditional&lt;true&gt;">conditional&lt;true&gt;</a></p>
-</li>
-<li>
 <p><a href="doc_algorithm__count_if.html#kvasir::mpl::count_if-F,C-" title="kvasir::mpl::count_if&lt;F, C&gt;">count_if</a> - counts elements for which the predicate holds</p>
-</li>
-<li>
-<p><a href="doc_compatability__dependent_call.html#compatability/dependent_call.hpp" title="kvasir::mpl::dcall&lt;C, size&gt;">dcall</a></p>
-</li>
-<li>
-<p><a href="doc_compatability__dependent_call.html#compatability/dependent_call.hpp" title="kvasir::mpl::dcallf&lt;false&gt;">dcallf&lt;false&gt;</a></p>
-</li>
-<li>
-<p><a href="doc_compatability__dependent_call.html#compatability/dependent_call.hpp" title="kvasir::mpl::dcallf&lt;true&gt;">dcallf&lt;true&gt;</a></p>
 </li>
 <li>
 <p><a href="doc_types__traits.html#types/traits.hpp" title="kvasir::mpl::decay&lt;C&gt;">decay</a></p>
 </li>
 <li>
-<p><a href="doc_functions__arithmetic__decrement.html#functions/arithmetic/decrement.hpp" title="kvasir::mpl::decrement&lt;C&gt;">decrement</a></p>
+<p><a href="doc_functions__arithmetic__decrement.html#kvasir::mpl::decrement-C-" title="kvasir::mpl::decrement&lt;C&gt;">decrement</a> - decriment the ::value of an input type resulting in an integral_constant</p>
 </li>
 <li>
-<p><a href="doc_functions__arithmetic__divide.html#functions/arithmetic/divide.hpp" title="kvasir::mpl::divide&lt;C&gt;">divide</a></p>
+<p><a href="doc_functions__arithmetic__divide.html#kvasir::mpl::divide-C-" title="kvasir::mpl::divide&lt;C&gt;">divide</a> - devide the first input types ::value by the ::value of the second input type</p>
 </li>
 <li>
-<p><a href="doc_sequence__drop.html#sequence/drop.hpp" title="kvasir::mpl::drop&lt;N, C&gt;">drop</a></p>
-</li>
-<li>
-<p><a href="doc_sequence__drop.html#sequence/drop.hpp" title="kvasir::mpl::drop&lt;uint_&lt;0&gt;, front&lt;C&gt;&gt;">drop&lt;uint_&lt;0&gt;, front&lt;C&gt;&gt;</a></p>
-</li>
-<li>
-<p><a href="doc_sequence__drop.html#sequence/drop.hpp" title="kvasir::mpl::drop&lt;uint_&lt;0&gt;, front&lt;identity&gt;&gt;">drop&lt;uint_&lt;0&gt;, front&lt;identity&gt;&gt;</a></p>
-</li>
-<li>
-<p><a href="doc_sequence__drop.html#sequence/drop.hpp" title="kvasir::mpl::drop&lt;uint_&lt;1&gt;, front&lt;C&gt;&gt;">drop&lt;uint_&lt;1&gt;, front&lt;C&gt;&gt;</a></p>
-</li>
-<li>
-<p><a href="doc_sequence__drop.html#sequence/drop.hpp" title="kvasir::mpl::drop&lt;uint_&lt;1&gt;, front&lt;identity&gt;&gt;">drop&lt;uint_&lt;1&gt;, front&lt;identity&gt;&gt;</a></p>
-</li>
-<li>
-<p><a href="doc_sequence__drop.html#sequence/drop.hpp" title="kvasir::mpl::drop&lt;uint_&lt;2&gt;, front&lt;C&gt;&gt;">drop&lt;uint_&lt;2&gt;, front&lt;C&gt;&gt;</a></p>
-</li>
-<li>
-<p><a href="doc_sequence__drop.html#sequence/drop.hpp" title="kvasir::mpl::drop&lt;uint_&lt;2&gt;, front&lt;identity&gt;&gt;">drop&lt;uint_&lt;2&gt;, front&lt;identity&gt;&gt;</a></p>
-</li>
-<li>
-<p><a href="doc_sequence__drop.html#sequence/drop.hpp" title="kvasir::mpl::drop&lt;uint_&lt;3&gt;, front&lt;C&gt;&gt;">drop&lt;uint_&lt;3&gt;, front&lt;C&gt;&gt;</a></p>
-</li>
-<li>
-<p><a href="doc_sequence__drop.html#sequence/drop.hpp" title="kvasir::mpl::drop&lt;uint_&lt;3&gt;, front&lt;identity&gt;&gt;">drop&lt;uint_&lt;3&gt;, front&lt;identity&gt;&gt;</a></p>
+<p><a href="doc_sequence__drop.html#kvasir::mpl::drop-N,C-" title="kvasir::mpl::drop&lt;N, C&gt;">drop</a> - remove N elements from a pack</p>
 </li>
 <li>
 <p><a href="doc_functional__fork.html#kvasir::mpl::each-Ts...-" title="kvasir::mpl::each&lt;Ts...&gt;">each</a> - execute multiple continuations each taking the dynamic parameter corresponding to its position</p>
 </li>
 <li>
-<p><a href="doc_functions__comparison__equal.html#functions/comparison/equal.hpp" title="kvasir::mpl::equal&lt;C&gt;">equal</a></p>
+<p><a href="doc_functions__comparison__equal.html#kvasir::mpl::equal-C-" title="kvasir::mpl::equal&lt;C&gt;">equal</a> - returns <code>true_</code> if the ::value of both input parameters are equal</p>
 </li>
 <li>
-<p><a href="doc_sequence__erase.html#sequence/erase.hpp" title="kvasir::mpl::erase&lt;Index, C&gt;">erase</a></p>
+<p><a href="doc_sequence__erase.html#kvasir::mpl::erase-Index,C-" title="kvasir::mpl::erase&lt;Index, C&gt;">erase</a> - remove element at a given index</p>
 </li>
 <li>
-<p><a href="doc_types__traits.html#types/traits.hpp" title="kvasir::mpl::extent&lt;C&gt;">extent</a></p>
+<p><a href="doc_types__traits.html#kvasir::mpl::extent-C-" title="kvasir::mpl::extent&lt;C&gt;">extent</a> - returns the extent of a type</p>
 </li>
 <li>
-<p><a href="doc_types__bool.html#types/bool.hpp" title="kvasir::mpl::false_">false_</a></p>
+<p><a href="doc_types__bool.html#kvasir::mpl::false_" title="kvasir::mpl::false_">false_</a> - universal false type in the library</p>
 </li>
 <li>
 <p><a href="doc_algorithm__filter.html#kvasir::mpl::filter-F,C-" title="kvasir::mpl::filter&lt;F, C&gt;">filter</a> - removes all elements in a list for which a predicate does not hald</p>
@@ -198,22 +114,16 @@
 <p><a href="doc_functional__fork.html#kvasir::mpl::fork-Ts...-" title="kvasir::mpl::fork&lt;Ts...&gt;">fork</a> - execute multiple continuations passing all dynamic parameters to each</p>
 </li>
 <li>
-<p><a href="doc_functional__fork.html#functional/fork.hpp" title="kvasir::mpl::fork_front&lt;F, C&gt;">fork_front</a></p>
+<p><a href="doc_sequence__front.html#kvasir::mpl::front-C-" title="kvasir::mpl::front&lt;C&gt;">front</a> - results in the first element in the input pack</p>
 </li>
 <li>
-<p><a href="doc_sequence__front.html#sequence/front.hpp" title="kvasir::mpl::front&lt;C&gt;">front</a></p>
+<p><a href="doc_functions__comparison__greater_than.html#kvasir::mpl::greater_than-C-" title="kvasir::mpl::greater_than&lt;C&gt;">greater_than</a> - returns <code>true_</code> if the ::value of the first parameter is greater than the second</p>
 </li>
 <li>
-<p><a href="doc_sequence__front.html#sequence/front.hpp" title="kvasir::mpl::front&lt;identity&gt;">front&lt;identity&gt;</a></p>
+<p><a href="doc_functions__comparison__greater_than_or_equal.html#kvasir::mpl::greater_than_or_equal-C-" title="kvasir::mpl::greater_than_or_equal&lt;C&gt;">greater_than_or_equal</a> - returns <code>true_</code> if the ::value of the first parameter is greater than or equal to the second</p>
 </li>
 <li>
-<p><a href="doc_functions__comparison__greater_than.html#functions/comparison/greater_than.hpp" title="kvasir::mpl::greater_than&lt;C&gt;">greater_than</a></p>
-</li>
-<li>
-<p><a href="doc_functions__comparison__greater_than_or_equal.html#functions/comparison/greater_than_or_equal.hpp" title="kvasir::mpl::greater_than_or_equal&lt;C&gt;">greater_than_or_equal</a></p>
-</li>
-<li>
-<p><a href="doc_types__traits.html#types/traits.hpp" title="kvasir::mpl::has_virtual_destructor&lt;C&gt;">has_virtual_destructor</a></p>
+<p><a href="doc_types__traits.html#kvasir::mpl::has_virtual_destructor-C-" title="kvasir::mpl::has_virtual_destructor&lt;C&gt;">has_virtual_destructor</a> - tests if a type has a virtual destructor</p>
 </li>
 <li>
 <p><a href="doc_functional__identity.html#kvasir::mpl::identity" title="kvasir::mpl::identity">identity</a> - results in the dynamic input. Use to break recursive chains or forward args </p>
@@ -222,13 +132,13 @@
 <p><a href="doc_functional__flow.html#functional/flow.hpp" title="kvasir::mpl::if_&lt;P, TC, FC&gt;">if_</a></p>
 </li>
 <li>
-<p><a href="doc_functions__arithmetic__increment.html#functions/arithmetic/increment.hpp" title="kvasir::mpl::increment&lt;C&gt;">increment</a></p>
+<p><a href="doc_functions__arithmetic__increment.html#kvasir::mpl::increment-C-" title="kvasir::mpl::increment&lt;C&gt;">increment</a> - increments the ::value of the input type into an integral_constant</p>
 </li>
 <li>
 <p><a href="doc_sequence__insert.html#sequence/insert.hpp" title="kvasir::mpl::insert&lt;Index, Input, C&gt;">insert</a></p>
 </li>
 <li>
-<p><a href="doc_types__int.html#types/int.hpp" title="kvasir::mpl::int_&lt;Value&gt;">int_</a></p>
+<p><a href="doc_types__int.html#kvasir::mpl::int_-Value-" title="kvasir::mpl::int_&lt;Value&gt;">int_</a> - universal integer type</p>
 </li>
 <li>
 <p><a href="doc_types__integral_constant.html#types/integral_constant.hpp" title="kvasir::mpl::integral_constant&lt;T, val&gt;">integral_constant</a></p>
@@ -237,7 +147,7 @@
 <p><a href="doc_functions__arithmetic__invert.html#functions/arithmetic/invert.hpp" title="kvasir::mpl::invert&lt;C&gt;">invert</a></p>
 </li>
 <li>
-<p><a href="doc_types__traits.html#types/traits.hpp" title="kvasir::mpl::is_abstract&lt;C&gt;">is_abstract</a></p>
+<p><a href="doc_types__traits.html#kvasir::mpl::is_abstract-C-" title="kvasir::mpl::is_abstract&lt;C&gt;">is_abstract</a> - tests if a type is abstract</p>
 </li>
 <li>
 <p><a href="doc_types__traits.html#types/traits.hpp" title="kvasir::mpl::is_arithmetic&lt;C&gt;">is_arithmetic</a></p>
@@ -246,10 +156,10 @@
 <p><a href="doc_types__traits.html#kvasir::mpl::is_array-C-" title="kvasir::mpl::is_array&lt;C&gt;">is_array</a> - tests if a type is an array</p>
 </li>
 <li>
-<p><a href="doc_types__traits.html#types/traits.hpp" title="kvasir::mpl::is_assignable&lt;C&gt;">is_assignable</a></p>
+<p><a href="doc_types__traits.html#kvasir::mpl::is_assignable-C-" title="kvasir::mpl::is_assignable&lt;C&gt;">is_assignable</a> - tests if a type is assignable</p>
 </li>
 <li>
-<p><a href="doc_types__traits.html#types/traits.hpp" title="kvasir::mpl::is_base_of&lt;C&gt;">is_base_of</a></p>
+<p><a href="doc_types__traits.html#kvasir::mpl::is_base_of-C-" title="kvasir::mpl::is_base_of&lt;C&gt;">is_base_of</a> - tests if a type is the base class of another type</p>
 </li>
 <li>
 <p><a href="doc_types__traits.html#kvasir::mpl::is_class-C-" title="kvasir::mpl::is_class&lt;C&gt;">is_class</a> - tests if a type is a class</p>
@@ -258,22 +168,22 @@
 <p><a href="doc_types__traits.html#types/traits.hpp" title="kvasir::mpl::is_compound&lt;C&gt;">is_compound</a></p>
 </li>
 <li>
-<p><a href="doc_types__traits.html#types/traits.hpp" title="kvasir::mpl::is_constructible&lt;C&gt;">is_constructible</a></p>
+<p><a href="doc_types__traits.html#kvasir::mpl::is_constructible-C-" title="kvasir::mpl::is_constructible&lt;C&gt;">is_constructible</a> - tests if a type is constructible</p>
 </li>
 <li>
-<p><a href="doc_types__traits.html#types/traits.hpp" title="kvasir::mpl::is_convertible&lt;C&gt;">is_convertible</a></p>
+<p><a href="doc_types__traits.html#kvasir::mpl::is_convertible-C-" title="kvasir::mpl::is_convertible&lt;C&gt;">is_convertible</a> - tests if a type is convertible to another type</p>
 </li>
 <li>
-<p><a href="doc_types__traits.html#types/traits.hpp" title="kvasir::mpl::is_copy_assignable&lt;C&gt;">is_copy_assignable</a></p>
+<p><a href="doc_types__traits.html#kvasir::mpl::is_copy_assignable-C-" title="kvasir::mpl::is_copy_assignable&lt;C&gt;">is_copy_assignable</a> - tests if a type is copy assignable</p>
 </li>
 <li>
-<p><a href="doc_types__traits.html#types/traits.hpp" title="kvasir::mpl::is_copy_constructible&lt;C&gt;">is_copy_constructible</a></p>
+<p><a href="doc_types__traits.html#kvasir::mpl::is_copy_constructible-C-" title="kvasir::mpl::is_copy_constructible&lt;C&gt;">is_copy_constructible</a> - tests if a type is copy constructible</p>
 </li>
 <li>
-<p><a href="doc_types__traits.html#types/traits.hpp" title="kvasir::mpl::is_default_constructible&lt;C&gt;">is_default_constructible</a></p>
+<p><a href="doc_types__traits.html#kvasir::mpl::is_default_constructible-C-" title="kvasir::mpl::is_default_constructible&lt;C&gt;">is_default_constructible</a> - tests if a type is default constructible</p>
 </li>
 <li>
-<p><a href="doc_types__traits.html#types/traits.hpp" title="kvasir::mpl::is_destructible&lt;C&gt;">is_destructible</a></p>
+<p><a href="doc_types__traits.html#kvasir::mpl::is_destructible-C-" title="kvasir::mpl::is_destructible&lt;C&gt;">is_destructible</a> - tests if a type is destructible</p>
 </li>
 <li>
 <p><a href="doc_types__traits.html#types/traits.hpp" title="kvasir::mpl::is_empty&lt;C&gt;">is_empty</a></p>
@@ -312,40 +222,37 @@
 <p><a href="doc_types__traits.html#types/traits.hpp" title="kvasir::mpl::is_member_pointer&lt;C&gt;">is_member_pointer</a></p>
 </li>
 <li>
-<p><a href="doc_types__traits.html#types/traits.hpp" title="kvasir::mpl::is_move_assignable&lt;C&gt;">is_move_assignable</a></p>
+<p><a href="doc_types__traits.html#kvasir::mpl::is_move_assignable-C-" title="kvasir::mpl::is_move_assignable&lt;C&gt;">is_move_assignable</a> - tests if a type is move assignable</p>
 </li>
 <li>
-<p><a href="doc_types__traits.html#types/traits.hpp" title="kvasir::mpl::is_move_constructible&lt;C&gt;">is_move_constructible</a></p>
+<p><a href="doc_types__traits.html#kvasir::mpl::is_move_constructible-C-" title="kvasir::mpl::is_move_constructible&lt;C&gt;">is_move_constructible</a> - tests if a type is move constructible</p>
 </li>
 <li>
-<p><a href="doc_types__traits.html#types/traits.hpp" title="kvasir::mpl::is_nothrow_assignable&lt;C&gt;">is_nothrow_assignable</a></p>
+<p><a href="doc_types__traits.html#kvasir::mpl::is_nothrow_assignable-C-" title="kvasir::mpl::is_nothrow_assignable&lt;C&gt;">is_nothrow_assignable</a> - tests if a type is nothrow assignable</p>
 </li>
 <li>
-<p><a href="doc_types__traits.html#types/traits.hpp" title="kvasir::mpl::is_nothrow_constructible&lt;C&gt;">is_nothrow_constructible</a></p>
+<p><a href="doc_types__traits.html#kvasir::mpl::is_nothrow_constructible-C-" title="kvasir::mpl::is_nothrow_constructible&lt;C&gt;">is_nothrow_constructible</a> - tests if a type is nothrow constructible</p>
 </li>
 <li>
-<p><a href="doc_types__traits.html#types/traits.hpp" title="kvasir::mpl::is_nothrow_copy_assignable&lt;C&gt;">is_nothrow_copy_assignable</a></p>
+<p><a href="doc_types__traits.html#kvasir::mpl::is_nothrow_copy_assignable-C-" title="kvasir::mpl::is_nothrow_copy_assignable&lt;C&gt;">is_nothrow_copy_assignable</a> - tests if a type is nothrow copy assignable</p>
 </li>
 <li>
-<p><a href="doc_types__traits.html#types/traits.hpp" title="kvasir::mpl::is_nothrow_copy_constructible&lt;C&gt;">is_nothrow_copy_constructible</a></p>
+<p><a href="doc_types__traits.html#kvasir::mpl::is_nothrow_copy_constructible-C-" title="kvasir::mpl::is_nothrow_copy_constructible&lt;C&gt;">is_nothrow_copy_constructible</a> - tests if a type is nothrow copy constructible</p>
 </li>
 <li>
-<p><a href="doc_types__traits.html#types/traits.hpp" title="kvasir::mpl::is_nothrow_default_constructible&lt;C&gt;">is_nothrow_default_constructible</a></p>
+<p><a href="doc_types__traits.html#kvasir::mpl::is_nothrow_default_constructible-C-" title="kvasir::mpl::is_nothrow_default_constructible&lt;C&gt;">is_nothrow_default_constructible</a> - tests if a type is nothrow default constructible</p>
 </li>
 <li>
-<p><a href="doc_types__traits.html#types/traits.hpp" title="kvasir::mpl::is_nothrow_destructible&lt;C&gt;">is_nothrow_destructible</a></p>
+<p><a href="doc_types__traits.html#kvasir::mpl::is_nothrow_destructible-C-" title="kvasir::mpl::is_nothrow_destructible&lt;C&gt;">is_nothrow_destructible</a> - tests if a type is nothrow destructible</p>
 </li>
 <li>
-<p><a href="doc_types__traits.html#types/traits.hpp" title="kvasir::mpl::is_nothrow_move_assignable&lt;C&gt;">is_nothrow_move_assignable</a></p>
+<p><a href="doc_types__traits.html#kvasir::mpl::is_nothrow_move_assignable-C-" title="kvasir::mpl::is_nothrow_move_assignable&lt;C&gt;">is_nothrow_move_assignable</a> - tests if a type is nothrow move assignable</p>
 </li>
 <li>
-<p><a href="doc_types__traits.html#types/traits.hpp" title="kvasir::mpl::is_nothrow_move_constructible&lt;C&gt;">is_nothrow_move_constructible</a></p>
+<p><a href="doc_types__traits.html#kvasir::mpl::is_nothrow_move_constructible-C-" title="kvasir::mpl::is_nothrow_move_constructible&lt;C&gt;">is_nothrow_move_constructible</a> - tests if a type is nothrow move constructible</p>
 </li>
 <li>
 <p><a href="doc_types__traits.html#types/traits.hpp" title="kvasir::mpl::is_null_pointer&lt;C&gt;">is_null_pointer</a></p>
-</li>
-<li>
-<p><a href="doc_types__traits.html#types/traits.hpp" title="kvasir::mpl::is_null_pointer&lt;identity&gt;">is_null_pointer&lt;identity&gt;</a></p>
 </li>
 <li>
 <p><a href="doc_types__traits.html#types/traits.hpp" title="kvasir::mpl::is_object&lt;C&gt;">is_object</a></p>
@@ -366,16 +273,13 @@
 <p><a href="doc_types__traits.html#kvasir::mpl::is_rvalue_reference-C-" title="kvasir::mpl::is_rvalue_reference&lt;C&gt;">is_rvalue_reference</a> - tests if a type is an rvalue reference</p>
 </li>
 <li>
-<p><a href="doc_utility__is_same.html#utility/is_same.hpp" title="kvasir::mpl::is_same&lt;C&gt;">is_same</a></p>
-</li>
-<li>
-<p><a href="doc_utility__is_same.html#utility/is_same.hpp" title="kvasir::mpl::is_same&lt;identity&gt;">is_same&lt;identity&gt;</a></p>
+<p><a href="doc_types__traits.html#kvasir::mpl::is_same-C-" title="kvasir::mpl::is_same&lt;C&gt;">is_same</a> - tests if a type is the same as another type</p>
 </li>
 <li>
 <p><a href="doc_types__traits.html#types/traits.hpp" title="kvasir::mpl::is_scalar&lt;C&gt;">is_scalar</a></p>
 </li>
 <li>
-<p><a href="doc_types__traits.html#types/traits.hpp" title="kvasir::mpl::is_signed&lt;C&gt;">is_signed</a></p>
+<p><a href="doc_types__traits.html#kvasir::mpl::is_signed-C-" title="kvasir::mpl::is_signed&lt;C&gt;">is_signed</a> - tests if a type is signed</p>
 </li>
 <li>
 <p><a href="doc_types__traits.html#types/traits.hpp" title="kvasir::mpl::is_standard_layout&lt;C&gt;">is_standard_layout</a></p>
@@ -384,13 +288,13 @@
 <p><a href="doc_types__traits.html#types/traits.hpp" title="kvasir::mpl::is_trivial&lt;C&gt;">is_trivial</a></p>
 </li>
 <li>
-<p><a href="doc_types__traits.html#types/traits.hpp" title="kvasir::mpl::is_trivially_destructible&lt;C&gt;">is_trivially_destructible</a></p>
+<p><a href="doc_types__traits.html#kvasir::mpl::is_trivially_destructible-C-" title="kvasir::mpl::is_trivially_destructible&lt;C&gt;">is_trivially_destructible</a> - tests if a type is trivially destructible</p>
 </li>
 <li>
 <p><a href="doc_types__traits.html#kvasir::mpl::is_union-C-" title="kvasir::mpl::is_union&lt;C&gt;">is_union</a> - tests if a type is a union</p>
 </li>
 <li>
-<p><a href="doc_types__traits.html#types/traits.hpp" title="kvasir::mpl::is_unsigned&lt;C&gt;">is_unsigned</a></p>
+<p><a href="doc_types__traits.html#kvasir::mpl::is_unsigned-C-" title="kvasir::mpl::is_unsigned&lt;C&gt;">is_unsigned</a> - tests if a type is unsigned</p>
 </li>
 <li>
 <p><a href="doc_types__traits.html#kvasir::mpl::is_void-C-" title="kvasir::mpl::is_void&lt;C&gt;">is_void</a> - tests if a type is void</p>
@@ -399,37 +303,28 @@
 <p><a href="doc_types__traits.html#types/traits.hpp" title="kvasir::mpl::is_volatile&lt;C&gt;">is_volatile</a></p>
 </li>
 <li>
-<p><a href="doc_sequence__join.html#sequence/join.hpp" title="kvasir::mpl::join&lt;C&gt;">join</a></p>
+<p><a href="doc_sequence__join.html#kvasir::mpl::join-C-" title="kvasir::mpl::join&lt;C&gt;">join</a> - unpacks the elements of each list in the danamic input and concatinates them to one pack</p>
 </li>
 <li>
-<p><a href="doc_sequence__join.html#sequence/join.hpp" title="kvasir::mpl::join&lt;cfe&lt;C, identity&gt;&gt;">join&lt;cfe&lt;C, identity&gt;&gt;</a></p>
+<p><a href="doc_functions__comparison__less_than.html#kvasir::mpl::less_than-C-" title="kvasir::mpl::less_than&lt;C&gt;">less_than</a> - results in <code>true_</code> if the ::value of the first input parameter is liss than the second</p>
 </li>
 <li>
-<p><a href="doc_functions__comparison__less_than.html#functions/comparison/less_than.hpp" title="kvasir::mpl::less_than&lt;C&gt;">less_than</a></p>
+<p><a href="doc_functions__comparison__less_than_or_equal.html#kvasir::mpl::less_than_or_equal-C-" title="kvasir::mpl::less_than_or_equal&lt;C&gt;">less_than_or_equal</a> - results in <code>true_</code> if the ::value of the first input parameter is liss than or equal to the second</p>
 </li>
 <li>
-<p><a href="doc_functions__comparison__less_than_or_equal.html#functions/comparison/less_than_or_equal.hpp" title="kvasir::mpl::less_than_or_equal&lt;C&gt;">less_than_or_equal</a></p>
+<p><a href="doc_types__list.html#kvasir::mpl::list-Ts...-" title="kvasir::mpl::list&lt;Ts...&gt;">list</a> - universal list tspe</p>
 </li>
 <li>
-<p><a href="doc_types__list.html#types/list.hpp" title="kvasir::mpl::list&lt;Ts...&gt;">list</a></p>
+<p><a href="doc_types__list.html#kvasir::mpl::listify" title="kvasir::mpl::listify">listify</a> - continuation which returns its input pack wrapped in a list</p>
 </li>
 <li>
-<p><a href="doc_algorithm__remove_if.html#algorithm/remove_if.hpp" title="kvasir::mpl::list_wrap_if&lt;F&gt;">list_wrap_if</a></p>
+<p><a href="doc_functions__logical__logical_and.html#kvasir::mpl::logical_and-C-" title="kvasir::mpl::logical_and&lt;C&gt;">logical_and</a> - logical and of the ::value of two inputs</p>
 </li>
 <li>
-<p><a href="doc_algorithm__remove_if.html#algorithm/remove_if.hpp" title="kvasir::mpl::list_wrap_if_not&lt;F&gt;">list_wrap_if_not</a></p>
+<p><a href="doc_functions__logical__logical_not.html#kvasir::mpl::logical_not-C-" title="kvasir::mpl::logical_not&lt;C&gt;">logical_not</a> - logical not of the ::value of the input parameter</p>
 </li>
 <li>
-<p><a href="doc_types__list.html#types/list.hpp" title="kvasir::mpl::listify">listify</a></p>
-</li>
-<li>
-<p><a href="doc_functions__logical__logical_and.html#functions/logical/logical_and.hpp" title="kvasir::mpl::logical_and&lt;C&gt;">logical_and</a></p>
-</li>
-<li>
-<p><a href="doc_functions__logical__logical_not.html#functions/logical/logical_not.hpp" title="kvasir::mpl::logical_not&lt;C&gt;">logical_not</a></p>
-</li>
-<li>
-<p><a href="doc_functions__logical__logical_or.html#functions/logical/logical_or.hpp" title="kvasir::mpl::logical_or&lt;C&gt;">logical_or</a></p>
+<p><a href="doc_functions__logical__logical_or.html#kvasir::mpl::logical_or-C-" title="kvasir::mpl::logical_or&lt;C&gt;">logical_or</a> - logical or of the ::value of two inputs</p>
 </li>
 <li>
 <p><a href="doc_algorithm__make_sequence.html#kvasir::mpl::make_int_sequence-F,C-" title="kvasir::mpl::make_int_sequence&lt;F, C&gt;">make_int_sequence</a> - creates a sequence of uint_</p>
@@ -444,52 +339,49 @@
 <p><a href="doc_types__traits.html#types/traits.hpp" title="kvasir::mpl::make_unsigned&lt;C&gt;">make_unsigned</a></p>
 </li>
 <li>
-<p><a href="doc_functions__arithmetic__max.html#functions/arithmetic/max.hpp" title="kvasir::mpl::max&lt;C&gt;">max</a></p>
+<p><a href="doc_functions__arithmetic__max.html#kvasir::mpl::max-C-" title="kvasir::mpl::max&lt;C&gt;">max</a> - returns the type which has a greater ::value, is equal returns the second input type</p>
 </li>
 <li>
-<p><a href="doc_functions__arithmetic__min.html#functions/arithmetic/min.hpp" title="kvasir::mpl::min&lt;C&gt;">min</a></p>
+<p><a href="doc_functions__arithmetic__min.html#kvasir::mpl::min-C-" title="kvasir::mpl::min&lt;C&gt;">min</a> - returns the input type which has a smaller ::value, returns the first input type if equal</p>
 </li>
 <li>
-<p><a href="doc_functions__arithmetic__minus.html#functions/arithmetic/minus.hpp" title="kvasir::mpl::minus&lt;C&gt;">minus</a></p>
+<p><a href="doc_functions__arithmetic__minus.html#kvasir::mpl::minus-C-" title="kvasir::mpl::minus&lt;C&gt;">minus</a> - results in the ::value of the first input patameter minus the second</p>
 </li>
 <li>
-<p><a href="doc_functions__arithmetic__modulo.html#functions/arithmetic/modulo.hpp" title="kvasir::mpl::modulo&lt;C&gt;">modulo</a></p>
+<p><a href="doc_functions__arithmetic__modulo.html#kvasir::mpl::modulo-C-" title="kvasir::mpl::modulo&lt;C&gt;">modulo</a> - results in the ::value of the first input modulo the second</p>
 </li>
 <li>
 <p><a href="doc_functions__arithmetic__negate.html#functions/arithmetic/negate.hpp" title="kvasir::mpl::negate&lt;C&gt;">negate</a></p>
 </li>
 <li>
-<p><a href="doc_functions__comparison__not_equal.html#functions/comparison/not_equal.hpp" title="kvasir::mpl::not_equal&lt;C&gt;">not_equal</a></p>
+<p><a href="doc_functions__comparison__not_equal.html#kvasir::mpl::not_equal-C-" title="kvasir::mpl::not_equal&lt;C&gt;">not_equal</a> - returns <code>ture_</code> if the ::value of the inputs are not equal</p>
 </li>
 <li>
 <p><a href="doc_types__nothing.html#kvasir::mpl::nothing" title="kvasir::mpl::nothing">nothing</a> - class used when a function errors, as in the haskell nothing all functions that take nothing as a parameter should return nothing</p>
 </li>
 <li>
-<p><a href="doc_sequence__size.html#kvasir::mpl::offset-T,C-" title="kvasir::mpl::offset&lt;T, C&gt;">offset</a> - offset provides the difference between the origional length of a list (provided as the input parameter) and the pack supplied to f</p>
-</li>
-<li>
-<p><a href="doc_sequence__size.html#sequence/size.hpp" title="kvasir::mpl::offset&lt;T, identity&gt;">offset&lt;T, identity&gt;</a></p>
+<p><a href="doc_sequence__size.html#kvasir::mpl::offset-T,C-" title="kvasir::mpl::offset&lt;T, C&gt;">offset</a> - difference between the size of the input aprameter pack and the ::value of the fixed input offset provides the difference between the origional length of a list (provided as the input parameter) and the pack supplied to f</p>
 </li>
 <li>
 <p><a href="doc_algorithm__partition.html#kvasir::mpl::partition-F,C-" title="kvasir::mpl::partition&lt;F, C&gt;">partition</a> - returns a list containing two lists onewith all elements for which the provided predicate holds and one with all the rest</p>
 </li>
 <li>
-<p><a href="doc_functions__arithmetic__plus.html#functions/arithmetic/plus.hpp" title="kvasir::mpl::plus&lt;C&gt;">plus</a></p>
+<p><a href="doc_functions__arithmetic__plus.html#kvasir::mpl::plus-C-" title="kvasir::mpl::plus&lt;C&gt;">plus</a> - add the ::value of the input patameters together</p>
 </li>
 <li>
-<p><a href="doc_sequence__pop_front.html#sequence/pop_front.hpp" title="kvasir::mpl::pop_front&lt;C&gt;">pop_front</a></p>
+<p><a href="doc_sequence__pop_front.html#kvasir::mpl::pop_front-C-" title="kvasir::mpl::pop_front&lt;C&gt;">pop_front</a> - remove the first element of the input pack</p>
 </li>
 <li>
 <p><a href="doc_algorithm__product.html#kvasir::mpl::product-F,C-" title="kvasir::mpl::product&lt;F, C&gt;">product</a> - creates an n-ary cartesian product</p>
 </li>
 <li>
-<p><a href="doc_sequence__push_back.html#sequence/push_back.hpp" title="kvasir::mpl::push_back&lt;Input, C&gt;">push_back</a></p>
+<p><a href="doc_sequence__push_back.html#kvasir::mpl::push_back-Input,C-" title="kvasir::mpl::push_back&lt;Input, C&gt;">push_back</a> - push the fixed input type to the back of the dynamic input pack</p>
 </li>
 <li>
-<p><a href="doc_sequence__push_front.html#sequence/push_front.hpp" title="kvasir::mpl::push_front&lt;Input, C&gt;">push_front</a></p>
+<p><a href="doc_sequence__push_front.html#kvasir::mpl::push_front-Input,C-" title="kvasir::mpl::push_front&lt;Input, C&gt;">push_front</a> - push the fixed input type to the front of the dynamic input pack</p>
 </li>
 <li>
-<p><a href="doc_types__traits.html#types/traits.hpp" title="kvasir::mpl::rank&lt;C&gt;">rank</a></p>
+<p><a href="doc_types__traits.html#kvasir::mpl::rank-C-" title="kvasir::mpl::rank&lt;C&gt;">rank</a> - returns the rank of a type</p>
 </li>
 <li>
 <p><a href="doc_algorithm__remove_adjacent.html#kvasir::mpl::remove_adjacent-F,C-" title="kvasir::mpl::remove_adjacent&lt;F, C&gt;">remove_adjacent</a> - removes each element in a list which is the same type as the privious element</p>
@@ -498,10 +390,10 @@
 <p><a href="doc_types__traits.html#types/traits.hpp" title="kvasir::mpl::remove_all_extents&lt;C&gt;">remove_all_extents</a></p>
 </li>
 <li>
-<p><a href="doc_types__traits.html#types/traits.hpp" title="kvasir::mpl::remove_const&lt;C&gt;">remove_const</a></p>
+<p><a href="doc_types__traits.html#kvasir::mpl::remove_const-C-" title="kvasir::mpl::remove_const&lt;C&gt;">remove_const</a> - returns the input type with const qualifiers stripped</p>
 </li>
 <li>
-<p><a href="doc_types__traits.html#types/traits.hpp" title="kvasir::mpl::remove_cv&lt;C&gt;">remove_cv</a></p>
+<p><a href="doc_types__traits.html#kvasir::mpl::remove_cv-C-" title="kvasir::mpl::remove_cv&lt;C&gt;">remove_cv</a> - returns the input type with const and volatile qualifiers stripped</p>
 </li>
 <li>
 <p><a href="doc_types__traits.html#types/traits.hpp" title="kvasir::mpl::remove_extent&lt;C&gt;">remove_extent</a></p>
@@ -516,7 +408,7 @@
 <p><a href="doc_types__traits.html#types/traits.hpp" title="kvasir::mpl::remove_reference&lt;C&gt;">remove_reference</a></p>
 </li>
 <li>
-<p><a href="doc_types__traits.html#types/traits.hpp" title="kvasir::mpl::remove_volatile&lt;C&gt;">remove_volatile</a></p>
+<p><a href="doc_types__traits.html#kvasir::mpl::remove_volatile-C-" title="kvasir::mpl::remove_volatile&lt;C&gt;">remove_volatile</a> - returns the input type with volatile qualifiers stripped</p>
 </li>
 <li>
 <p><a href="doc_algorithm__replace_if.html#kvasir::mpl::replace_if-Input,F,C-" title="kvasir::mpl::replace_if&lt;Input, F, C&gt;">replace_if</a> - output is equivalent to the input parameter pack with every element replaced with Input where the predicate F holds.</p>
@@ -528,19 +420,13 @@
 <p><a href="doc_algorithm__rotate.html#kvasir::mpl::rotate-N,C-" title="kvasir::mpl::rotate&lt;N, C&gt;">rotate</a> - moves N elements from the front of a list to the back of the list</p>
 </li>
 <li>
-<p><a href="doc_utility__is_same.html#utility/is_same.hpp" title="kvasir::mpl::same_as&lt;M, C&gt;">same_as</a></p>
+<p><a href="doc_utility__is_same.html#kvasir::mpl::same_as-M,C-" title="kvasir::mpl::same_as&lt;M, C&gt;">same_as</a> - returns <code>true_</code> is the dynamic input and the fixed input parameters are the same type</p>
 </li>
 <li>
 <p><a href="doc_utility__is_same.html#utility/is_same.hpp" title="kvasir::mpl::same_as&lt;M, identity&gt;">same_as&lt;M, identity&gt;</a></p>
 </li>
 <li>
-<p><a href="doc_types__list.html#types/list.hpp" title="kvasir::mpl::sequencify&lt;S&lt;Ts...&gt;&gt;">sequencify&lt;S&lt;Ts...&gt;&gt;</a></p>
-</li>
-<li>
-<p><a href="doc_sequence__size.html#sequence/size.hpp" title="kvasir::mpl::size&lt;C&gt;">size</a></p>
-</li>
-<li>
-<p><a href="doc_sequence__size.html#sequence/size.hpp" title="kvasir::mpl::size&lt;identity&gt;">size&lt;identity&gt;</a></p>
+<p><a href="doc_sequence__size.html#kvasir::mpl::size-C-" title="kvasir::mpl::size&lt;C&gt;">size</a> - results in uint_&lt;sizeof...(unput_parameter_pack)&gt;</p>
 </li>
 <li>
 <p><a href="doc_algorithm__sort.html#kvasir::mpl::sort-F,C-" title="kvasir::mpl::sort&lt;F, C&gt;">sort</a> - sorts a pack of elements</p>
@@ -552,10 +438,10 @@
 <p><a href="doc_algorithm__stable_sort.html#kvasir::mpl::stable_sort-Comp,C-" title="kvasir::mpl::stable_sort&lt;Comp, C&gt;">stable_sort</a> - stable sorts a pack of elements</p>
 </li>
 <li>
-<p><a href="doc_sequence__take.html#sequence/take.hpp" title="kvasir::mpl::take&lt;N, C&gt;">take</a></p>
+<p><a href="doc_sequence__take.html#kvasir::mpl::take-N,C-" title="kvasir::mpl::take&lt;N, C&gt;">take</a> - take the first N elements from a pack</p>
 </li>
 <li>
-<p><a href="doc_functions__arithmetic__times.html#functions/arithmetic/times.hpp" title="kvasir::mpl::times&lt;C&gt;">times</a></p>
+<p><a href="doc_functions__arithmetic__times.html#kvasir::mpl::times-C-" title="kvasir::mpl::times&lt;C&gt;">times</a> - multiply the ::value of two input types</p>
 </li>
 <li>
 <p><a href="doc_algorithm__transform.html#kvasir::mpl::transform-F,C-" title="kvasir::mpl::transform&lt;F, C&gt;">transform</a> - executes the continuation <code>F</code> on every element in the input pack passing the results to the continuation <code>C</code></p>
@@ -564,7 +450,7 @@
 <p><a href="doc_types__bool.html#kvasir::mpl::true_" title="kvasir::mpl::true_">true_</a> - universal true type in the library</p>
 </li>
 <li>
-<p><a href="doc_types__int.html#types/int.hpp" title="kvasir::mpl::uint_&lt;Value&gt;">uint_</a></p>
+<p><a href="doc_types__int.html#kvasir::mpl::uint_-Value-" title="kvasir::mpl::uint_&lt;Value&gt;">uint_</a> - universal unsigned integer type</p>
 </li>
 <li>
 <p><a href="doc_types__traits.html#types/traits.hpp" title="kvasir::mpl::underlying_type&lt;C&gt;">underlying_type</a></p>

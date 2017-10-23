@@ -1,28 +1,10 @@
 <h1>Header file <code>utility/is_same.hpp</code><a id="utility/is_same.hpp"></a></h1>
-<pre><code class="language-cpp">namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>kvasir</a>
+<pre><code class="language-cpp">namespace <a href='doc_algorithm__all.html#algorithm/all.hpp'>kvasir</a>
 {
-    namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>mpl</a>
+    namespace <a href='doc_algorithm__all.html#algorithm/all.hpp'>mpl</a>
     {
-        template &lt;typename C = identity&gt;
-        struct <a href='doc_utility__is_same.html#utility/is_same.hpp'>is_same</a>
-        {
-            template &lt;typename T, typename U&gt;
-            using <a href='doc_utility__is_same.html#utility/is_same.hpp'>f</a> = typename C::template f&lt;std::is_same&lt;T, U&gt;&gt;;
-        };
-        
-        template &lt;&gt;
-        struct <a href='doc_utility__is_same.html#utility/is_same.hpp'>is_same&lt;identity&gt;</a>
-        {
-            template &lt;typename T, typename U&gt;
-            using <a href='doc_utility__is_same.html#utility/is_same.hpp'>f</a> = <a href='http://en.cppreference.com/mwiki/index.php?title=Special%3ASearch&search=std::is_same%3cT,U%3e'>std::is_same&lt;T, U&gt;</a>;
-        };
-        
         template &lt;typename M, typename C = identity&gt;
-        struct <a href='doc_utility__is_same.html#utility/is_same.hpp'>same_as</a>
-        {
-            template &lt;typename T&gt;
-            using <a href='doc_utility__is_same.html#utility/is_same.hpp'>f</a> = typename C::template f&lt;std::is_same&lt;M, T&gt;&gt;;
-        };
+        struct <a href='doc_utility__is_same.html#kvasir::mpl::same_as-M,C-'>same_as</a>;
         
         template &lt;typename M&gt;
         struct <a href='doc_utility__is_same.html#utility/is_same.hpp'>same_as&lt;M, identity&gt;</a>
@@ -32,4 +14,13 @@
         };
     }
 }</code></pre>
+<h2>Class template <code>kvasir::mpl::same_as</code><a id="kvasir::mpl::same_as-M,C-"></a></h2>
+<pre><code class="language-cpp">template &lt;typename M, typename C = identity&gt;
+struct same_as
+{
+    template &lt;typename T&gt;
+    using <a href='doc_utility__is_same.html#kvasir::mpl::same_as-M,C-'>f</a> = typename C::template f&lt;std::is_same&lt;M, T&gt;&gt;;
+};</code></pre>
+<p>returns <code>true_</code> is the dynamic input and the fixed input parameters are the same type</p>
+<hr />
 <hr />

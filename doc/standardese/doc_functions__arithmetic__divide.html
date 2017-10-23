@@ -1,14 +1,19 @@
 <h1>Header file <code>functions/arithmetic/divide.hpp</code><a id="functions/arithmetic/divide.hpp"></a></h1>
-<pre><code class="language-cpp">namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>kvasir</a>
+<pre><code class="language-cpp">namespace <a href='doc_algorithm__all.html#algorithm/all.hpp'>kvasir</a>
 {
-    namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>mpl</a>
+    namespace <a href='doc_algorithm__all.html#algorithm/all.hpp'>mpl</a>
     {
         template &lt;typename C = identity&gt;
-        struct <a href='doc_functions__arithmetic__divide.html#functions/arithmetic/divide.hpp'>divide</a>
-        {
-            template &lt;typename A, typename B&gt;
-            using <a href='doc_functions__arithmetic__divide.html#functions/arithmetic/divide.hpp'>f</a> = typename C::template f&lt;integral_constant&lt;decltype(A::value/B::value), (A::value/B::value)&gt;&gt;;
-        };
+        struct <a href='doc_functions__arithmetic__divide.html#kvasir::mpl::divide-C-'>divide</a>;
     }
 }</code></pre>
+<h2>Class template <code>kvasir::mpl::divide</code><a id="kvasir::mpl::divide-C-"></a></h2>
+<pre><code class="language-cpp">template &lt;typename C = identity&gt;
+struct divide
+{
+    template &lt;typename A, typename B&gt;
+    using <a href='doc_functions__arithmetic__divide.html#kvasir::mpl::divide-C-'>f</a> = typename C::template f&lt;integral_constant&lt;decltype(A::value/B::value), (A::value/B::value)&gt;&gt;;
+};</code></pre>
+<p>devide the first input types ::value by the ::value of the second input type</p>
+<hr />
 <hr />

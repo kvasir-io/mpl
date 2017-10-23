@@ -1,14 +1,14 @@
 <h1>Header file <code>types/bool.hpp</code><a id="types/bool.hpp"></a></h1>
-<pre><code class="language-cpp">namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>kvasir</a>
+<pre><code class="language-cpp">namespace <a href='doc_algorithm__all.html#algorithm/all.hpp'>kvasir</a>
 {
-    namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>mpl</a>
+    namespace <a href='doc_algorithm__all.html#algorithm/all.hpp'>mpl</a>
     {
         template &lt;bool Value&gt;
         struct <a href='doc_types__bool.html#kvasir::mpl::bool_-Value-'>bool_</a>;
         
         using <a href='doc_types__bool.html#kvasir::mpl::true_'>true_</a> = <a href='doc_types__bool.html#kvasir::mpl::bool_-Value-'>bool_&lt;true&gt;</a>;
         
-        using <a href='doc_types__bool.html#types/bool.hpp'>false_</a> = <a href='doc_types__bool.html#kvasir::mpl::bool_-Value-'>bool_&lt;false&gt;</a>;
+        using <a href='doc_types__bool.html#kvasir::mpl::false_'>false_</a> = <a href='doc_types__bool.html#kvasir::mpl::bool_-Value-'>bool_&lt;false&gt;</a>;
     }
 }</code></pre>
 <h2>Class template <code>kvasir::mpl::bool_</code><a id="kvasir::mpl::bool_-Value-"></a></h2>
@@ -21,5 +21,8 @@ struct bool_
 <h2>Type alias <code>kvasir::mpl::true_</code><a id="kvasir::mpl::true_"></a></h2>
 <pre><code class="language-cpp">using true_ = <a href='doc_types__bool.html#kvasir::mpl::bool_-Value-'>bool_&lt;true&gt;</a>;</code></pre>
 <p>universal true type in the library</p>
+<h2>Type alias <code>kvasir::mpl::false_</code><a id="kvasir::mpl::false_"></a></h2>
+<pre><code class="language-cpp">using false_ = <a href='doc_types__bool.html#kvasir::mpl::bool_-Value-'>bool_&lt;false&gt;</a>;</code></pre>
+<p>universal false type in the library</p>
 <hr />
 <hr />

@@ -1,7 +1,7 @@
 <h1>Header file <code>types/traits.hpp</code><a id="types/traits.hpp"></a></h1>
-<pre><code class="language-cpp">namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>kvasir</a>
+<pre><code class="language-cpp">namespace <a href='doc_algorithm__all.html#algorithm/all.hpp'>kvasir</a>
 {
-    namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>mpl</a>
+    namespace <a href='doc_algorithm__all.html#algorithm/all.hpp'>mpl</a>
     {
         template &lt;typename C = identity&gt;
         struct <a href='doc_types__traits.html#kvasir::mpl::is_void-C-'>is_void</a>;
@@ -149,228 +149,103 @@
         };
         
         template &lt;typename C = identity&gt;
-        struct <a href='doc_types__traits.html#types/traits.hpp'>is_abstract</a>
-        {
-            template &lt;typename T&gt;
-            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;bool_&lt;std::is_abstract&lt;T&gt;::value&gt;&gt;;
-        };
+        struct <a href='doc_types__traits.html#kvasir::mpl::is_abstract-C-'>is_abstract</a>;
         
         template &lt;typename C = identity&gt;
-        struct <a href='doc_types__traits.html#types/traits.hpp'>is_signed</a>
-        {
-            template &lt;typename T&gt;
-            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;bool_&lt;std::is_signed&lt;T&gt;::value&gt;&gt;;
-        };
+        struct <a href='doc_types__traits.html#kvasir::mpl::is_signed-C-'>is_signed</a>;
         
         template &lt;typename C = identity&gt;
-        struct <a href='doc_types__traits.html#types/traits.hpp'>is_unsigned</a>
-        {
-            template &lt;typename T&gt;
-            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;bool_&lt;std::is_unsigned&lt;T&gt;::value&gt;&gt;;
-        };
+        struct <a href='doc_types__traits.html#kvasir::mpl::is_unsigned-C-'>is_unsigned</a>;
         
         template &lt;typename C = identity&gt;
-        struct <a href='doc_types__traits.html#types/traits.hpp'>is_constructible</a>
-        {
-            template &lt;typename T&gt;
-            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;bool_&lt;std::is_constructible&lt;T&gt;::value&gt;&gt;;
-        };
+        struct <a href='doc_types__traits.html#kvasir::mpl::is_constructible-C-'>is_constructible</a>;
         
         template &lt;typename C = identity&gt;
-        struct <a href='doc_types__traits.html#types/traits.hpp'>is_nothrow_constructible</a>
-        {
-            template &lt;typename T&gt;
-            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;bool_&lt;std::is_nothrow_constructible&lt;T&gt;::value&gt;&gt;;
-        };
+        struct <a href='doc_types__traits.html#kvasir::mpl::is_nothrow_constructible-C-'>is_nothrow_constructible</a>;
         
         template &lt;typename C = identity&gt;
-        struct <a href='doc_types__traits.html#types/traits.hpp'>is_default_constructible</a>
-        {
-            template &lt;typename T&gt;
-            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;bool_&lt;std::is_default_constructible&lt;T&gt;::value&gt;&gt;;
-        };
+        struct <a href='doc_types__traits.html#kvasir::mpl::is_default_constructible-C-'>is_default_constructible</a>;
         
         template &lt;typename C = identity&gt;
-        struct <a href='doc_types__traits.html#types/traits.hpp'>is_nothrow_default_constructible</a>
-        {
-            template &lt;typename T&gt;
-            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;bool_&lt;std::is_nothrow_default_constructible&lt;T&gt;::value&gt;&gt;;
-        };
+        struct <a href='doc_types__traits.html#kvasir::mpl::is_nothrow_default_constructible-C-'>is_nothrow_default_constructible</a>;
         
         template &lt;typename C = identity&gt;
-        struct <a href='doc_types__traits.html#types/traits.hpp'>is_copy_constructible</a>
-        {
-            template &lt;typename T&gt;
-            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;bool_&lt;std::is_copy_constructible&lt;T&gt;::value&gt;&gt;;
-        };
+        struct <a href='doc_types__traits.html#kvasir::mpl::is_copy_constructible-C-'>is_copy_constructible</a>;
         
         template &lt;typename C = identity&gt;
-        struct <a href='doc_types__traits.html#types/traits.hpp'>is_nothrow_copy_constructible</a>
-        {
-            template &lt;typename T&gt;
-            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;bool_&lt;std::is_nothrow_copy_constructible&lt;T&gt;::value&gt;&gt;;
-        };
+        struct <a href='doc_types__traits.html#kvasir::mpl::is_nothrow_copy_constructible-C-'>is_nothrow_copy_constructible</a>;
         
         template &lt;typename C = identity&gt;
-        struct <a href='doc_types__traits.html#types/traits.hpp'>is_move_constructible</a>
-        {
-            template &lt;typename T&gt;
-            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;bool_&lt;std::is_move_constructible&lt;T&gt;::value&gt;&gt;;
-        };
+        struct <a href='doc_types__traits.html#kvasir::mpl::is_move_constructible-C-'>is_move_constructible</a>;
         
         template &lt;typename C = identity&gt;
-        struct <a href='doc_types__traits.html#types/traits.hpp'>is_nothrow_move_constructible</a>
-        {
-            template &lt;typename T&gt;
-            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;bool_&lt;std::is_nothrow_move_constructible&lt;T&gt;::value&gt;&gt;;
-        };
+        struct <a href='doc_types__traits.html#kvasir::mpl::is_nothrow_move_constructible-C-'>is_nothrow_move_constructible</a>;
         
         template &lt;typename C = identity&gt;
-        struct <a href='doc_types__traits.html#types/traits.hpp'>is_assignable</a>
-        {
-            template &lt;typename T, typename U&gt;
-            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;bool_&lt;std::is_assignable&lt;T, U&gt;::value&gt;&gt;;
-        };
+        struct <a href='doc_types__traits.html#kvasir::mpl::is_assignable-C-'>is_assignable</a>;
         
         template &lt;typename C = identity&gt;
-        struct <a href='doc_types__traits.html#types/traits.hpp'>is_nothrow_assignable</a>
-        {
-            template &lt;typename T, typename U&gt;
-            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;bool_&lt;std::is_nothrow_assignable&lt;T, U&gt;::value&gt;&gt;;
-        };
+        struct <a href='doc_types__traits.html#kvasir::mpl::is_nothrow_assignable-C-'>is_nothrow_assignable</a>;
         
         template &lt;typename C = identity&gt;
-        struct <a href='doc_types__traits.html#types/traits.hpp'>is_copy_assignable</a>
-        {
-            template &lt;typename T&gt;
-            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;bool_&lt;std::is_copy_assignable&lt;T&gt;::value&gt;&gt;;
-        };
+        struct <a href='doc_types__traits.html#kvasir::mpl::is_copy_assignable-C-'>is_copy_assignable</a>;
         
         template &lt;typename C = identity&gt;
-        struct <a href='doc_types__traits.html#types/traits.hpp'>is_nothrow_copy_assignable</a>
-        {
-            template &lt;typename T&gt;
-            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;bool_&lt;std::is_nothrow_copy_assignable&lt;T&gt;::value&gt;&gt;;
-        };
+        struct <a href='doc_types__traits.html#kvasir::mpl::is_nothrow_copy_assignable-C-'>is_nothrow_copy_assignable</a>;
         
         template &lt;typename C = identity&gt;
-        struct <a href='doc_types__traits.html#types/traits.hpp'>is_move_assignable</a>
-        {
-            template &lt;typename T&gt;
-            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;bool_&lt;std::is_move_assignable&lt;T&gt;::value&gt;&gt;;
-        };
+        struct <a href='doc_types__traits.html#kvasir::mpl::is_move_assignable-C-'>is_move_assignable</a>;
         
         template &lt;typename C = identity&gt;
-        struct <a href='doc_types__traits.html#types/traits.hpp'>is_nothrow_move_assignable</a>
-        {
-            template &lt;typename T&gt;
-            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;bool_&lt;std::is_nothrow_move_assignable&lt;T&gt;::value&gt;&gt;;
-        };
+        struct <a href='doc_types__traits.html#kvasir::mpl::is_nothrow_move_assignable-C-'>is_nothrow_move_assignable</a>;
         
         template &lt;typename C = identity&gt;
-        struct <a href='doc_types__traits.html#types/traits.hpp'>is_destructible</a>
-        {
-            template &lt;typename T&gt;
-            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;bool_&lt;std::is_destructible&lt;T&gt;::value&gt;&gt;;
-        };
+        struct <a href='doc_types__traits.html#kvasir::mpl::is_destructible-C-'>is_destructible</a>;
         
         template &lt;typename C = identity&gt;
-        struct <a href='doc_types__traits.html#types/traits.hpp'>is_trivially_destructible</a>
-        {
-            template &lt;typename T&gt;
-            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;bool_&lt;std::is_trivially_destructible&lt;T&gt;::value&gt;&gt;;
-        };
+        struct <a href='doc_types__traits.html#kvasir::mpl::is_trivially_destructible-C-'>is_trivially_destructible</a>;
         
         template &lt;typename C = identity&gt;
-        struct <a href='doc_types__traits.html#types/traits.hpp'>is_nothrow_destructible</a>
-        {
-            template &lt;typename T&gt;
-            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;bool_&lt;std::is_nothrow_destructible&lt;T&gt;::value&gt;&gt;;
-        };
+        struct <a href='doc_types__traits.html#kvasir::mpl::is_nothrow_destructible-C-'>is_nothrow_destructible</a>;
         
         template &lt;typename C = identity&gt;
-        struct <a href='doc_types__traits.html#types/traits.hpp'>has_virtual_destructor</a>
-        {
-            template &lt;typename T&gt;
-            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;bool_&lt;std::has_virtual_destructor&lt;T&gt;::value&gt;&gt;;
-        };
+        struct <a href='doc_types__traits.html#kvasir::mpl::has_virtual_destructor-C-'>has_virtual_destructor</a>;
         
         template &lt;typename C = identity&gt;
-        struct <a href='doc_types__traits.html#types/traits.hpp'>is_base_of</a>
-        {
-            template &lt;typename T, typename U&gt;
-            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;bool_&lt;std::is_base_of&lt;T, U&gt;::value&gt;&gt;;
-        };
+        struct <a href='doc_types__traits.html#kvasir::mpl::is_same-C-'>is_same</a>;
         
         template &lt;typename C = identity&gt;
-        struct <a href='doc_types__traits.html#types/traits.hpp'>is_convertible</a>
-        {
-            template &lt;typename T, typename U&gt;
-            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;bool_&lt;std::is_convertible&lt;T, U&gt;::value&gt;&gt;;
-        };
+        struct <a href='doc_types__traits.html#kvasir::mpl::is_base_of-C-'>is_base_of</a>;
         
         template &lt;typename C = identity&gt;
-        struct <a href='doc_types__traits.html#types/traits.hpp'>alignment_of</a>
-        {
-            template &lt;typename T&gt;
-            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;typename std::alignment_of&lt;T&gt;::type&gt;;
-        };
+        struct <a href='doc_types__traits.html#kvasir::mpl::is_convertible-C-'>is_convertible</a>;
         
         template &lt;typename C = identity&gt;
-        struct <a href='doc_types__traits.html#types/traits.hpp'>rank</a>
-        {
-            template &lt;typename T&gt;
-            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;typename std::rank&lt;T&gt;::type&gt;;
-        };
+        struct <a href='doc_types__traits.html#kvasir::mpl::alignment_of-C-'>alignment_of</a>;
         
         template &lt;typename C = identity&gt;
-        struct <a href='doc_types__traits.html#types/traits.hpp'>extent</a>
-        {
-            template &lt;typename T&gt;
-            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;typename std::extent&lt;T&gt;::type&gt;;
-        };
+        struct <a href='doc_types__traits.html#kvasir::mpl::rank-C-'>rank</a>;
         
         template &lt;typename C = identity&gt;
-        struct <a href='doc_types__traits.html#types/traits.hpp'>remove_cv</a>
-        {
-            template &lt;typename T&gt;
-            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;typename std::remove_cv&lt;T&gt;::type&gt;;
-        };
+        struct <a href='doc_types__traits.html#kvasir::mpl::extent-C-'>extent</a>;
         
         template &lt;typename C = identity&gt;
-        struct <a href='doc_types__traits.html#types/traits.hpp'>remove_const</a>
-        {
-            template &lt;typename T&gt;
-            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;typename std::remove_const&lt;T&gt;::type&gt;;
-        };
+        struct <a href='doc_types__traits.html#kvasir::mpl::remove_cv-C-'>remove_cv</a>;
         
         template &lt;typename C = identity&gt;
-        struct <a href='doc_types__traits.html#types/traits.hpp'>remove_volatile</a>
-        {
-            template &lt;typename T&gt;
-            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;typename std::remove_volatile&lt;T&gt;::type&gt;;
-        };
+        struct <a href='doc_types__traits.html#kvasir::mpl::remove_const-C-'>remove_const</a>;
         
         template &lt;typename C = identity&gt;
-        struct <a href='doc_types__traits.html#types/traits.hpp'>add_cv</a>
-        {
-            template &lt;typename T&gt;
-            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;typename std::add_cv&lt;T&gt;::type&gt;;
-        };
+        struct <a href='doc_types__traits.html#kvasir::mpl::remove_volatile-C-'>remove_volatile</a>;
         
         template &lt;typename C = identity&gt;
-        struct <a href='doc_types__traits.html#types/traits.hpp'>add_const</a>
-        {
-            template &lt;typename T&gt;
-            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;typename std::add_const&lt;T&gt;::type&gt;;
-        };
+        struct <a href='doc_types__traits.html#kvasir::mpl::add_cv-C-'>add_cv</a>;
         
         template &lt;typename C = identity&gt;
-        struct <a href='doc_types__traits.html#types/traits.hpp'>add_volatile</a>
-        {
-            template &lt;typename T&gt;
-            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;typename std::add_volatile&lt;T&gt;::type&gt;;
-        };
+        struct <a href='doc_types__traits.html#kvasir::mpl::add_const-C-'>add_const</a>;
+        
+        template &lt;typename C = identity&gt;
+        struct <a href='doc_types__traits.html#kvasir::mpl::add_volatile-C-'>add_volatile</a>;
         
         template &lt;typename C = identity&gt;
         struct <a href='doc_types__traits.html#types/traits.hpp'>remove_reference</a>
@@ -380,18 +255,10 @@
         };
         
         template &lt;typename C = identity&gt;
-        struct <a href='doc_types__traits.html#types/traits.hpp'>add_lvalue_reference</a>
-        {
-            template &lt;typename T&gt;
-            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;typename std::add_lvalue_reference&lt;T&gt;::type&gt;;
-        };
+        struct <a href='doc_types__traits.html#kvasir::mpl::add_lvalue_reference-C-'>add_lvalue_reference</a>;
         
         template &lt;typename C = identity&gt;
-        struct <a href='doc_types__traits.html#types/traits.hpp'>add_rvalue_reference</a>
-        {
-            template &lt;typename T&gt;
-            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;typename std::add_rvalue_reference&lt;T&gt;::type&gt;;
-        };
+        struct <a href='doc_types__traits.html#kvasir::mpl::add_rvalue_reference-C-'>add_rvalue_reference</a>;
         
         template &lt;typename C = identity&gt;
         struct <a href='doc_types__traits.html#types/traits.hpp'>remove_pointer</a>
@@ -401,11 +268,7 @@
         };
         
         template &lt;typename C = identity&gt;
-        struct <a href='doc_types__traits.html#types/traits.hpp'>add_pointer</a>
-        {
-            template &lt;typename T&gt;
-            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;typename std::add_pointer&lt;T&gt;::type&gt;;
-        };
+        struct <a href='doc_types__traits.html#kvasir::mpl::add_pointer-C-'>add_pointer</a>;
         
         template &lt;typename C = identity&gt;
         struct <a href='doc_types__traits.html#types/traits.hpp'>make_signed</a>
@@ -446,14 +309,14 @@
         struct <a href='doc_types__traits.html#types/traits.hpp'>common_type</a>
         {
             template &lt;typename T&gt;
-            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;typename std::alignment_of&lt;T&gt;::type&gt;;
+            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;typename std::common_type&lt;T&gt;::type&gt;;
         };
         
         template &lt;typename C = identity&gt;
         struct <a href='doc_types__traits.html#types/traits.hpp'>underlying_type</a>
         {
             template &lt;typename T&gt;
-            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;typename std::alignment_of&lt;T&gt;::type&gt;;
+            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;typename std::underlying_type&lt;T&gt;::type&gt;;
         };
         
         template &lt;typename C = identity&gt;
@@ -461,13 +324,6 @@
         {
             template &lt;typename T&gt;
             using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = typename C::template f&lt;bool_&lt;std::is_null_pointer&lt;T&gt;::value&gt;&gt;;
-        };
-        
-        template &lt;&gt;
-        struct <a href='doc_types__traits.html#types/traits.hpp'>is_null_pointer&lt;identity&gt;</a>
-        {
-            template &lt;typename T&gt;
-            using <a href='doc_types__traits.html#types/traits.hpp'>f</a> = <a href='doc_types__bool.html#kvasir::mpl::bool_-Value-'>bool_&lt;std::is_null_pointer&lt;T&gt;::value&gt;</a>;
         };
         
         template &lt;typename C = identity&gt;
@@ -588,5 +444,365 @@ struct is_rvalue_reference
 <p>tests if a type is an rvalue reference</p>
 <p><em>Effects</em>: results in true_ if dynamic input is an rvalue reference</p>
 <p><em>Requires</em>: fixed parameters: optional continuation, dynamic parameters: the type to be tested \notes this is the same as std::is_rvalue_reference except the return is true_ or false_ and may be faster\</p>
+<h2>Class template <code>kvasir::mpl::is_abstract</code><a id="kvasir::mpl::is_abstract-C-"></a></h2>
+<pre><code class="language-cpp">template &lt;typename C = identity&gt;
+struct is_abstract
+{
+    template &lt;typename T&gt;
+    using <a href='doc_types__traits.html#kvasir::mpl::is_abstract-C-'>f</a> = typename C::template f&lt;bool_&lt;std::is_abstract&lt;T&gt;::value&gt;&gt;;
+};</code></pre>
+<p>tests if a type is abstract</p>
+<p><em>Effects</em>: results in <code>true_</code> if dynamic input is abstract</p>
+<p><em>Requires</em>: fixed parameters: optional continuation, dynamic parameters: the type to be tested \notes this is the same as std::is_abstract except the return is <code>true_</code> or <code>false_</code> and may be faster\</p>
+<h2>Class template <code>kvasir::mpl::is_signed</code><a id="kvasir::mpl::is_signed-C-"></a></h2>
+<pre><code class="language-cpp">template &lt;typename C = identity&gt;
+struct is_signed
+{
+    template &lt;typename T&gt;
+    using <a href='doc_types__traits.html#kvasir::mpl::is_signed-C-'>f</a> = typename C::template f&lt;bool_&lt;std::is_signed&lt;T&gt;::value&gt;&gt;;
+};</code></pre>
+<p>tests if a type is signed</p>
+<p><em>Effects</em>: results in <code>true_</code> if dynamic input is signed</p>
+<p><em>Requires</em>: fixed parameters: optional continuation, dynamic parameters: the type to be tested \notes this is the same as std::is_signed except the return is <code>true_</code> or <code>false_</code> and may be faster\</p>
+<h2>Class template <code>kvasir::mpl::is_unsigned</code><a id="kvasir::mpl::is_unsigned-C-"></a></h2>
+<pre><code class="language-cpp">template &lt;typename C = identity&gt;
+struct is_unsigned
+{
+    template &lt;typename T&gt;
+    using <a href='doc_types__traits.html#kvasir::mpl::is_unsigned-C-'>f</a> = typename C::template f&lt;bool_&lt;std::is_unsigned&lt;T&gt;::value&gt;&gt;;
+};</code></pre>
+<p>tests if a type is unsigned</p>
+<p><em>Effects</em>: results in <code>true_</code> if dynamic input is unsigned</p>
+<p><em>Requires</em>: fixed parameters: optional continuation, dynamic parameters: the type to be tested \notes this is the same as std::is_unsigned except the return is <code>true_</code> or <code>false_</code> and may be faster\</p>
+<h2>Class template <code>kvasir::mpl::is_constructible</code><a id="kvasir::mpl::is_constructible-C-"></a></h2>
+<pre><code class="language-cpp">template &lt;typename C = identity&gt;
+struct is_constructible
+{
+    template &lt;typename T&gt;
+    using <a href='doc_types__traits.html#kvasir::mpl::is_constructible-C-'>f</a> = typename C::template f&lt;bool_&lt;std::is_constructible&lt;T&gt;::value&gt;&gt;;
+};</code></pre>
+<p>tests if a type is constructible</p>
+<p><em>Effects</em>: results in <code>true_</code> if dynamic input is constructible</p>
+<p><em>Requires</em>: fixed parameters: optional continuation, dynamic parameters: the type to be tested \notes this is the same as std::is_constructible except the return is <code>true_</code> or <code>false_</code> and may be faster\</p>
+<h2>Class template <code>kvasir::mpl::is_nothrow_constructible</code><a id="kvasir::mpl::is_nothrow_constructible-C-"></a></h2>
+<pre><code class="language-cpp">template &lt;typename C = identity&gt;
+struct is_nothrow_constructible
+{
+    template &lt;typename T&gt;
+    using <a href='doc_types__traits.html#kvasir::mpl::is_nothrow_constructible-C-'>f</a> = typename C::template f&lt;bool_&lt;std::is_nothrow_constructible&lt;T&gt;::value&gt;&gt;;
+};</code></pre>
+<p>tests if a type is nothrow constructible</p>
+<p><em>Effects</em>: results in <code>true_</code> if dynamic input is nothrow constructible</p>
+<p><em>Requires</em>: fixed parameters: optional continuation, dynamic parameters: the type to be tested \notes this is the same as std::is_nothrow_constructible except the return is <code>true_</code> or <code>false_</code> and may be faster\</p>
+<h2>Class template <code>kvasir::mpl::is_default_constructible</code><a id="kvasir::mpl::is_default_constructible-C-"></a></h2>
+<pre><code class="language-cpp">template &lt;typename C = identity&gt;
+struct is_default_constructible
+{
+    template &lt;typename T&gt;
+    using <a href='doc_types__traits.html#kvasir::mpl::is_default_constructible-C-'>f</a> = typename C::template f&lt;bool_&lt;std::is_default_constructible&lt;T&gt;::value&gt;&gt;;
+};</code></pre>
+<p>tests if a type is default constructible</p>
+<p><em>Effects</em>: results in <code>true_</code> if dynamic input is default constructible</p>
+<p><em>Requires</em>: fixed parameters: optional continuation, dynamic parameters: the type to be tested \notes this is the same as std::is_default_constructible except the return is <code>true_</code> or <code>false_</code> and may be faster\</p>
+<h2>Class template <code>kvasir::mpl::is_nothrow_default_constructible</code><a id="kvasir::mpl::is_nothrow_default_constructible-C-"></a></h2>
+<pre><code class="language-cpp">template &lt;typename C = identity&gt;
+struct is_nothrow_default_constructible
+{
+    template &lt;typename T&gt;
+    using <a href='doc_types__traits.html#kvasir::mpl::is_nothrow_default_constructible-C-'>f</a> = typename C::template f&lt;bool_&lt;std::is_nothrow_default_constructible&lt;T&gt;::value&gt;&gt;;
+};</code></pre>
+<p>tests if a type is nothrow default constructible</p>
+<p><em>Effects</em>: results in <code>true_</code> if dynamic input is nothrow default constructible</p>
+<p><em>Requires</em>: fixed parameters: optional continuation, dynamic parameters: the type to be tested \notes this is the same as std::is_nothrow_default_constructible except the return is <code>true_</code> or <code>false_</code> and may be faster\</p>
+<h2>Class template <code>kvasir::mpl::is_copy_constructible</code><a id="kvasir::mpl::is_copy_constructible-C-"></a></h2>
+<pre><code class="language-cpp">template &lt;typename C = identity&gt;
+struct is_copy_constructible
+{
+    template &lt;typename T&gt;
+    using <a href='doc_types__traits.html#kvasir::mpl::is_copy_constructible-C-'>f</a> = typename C::template f&lt;bool_&lt;std::is_copy_constructible&lt;T&gt;::value&gt;&gt;;
+};</code></pre>
+<p>tests if a type is copy constructible</p>
+<p><em>Effects</em>: results in <code>true_</code> if dynamic input is copy constructible</p>
+<p><em>Requires</em>: fixed parameters: optional continuation, dynamic parameters: the type to be tested \notes this is the same as std::is_copy_constructible except the return is <code>true_</code> or <code>false_</code> and may be faster\</p>
+<h2>Class template <code>kvasir::mpl::is_nothrow_copy_constructible</code><a id="kvasir::mpl::is_nothrow_copy_constructible-C-"></a></h2>
+<pre><code class="language-cpp">template &lt;typename C = identity&gt;
+struct is_nothrow_copy_constructible
+{
+    template &lt;typename T&gt;
+    using <a href='doc_types__traits.html#kvasir::mpl::is_nothrow_copy_constructible-C-'>f</a> = typename C::template f&lt;bool_&lt;std::is_nothrow_copy_constructible&lt;T&gt;::value&gt;&gt;;
+};</code></pre>
+<p>tests if a type is nothrow copy constructible</p>
+<p><em>Effects</em>: results in <code>true_</code> if dynamic input is nothrow copy constructible</p>
+<p><em>Requires</em>: fixed parameters: optional continuation, dynamic parameters: the type to be tested \notes this is the same as std::is_nothrow_copy_constructible except the return is <code>true_</code> or <code>false_</code> and may be faster\</p>
+<h2>Class template <code>kvasir::mpl::is_move_constructible</code><a id="kvasir::mpl::is_move_constructible-C-"></a></h2>
+<pre><code class="language-cpp">template &lt;typename C = identity&gt;
+struct is_move_constructible
+{
+    template &lt;typename T&gt;
+    using <a href='doc_types__traits.html#kvasir::mpl::is_move_constructible-C-'>f</a> = typename C::template f&lt;bool_&lt;std::is_move_constructible&lt;T&gt;::value&gt;&gt;;
+};</code></pre>
+<p>tests if a type is move constructible</p>
+<p><em>Effects</em>: results in <code>true_</code> if dynamic input is move constructible</p>
+<p><em>Requires</em>: fixed parameters: optional continuation, dynamic parameters: the type to be tested \notes this is the same as std::is_move_constructible except the return is <code>true_</code> or <code>false_</code> and may be faster\</p>
+<h2>Class template <code>kvasir::mpl::is_nothrow_move_constructible</code><a id="kvasir::mpl::is_nothrow_move_constructible-C-"></a></h2>
+<pre><code class="language-cpp">template &lt;typename C = identity&gt;
+struct is_nothrow_move_constructible
+{
+    template &lt;typename T&gt;
+    using <a href='doc_types__traits.html#kvasir::mpl::is_nothrow_move_constructible-C-'>f</a> = typename C::template f&lt;bool_&lt;std::is_nothrow_move_constructible&lt;T&gt;::value&gt;&gt;;
+};</code></pre>
+<p>tests if a type is nothrow move constructible</p>
+<p><em>Effects</em>: results in <code>true_</code> if dynamic input is nothrow move constructible</p>
+<p><em>Requires</em>: fixed parameters: optional continuation, dynamic parameters: the type to be tested \notes this is the same as std::is_nothrow_move_constructible except the return is <code>true_</code> or <code>false_</code> and may be faster\</p>
+<h2>Class template <code>kvasir::mpl::is_assignable</code><a id="kvasir::mpl::is_assignable-C-"></a></h2>
+<pre><code class="language-cpp">template &lt;typename C = identity&gt;
+struct is_assignable
+{
+    template &lt;typename T, typename U&gt;
+    using <a href='doc_types__traits.html#kvasir::mpl::is_assignable-C-'>f</a> = typename C::template f&lt;bool_&lt;std::is_assignable&lt;T, U&gt;::value&gt;&gt;;
+};</code></pre>
+<p>tests if a type is assignable</p>
+<p><em>Effects</em>: results in <code>true_</code> if dynamic input is assignable</p>
+<p><em>Requires</em>: fixed parameters: optional continuation, dynamic parameters: the type to be tested \notes this is the same as std::is_assignable except the return is <code>true_</code> or <code>false_</code> and may be faster\</p>
+<h2>Class template <code>kvasir::mpl::is_nothrow_assignable</code><a id="kvasir::mpl::is_nothrow_assignable-C-"></a></h2>
+<pre><code class="language-cpp">template &lt;typename C = identity&gt;
+struct is_nothrow_assignable
+{
+    template &lt;typename T, typename U&gt;
+    using <a href='doc_types__traits.html#kvasir::mpl::is_nothrow_assignable-C-'>f</a> = typename C::template f&lt;bool_&lt;std::is_nothrow_assignable&lt;T, U&gt;::value&gt;&gt;;
+};</code></pre>
+<p>tests if a type is nothrow assignable</p>
+<p><em>Effects</em>: results in <code>true_</code> if dynamic input is nothrow assignable</p>
+<p><em>Requires</em>: fixed parameters: optional continuation, dynamic parameters: the type to be tested \notes this is the same as std::is_nothrow_assignable except the return is <code>true_</code> or <code>false_</code> and may be faster\</p>
+<h2>Class template <code>kvasir::mpl::is_copy_assignable</code><a id="kvasir::mpl::is_copy_assignable-C-"></a></h2>
+<pre><code class="language-cpp">template &lt;typename C = identity&gt;
+struct is_copy_assignable
+{
+    template &lt;typename T&gt;
+    using <a href='doc_types__traits.html#kvasir::mpl::is_copy_assignable-C-'>f</a> = typename C::template f&lt;bool_&lt;std::is_copy_assignable&lt;T&gt;::value&gt;&gt;;
+};</code></pre>
+<p>tests if a type is copy assignable</p>
+<p><em>Effects</em>: results in <code>true_</code> if dynamic input copy assignable</p>
+<p><em>Requires</em>: fixed parameters: optional continuation, dynamic parameters: the type to be tested \notes this is the same as std::is_copy_assignable except the return is <code>true_</code> or <code>false_</code> and may be faster\</p>
+<h2>Class template <code>kvasir::mpl::is_nothrow_copy_assignable</code><a id="kvasir::mpl::is_nothrow_copy_assignable-C-"></a></h2>
+<pre><code class="language-cpp">template &lt;typename C = identity&gt;
+struct is_nothrow_copy_assignable
+{
+    template &lt;typename T&gt;
+    using <a href='doc_types__traits.html#kvasir::mpl::is_nothrow_copy_assignable-C-'>f</a> = typename C::template f&lt;bool_&lt;std::is_nothrow_copy_assignable&lt;T&gt;::value&gt;&gt;;
+};</code></pre>
+<p>tests if a type is nothrow copy assignable</p>
+<p><em>Effects</em>: results in <code>true_</code> if dynamic input is nothrow copy assignable</p>
+<p><em>Requires</em>: fixed parameters: optional continuation, dynamic parameters: the type to be tested \notes this is the same as std::is_nothrow_copy_assignable except the return is <code>true_</code> or <code>false_</code> and may be faster\</p>
+<h2>Class template <code>kvasir::mpl::is_move_assignable</code><a id="kvasir::mpl::is_move_assignable-C-"></a></h2>
+<pre><code class="language-cpp">template &lt;typename C = identity&gt;
+struct is_move_assignable
+{
+    template &lt;typename T&gt;
+    using <a href='doc_types__traits.html#kvasir::mpl::is_move_assignable-C-'>f</a> = typename C::template f&lt;bool_&lt;std::is_move_assignable&lt;T&gt;::value&gt;&gt;;
+};</code></pre>
+<p>tests if a type is move assignable</p>
+<p><em>Effects</em>: results in <code>true_</code> if dynamic input is move assignable</p>
+<p><em>Requires</em>: fixed parameters: optional continuation, dynamic parameters: the type to be tested \notes this is the same as std::is_move_assignable except the return is <code>true_</code> or <code>false_</code> and may be faster\</p>
+<h2>Class template <code>kvasir::mpl::is_nothrow_move_assignable</code><a id="kvasir::mpl::is_nothrow_move_assignable-C-"></a></h2>
+<pre><code class="language-cpp">template &lt;typename C = identity&gt;
+struct is_nothrow_move_assignable
+{
+    template &lt;typename T&gt;
+    using <a href='doc_types__traits.html#kvasir::mpl::is_nothrow_move_assignable-C-'>f</a> = typename C::template f&lt;bool_&lt;std::is_nothrow_move_assignable&lt;T&gt;::value&gt;&gt;;
+};</code></pre>
+<p>tests if a type is nothrow move assignable</p>
+<p><em>Effects</em>: results in <code>true_</code> if dynamic input is nothrow move assignable</p>
+<p><em>Requires</em>: fixed parameters: optional continuation, dynamic parameters: the type to be tested \notes this is the same as std::is_nothrow_move_assignable except the return is <code>true_</code> or <code>false_</code> and may be faster\</p>
+<h2>Class template <code>kvasir::mpl::is_destructible</code><a id="kvasir::mpl::is_destructible-C-"></a></h2>
+<pre><code class="language-cpp">template &lt;typename C = identity&gt;
+struct is_destructible
+{
+    template &lt;typename T&gt;
+    using <a href='doc_types__traits.html#kvasir::mpl::is_destructible-C-'>f</a> = typename C::template f&lt;bool_&lt;std::is_destructible&lt;T&gt;::value&gt;&gt;;
+};</code></pre>
+<p>tests if a type is destructible</p>
+<p><em>Effects</em>: results in <code>true_</code> if dynamic input is destructible</p>
+<p><em>Requires</em>: fixed parameters: optional continuation, dynamic parameters: the type to be tested \notes this is the same as std::is_destructible except the return is <code>true_</code> or <code>false_</code> and may be faster\</p>
+<h2>Class template <code>kvasir::mpl::is_trivially_destructible</code><a id="kvasir::mpl::is_trivially_destructible-C-"></a></h2>
+<pre><code class="language-cpp">template &lt;typename C = identity&gt;
+struct is_trivially_destructible
+{
+    template &lt;typename T&gt;
+    using <a href='doc_types__traits.html#kvasir::mpl::is_trivially_destructible-C-'>f</a> = typename C::template f&lt;bool_&lt;std::is_trivially_destructible&lt;T&gt;::value&gt;&gt;;
+};</code></pre>
+<p>tests if a type is trivially destructible</p>
+<p><em>Effects</em>: results in <code>true_</code> if dynamic input is trivially destructible</p>
+<p><em>Requires</em>: fixed parameters: optional continuation, dynamic parameters: the type to be tested \notes this is the same as std::is_trivially_destructible except the return is <code>true_</code> or <code>false_</code> and may be faster\</p>
+<h2>Class template <code>kvasir::mpl::is_nothrow_destructible</code><a id="kvasir::mpl::is_nothrow_destructible-C-"></a></h2>
+<pre><code class="language-cpp">template &lt;typename C = identity&gt;
+struct is_nothrow_destructible
+{
+    template &lt;typename T&gt;
+    using <a href='doc_types__traits.html#kvasir::mpl::is_nothrow_destructible-C-'>f</a> = typename C::template f&lt;bool_&lt;std::is_nothrow_destructible&lt;T&gt;::value&gt;&gt;;
+};</code></pre>
+<p>tests if a type is nothrow destructible</p>
+<p><em>Effects</em>: results in <code>true_</code> if dynamic input is nothrow destructible</p>
+<p><em>Requires</em>: fixed parameters: optional continuation, dynamic parameters: the type to be tested \notes this is the same as std::is_nothrow_destructible except the return is <code>true_</code> or <code>false_</code> and may be faster\</p>
+<h2>Class template <code>kvasir::mpl::has_virtual_destructor</code><a id="kvasir::mpl::has_virtual_destructor-C-"></a></h2>
+<pre><code class="language-cpp">template &lt;typename C = identity&gt;
+struct has_virtual_destructor
+{
+    template &lt;typename T&gt;
+    using <a href='doc_types__traits.html#kvasir::mpl::has_virtual_destructor-C-'>f</a> = typename C::template f&lt;bool_&lt;std::has_virtual_destructor&lt;T&gt;::value&gt;&gt;;
+};</code></pre>
+<p>tests if a type has a virtual destructor</p>
+<p><em>Effects</em>: results in <code>true_</code> if dynamic input has a virtual destructor</p>
+<p><em>Requires</em>: fixed parameters: optional continuation, dynamic parameters: the type to be tested \notes this is the same as std::has_virtual_destructor except the return is <code>true_</code> or <code>false_</code> and may be faster\</p>
+<h2>Class template <code>kvasir::mpl::is_same</code><a id="kvasir::mpl::is_same-C-"></a></h2>
+<pre><code class="language-cpp">template &lt;typename C = identity&gt;
+struct is_same
+{
+    template &lt;typename T, typename U&gt;
+    using <a href='doc_types__traits.html#kvasir::mpl::is_same-C-'>f</a> = typename C::template f&lt;bool_&lt;std::is_same&lt;T, U&gt;::value&gt;&gt;;
+};</code></pre>
+<p>tests if a type is the same as another type</p>
+<p><em>Effects</em>: results in <code>true_</code> if dynamic input is the same as another type</p>
+<p><em>Requires</em>: fixed parameters: optional continuation, dynamic parameters: the type to be tested \notes this is the same as std::is_same except the return is <code>true_</code> or <code>false_</code> and may be faster\</p>
+<h2>Class template <code>kvasir::mpl::is_base_of</code><a id="kvasir::mpl::is_base_of-C-"></a></h2>
+<pre><code class="language-cpp">template &lt;typename C = identity&gt;
+struct is_base_of
+{
+    template &lt;typename T, typename U&gt;
+    using <a href='doc_types__traits.html#kvasir::mpl::is_base_of-C-'>f</a> = typename C::template f&lt;bool_&lt;std::is_base_of&lt;T, U&gt;::value&gt;&gt;;
+};</code></pre>
+<p>tests if a type is the base class of another type</p>
+<p><em>Effects</em>: results in <code>true_</code> if dynamic input is the base class of another type</p>
+<p><em>Requires</em>: fixed parameters: optional continuation, dynamic parameters: the type to be tested \notes this is the same as std::is_base_of except the return is <code>true_</code> or <code>false_</code> and may be faster\</p>
+<h2>Class template <code>kvasir::mpl::is_convertible</code><a id="kvasir::mpl::is_convertible-C-"></a></h2>
+<pre><code class="language-cpp">template &lt;typename C = identity&gt;
+struct is_convertible
+{
+    template &lt;typename T, typename U&gt;
+    using <a href='doc_types__traits.html#kvasir::mpl::is_convertible-C-'>f</a> = typename C::template f&lt;bool_&lt;std::is_convertible&lt;T, U&gt;::value&gt;&gt;;
+};</code></pre>
+<p>tests if a type is convertible to another type</p>
+<p><em>Effects</em>: results in <code>true_</code> if dynamic input is convertible to another type</p>
+<p><em>Requires</em>: fixed parameters: optional continuation, dynamic parameters: the type to be tested \notes this is the same as std::is_convertible except the return is <code>true_</code> or <code>false_</code> and may be faster\</p>
+<h2>Class template <code>kvasir::mpl::alignment_of</code><a id="kvasir::mpl::alignment_of-C-"></a></h2>
+<pre><code class="language-cpp">template &lt;typename C = identity&gt;
+struct alignment_of
+{
+    template &lt;typename T&gt;
+    using <a href='doc_types__traits.html#kvasir::mpl::alignment_of-C-'>f</a> = typename C::template f&lt;typename std::alignment_of&lt;T&gt;::type&gt;;
+};</code></pre>
+<p>returns the allignment of a type</p>
+<p><em>Effects</em>: results in <code>uint_&lt;N&gt;</code> for a type with allignment of N</p>
+<p><em>Requires</em>: fixed parameters: optional continuation, dynamic parameters: the type to be quirried \notes this is the same as std::allignment_of except the return is <code>uint_&lt;N&gt;</code> and may be faster\</p>
+<h2>Class template <code>kvasir::mpl::rank</code><a id="kvasir::mpl::rank-C-"></a></h2>
+<pre><code class="language-cpp">template &lt;typename C = identity&gt;
+struct rank
+{
+    template &lt;typename T&gt;
+    using <a href='doc_types__traits.html#kvasir::mpl::rank-C-'>f</a> = typename C::template f&lt;uint_&lt;std::rank&lt;T&gt;::value&gt;&gt;;
+};</code></pre>
+<p>returns the rank of a type</p>
+<p><em>Effects</em>: results in <code>uint_&lt;N&gt;</code> for a type with rank of N</p>
+<p><em>Requires</em>: fixed parameters: optional continuation, dynamic parameters: the type to be quirried \notes this is the same as std::rank except the return is <code>uint_&lt;N&gt;</code> and may be faster\</p>
+<h2>Class template <code>kvasir::mpl::extent</code><a id="kvasir::mpl::extent-C-"></a></h2>
+<pre><code class="language-cpp">template &lt;typename C = identity&gt;
+struct extent
+{
+    template &lt;typename T&gt;
+    using <a href='doc_types__traits.html#kvasir::mpl::extent-C-'>f</a> = typename C::template f&lt;uint_&lt;std::extent&lt;T&gt;::value&gt;&gt;;
+};</code></pre>
+<p>returns the extent of a type</p>
+<p><em>Effects</em>: results in <code>uint_&lt;N&gt;</code> for a type with extent of N</p>
+<p><em>Requires</em>: fixed parameters: optional continuation, dynamic parameters: the type to be quirried \notes this is the same as std::extent except the return is <code>uint_&lt;N&gt;</code> and may be faster\</p>
+<h2>Class template <code>kvasir::mpl::remove_cv</code><a id="kvasir::mpl::remove_cv-C-"></a></h2>
+<pre><code class="language-cpp">template &lt;typename C = identity&gt;
+struct remove_cv
+{
+    template &lt;typename T&gt;
+    using <a href='doc_types__traits.html#kvasir::mpl::remove_cv-C-'>f</a> = typename C::template f&lt;typename std::remove_cv&lt;T&gt;::type&gt;;
+};</code></pre>
+<p>returns the input type with const and volatile qualifiers stripped</p>
+<p><em>Effects</em>: results in the input type with const and volatile qualifiers stripped</p>
+<p><em>Requires</em>: fixed parameters: optional continuation, dynamic parameters: the type to be modified \notes this is the same as std::remove_cv except it may be faster\</p>
+<h2>Class template <code>kvasir::mpl::remove_const</code><a id="kvasir::mpl::remove_const-C-"></a></h2>
+<pre><code class="language-cpp">template &lt;typename C = identity&gt;
+struct remove_const
+{
+    template &lt;typename T&gt;
+    using <a href='doc_types__traits.html#kvasir::mpl::remove_const-C-'>f</a> = typename C::template f&lt;typename std::remove_const&lt;T&gt;::type&gt;;
+};</code></pre>
+<p>returns the input type with const qualifiers stripped</p>
+<p><em>Effects</em>: results in the input type with const qualifiers stripped</p>
+<p><em>Requires</em>: fixed parameters: optional continuation, dynamic parameters: the type to be modified \notes this is the same as std::remove_const except it may be faster\</p>
+<h2>Class template <code>kvasir::mpl::remove_volatile</code><a id="kvasir::mpl::remove_volatile-C-"></a></h2>
+<pre><code class="language-cpp">template &lt;typename C = identity&gt;
+struct remove_volatile
+{
+    template &lt;typename T&gt;
+    using <a href='doc_types__traits.html#kvasir::mpl::remove_volatile-C-'>f</a> = typename C::template f&lt;typename std::remove_volatile&lt;T&gt;::type&gt;;
+};</code></pre>
+<p>returns the input type with volatile qualifiers stripped</p>
+<p><em>Effects</em>: results in the input type with volatile qualifiers stripped</p>
+<p><em>Requires</em>: fixed parameters: optional continuation, dynamic parameters: the type to be modified \notes this is the same as std::remove_volatile except it may be faster\</p>
+<h2>Class template <code>kvasir::mpl::add_cv</code><a id="kvasir::mpl::add_cv-C-"></a></h2>
+<pre><code class="language-cpp">template &lt;typename C = identity&gt;
+struct add_cv
+{
+    template &lt;typename T&gt;
+    using <a href='doc_types__traits.html#kvasir::mpl::add_cv-C-'>f</a> = typename C::template f&lt;const volatile T&gt;;
+};</code></pre>
+<p>returns the input type with const and volatile qualifiers added</p>
+<p><em>Effects</em>: results in the input type with const and volatile qualifiers added</p>
+<p><em>Requires</em>: fixed parameters: optional continuation, dynamic parameters: the type to be modified \notes this is the same as std::add_cv except it may be faster\</p>
+<h2>Class template <code>kvasir::mpl::add_const</code><a id="kvasir::mpl::add_const-C-"></a></h2>
+<pre><code class="language-cpp">template &lt;typename C = identity&gt;
+struct add_const
+{
+    template &lt;typename T&gt;
+    using <a href='doc_types__traits.html#kvasir::mpl::add_const-C-'>f</a> = typename C::template f&lt;const T&gt;;
+};</code></pre>
+<p>returns the input type with const qualifiers added</p>
+<p><em>Effects</em>: results in the input type with const qualifiers added</p>
+<p><em>Requires</em>: fixed parameters: optional continuation, dynamic parameters: the type to be modified \notes this is the same as std::add_comst except it may be faster\</p>
+<h2>Class template <code>kvasir::mpl::add_volatile</code><a id="kvasir::mpl::add_volatile-C-"></a></h2>
+<pre><code class="language-cpp">template &lt;typename C = identity&gt;
+struct add_volatile
+{
+    template &lt;typename T&gt;
+    using <a href='doc_types__traits.html#kvasir::mpl::add_volatile-C-'>f</a> = typename C::template f&lt;volatile T&gt;;
+};</code></pre>
+<p>returns the input type with volatile qualifiers added</p>
+<p><em>Effects</em>: results in the input type with const qualifiers added</p>
+<p><em>Requires</em>: fixed parameters: optional continuation, dynamic parameters: the type to be modified \notes this is the same as std::add_volatile except it may be faster\</p>
+<h2>Class template <code>kvasir::mpl::add_lvalue_reference</code><a id="kvasir::mpl::add_lvalue_reference-C-"></a></h2>
+<pre><code class="language-cpp">template &lt;typename C = identity&gt;
+struct add_lvalue_reference
+{
+    template &lt;typename T&gt;
+    using <a href='doc_types__traits.html#kvasir::mpl::add_lvalue_reference-C-'>f</a> = typename C::template f&lt;typename std::add_lvalue_reference&lt;T&gt;::type&gt;;
+};</code></pre>
+<p>returns the input type as an lvalue reference</p>
+<p><em>Effects</em>: results in the input type as an lvalue reference</p>
+<p><em>Requires</em>: fixed parameters: optional continuation, dynamic parameters: the type to be modified \notes this is the same as std::add_lvalue_reference except it may be faster\</p>
+<h2>Class template <code>kvasir::mpl::add_rvalue_reference</code><a id="kvasir::mpl::add_rvalue_reference-C-"></a></h2>
+<pre><code class="language-cpp">template &lt;typename C = identity&gt;
+struct add_rvalue_reference
+{
+    template &lt;typename T&gt;
+    using <a href='doc_types__traits.html#kvasir::mpl::add_rvalue_reference-C-'>f</a> = typename C::template f&lt;typename std::add_rvalue_reference&lt;T&gt;::type&gt;;
+};</code></pre>
+<p>returns the input type as an rvalue reference</p>
+<p><em>Effects</em>: results in the input type as an rvalue reference</p>
+<p><em>Requires</em>: fixed parameters: optional continuation, dynamic parameters: the type to be modified \notes this is the same as std::add_volatile except it may be faster\</p>
+<h2>Class template <code>kvasir::mpl::add_pointer</code><a id="kvasir::mpl::add_pointer-C-"></a></h2>
+<pre><code class="language-cpp">template &lt;typename C = identity&gt;
+struct add_pointer
+{
+    template &lt;typename T&gt;
+    using <a href='doc_types__traits.html#kvasir::mpl::add_pointer-C-'>f</a> = typename C::template f&lt;typename std::add_pointer&lt;T&gt;::type&gt;;
+};</code></pre>
+<p>returns the input type with a pointer added</p>
+<p><em>Effects</em>: results in the input type with a pointer added</p>
+<p><em>Requires</em>: fixed parameters: optional continuation, dynamic parameters: the type to be modified \notes this is the same as std::add_pointer except it may be faster\</p>
 <hr />
 <hr />

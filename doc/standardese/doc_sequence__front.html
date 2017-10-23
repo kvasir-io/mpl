@@ -1,21 +1,19 @@
 <h1>Header file <code>sequence/front.hpp</code><a id="sequence/front.hpp"></a></h1>
-<pre><code class="language-cpp">namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>kvasir</a>
+<pre><code class="language-cpp">namespace <a href='doc_algorithm__all.html#algorithm/all.hpp'>kvasir</a>
 {
-    namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>mpl</a>
+    namespace <a href='doc_algorithm__all.html#algorithm/all.hpp'>mpl</a>
     {
         template &lt;typename C = identity&gt;
-        struct <a href='doc_sequence__front.html#sequence/front.hpp'>front</a>
-        {
-            template &lt;typename T, typename ... Ts&gt;
-            using <a href='doc_sequence__front.html#sequence/front.hpp'>f</a> = typename C::template f&lt;T&gt;;
-        };
-        
-        template &lt;&gt;
-        struct <a href='doc_sequence__front.html#sequence/front.hpp'>front&lt;identity&gt;</a>
-        {
-            template &lt;typename T, typename ... Ts&gt;
-            using <a href='doc_sequence__front.html#sequence/front.hpp'>f</a> = T;
-        };
+        struct <a href='doc_sequence__front.html#kvasir::mpl::front-C-'>front</a>;
     }
 }</code></pre>
+<h2>Class template <code>kvasir::mpl::front</code><a id="kvasir::mpl::front-C-"></a></h2>
+<pre><code class="language-cpp">template &lt;typename C = identity&gt;
+struct front
+{
+    template &lt;typename T, typename ... Ts&gt;
+    using <a href='doc_sequence__front.html#kvasir::mpl::front-C-'>f</a> = typename C::template f&lt;T&gt;;
+};</code></pre>
+<p>results in the first element in the input pack</p>
+<hr />
 <hr />

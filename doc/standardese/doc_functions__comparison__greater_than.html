@@ -1,14 +1,19 @@
 <h1>Header file <code>functions/comparison/greater_than.hpp</code><a id="functions/comparison/greater_than.hpp"></a></h1>
-<pre><code class="language-cpp">namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>kvasir</a>
+<pre><code class="language-cpp">namespace <a href='doc_algorithm__all.html#algorithm/all.hpp'>kvasir</a>
 {
-    namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>mpl</a>
+    namespace <a href='doc_algorithm__all.html#algorithm/all.hpp'>mpl</a>
     {
         template &lt;typename C = identity&gt;
-        struct <a href='doc_functions__comparison__greater_than.html#functions/comparison/greater_than.hpp'>greater_than</a>
-        {
-            template &lt;typename A, typename B&gt;
-            using <a href='doc_functions__comparison__greater_than.html#functions/comparison/greater_than.hpp'>f</a> = typename C::template f&lt;bool_&lt;(A::value&gt;B::value)&gt;&gt;;
-        };
+        struct <a href='doc_functions__comparison__greater_than.html#kvasir::mpl::greater_than-C-'>greater_than</a>;
     }
 }</code></pre>
+<h2>Class template <code>kvasir::mpl::greater_than</code><a id="kvasir::mpl::greater_than-C-"></a></h2>
+<pre><code class="language-cpp">template &lt;typename C = identity&gt;
+struct greater_than
+{
+    template &lt;typename A, typename B&gt;
+    using <a href='doc_functions__comparison__greater_than.html#kvasir::mpl::greater_than-C-'>f</a> = typename C::template f&lt;bool_&lt;(A::value&gt;B::value)&gt;&gt;;
+};</code></pre>
+<p>returns <code>true_</code> if the ::value of the first parameter is greater than the second</p>
+<hr />
 <hr />

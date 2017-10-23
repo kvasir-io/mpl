@@ -1,21 +1,8 @@
 <h1>Header file <code>utility/conditional.hpp</code><a id="utility/conditional.hpp"></a></h1>
-<pre><code class="language-cpp">namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>kvasir</a>
+<pre><code class="language-cpp">namespace <a href='doc_algorithm__all.html#algorithm/all.hpp'>kvasir</a>
 {
-    namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>mpl</a>
+    namespace <a href='doc_algorithm__all.html#algorithm/all.hpp'>mpl</a>
     {
-        template &lt;&gt;
-        struct <a href='doc_utility__conditional.html#utility/conditional.hpp'>conditional&lt;true&gt;</a>
-        {
-            template &lt;typename A, typename B&gt;
-            using <a href='doc_utility__conditional.html#utility/conditional.hpp'>f</a> = A;
-        };
-        
-        template &lt;&gt;
-        struct <a href='doc_utility__conditional.html#utility/conditional.hpp'>conditional&lt;false&gt;</a>
-        {
-            template &lt;typename A, typename B&gt;
-            using <a href='doc_utility__conditional.html#utility/conditional.hpp'>f</a> = B;
-        };
     }
 }</code></pre>
 <hr />

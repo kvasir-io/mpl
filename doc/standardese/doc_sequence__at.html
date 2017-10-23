@@ -1,40 +1,15 @@
 <h1>Header file <code>sequence/at.hpp</code><a id="sequence/at.hpp"></a></h1>
-<pre><code class="language-cpp">namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>kvasir</a>
+<pre><code class="language-cpp">namespace <a href='doc_algorithm__all.html#algorithm/all.hpp'>kvasir</a>
 {
-    namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>mpl</a>
+    namespace <a href='doc_algorithm__all.html#algorithm/all.hpp'>mpl</a>
     {
         template &lt;typename N, typename C = identity&gt;
-        using <a href='doc_sequence__at.html#sequence/at.hpp'>at</a> = drop&lt;N, front&lt;C&gt;&gt;;
-        
-        template &lt;typename C = identity&gt;
-        using <a href='doc_sequence__at.html#sequence/at.hpp'>at0</a> = drop&lt;uint_&lt;0&gt;, front&lt;C&gt;&gt;;
-        
-        template &lt;typename C = identity&gt;
-        using <a href='doc_sequence__at.html#sequence/at.hpp'>at1</a> = drop&lt;uint_&lt;1&gt;, front&lt;C&gt;&gt;;
-        
-        template &lt;typename C = identity&gt;
-        using <a href='doc_sequence__at.html#sequence/at.hpp'>at2</a> = drop&lt;uint_&lt;2&gt;, front&lt;C&gt;&gt;;
-        
-        template &lt;typename C = identity&gt;
-        using <a href='doc_sequence__at.html#sequence/at.hpp'>at3</a> = drop&lt;uint_&lt;3&gt;, front&lt;C&gt;&gt;;
-        
-        template &lt;typename C = identity&gt;
-        using <a href='doc_sequence__at.html#sequence/at.hpp'>at4</a> = drop&lt;uint_&lt;4&gt;, front&lt;C&gt;&gt;;
-        
-        template &lt;typename C = identity&gt;
-        using <a href='doc_sequence__at.html#sequence/at.hpp'>at5</a> = drop&lt;uint_&lt;5&gt;, front&lt;C&gt;&gt;;
-        
-        template &lt;typename C = identity&gt;
-        using <a href='doc_sequence__at.html#sequence/at.hpp'>at6</a> = drop&lt;uint_&lt;6&gt;, front&lt;C&gt;&gt;;
-        
-        template &lt;typename C = identity&gt;
-        using <a href='doc_sequence__at.html#sequence/at.hpp'>at7</a> = drop&lt;uint_&lt;7&gt;, front&lt;C&gt;&gt;;
-        
-        template &lt;typename C = identity&gt;
-        using <a href='doc_sequence__at.html#sequence/at.hpp'>at8</a> = drop&lt;uint_&lt;8&gt;, front&lt;C&gt;&gt;;
-        
-        template &lt;typename C = identity&gt;
-        using <a href='doc_sequence__at.html#sequence/at.hpp'>at9</a> = drop&lt;uint_&lt;9&gt;, front&lt;C&gt;&gt;;
+        using <a href='doc_sequence__at.html#kvasir::mpl::at-N,C-'>at</a> = drop&lt;N, front&lt;C&gt;&gt;;
     }
 }</code></pre>
+<h2>Alias template <code>kvasir::mpl::at</code><a id="kvasir::mpl::at-N,C-"></a></h2>
+<pre><code class="language-cpp">template &lt;typename N, typename C = identity&gt;
+using at = drop&lt;N, front&lt;C&gt;&gt;;</code></pre>
+<p>reterns element at a given index from an input pack</p>
+<hr />
 <hr />

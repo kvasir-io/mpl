@@ -1,14 +1,19 @@
 <h1>Header file <code>functions/logical/logical_not.hpp</code><a id="functions/logical/logical_not.hpp"></a></h1>
-<pre><code class="language-cpp">namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>kvasir</a>
+<pre><code class="language-cpp">namespace <a href='doc_algorithm__all.html#algorithm/all.hpp'>kvasir</a>
 {
-    namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>mpl</a>
+    namespace <a href='doc_algorithm__all.html#algorithm/all.hpp'>mpl</a>
     {
         template &lt;typename C = identity&gt;
-        struct <a href='doc_functions__logical__logical_not.html#functions/logical/logical_not.hpp'>logical_not</a>
-        {
-            template &lt;typename A&gt;
-            using <a href='doc_functions__logical__logical_not.html#functions/logical/logical_not.hpp'>f</a> = typename C::template f&lt;bool_&lt;(!A::value)&gt;&gt;;
-        };
+        struct <a href='doc_functions__logical__logical_not.html#kvasir::mpl::logical_not-C-'>logical_not</a>;
     }
 }</code></pre>
+<h2>Class template <code>kvasir::mpl::logical_not</code><a id="kvasir::mpl::logical_not-C-"></a></h2>
+<pre><code class="language-cpp">template &lt;typename C = identity&gt;
+struct logical_not
+{
+    template &lt;typename A&gt;
+    using <a href='doc_functions__logical__logical_not.html#kvasir::mpl::logical_not-C-'>f</a> = typename C::template f&lt;bool_&lt;(!A::value)&gt;&gt;;
+};</code></pre>
+<p>logical not of the ::value of the input parameter</p>
+<hr />
 <hr />

@@ -1,14 +1,19 @@
 <h1>Header file <code>functions/comparison/less_than_or_equal.hpp</code><a id="functions/comparison/less_than_or_equal.hpp"></a></h1>
-<pre><code class="language-cpp">namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>kvasir</a>
+<pre><code class="language-cpp">namespace <a href='doc_algorithm__all.html#algorithm/all.hpp'>kvasir</a>
 {
-    namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>mpl</a>
+    namespace <a href='doc_algorithm__all.html#algorithm/all.hpp'>mpl</a>
     {
         template &lt;typename C = identity&gt;
-        struct <a href='doc_functions__comparison__less_than_or_equal.html#functions/comparison/less_than_or_equal.hpp'>less_than_or_equal</a>
-        {
-            template &lt;typename A, typename B&gt;
-            using <a href='doc_functions__comparison__less_than_or_equal.html#functions/comparison/less_than_or_equal.hpp'>f</a> = typename C::template f&lt;bool_&lt;(A::value&lt;=B::value)&gt;&gt;;
-        };
+        struct <a href='doc_functions__comparison__less_than_or_equal.html#kvasir::mpl::less_than_or_equal-C-'>less_than_or_equal</a>;
     }
 }</code></pre>
+<h2>Class template <code>kvasir::mpl::less_than_or_equal</code><a id="kvasir::mpl::less_than_or_equal-C-"></a></h2>
+<pre><code class="language-cpp">template &lt;typename C = identity&gt;
+struct less_than_or_equal
+{
+    template &lt;typename A, typename B&gt;
+    using <a href='doc_functions__comparison__less_than_or_equal.html#kvasir::mpl::less_than_or_equal-C-'>f</a> = typename C::template f&lt;bool_&lt;(A::value&lt;=B::value)&gt;&gt;;
+};</code></pre>
+<p>results in <code>true_</code> if the ::value of the first input parameter is liss than or equal to the second</p>
+<hr />
 <hr />

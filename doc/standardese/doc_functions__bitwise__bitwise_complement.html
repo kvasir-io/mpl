@@ -1,14 +1,19 @@
 <h1>Header file <code>functions/bitwise/bitwise_complement.hpp</code><a id="functions/bitwise/bitwise_complement.hpp"></a></h1>
-<pre><code class="language-cpp">namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>kvasir</a>
+<pre><code class="language-cpp">namespace <a href='doc_algorithm__all.html#algorithm/all.hpp'>kvasir</a>
 {
-    namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>mpl</a>
+    namespace <a href='doc_algorithm__all.html#algorithm/all.hpp'>mpl</a>
     {
         template &lt;typename C = identity&gt;
-        struct <a href='doc_functions__bitwise__bitwise_complement.html#functions/bitwise/bitwise_complement.hpp'>bitwise_complement</a>
-        {
-            template &lt;typename A&gt;
-            using <a href='doc_functions__bitwise__bitwise_complement.html#functions/bitwise/bitwise_complement.hpp'>f</a> = typename C::template f&lt;integral_constant&lt;decltype(~A::value), (~A::value)&gt;&gt;;
-        };
+        struct <a href='doc_functions__bitwise__bitwise_complement.html#kvasir::mpl::bitwise_complement-C-'>bitwise_complement</a>;
     }
 }</code></pre>
+<h2>Class template <code>kvasir::mpl::bitwise_complement</code><a id="kvasir::mpl::bitwise_complement-C-"></a></h2>
+<pre><code class="language-cpp">template &lt;typename C = identity&gt;
+struct bitwise_complement
+{
+    template &lt;typename A&gt;
+    using <a href='doc_functions__bitwise__bitwise_complement.html#kvasir::mpl::bitwise_complement-C-'>f</a> = typename C::template f&lt;integral_constant&lt;decltype(~A::value), (~A::value)&gt;&gt;;
+};</code></pre>
+<p>bitwise complement of the ::value of two inputs</p>
+<hr />
 <hr />

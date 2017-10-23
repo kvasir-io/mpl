@@ -1,30 +1,8 @@
 <h1>Header file <code>compatability/dependent_call.hpp</code><a id="compatability/dependent_call.hpp"></a></h1>
-<pre><code class="language-cpp">namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>kvasir</a>
+<pre><code class="language-cpp">namespace <a href='doc_algorithm__all.html#algorithm/all.hpp'>kvasir</a>
 {
-    namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>mpl</a>
+    namespace <a href='doc_algorithm__all.html#algorithm/all.hpp'>mpl</a>
     {
-        template &lt;typename C, unsigned size&gt;
-        using <a href='doc_compatability__dependent_call.html#compatability/dependent_call.hpp'>dcall</a> = typename detail::dependant_impl&lt;static_cast&lt;bool&gt;(size&lt;100000), C&gt;;
-        
-        template &lt;&gt;
-        struct <a href='doc_compatability__dependent_call.html#compatability/dependent_call.hpp'>dcallf&lt;true&gt;</a>
-        {
-            template &lt;template &lt;typename&gt; class F1, typename ... Ts&gt;
-            using <a href='doc_compatability__dependent_call.html#compatability/dependent_call.hpp'>f1</a> = F1&lt;Ts...&gt;;
-            
-            template &lt;template &lt;typename&gt; class F1, template &lt;typename&gt; class F2, typename ... Ts&gt;
-            using <a href='doc_compatability__dependent_call.html#compatability/dependent_call.hpp'>f2</a> = F1&lt;F2&lt;Ts...&gt;&gt;;
-        };
-        
-        template &lt;&gt;
-        struct <a href='doc_compatability__dependent_call.html#compatability/dependent_call.hpp'>dcallf&lt;false&gt;</a>
-        {
-            template &lt;template &lt;typename&gt; class F1, typename ... Ts&gt;
-            using <a href='doc_compatability__dependent_call.html#compatability/dependent_call.hpp'>f1</a> = F1&lt;&gt;;
-            
-            template &lt;template &lt;typename&gt; class F1, template &lt;typename&gt; class F2, typename ... Ts&gt;
-            using <a href='doc_compatability__dependent_call.html#compatability/dependent_call.hpp'>f2</a> = F1&lt;F2&lt;&gt;&gt;;
-        };
     }
 }</code></pre>
 <hr />

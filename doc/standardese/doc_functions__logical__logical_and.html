@@ -1,14 +1,19 @@
 <h1>Header file <code>functions/logical/logical_and.hpp</code><a id="functions/logical/logical_and.hpp"></a></h1>
-<pre><code class="language-cpp">namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>kvasir</a>
+<pre><code class="language-cpp">namespace <a href='doc_algorithm__all.html#algorithm/all.hpp'>kvasir</a>
 {
-    namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>mpl</a>
+    namespace <a href='doc_algorithm__all.html#algorithm/all.hpp'>mpl</a>
     {
         template &lt;typename C = identity&gt;
-        struct <a href='doc_functions__logical__logical_and.html#functions/logical/logical_and.hpp'>logical_and</a>
-        {
-            template &lt;typename A, typename B&gt;
-            using <a href='doc_functions__logical__logical_and.html#functions/logical/logical_and.hpp'>f</a> = typename C::template f&lt;bool_&lt;(A::value&amp;&amp;B::value)&gt;&gt;;
-        };
+        struct <a href='doc_functions__logical__logical_and.html#kvasir::mpl::logical_and-C-'>logical_and</a>;
     }
 }</code></pre>
+<h2>Class template <code>kvasir::mpl::logical_and</code><a id="kvasir::mpl::logical_and-C-"></a></h2>
+<pre><code class="language-cpp">template &lt;typename C = identity&gt;
+struct logical_and
+{
+    template &lt;typename A, typename B&gt;
+    using <a href='doc_functions__logical__logical_and.html#kvasir::mpl::logical_and-C-'>f</a> = typename C::template f&lt;bool_&lt;(A::value&amp;&amp;B::value)&gt;&gt;;
+};</code></pre>
+<p>logical and of the ::value of two inputs</p>
+<hr />
 <hr />

@@ -1,19 +1,28 @@
 <h1>Header file <code>types/int.hpp</code><a id="types/int.hpp"></a></h1>
-<pre><code class="language-cpp">namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>kvasir</a>
+<pre><code class="language-cpp">namespace <a href='doc_algorithm__all.html#algorithm/all.hpp'>kvasir</a>
 {
-    namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>mpl</a>
+    namespace <a href='doc_algorithm__all.html#algorithm/all.hpp'>mpl</a>
     {
         template &lt;unsigned long long Value&gt;
-        struct <a href='doc_types__int.html#types/int.hpp'>uint_</a>
-        {
-            static constexpr unsigned long long <a href='doc_types__int.html#types/int.hpp'>value</a> = Value;
-        };
+        struct <a href='doc_types__int.html#kvasir::mpl::uint_-Value-'>uint_</a>;
         
         template &lt;long long Value&gt;
-        struct <a href='doc_types__int.html#types/int.hpp'>int_</a>
-        {
-            static constexpr long long <a href='doc_types__int.html#types/int.hpp'>value</a> = Value;
-        };
+        struct <a href='doc_types__int.html#kvasir::mpl::int_-Value-'>int_</a>;
     }
 }</code></pre>
+<h2>Class template <code>kvasir::mpl::uint_</code><a id="kvasir::mpl::uint_-Value-"></a></h2>
+<pre><code class="language-cpp">template &lt;unsigned long long Value&gt;
+struct uint_
+{
+    static constexpr unsigned long long <a href='doc_types__int.html#kvasir::mpl::uint_-Value-'>value</a> = Value;
+};</code></pre>
+<p>universal unsigned integer type</p>
+<h2>Class template <code>kvasir::mpl::int_</code><a id="kvasir::mpl::int_-Value-"></a></h2>
+<pre><code class="language-cpp">template &lt;long long Value&gt;
+struct int_
+{
+    static constexpr long long <a href='doc_types__int.html#kvasir::mpl::int_-Value-'>value</a> = Value;
+};</code></pre>
+<p>universal integer type</p>
+<hr />
 <hr />

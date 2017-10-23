@@ -1,7 +1,7 @@
 <h1>Header file <code>functional/call.hpp</code><a id="functional/call.hpp"></a></h1>
-<pre><code class="language-cpp">namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>kvasir</a>
+<pre><code class="language-cpp">namespace <a href='doc_algorithm__all.html#algorithm/all.hpp'>kvasir</a>
 {
-    namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>mpl</a>
+    namespace <a href='doc_algorithm__all.html#algorithm/all.hpp'>mpl</a>
     {
         template &lt;typename C&gt;
         struct <a href='doc_functional__call.html#kvasir::mpl::unpack-C-'>unpack</a>;
@@ -10,11 +10,7 @@
         using <a href='doc_functional__call.html#kvasir::mpl::call-C,Ts...-'>call</a> = typename dcall&lt;C, sizeof...(Ts)&gt;::template f&lt;Ts...&gt;;
         
         template &lt;typename C = identity&gt;
-        struct <a href='doc_functional__call.html#functional/call.hpp'>call_f</a>
-        {
-            template &lt;typename ... Ts&gt;
-            using <a href='doc_functional__call.html#functional/call.hpp'>f</a> = typename C::template f&lt;dcallf&lt;(sizeof...(Ts)&lt;10000)&gt;::template f1&lt;call, Ts...&gt;&gt;;
-        };
+        struct <a href='doc_functional__call.html#kvasir::mpl::call_f-C-'>call_f</a>;
     }
 }</code></pre>
 <h2>Class template <code>kvasir::mpl::unpack</code><a id="kvasir::mpl::unpack-C-"></a></h2>
@@ -30,5 +26,13 @@ struct unpack
 <pre><code class="language-cpp">template &lt;typename C, typename ... Ts&gt;
 using call = typename dcall&lt;C, sizeof...(Ts)&gt;::template f&lt;Ts...&gt;;</code></pre>
 <p>call a continuation (left parameter) with a variadic pack</p>
+<h2>Class template <code>kvasir::mpl::call_f</code><a id="kvasir::mpl::call_f-C-"></a></h2>
+<pre><code class="language-cpp">template &lt;typename C = identity&gt;
+struct call_f
+{
+    template &lt;typename ... Ts&gt;
+    using <a href='doc_functional__call.html#kvasir::mpl::call_f-C-'>f</a> = typename C::template f&lt;dcallf&lt;(sizeof...(Ts)&lt;10000)&gt;::template f1&lt;call, Ts...&gt;&gt;;
+};</code></pre>
+<p>/ \brief experimental, may be depricated or changed</p>
 <hr />
 <hr />

@@ -1,14 +1,19 @@
 <h1>Header file <code>sequence/push_back.hpp</code><a id="sequence/push_back.hpp"></a></h1>
-<pre><code class="language-cpp">namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>kvasir</a>
+<pre><code class="language-cpp">namespace <a href='doc_algorithm__all.html#algorithm/all.hpp'>kvasir</a>
 {
-    namespace <a href='doc_algorithm__any.html#algorithm/any.hpp'>mpl</a>
+    namespace <a href='doc_algorithm__all.html#algorithm/all.hpp'>mpl</a>
     {
         template &lt;typename Input, typename C = listify&gt;
-        struct <a href='doc_sequence__push_back.html#sequence/push_back.hpp'>push_back</a>
-        {
-            template &lt;typename ... Ts&gt;
-            using <a href='doc_sequence__push_back.html#sequence/push_back.hpp'>f</a> = typename dcall&lt;C, sizeof...(Ts)&gt;::template f&lt;Ts..., Input&gt;;
-        };
+        struct <a href='doc_sequence__push_back.html#kvasir::mpl::push_back-Input,C-'>push_back</a>;
     }
 }</code></pre>
+<h2>Class template <code>kvasir::mpl::push_back</code><a id="kvasir::mpl::push_back-Input,C-"></a></h2>
+<pre><code class="language-cpp">template &lt;typename Input, typename C = listify&gt;
+struct push_back
+{
+    template &lt;typename ... Ts&gt;
+    using <a href='doc_sequence__push_back.html#kvasir::mpl::push_back-Input,C-'>f</a> = typename dcall&lt;C, sizeof...(Ts)&gt;::template f&lt;Ts..., Input&gt;;
+};</code></pre>
+<p>push the fixed input type to the back of the dynamic input pack</p>
+<hr />
 <hr />
