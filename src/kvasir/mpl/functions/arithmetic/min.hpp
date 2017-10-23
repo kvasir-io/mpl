@@ -10,11 +10,12 @@
 
 namespace kvasir {
 	namespace mpl {
+		/// \brief returns the input type which has a smaller ::value, returns the first input type if equal
 		template <typename C = identity>
 		struct min {
 			template <typename A, typename B>
 			using f = typename C::template f<
-			        typename conditional<(A::value < B::value)>::template f<A, B>>;
+			        typename conditional<(A::value <= B::value)>::template f<A, B>>;
 		};
 		namespace eager {
 			template <typename A, typename B>
