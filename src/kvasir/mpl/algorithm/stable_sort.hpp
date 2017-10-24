@@ -190,7 +190,7 @@ namespace kvasir {
 			        List>>::f;
 		} // namespace eager
 		/// \brief stable sorts a pack of elements
-		template <typename F, typename C = listify>
+		template <typename F = less_than<>, typename C = listify>
 		struct stable_sort {
 			template <typename... Ts>
 			using f = call<unpack<C>, eager::stable_sort<list<Ts...>, F::template f>>;
