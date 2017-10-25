@@ -453,7 +453,7 @@ namespace kvasir {
 		//			};
 
 		/// \brief sorts a pack of elements
-		template <template <typename...> class F = less_than, typename C = listify>
+		template <typename F = less_than<>, typename C = listify>
 		using sort = stable_sort<F, C>;
 
 		namespace eager {
