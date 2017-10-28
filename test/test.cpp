@@ -26,6 +26,7 @@
 #include "algorithm/stable_sort.hpp"
 #include "algorithm/transform.hpp"
 #include "algorithm/zip_with.hpp"
+#include "algorithm/index_if.hpp"
 
 #include "functional/bind.hpp"
 #include "functional/call.hpp"

@@ -14,6 +14,7 @@
 #include "../sequence/pop_front.hpp"
 #include "../sequence/push_front.hpp"
 #include "../sequence/size.hpp"
+#include "../sequence/drop.hpp"
 
 namespace kvasir {
 	namespace mpl {
@@ -103,14 +104,14 @@ namespace kvasir {
 		template<typename F, template<typename...> class L, typename...Ls, typename C>
 		struct zip_fixed<F,L<Ls...>,C>{
 			template<typename...Ts>
-			using f = typename dcall<C,sizeof...(Ts)>::template f<dcall<F, sizeof...(Ts)>::template f<Ts,Ls>...>;
+			using f = typename dcall<C,sizeof...(Ts)>::template f<typename dcall<F, sizeof...(Ts)>::template f<Ts,Ls>...>;
 		};
 
 		template<typename F, template<typename...> class L1, template<typename...> class L2,
 			typename...L1s, typename...L2s, typename C>
 		struct zip_fixed<F,L1<L1s...>,L2<L2s...>,C>{
 			template<typename...Ts>
-			using f = typename dcall<C,sizeof...(Ts)>::template f<dcall<F, sizeof...(Ts)>::template f<Ts,L1s,L2s>...>;
+			using f = typename dcall<C,sizeof...(Ts)>::template f<typename dcall<F, sizeof...(Ts)>::template f<Ts,L1s,L2s>...>;
 		};
 
 		namespace eager {
