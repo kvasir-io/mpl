@@ -9,6 +9,7 @@
 #include "../functional/flow.hpp"
 #include "../functional/bind.hpp"
 #include "make_sequence.hpp"
+#include "join.hpp"
 
 namespace kvasir {
 	namespace mpl {

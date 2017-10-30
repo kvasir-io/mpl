@@ -9,6 +9,7 @@
 #include "algorithm/count_if.hpp"
 #include "algorithm/filter.hpp"
 #include "algorithm/find_if.hpp"
+#include "algorithm/index_if.hpp"
 #include "algorithm/flatten.hpp"
 #include "algorithm/fold_left.hpp"
 #include "algorithm/fold_right.hpp"
@@ -82,6 +83,7 @@
 #include "types/list.hpp"
 #include "types/nothing.hpp"
 #include "types/traits.hpp"
+#include "types/type.hpp"
 
 #include "utility/always.hpp"
 #include "utility/conditional.hpp"
