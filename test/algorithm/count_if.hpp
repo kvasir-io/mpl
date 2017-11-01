@@ -7,12 +7,17 @@
 #include <type_traits>
 
 #include <kvasir/mpl/algorithm/count_if.hpp>
-
 namespace {
-	template <typename T>
-	using comp = std::is_same<int, T>;
+	struct count_if_test {
+		template <typename t>
+		using comp = std::is_same<int, t>;
 
-	using namespace kvasir;
-	static_assert(mpl::eager::count_if<mpl::list<void, char, int, float>, comp>::value == 1, "");
-	static_assert(mpl::eager::count_if<mpl::list<void, char, bool, float>, comp>::value == 0, "");
+		count_if_test() {
+			using namespace kvasir::mpl;	
+			call<count_if<cfe<comp>>, void, char, bool, float>{} = uint_<0>{};
+			call<count_if<cfe<comp>>, void, char, int, float>{} = uint_<1>{};
+			call<count_if<cfe<comp>>, int, char, int, float>{} = uint_<2>{};
+			call<count_if<cfe<comp>>>{} = uint_<0>{};
+		}
+	};
 }
