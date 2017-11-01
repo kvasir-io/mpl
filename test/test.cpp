@@ -12,6 +12,7 @@
 #include "algorithm/fold_left.hpp"
 #include "algorithm/fold_right.hpp"
 #include "algorithm/group.hpp"
+#include "algorithm/index_if.hpp"
 #include "algorithm/lookup.hpp"
 #include "algorithm/make_sequence.hpp"
 #include "algorithm/none.hpp"
@@ -26,14 +27,13 @@
 #include "algorithm/stable_sort.hpp"
 #include "algorithm/transform.hpp"
 #include "algorithm/zip_with.hpp"
-#include "algorithm/index_if.hpp"
 
 #include "functional/bind.hpp"
 #include "functional/call.hpp"
 #include "functional/compose.hpp"
+#include "functional/flow.hpp"
 #include "functional/fork.hpp"
 #include "functional/identity.hpp"
-#include "functional/flow.hpp"
 
 #include "functions/arithmetic/decrement.hpp"
 #include "functions/arithmetic/divide.hpp"

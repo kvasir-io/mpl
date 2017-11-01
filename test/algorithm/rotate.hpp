@@ -14,10 +14,10 @@ namespace {
 		template <int n>
 		void rotate_test_impl() {
 			using namespace kvasir::mpl;
-			constexpr int len = 522;
-			using seq         = eager::make_int_sequence<int_<len>>;
-			using left_seq    = eager::make_int_sequence<int_<n>>;
-			using right_seq   = eager::drop<seq, n>;
+			constexpr int len                  = 522;
+			using seq                          = eager::make_int_sequence<int_<len>>;
+			using left_seq                     = eager::make_int_sequence<int_<n>>;
+			using right_seq                    = eager::drop<seq, n>;
 			eager::join<right_seq, left_seq>{} = eager::rotate<seq, n>{};
 		}
 
@@ -52,4 +52,4 @@ namespace {
 			rotate_test_impl<513>();
 		}
 	};
-}
+} // namespace

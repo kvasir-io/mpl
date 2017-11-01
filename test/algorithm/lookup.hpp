@@ -25,4 +25,4 @@ namespace {
 	static_assert(std::is_same<mpl::eager::lookup<xs15, 15>, x<16>>::value, "");
 	static_assert(std::is_same<mpl::eager::lookup<xs16, 16>, x<17>>::value, "");
 	static_assert(std::is_same<mpl::eager::lookup<xs17, 17>, x<18>>::value, "");
-}
+} // namespace

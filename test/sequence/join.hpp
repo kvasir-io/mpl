@@ -51,4 +51,4 @@ namespace {
 			join_test_impl<1025>();
 		}
 	};
-}
+} // namespace
