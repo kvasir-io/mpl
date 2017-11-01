@@ -7,10 +7,10 @@
 namespace kvasir {
 	namespace mpl {
 		/// \brief type wrapper for types/
-		template<typename T>
+		template <typename T>
 		struct type_ {
 			using type = T;
 		};
-		
+
 	} // namespace mpl
 } // namespace kvasir

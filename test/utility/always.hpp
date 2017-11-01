@@ -18,4 +18,4 @@ namespace {
 		static_assert(mpl::eager::always_false<T>::value,
 		              "always_false should not have been instantiated");
 	};
-}
+} // namespace
