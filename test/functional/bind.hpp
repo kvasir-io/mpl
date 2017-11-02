@@ -7,12 +7,11 @@
 #include <kvasir/mpl/functional/bind.hpp>
 #include <kvasir/mpl/algorithm/transform.hpp>
 #include <kvasir/mpl/types/traits.hpp>
-#include <type_traits>
 #include <tuple>
 namespace {
 	struct bind_test {
 		template<typename T>
-		using add_const_t = typename std::add_const<T>::type;
+		using add_const_t = const T;
 		bind_test() {
 			using namespace kvasir;
 			using namespace mpl;
