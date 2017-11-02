@@ -5,6 +5,7 @@
 #pragma once
 
 #include <tuple>
+#include <string> //because of bug in tuple impl in stl
 #include <type_traits>
 
 #include <kvasir/mpl/algorithm/index_if.hpp>
