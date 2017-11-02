@@ -6,6 +6,7 @@
 
 #include <tuple>
 #include <type_traits>
+#include <tuple>
 
 #include <kvasir/mpl/algorithm/filter.hpp>
 #include <kvasir/mpl/types/bool.hpp>
@@ -26,3 +27,4 @@ namespace {
 		}
 	};
 } // namespace
+
