@@ -17,4 +17,4 @@ namespace {
 	using namespace kvasir;
 	static_assert(!mpl::eager::none<mpl::list<void, char, int, float>, comp>::value, "");
 	static_assert(mpl::eager::none<mpl::list<void, char, bool, float>, comp>::value, "");
-}
+} // namespace

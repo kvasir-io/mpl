@@ -16,4 +16,4 @@ namespace {
 	                                               mpl::same_as<char>::template f>,
 	                           mpl::list<char, short, int>>{},
 	              "");
-}
+} // namespace

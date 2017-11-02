@@ -13,8 +13,8 @@
 #include "../sequence/take.hpp"
 #include "../types/int.hpp"
 #include "../types/list.hpp"
+#include "../types/traits.hpp"
 #include "../utility/conditional.hpp"
-#include "../utility/is_same.hpp"
 
 namespace kvasir {
 	namespace mpl {

@@ -13,7 +13,7 @@ namespace kvasir {
 	namespace mpl {
 		/// \brief executes the continuation `F` on every element in the input pack passing the
 		/// results to the continuation `C`
-		template <typename F=identity, typename C = listify>
+		template <typename F = identity, typename C = listify>
 		struct transform {
 			template <typename... Ts>
 			using f = typename dcall<C, sizeof...(Ts)>::template f<typename F::template f<Ts>...>;

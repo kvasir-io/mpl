@@ -14,4 +14,4 @@ namespace {
 	                           mpl::list<mpl::list<void>, mpl::list<char>, mpl::list<short>,
 	                                     mpl::list<int>>>::value,
 	              "");
-}
+} // namespace

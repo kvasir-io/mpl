@@ -15,4 +15,4 @@ namespace size_test {
 	static_assert(size<>::template f<int, int, int, int>::value == 4, "size test failed");
 	static_assert(size<>::template f<int, int, int, int, int>::value == 5, "size test failed");
 	static_assert(size<>::template f<int, int, int, int, int, int>::value == 6, "size test failed");
-}
+} // namespace size_test
