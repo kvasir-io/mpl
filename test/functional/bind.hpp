@@ -6,6 +6,7 @@
 
 #include <kvasir/mpl/functional/bind.hpp>
 #include <kvasir/mpl/algorithm/transform.hpp>
+#include <kvasir/mpl/types/traits.hpp>
 #include <type_traits>
 #include <tuple>
 namespace {
