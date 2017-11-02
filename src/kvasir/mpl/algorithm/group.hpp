@@ -14,7 +14,7 @@
 #include "../types/int.hpp"
 #include "../types/list.hpp"
 #include "../utility/conditional.hpp"
-#include "../utility/is_same.hpp"
+#include "../types/traits.hpp"
 
 namespace kvasir {
 	namespace mpl {
