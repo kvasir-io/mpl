@@ -50,5 +50,47 @@ namespace kvasir {
 			template <typename... Ts>
 			using f = typename dcallf<bool(sizeof...(Ts) > 0)>::template f1<F, Ts...>;
 		};
+		/// \brief makes a continuation from an eager metafunction /
+		/// wraps a template template parameter in such a way that it can be used as a
+		/// continuation capable meta closure.
+		/// \requires fixed parameters: a template template parameter (the eager metafunction)
+		/// dynamic parameters: one type parameter
+		/// \effects the result will be whatever the eager metafunction maps to when passed the
+		/// dynamic parameters
+		/// \notes when passed an alias the result is the same as a traditional call to the at
+		/// metafunction/ \notes it is perfectly valid to pass a template such as tuple or pair as a
+		/// 'metafunction'
+		template <template <typename...> class F, typename C = identity>
+		struct cfe1 {
+			template <typename T>
+			using f = typename C::template f<F<T>>;
+		};
+		/// \exclude
+		template <template <typename...> class F>
+		struct cfe1<F, identity> {
+			template <typename T>
+			using f = F<T>;
+		};
+		/// \brief makes a continuation from an eager metafunction /
+		/// wraps a template template parameter in such a way that it can be used as a
+		/// continuation capable meta closure.
+		/// \requires fixed parameters: a template template parameter (the eager metafunction)
+		/// dynamic parameters: two type parameters
+		/// \effects the result will be whatever the eager metafunction maps to when passed the
+		/// dynamic parameters
+		/// \notes when passed an alias the result is the same as a traditional call to the at
+		/// metafunction/ \notes it is perfectly valid to pass a template such as tuple or pair as a
+		/// 'metafunction'
+		template <template <typename...> class F, typename C = identity>
+		struct cfe2 {
+			template <typename T, typename U>
+			using f = typename C::template f<F<T,U>>;
+		};
+		/// \exclude
+		template <template <typename...> class F>
+		struct cfe2<F, identity> {
+			template <typename T, typename U>
+			using f = F<T, U>;
+		};
 	} // namespace mpl
 } // namespace kvasir
