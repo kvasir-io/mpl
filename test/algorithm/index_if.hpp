@@ -17,12 +17,12 @@ namespace {
 	using less_than_5 = bool_<(T::value < 5)>;
 	struct index_if_test {
 		index_if_test() {
-			call<index_if<cfe<less_than_5>>, int_<9>, int_<2>, int_<1>, int_<8>>{} =
+			call<detail::index_if<cfe<less_than_5>>, int_<9>, int_<2>, int_<1>, int_<8>>{} =
 			        list<uint_<1>, uint_<2>>{};
-			call<index_if<cfe<less_than_5>>, int_<9>, int_<2>, int_<7>, int_<8>>{} =
+			call<detail::index_if<cfe<less_than_5>>, int_<9>, int_<2>, int_<7>, int_<8>>{} =
 			        list<uint_<1>>{};
-			call<index_if<cfe<less_than_5>>>{} = list<>{};
-			call<index_if<cfe<less_than_5>, cfe<std::tuple>>, int_<1>, int_<2>, int_<7>,
+			call<detail::index_if<cfe<less_than_5>>>{} = list<>{};
+			call<detail::index_if<cfe<less_than_5>, cfe<std::tuple>>, int_<1>, int_<2>, int_<7>,
 			     int_<8>>{}                    = std::tuple<uint_<0>, uint_<1>>{};
 		}
 	};

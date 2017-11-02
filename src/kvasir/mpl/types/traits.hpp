@@ -4,6 +4,7 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 #include <type_traits>
+#include <utility> //for std::swap
 #include "bool.hpp"
 #include "int.hpp"
 #include "../compatability/compatability.hpp"
@@ -20,12 +21,10 @@ namespace kvasir {
 				template <typename T, typename U,
 				          bool SwappableOnly> // if SwappableOnly we return true_ as long as we do
 				                              // not SFINAE
-				                              bool_<((noexcept(swap(std::declval<T &>(),
-				                                                    std::declval<U &>())) &&
-				                                      noexcept(swap(std::declval<U &>(),
-				                                                    std::declval<T &>()))) ||
-				                                     SwappableOnly)>
-				                              test(int);
+				bool_<((noexcept(swap(std::declval<T &>(), std::declval<U &>())) &&
+				        noexcept(swap(std::declval<U &>(), std::declval<T &>()))) ||
+				       SwappableOnly)>
+				test(int);
 			} // namespace swap_test
 		} // namespace detail
 		  /// \brief tests if a type is swappable with another type /

@@ -13,12 +13,14 @@
 
 namespace kvasir {
 	namespace mpl {
-		template <typename F, typename C = listify>
-		struct index_if {
-			template <typename... Ts>
-			using f = typename zip_fixed<if_<at<uint_<1>, F>, front<cfe<list>>, always<list<>>>,
-			                             call<make_int_sequence<>, uint_<sizeof...(Ts)>>,
-			                             join<C>>::template f<Ts...>;
-		};
+		namespace detail {
+			template <typename F, typename C = listify>
+			struct index_if {
+				template <typename... Ts>
+				using f = typename zip_fixed<if_<at<uint_<1>, F>, front<cfe<list>>, always<list<>>>,
+				                             call<make_int_sequence<>, uint_<sizeof...(Ts)>>,
+				                             join<C>>::template f<Ts...>;
+			};
+		} // namespace detail
 	} // namespace mpl
 } // namespace kvasir

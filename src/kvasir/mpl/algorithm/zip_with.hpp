@@ -93,42 +93,45 @@ namespace kvasir {
 			template <typename... Ts>
 			using f = typename detail::zip_with_unpack<F, C, Ts...>::f;
 		};
+		namespace detail {
+			/// \brief n-ary version of transform with all but one of the sequences as fixed
+			/// parameters
+			template <typename F, typename... Ls>
+			struct zip_fixed {
+			private:
+				using fixed_size = uint_<(sizeof...(Ls) - 1)>;
+				using C          = typename drop<fixed_size>::template f<Ls...>;
 
-		/// \brief n-ary version of transform with all but one of the sequences as fixed parameters
-		template <typename F, typename... Ls>
-		struct zip_fixed {
-		private:
-			using fixed_size = uint_<(sizeof...(Ls) - 1)>;
-			using C          = typename drop<fixed_size>::template f<Ls...>;
+			public:
+				template <typename... Ts>
+				using f =
+				        typename rotate<uint_<sizeof...(Ls)>,
+				                        pop_front<zip_with<F, C>>>::template f<Ls..., list<Ts...>>;
+			};
+			/// \exclude
+			template <typename F, template <typename...> class L, typename... Ls, typename C>
+			struct zip_fixed<F, L<Ls...>, C> {
+				template <typename... Ts>
+				using f = typename dcall<C, sizeof...(Ts)>::template f<
+				        typename dcall<F, sizeof...(Ts)>::template f<Ls, Ts>...>;
+			};
+			/// \exclude
+			template <typename F, template <typename...> class L1, template <typename...> class L2,
+			          typename... L1s, typename... L2s, typename C>
+			struct zip_fixed<F, L1<L1s...>, L2<L2s...>, C> {
+				template <typename... Ts>
+				using f = typename dcall<C, sizeof...(Ts)>::template f<
+				        typename dcall<F, sizeof...(Ts)>::template f<L1s, L2s, Ts>...>;
+			};
 
-		public:
-			template <typename... Ts>
-			using f = typename rotate<uint_<sizeof...(Ls)>,
-			                          pop_front<zip_with<F, C>>>::template f<Ls..., list<Ts...>>;
-		};
-		/// \exclude
-		template <typename F, template <typename...> class L, typename... Ls, typename C>
-		struct zip_fixed<F, L<Ls...>, C> {
-			template <typename... Ts>
-			using f = typename dcall<C, sizeof...(Ts)>::template f<
-			        typename dcall<F, sizeof...(Ts)>::template f<Ls, Ts>...>;
-		};
-		/// \exclude
-		template <typename F, template <typename...> class L1, template <typename...> class L2,
-		          typename... L1s, typename... L2s, typename C>
-		struct zip_fixed<F, L1<L1s...>, L2<L2s...>, C> {
-			template <typename... Ts>
-			using f = typename dcall<C, sizeof...(Ts)>::template f<
-			        typename dcall<F, sizeof...(Ts)>::template f<L1s, L2s, Ts>...>;
-		};
-
-		/// \brief binary transform of an index sequence and the dynamic input sequence
-		template <typename F, typename C>
-		struct zip_with_index {
-			template <typename... Ts>
-			using f = typename zip_fixed<F, call<make_int_sequence<>, uint_<sizeof...(Ts)>>,
-			                             C>::template f<Ts...>;
-		};
+			/// \brief binary transform of an index sequence and the dynamic input sequence
+			template <typename F, typename C>
+			struct zip_with_index {
+				template <typename... Ts>
+				using f = typename zip_fixed<F, call<make_int_sequence<>, uint_<sizeof...(Ts)>>,
+				                             C>::template f<Ts...>;
+			};
+		} // namespace detail
 		namespace eager {
 			template <template <typename...> class Func, typename... Lists>
 			using zip_with = call<zip_with<cfe<Func>>, Lists...>;
