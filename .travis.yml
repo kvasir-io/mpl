@@ -95,6 +95,7 @@ matrix:
       env:
         - TOOLSET=clang++-3.9
         - CPP_EXTRA_FEATURES="cxx_relaxed_constexpr"
+	- LIBCXX=On
 
     - os: osx
       compiler: clang
