@@ -34,4 +34,4 @@ namespace {
 	                                                       foo_is_same>,
 	                           mpl::list<void, char, short>>{},
 	              "");
-}
+} // namespace

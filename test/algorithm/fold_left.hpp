@@ -21,4 +21,4 @@ namespace {
 	                                           uint_<0>, add>,
 	                     uint_<10>>::value,
 	        "");
-}
+} // namespace

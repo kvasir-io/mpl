@@ -19,4 +19,4 @@ namespace {
 	static_assert(std::is_same<a, b>{}, "");
 
 	static_assert(std::is_same<mpl::eager::make_int_sequence<mpl::int_<0>>, mpl::list<>>{}, "");
-}
+} // namespace

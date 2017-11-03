@@ -32,4 +32,4 @@ namespace {
 	                           bar_list<foo_list<void, void>, foo_list<void, char>,
 	                                    foo_list<char, void>, foo_list<char, char>>>::value,
 	              "");
-}
+} // namespace

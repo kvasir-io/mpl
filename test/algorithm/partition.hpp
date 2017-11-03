@@ -18,4 +18,4 @@ namespace partition_test {
 	using p           = eager::partition<l, less_than_5>;
 	static_assert(std::is_same<p, list<list<int_<7>, int_<8>>, list<int_<1>, int_<2>>>>::value,
 	              "partition error");
-}
+} // namespace partition_test

@@ -26,8 +26,8 @@ namespace {
 
 	using mpl::int_;
 
-	using ss_test_list = mpl::list<int_<3>, int_<0>, int_<7>, int_<2>, int_<1>, int_<3>, int_<4>,
-	                               int_<6>, int_<5>>;
+	using ss_test_list   = mpl::list<int_<3>, int_<0>, int_<7>, int_<2>, int_<1>, int_<3>, int_<4>,
+                                   int_<6>, int_<5>>;
 	using ss_expect_list = mpl::list<int_<0>, int_<1>, int_<2>, int_<3>, int_<3>, int_<4>, int_<5>,
 	                                 int_<6>, int_<7>>;
 
@@ -37,4 +37,4 @@ namespace {
 	              "Stable sort is not sort");
 
 	using empty_ss_test = mpl::eager::stable_sort<mpl::list<>>;
-}
+} // namespace

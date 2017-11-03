@@ -4,6 +4,7 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
+#include <tuple>
 #include <type_traits>
 #include <tuple>
 
@@ -15,12 +16,15 @@ namespace {
 	using namespace kvasir::mpl;
 	template <typename T>
 	using less_than_5 = bool_<(T::value < 5)>;
-	struct filter_test{
-		filter_test(){
-			call<filter<cfe<less_than_5>>,int_<1>, int_<2>, int_<7>, int_<8>>{} = list<int_<1>, int_<2>>{};
-			call<filter<cfe<less_than_5>>,int_<9>, int_<2>, int_<7>, int_<8>>{} = list<int_<2>>{};
-			call<filter<cfe<less_than_5>>>{} = list<>{};
-			call<filter<cfe<less_than_5>,cfe<std::tuple>>,int_<1>, int_<2>, int_<7>, int_<8>>{} = std::tuple<int_<1>, int_<2>>{};
+	struct filter_test {
+		filter_test() {
+			call<filter<cfe<less_than_5>>, int_<1>, int_<2>, int_<7>, int_<8>>{} =
+			        list<int_<1>, int_<2>>{};
+			call<filter<cfe<less_than_5>>, int_<9>, int_<2>, int_<7>, int_<8>>{} = list<int_<2>>{};
+			call<filter<cfe<less_than_5>>>{}                                     = list<>{};
+			call<filter<cfe<less_than_5>, cfe<std::tuple>>, int_<1>, int_<2>, int_<7>, int_<8>>{} =
+			        std::tuple<int_<1>, int_<2>>{};
 		}
 	};
-}
+} // namespace
+
