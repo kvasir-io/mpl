@@ -29,6 +29,10 @@ namespace kvasir {
 		template <typename C, typename... Ts>
 		using call = typename dcall<C, sizeof...(Ts)>::template f<Ts...>;
 
+		/// \brief call a continuation (left parameter) with a list
+		template <typename C, typename... Ts>
+		using ucall = typename dcall<unpack<C>, sizeof...(Ts)>::template f<Ts...>;
+
 		template <typename C = identity>
 		struct call_f {
 			template <typename... Ts>
