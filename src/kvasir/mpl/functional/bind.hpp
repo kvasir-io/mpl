@@ -26,7 +26,7 @@ namespace kvasir {
 		template <template <typename...> class F>
 		struct cfl<F, identity> {
 			template <typename... Ts>
-			using f = typename dcallf<bool(sizeof...(Ts) > 0)>::typename f1<F, Ts...>::type;
+			using f = typename dcallf<bool(sizeof...(Ts) > 0)>::template f1<F, Ts...>::type;
 		};
 
 		/// \brief makes a continuation from an eager metafunction /
