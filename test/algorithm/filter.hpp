@@ -5,7 +5,7 @@
 #pragma once
 
 #include <type_traits>
-#include <tuple>
+//#include <tuple>
 
 #include <kvasir/mpl/algorithm/filter.hpp>
 #include <kvasir/mpl/types/bool.hpp>
@@ -20,7 +20,7 @@ namespace {
 			call<filter<cfe<less_than_5>>,int_<1>, int_<2>, int_<7>, int_<8>>{} = list<int_<1>, int_<2>>{};
 			call<filter<cfe<less_than_5>>,int_<9>, int_<2>, int_<7>, int_<8>>{} = list<int_<2>>{};
 			call<filter<cfe<less_than_5>>>{} = list<>{};
-			call<filter<cfe<less_than_5>,cfe<std::tuple>>,int_<1>, int_<2>, int_<7>, int_<8>>{} = std::tuple<int_<1>, int_<2>>{};
+			call<filter<cfe<less_than_5>,cfe<list>>,int_<1>, int_<2>, int_<7>, int_<8>>{} = list<int_<1>, int_<2>>{};
 		}
 	};
 }
