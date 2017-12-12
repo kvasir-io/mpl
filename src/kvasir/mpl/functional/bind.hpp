@@ -19,13 +19,14 @@ namespace kvasir {
 		template <template <typename...> class F, typename C = identity>
 		struct cfl {
 			template <typename... Ts>
-			using f = typename C::template f<typename F<Ts...>::type>;
+			using f = typename dcall<C, sizeof...(Ts)>::template f<
+			        typename dcallf<bool(sizeof...(Ts) > 0)>::template f1<F, Ts...>::type>;
 		};
 		/// \exclude
 		template <template <typename...> class F>
 		struct cfl<F, identity> {
 			template <typename... Ts>
-			using f = typename F<Ts...>::type;
+			using f = typename dcallf<bool(sizeof...(Ts) > 0)>::typename f1<F, Ts...>::type;
 		};
 
 		/// \brief makes a continuation from an eager metafunction /
