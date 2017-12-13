@@ -11,6 +11,7 @@
 #include "../sequence/push_back.hpp"
 #include "../sequence/size.hpp"
 #include "../types/int.hpp"
+#include "../utility/always.hpp"
 
 namespace kvasir {
 	namespace mpl {
