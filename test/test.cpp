@@ -5,6 +5,7 @@
 
 #include "algorithm/all.hpp"
 #include "algorithm/any.hpp"
+#include "algorithm/combinations.hpp"
 #include "algorithm/count_if.hpp"
 #include "algorithm/filter.hpp"
 #include "algorithm/find_if.hpp"
@@ -30,9 +31,9 @@
 #include "functional/bind.hpp"
 #include "functional/call.hpp"
 #include "functional/compose.hpp"
+#include "functional/flow.hpp"
 #include "functional/fork.hpp"
 #include "functional/identity.hpp"
-#include "functional/flow.hpp"
 
 #include "functions/arithmetic/decrement.hpp"
 #include "functions/arithmetic/divide.hpp"
