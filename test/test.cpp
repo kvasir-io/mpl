@@ -7,6 +7,7 @@
 #include "algorithm/any.hpp"
 #include "algorithm/combinations.hpp"
 #include "algorithm/count_if.hpp"
+#include "algorithm/extreme.hpp"
 #include "algorithm/filter.hpp"
 #include "algorithm/find_if.hpp"
 #include "algorithm/flatten.hpp"
