@@ -6,7 +6,7 @@ include(CTest)
 # create the kvasir_mpl library target
 add_library(kvasir_mpl INTERFACE)
 target_include_directories(kvasir_mpl INTERFACE
-		$<INSTALL_INTERFACE:src>
+		$<INSTALL_INTERFACE:include>
 		$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src>)
 # mpl requires a number of features to compile, this will automatically set the c++ standard version
 # to support those features. The c++ version is not explicitly set, so that cmake can figure
@@ -96,6 +96,5 @@ install(TARGETS kvasir_mpl
 )
 
 install(EXPORT kvasir_mplConfig
-	NAMESPACE kvasir_mpl
 	DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/kvasir_mpl"
 )
