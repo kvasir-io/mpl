@@ -17,14 +17,6 @@ namespace kvasir {
 		template <typename Input, typename F = identity, typename C = listify>
 		using replace_if = transform<if_<F, always<Input>, identity>, C>;
 
-		/// \exclude
-		template <template <typename...> class F, typename Input, template <typename...> class C>
-		struct transform<detail::replace_if_pred<cfe<F, identity>, Input>, cfe<C, identity>> {
-			template <typename... Ts>
-			using f = typename dcallf<(sizeof...(Ts) > 100000)>::template f1<
-			        C, typename conditional<F<Ts>::value>::template f<Input, Ts>...>;
-		};
-
 		namespace eager {
 			template <typename List, typename Input, template <typename...> class Cond = identity>
 			using replace_if = call<unpack<mpl::replace_if<Input, cfe<Cond>>>, List>;
