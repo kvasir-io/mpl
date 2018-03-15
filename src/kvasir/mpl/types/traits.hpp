@@ -372,10 +372,11 @@ namespace kvasir {
 			using f = typename C::template f<bool_<std::has_virtual_destructor<T>::value>>;
 		};
 
-		// template<typename C = identity>struct is_same {
-		//	template<typename T, typename U>
-		//	using f = typename C::template f<bool_<std::is_same<T, U>::value>>;
-		//};
+		template <typename C = identity>
+		struct is_same {
+			template <typename T, typename U>
+			using f = typename C::template f<bool_<std::is_same<T, U>::value>>;
+		};
 		template <typename C = identity>
 		struct is_base_of {
 			template <typename T, typename U>

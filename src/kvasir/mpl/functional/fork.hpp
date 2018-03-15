@@ -26,8 +26,7 @@ namespace kvasir {
 		} // namespace detail
 		/// \brief execute multiple continuations passing all dynamic parameters to each
 		template <typename... Ts>
-		struct fork : rotate<uint_<sizeof...(Ts) - 1>, cfe<detail::fork_impl>>::template f<Ts...> {
-		};
+		struct fork : rotate<uint_<sizeof...(Ts)-1>, cfe<detail::fork_impl>>::template f<Ts...> {};
 		/// \exclude
 		template <typename F0, typename C>
 		struct fork<F0, C> {
@@ -44,8 +43,7 @@ namespace kvasir {
 		/// \brief execute multiple continuations each taking the dynamic parameter corresponding to
 		/// its position
 		template <typename... Ts>
-		struct each : rotate<uint_<sizeof...(Ts) - 1>, cfe<detail::each_impl>>::template f<Ts...> {
-		};
+		struct each : rotate<uint_<sizeof...(Ts)-1>, cfe<detail::each_impl>>::template f<Ts...> {};
 		/// \exclude
 		template <typename F0, typename C>
 		struct each<F0, C> {

@@ -62,8 +62,7 @@ namespace kvasir {
 				          typename T7, typename T8, typename T9, typename T10, typename T11,
 				          typename T12, typename T13, typename T14, typename T15, typename... Ts>
 				using f = typename find_if_impl<
-				        (F<T0>::value ? 1 :
-				                        (F<T1>::value || F<T2>::value || F<T3>::value) ?
+				        (F<T0>::value ? 1 : (F<T1>::value || F<T2>::value || F<T3>::value) ?
 				                        2 :
 				                        (F<T4>::value || F<T5>::value || F<T6>::value ||
 				                         F<T7>::value || F<T8>::value || F<T9>::value ||
@@ -104,8 +103,7 @@ namespace kvasir {
 				          typename T59, typename T60, typename T61, typename T62, typename T63,
 				          typename... Ts>
 				using f = typename find_if_impl<
-				        (F<T0>::value ? 1 :
-				                        (F<T1>::value || F<T2>::value || F<T3>::value) ?
+				        (F<T0>::value ? 1 : (F<T1>::value || F<T2>::value || F<T3>::value) ?
 				                        2 :
 				                        (F<T4>::value || F<T5>::value || F<T6>::value ||
 				                         F<T7>::value || F<T8>::value || F<T9>::value ||
@@ -158,8 +156,7 @@ namespace kvasir {
 				          typename T8, typename T9, typename T10, typename T11, typename T12,
 				          typename T13, typename T14, typename T15, typename... Ts>
 				using f = typename find_if_impl<
-				        (F<T0>::value ? 1 :
-				                        (F<T1>::value || F<T2>::value || F<T3>::value) ?
+				        (F<T0>::value ? 1 : (F<T1>::value || F<T2>::value || F<T3>::value) ?
 				                        2 :
 				                        (F<T4>::value || F<T5>::value || F<T6>::value ||
 				                         F<T7>::value || F<T8>::value || F<T9>::value ||
@@ -187,8 +184,7 @@ namespace kvasir {
 				          typename T58, typename T59, typename T60, typename T61, typename T62,
 				          typename T63, typename... Ts>
 				using f = typename find_if_impl<
-				        (F<T0>::value ? 1 :
-				                        (F<T1>::value || F<T2>::value || F<T3>::value) ?
+				        (F<T0>::value ? 1 : (F<T1>::value || F<T2>::value || F<T3>::value) ?
 				                        2 :
 				                        (F<T4>::value || F<T5>::value || F<T6>::value ||
 				                         F<T7>::value || F<T8>::value || F<T9>::value ||

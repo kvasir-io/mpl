@@ -16,9 +16,9 @@ namespace kvasir {
 	namespace mpl {
 		namespace detail {
 			static constexpr int select_fold_right(const int in) {
-				return /*in >= 256 ? 256 :*/ in >= 64 ?
-				               64 :
-				               in >= 16 ? 16 : in >= 4 ? 4 : in >= 2 ? 2 : in == 1 ? 1 : 0;
+				return /*in >= 256 ? 256 :*/ in >= 64 ? 64 : in >= 16 ?
+				                                        16 :
+				                                        in >= 4 ? 4 : in >= 2 ? 2 : in == 1 ? 1 : 0;
 			}
 			template <int>
 			struct fold_right_impl;
@@ -172,16 +172,15 @@ namespace kvasir {
 		template <typename F, typename C = identity>
 		struct fold_right {
 			template <typename... Ts>
-			using f = typename C::template f<
-			        typename detail::fold_right_impl<detail::select_fold_right(
-			                sizeof...(Ts) - 1)>::template f<F::template f, Ts...>>;
+			using f = typename C::template f<typename detail::fold_right_impl<
+			        detail::select_fold_right(sizeof...(Ts)-1)>::template f<F::template f, Ts...>>;
 		};
 		/// \exclude
 		template <template <typename...> class F, typename C>
 		struct fold_right<cfe<F, identity>, C> {
 			template <typename... Ts>
 			using f = typename C::template f<typename detail::fold_right_impl<
-			        detail::select_fold_right(sizeof...(Ts) - 1)>::template f<F, Ts...>>;
+			        detail::select_fold_right(sizeof...(Ts)-1)>::template f<F, Ts...>>;
 		};
 
 		namespace eager {

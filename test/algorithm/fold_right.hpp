@@ -77,10 +77,10 @@ namespace {
 	                           mpl::list<void, char, short, int>>::value,
 	              "");
 
-	template<typename T>
+	template <typename T>
 	struct fold_right_cont_test {
 		template <typename... Ts>
 		using f = typename mpl::dcall<mpl::fold_right<mpl::cfe<add>>,
-		                         sizeof...(Ts)>::template f<uint_<1>, Ts...>;
+		                              sizeof...(Ts)>::template f<uint_<1>, Ts...>;
 	};
 }
