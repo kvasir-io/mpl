@@ -8,8 +8,8 @@
 
 #include <tuple>
 #include <kvasir/mpl/algorithm/flatten.hpp>
+#include <kvasir/mpl/functional/call.hpp>
 #include <kvasir/mpl/types/list.hpp>
-
 namespace {
 	using namespace kvasir::mpl;
 	list<> t1 = call<flatten<>, list<list<list<>, list<>>, list<>>, list<>>{};
