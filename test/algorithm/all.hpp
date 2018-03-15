@@ -12,10 +12,21 @@
 #include <kvasir/mpl/types/list.hpp>
 
 namespace {
-	template <typename T>
-	using comp = std::is_same<int, T>;
+	struct all_test {
+		template <typename T>
+		using comp = std::is_same<int, T>;
 
-	using namespace kvasir;
-	static_assert(mpl::eager::all<mpl::list<int, int, int, int>, comp>::value, "");
-	static_assert(!mpl::eager::all<mpl::list<int, int, bool, int>, comp>::value, "");
+		all_test() {
+			using namespace kvasir;
+			using namespace mpl;
+
+			call<all<cfe<comp>>, int, int, int, int>{} = true_{};
+			call<all<cfe<comp>>, int, int, bool, int>{} = false_{};
+
+			call<all<cfe<comp>>, int, int, int, int>{} = true_{};
+			call<all<cfe<comp>>, int, int, bool, int>{} = false_{};
+
+		}
+	};
+
 }
