@@ -6,8 +6,10 @@
 
 #include "../algorithm/transform.hpp"
 #include "../functional/call.hpp"
+#include "../functional/flow.hpp"
 #include "../functional/identity.hpp"
 #include "../sequence/join.hpp"
+#include "../utility/always.hpp"
 #include "../utility/conditional.hpp"
 
 namespace kvasir {

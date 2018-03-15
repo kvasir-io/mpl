@@ -11,13 +11,14 @@ namespace kvasir {
 		namespace detail {
 			template <template <class...> class L, class T>
 			struct flatten_element_impl {
-				using type = L<T>;
+				using type = list<T>;
 			};
 
 			template <template <class...> class L, class... Ts>
 			struct flatten_element_impl<L, L<Ts...>> {
-				using type = typename detail::join_select<detail::select_join_size(sizeof...(Ts))>::
-				        template f<list, typename flatten_element_impl<L, Ts>::type...>::type;
+				using type = typename detail::join_select<detail::select_join_size(sizeof...(
+				        Ts))>::template f<list,
+				                          typename flatten_element_impl<L, Ts>::type...>::type;
 			};
 		} // namespace detail
 		/// \brief converts a tree or list of lists into one list containing the contents of all
