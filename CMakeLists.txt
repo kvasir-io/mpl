@@ -1,9 +1,12 @@
 cmake_minimum_required(VERSION 3.0)
 project(kvasir_mpl)
 
+include(CTest)
+
 # create the kvasir_mpl library target
 add_library(kvasir_mpl INTERFACE)
 target_include_directories(kvasir_mpl INTERFACE
+		$<INSTALL_INTERFACE:include>
 		$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src>)
 # mpl requires a number of features to compile, this will automatically set the c++ standard version
 # to support those features. The c++ version is not explicitly set, so that cmake can figure
@@ -20,12 +23,14 @@ target_compile_features(kvasir_mpl INTERFACE
 		cxx_user_literals
 		${CPP_EXTRA_FEATURES})
 
-add_executable(kvasir_mpl_test test/test.cpp)
-target_link_libraries(kvasir_mpl_test kvasir_mpl)
-target_compile_options(kvasir_mpl_test PUBLIC -ftemplate-depth=2048 -Wall) # -std=gnu++1z)
+if(BUILD_TESTING)
+	add_executable(kvasir_mpl_test test/test.cpp)
+	target_link_libraries(kvasir_mpl_test kvasir_mpl)
+	target_compile_options(kvasir_mpl_test PUBLIC -ftemplate-depth=2048 -Wall) # -std=gnu++1z)
+endif()
 
 option(MAKE_INCLUDE_TESTS OFF)
-if (MAKE_INCLUDE_TESTS)
+if (BUILD_TESTING AND MAKE_INCLUDE_TESTS)
 	function(convert_name out filename)
 		string(REGEX REPLACE "[\\./]" "_" result "${filename}")
 		set(${out} ${result} PARENT_SCOPE)
@@ -78,3 +83,18 @@ if (STANDARDESE)
 			WORKING_DIRECTORY ${KVASIR_MPL_DOCS_DIR}
 	)
 endif (STANDARDESE)
+
+include(GNUInstallDirs)
+
+install(DIRECTORY src/
+	DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
+)
+
+install(TARGETS kvasir_mpl
+	EXPORT kvasir_mplConfig
+	DESTINATION ${CMAKE_INSTALL_LIBDIR}
+)
+
+install(EXPORT kvasir_mplConfig
+	DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/kvasir_mpl"
+)
