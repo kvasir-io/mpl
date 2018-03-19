@@ -11,7 +11,7 @@
 #include <kvasir/mpl/functional/call.hpp>
 #include <kvasir/mpl/types/list.hpp>
 
-namespace {
+namespace product_test {
 	namespace mpl = kvasir::mpl;
 
 	template <typename...>
