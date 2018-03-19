@@ -3,6 +3,7 @@
 //    (See accompanying file LICENSE.md or copy at
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
+
 #include <type_traits>
 #include "bool.hpp"
 #include "../compatability/compatability.hpp"
@@ -356,16 +357,20 @@ namespace kvasir {
 			template <typename T>
 			using f = typename C::template f<bool_<std::is_destructible<T>::value>>;
 		};
+#if (__has_feature(is_trivially_destructible))
 		template <typename C = identity>
 		struct is_trivially_destructible {
 			template <typename T>
 			using f = typename C::template f<bool_<std::is_trivially_destructible<T>::value>>;
 		};
+#endif
+#if (__has_feature(is_nothrow_destructible))
 		template <typename C = identity>
 		struct is_nothrow_destructible {
 			template <typename T>
 			using f = typename C::template f<bool_<std::is_nothrow_destructible<T>::value>>;
 		};
+#endif
 		template <typename C = identity>
 		struct has_virtual_destructor {
 			template <typename T>

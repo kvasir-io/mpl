@@ -4,10 +4,20 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
+#include <kvasir/mpl/functional/call.hpp>
 #include <kvasir/mpl/functions/bitwise/bitwise_complement.hpp>
+#include <kvasir/mpl/types/int.hpp>
 #include <kvasir/mpl/types/integral_constant.hpp>
-#include <type_traits>
 
+namespace {
+	struct bitwise_complement_test {
+		bitwise_complement_test() {
+			using namespace kvasir::mpl;
 
-static_assert(std::is_same<kvasir::mpl::eager::bitwise_complement<kvasir::mpl::integral_constant<unsigned, 0>>, kvasir::mpl::integral_constant<unsigned, (~0U)>>::value, "");
-static_assert(std::is_same<kvasir::mpl::bitwise_complement<>::template f<kvasir::mpl::integral_constant<unsigned, 0>>, kvasir::mpl::integral_constant<unsigned, (~0U)>>::value, "");
+			eager::bitwise_complement<uint_<0>>{} =
+			        integral_constant<unsigned long long, (~0ull)>{};
+			call<bitwise_complement<>, uint_<0>>{} =
+			        integral_constant<unsigned long long, (~0ull)>{};
+		}
+	};
+}

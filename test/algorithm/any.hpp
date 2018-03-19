@@ -16,8 +16,8 @@ namespace {
 		using comp = std::is_same<int, T>;
 
 		any_test() {
-			using namespace kvasir::mpl;	
-			call<any<cfe<comp>>, void, char, int, float>{} = true_{};
+			using namespace kvasir::mpl;
+			call<any<cfe<comp>>, void, char, int, float>{}  = true_{};
 			call<any<cfe<comp>>, void, char, bool, float>{} = false_{};
 			call<any<cfe<comp>>>{} = false_{};
 		}

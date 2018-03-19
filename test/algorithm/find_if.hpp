@@ -8,12 +8,15 @@
 
 #include <kvasir/mpl/algorithm/find_if.hpp>
 #include <kvasir/mpl/functional/bind.hpp>
+#include <kvasir/mpl/functional/call.hpp>
 #include <kvasir/mpl/utility/is_same.hpp>
 
 namespace {
-	using namespace kvasir;
-	static_assert(std::is_same<mpl::eager::find_if<mpl::list<void, char, short, int>,
-	                                               mpl::same_as<char>::template f>,
-	                           mpl::list<char, short, int>>{},
-	              "");
+	struct find_if_test {
+		find_if_test() {
+			using namespace kvasir::mpl;
+
+			call<find_if<same_as<char>>, void, char, short, int>{} = list<char, short, int>{};
+		}
+	};
 }

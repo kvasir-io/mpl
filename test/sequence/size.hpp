@@ -4,15 +4,21 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
+#include <kvasir/mpl/functional/call.hpp>
 #include <kvasir/mpl/sequence/size.hpp>
 
-namespace size_test {
-	using namespace kvasir::mpl;
-	static_assert(size<>::template f<>::value == 0, "size test failed");
-	static_assert(size<>::template f<int>::value == 1, "size test failed");
-	static_assert(size<>::template f<int, int>::value == 2, "size test failed");
-	static_assert(size<>::template f<int, int, int>::value == 3, "size test failed");
-	static_assert(size<>::template f<int, int, int, int>::value == 4, "size test failed");
-	static_assert(size<>::template f<int, int, int, int, int>::value == 5, "size test failed");
-	static_assert(size<>::template f<int, int, int, int, int, int>::value == 6, "size test failed");
+namespace {
+	struct size_test {
+		size_test() {
+			using namespace kvasir::mpl;
+
+			call<size<>>{} = uint_<0>{};
+			call<size<>, int>{} = uint_<1>{};
+			call<size<>, int, int>{} = uint_<2>{};
+			call<size<>, int, int, int>{} = uint_<3>{};
+			call<size<>, int, int, int, int>{} = uint_<4>{};
+			call<size<>, int, int, int, int, int>{} = uint_<5>{};
+			call<size<>, int, int, int, int, int, int>{} = uint_<6>{};
+		}
+	};
 }

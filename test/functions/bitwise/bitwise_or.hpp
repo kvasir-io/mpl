@@ -4,10 +4,18 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
+#include <kvasir/mpl/functional/call.hpp>
 #include <kvasir/mpl/functions/bitwise/bitwise_or.hpp>
+#include <kvasir/mpl/types/int.hpp>
 #include <kvasir/mpl/types/integral_constant.hpp>
-#include <type_traits>
 
+namespace {
+	struct bitwise_or_test {
+		bitwise_or_test() {
+			using namespace kvasir::mpl;
 
-static_assert(std::is_same<kvasir::mpl::eager::bitwise_or<kvasir::mpl::integral_constant<unsigned, 0>, kvasir::mpl::integral_constant<unsigned, 1>>, kvasir::mpl::integral_constant<unsigned, 1>>::value, "");
-static_assert(std::is_same<kvasir::mpl::bitwise_or<>::template f<kvasir::mpl::integral_constant<unsigned, 0>, kvasir::mpl::integral_constant<unsigned, 1>>, kvasir::mpl::integral_constant<unsigned, 1>>::value, "");
+			eager::bitwise_or<uint_<0>, uint_<1>>{} = integral_constant<unsigned long long, 1>{};
+			call<bitwise_or<>, uint_<0>, uint_<1>>{} = integral_constant<unsigned long long, 1>{};
+		}
+	};
+}
