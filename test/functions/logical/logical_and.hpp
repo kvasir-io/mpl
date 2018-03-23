@@ -4,10 +4,18 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
+#include <kvasir/mpl/functional/call.hpp>
 #include <kvasir/mpl/functions/logical/logical_and.hpp>
-#include <kvasir/mpl/types/integral_constant.hpp>
-#include <type_traits>
+#include <kvasir/mpl/types/bool.hpp>
+#include <kvasir/mpl/types/int.hpp>
 
+namespace {
+	struct logical_and_test {
+		logical_and_test() {
+			using namespace kvasir::mpl;
 
-static_assert(std::is_same<kvasir::mpl::eager::logical_and<kvasir::mpl::integral_constant<int, 2>, kvasir::mpl::integral_constant<int, 1>>, kvasir::mpl::bool_<1>>::value, "");
-static_assert(std::is_same<kvasir::mpl::logical_and<>::template f<kvasir::mpl::integral_constant<int, 2>, kvasir::mpl::integral_constant<int, 1>>, kvasir::mpl::bool_<1>>::value, "");
+			eager::logical_and<uint_<2>, uint_<1>>{} = bool_<true>{};
+			call<logical_and<>, uint_<2>, uint_<1>>{} = bool_<true>{};
+		}
+	};
+}

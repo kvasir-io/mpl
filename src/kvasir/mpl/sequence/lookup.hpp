@@ -177,7 +177,7 @@ namespace kvasir {
 				          typename T9 = void, typename T10 = void, typename T11 = void,
 				          typename T12 = void, typename T13 = void, typename T14 = void,
 				          typename T15 = void, typename...>
-				using f = detail::rlist<
+				using f                = detail::rlist<
 				        indexed<indexed<T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13,
 				                        T14, T15>>,
 				        detail::rlist<

@@ -11,7 +11,7 @@
 #include <kvasir/mpl/types/int.hpp>
 #include <kvasir/mpl/types/list.hpp>
 
-namespace {
+namespace stable_sort_test {
 	namespace mpl = kvasir::mpl;
 
 	template <typename A, typename B>

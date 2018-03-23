@@ -20,13 +20,11 @@ namespace {
 			using namespace kvasir;
 			using namespace mpl;
 
-			call<all<cfe<comp>>, int, int, int, int>{} = true_{};
+			call<all<cfe<comp>>, int, int, int, int>{}  = true_{};
 			call<all<cfe<comp>>, int, int, bool, int>{} = false_{};
 
-			call<all<cfe<comp>>, int, int, int, int>{} = true_{};
+			call<all<cfe<comp>>, int, int, int, int>{}  = true_{};
 			call<all<cfe<comp>>, int, int, bool, int>{} = false_{};
-
 		}
 	};
-
 }

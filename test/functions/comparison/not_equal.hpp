@@ -4,10 +4,17 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
+#include <kvasir/mpl/functional/call.hpp>
 #include <kvasir/mpl/functions/comparison/not_equal.hpp>
-#include <kvasir/mpl/types/integral_constant.hpp>
-#include <type_traits>
+#include <kvasir/mpl/types/int.hpp>
 
+namespace {
+	struct not_equal_test {
+		not_equal_test() {
+			using namespace kvasir::mpl;
 
-static_assert(std::is_same<kvasir::mpl::eager::not_equal<kvasir::mpl::integral_constant<int, 0>, kvasir::mpl::integral_constant<int, 1>>, kvasir::mpl::bool_<1>>::value, "");
-static_assert(std::is_same<kvasir::mpl::not_equal<>::template f<kvasir::mpl::integral_constant<int, 0>, kvasir::mpl::integral_constant<int, 1>>, kvasir::mpl::bool_<1>>::value, "");
+			eager::not_equal<uint_<0>, uint_<1>>{} = bool_<true>{};
+			call<not_equal<>, uint_<0>, uint_<1>>{} = bool_<true>{};
+		}
+	};
+}
