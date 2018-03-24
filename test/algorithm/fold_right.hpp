@@ -13,8 +13,7 @@
 #include <kvasir/mpl/types/list.hpp>
 
 namespace {
-	namespace mpl = kvasir::mpl;
-	using mpl::uint_;
+	using namespace kvasir::mpl;
 
 	template <typename T1, typename T2>
 	using add = uint_<(T1::value + T2::value)>;
@@ -22,65 +21,43 @@ namespace {
 	template <typename T, typename U>
 	struct push;
 	template <typename... Ts, typename U>
-	struct push<mpl::list<Ts...>, U> {
-		using type = mpl::list<U, Ts...>;
+	struct push<list<Ts...>, U> {
+		using type = list<U, Ts...>;
 	};
-
-	static_assert(
-	        std::is_same<mpl::eager::fold_right<mpl::list<uint_<1>, uint_<2>, uint_<3>, uint_<4>>,
-	                                            uint_<0>, add>,
-	                     uint_<10>>::value,
-	        "");
-
-	static_assert(std::is_same<mpl::eager::fold_right<mpl::list<uint_<1>, uint_<2>>, mpl::list<>,
-	                                                  mpl::cfl<push>::template f>,
-	                           mpl::list<uint_<1>, uint_<2>>>::value,
-	              "");
-	static_assert(std::is_same<mpl::eager::fold_right<mpl::list<uint_<1>, uint_<2>, uint_<3>>,
-	                                                  mpl::list<>, mpl::cfl<push>::template f>,
-	                           mpl::list<uint_<1>, uint_<2>, uint_<3>>>::value,
-	              "");
-	static_assert(
-	        std::is_same<mpl::eager::fold_right<mpl::list<uint_<1>, uint_<2>, uint_<3>, uint_<4>>,
-	                                            mpl::list<>, mpl::cfl<push>::template f>,
-	                     mpl::list<uint_<1>, uint_<2>, uint_<3>, uint_<4>>>::value,
-	        "");
-	static_assert(std::is_same<mpl::eager::fold_right<
-	                                   mpl::list<uint_<1>, uint_<2>, uint_<3>, uint_<4>, uint_<5>>,
-	                                   mpl::list<>, mpl::cfl<push>::template f>,
-	                           mpl::list<uint_<1>, uint_<2>, uint_<3>, uint_<4>, uint_<5>>>::value,
-	              "");
-	static_assert(
-	        std::is_same<
-	                mpl::eager::fold_right<
-	                        mpl::list<uint_<1>, uint_<2>, uint_<3>, uint_<4>, uint_<5>, uint_<6>>,
-	                        mpl::list<>, mpl::cfl<push>::template f>,
-	                mpl::list<uint_<1>, uint_<2>, uint_<3>, uint_<4>, uint_<5>, uint_<6>>>::value,
-	        "");
-	static_assert(
-	        std::is_same<mpl::eager::fold_right<mpl::list<uint_<1>, uint_<2>, uint_<3>, uint_<4>,
-	                                                      uint_<5>, uint_<6>, uint_<7>>,
-	                                            mpl::list<>, mpl::cfl<push>::template f>,
-	                     mpl::list<uint_<1>, uint_<2>, uint_<3>, uint_<4>, uint_<5>, uint_<6>,
-	                               uint_<7>>>::value,
-	        "");
 
 	template <typename C, typename T>
 	struct fold_right_foo {
 		template <typename... Ts>
-		using f = mpl::call<C, Ts..., T>;
+		using f = call<C, Ts..., T>;
 	};
-
-	static_assert(std::is_same<mpl::call<mpl::call<mpl::fold_right<mpl::cfe<fold_right_foo>>,
-	                                               mpl::listify, char, short, int>,
-	                                     void>,
-	                           mpl::list<void, char, short, int>>::value,
-	              "");
 
 	template <typename T>
 	struct fold_right_cont_test {
 		template <typename... Ts>
-		using f = typename mpl::dcall<mpl::fold_right<mpl::cfe<add>>,
-		                              sizeof...(Ts)>::template f<uint_<1>, Ts...>;
+		using f = typename dcall<fold_right<cfe<add>>, sizeof...(Ts)>::template f<uint_<1>, Ts...>;
+	};
+
+	struct fold_right_test {
+
+		fold_right_test() {
+			eager::fold_right<list<uint_<1>, uint_<2>, uint_<3>, uint_<4>>, uint_<0>, add>{} =
+			        uint_<10>{};
+
+			call<fold_right<cfl<push>>, list<>, uint_<1>, uint_<2>>{} = list<uint_<1>, uint_<2>>{};
+			call<fold_right<cfl<push>>, list<>, uint_<1>, uint_<2>, uint_<3>>{} =
+			        list<uint_<1>, uint_<2>, uint_<3>>{};
+			call<fold_right<cfl<push>>, list<>, uint_<1>, uint_<2>, uint_<3>, uint_<4>>{} =
+			        list<uint_<1>, uint_<2>, uint_<3>, uint_<4>>{};
+			call<fold_right<cfl<push>>, list<>, uint_<1>, uint_<2>, uint_<3>, uint_<4>,
+			     uint_<5>>{} = list<uint_<1>, uint_<2>, uint_<3>, uint_<4>, uint_<5>>{};
+			call<fold_right<cfl<push>>, list<>, uint_<1>, uint_<2>, uint_<3>, uint_<4>, uint_<5>,
+			     uint_<6>>{} = list<uint_<1>, uint_<2>, uint_<3>, uint_<4>, uint_<5>, uint_<6>>{};
+			call<fold_right<cfl<push>>, list<>, uint_<1>, uint_<2>, uint_<3>, uint_<4>, uint_<5>,
+			     uint_<6>, uint_<7>>{} =
+			        list<uint_<1>, uint_<2>, uint_<3>, uint_<4>, uint_<5>, uint_<6>, uint_<7>>{};
+
+			call<call<fold_right<cfe<fold_right_foo>>, listify, char, short, int>, void>{} =
+			        list<void, char, short, int>{};
+		}
 	};
 }

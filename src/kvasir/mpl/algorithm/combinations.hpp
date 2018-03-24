@@ -4,6 +4,7 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
+#include "../algorithm/reverse.hpp"
 #include "../functional/flow.hpp"
 #include "../functions/comparison/greater_than.hpp"
 #include "../sequence/front.hpp"
@@ -38,7 +39,9 @@ namespace kvasir {
 				using f = detail::rlist<
 				        list<call<join<F>, list<T0>, PrevTypes, list<Ts...>>>,
 				        typename combinations_single_impl<combinations_single_impl_select(sizeof...(
-				                Ts))>::template f<F, eager::join<PrevTypes, list<T0>>, Ts...>>;
+				                Ts))>::template f<F,
+				                                  typename join<>::template f<PrevTypes, list<T0>>,
+				                                  Ts...>>;
 			};
 
 			template <>
@@ -47,8 +50,10 @@ namespace kvasir {
 				using f = detail::rlist<
 				        list<call<join<F>, list<T0>, PrevTypes, list<T1>, list<Ts...>>,
 				             call<join<F>, list<T1>, PrevTypes, list<T0>, list<Ts...>>>,
-				        typename combinations_single_impl<combinations_single_impl_select(sizeof...(
-				                Ts))>::template f<F, eager::join<PrevTypes, list<T0, T1>>, Ts...>>;
+				        typename combinations_single_impl<combinations_single_impl_select(
+				                sizeof...(Ts))>::
+				                template f<F, typename join<>::template f<PrevTypes, list<T0, T1>>,
+				                           Ts...>>;
 			};
 
 			template <typename F = listify, typename C = listify>
@@ -64,7 +69,7 @@ namespace kvasir {
 			struct combinations_impl {
 				template <typename T, typename... Ts>
 				using f = typename combinations_single<
-				        combinations_impl<(n - 1), FrontC, FullC, Prev..., T>,
+				        combinations_impl<(n - 1), FrontC, FullC, T, Prev...>,
 				        join<>>::template f<Ts...>;
 			};
 
@@ -72,14 +77,16 @@ namespace kvasir {
 			struct combinations_impl<1, FrontC, FullC, Prev...> {
 				template <typename T, typename... Ts>
 				using f = typename combinations_single<
-				        combinations_impl<0, FrontC, FullC, Prev..., T>,
+				        combinations_impl<0, FrontC, FullC, T, Prev...>,
 				        listify>::template f<Ts...>;
 			};
 
 			template <typename FrontC, typename FullC, typename... Prev>
 			struct combinations_impl<0, FrontC, FullC, Prev...> {
 				template <typename T, typename... Ts>
-				using f = call<FullC, call<FrontC, Prev..., T>, Ts...>;
+				// reverse ordering is needed as a workaround for a bug in gcc <= 4.8, which
+				// doesn't like non-pack parameters as the last argument in a template instantiation
+				using f = call<FullC, call<reverse<FrontC>, T, Prev...>, Ts...>;
 			};
 		}
 

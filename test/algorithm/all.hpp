@@ -8,13 +8,20 @@
 #include <kvasir/mpl/types/list.hpp>
 #include <kvasir/mpl/utility/same_as.hpp>
 
-namespace all_test {
-	using namespace kvasir;
-	using namespace mpl;
+namespace {
+	struct all_test {
+		template <typename T>
+		using comp = std::is_same<int, T>;
 
-	true_ t1  = call<all<same_as<int>>, int, int, int, int>{};
-	false_ t2 = call<all<same_as<int>>, int, int, bool, int>{};
+		all_test() {
+			using namespace kvasir;
+			using namespace mpl;
 
-	true_ t3  = call<all<same_as<int>>, int>{};
-	false_ t4 = call<all<same_as<int>>, bool>{};
+			call<all<cfe<comp>>, int, int, int, int>{}  = true_{};
+			call<all<cfe<comp>>, int, int, bool, int>{} = false_{};
+
+			call<all<cfe<comp>>, int, int, int, int>{}  = true_{};
+			call<all<cfe<comp>>, int, int, bool, int>{} = false_{};
+		}
+	};
 }
