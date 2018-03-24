@@ -4,16 +4,16 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
-#include <kvasir/mpl/algorithm/make_sequence.hpp>
 #include <kvasir/mpl/algorithm/transform.hpp>
 #include <kvasir/mpl/sequence/join.hpp>
+#include <kvasir/mpl/sequence/make_sequence.hpp>
 
 namespace {
 	struct join_test {
 		template <int n>
 		void join_test_impl() {
 			using namespace kvasir::mpl;
-			using seq = eager::make_int_sequence<int_<n>>;
+			using seq = call<make_int_sequence<>, int_<n>>;
 			seq{}     = call<unpack<transform<listify, join<>>>, seq>{};
 		}
 

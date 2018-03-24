@@ -6,36 +6,13 @@
 
 #include <kvasir/mpl/sequence/at.hpp>
 
-#include <type_traits>
-
-#include <kvasir/mpl/types/list.hpp>
-
 namespace {
-	namespace mpl = kvasir::mpl;
+	using namespace kvasir::mpl;
 
-	static_assert(std::is_same<mpl::eager::at<mpl::list<void, char, short>, 1>, char>::value, "");
-	static_assert(
-	        std::is_same<
-	                mpl::eager::at<mpl::list<int, int, int, int, int, int, int, void, char, short>,
-	                               7>,
-	                void>::value,
-	        "");
-	static_assert(
-	        std::is_same<
-	                mpl::eager::at<mpl::list<int, int, int, int, int, int, int, void, char, short>,
-	                               8>,
-	                char>::value,
-	        "");
-	static_assert(
-	        std::is_same<
-	                mpl::eager::at<mpl::list<int, int, int, int, int, int, int, void, char, short>,
-	                               9>,
-	                short>::value,
-	        "");
-	static_assert(
-	        std::is_same<mpl::eager::at<mpl::list<int, int, int, int, int, int, int, int, int, int,
-	                                              int, int, int, int, int, int, void, char, short>,
-	                                    17>,
-	                     char>::value,
-	        "");
+	char c1  = call<at<int_<1>>, void, char, short>{};
+	char c2  = call<at<int_<7>>, int, int, int, int, int, int, int, char, void, short>{};
+	char c3  = call<at<int_<8>>, int, int, int, int, int, int, int, void, char, short>{};
+	short c4 = call<at<int_<9>>, int, int, int, int, int, int, int, void, char, short>{};
+	char c5  = call<at<int_<17>>, int, int, int, int, int, int, int, int, int, int, int, int, int,
+	               int, int, int, void, char, short>{};
 }

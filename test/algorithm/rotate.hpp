@@ -4,10 +4,10 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
-#include <kvasir/mpl/algorithm/make_sequence.hpp>
 #include <kvasir/mpl/algorithm/rotate.hpp>
 #include <kvasir/mpl/sequence/drop.hpp>
 #include <kvasir/mpl/sequence/join.hpp>
+#include <kvasir/mpl/sequence/make_sequence.hpp>
 
 namespace {
 	struct rotate_test {

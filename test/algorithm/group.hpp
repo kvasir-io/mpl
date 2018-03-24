@@ -5,7 +5,7 @@
 #pragma once
 
 #include <kvasir/mpl/algorithm/group.hpp>
-#include <kvasir/mpl/algorithm/make_sequence.hpp>
+#include <kvasir/mpl/sequence/make_sequence.hpp>
 
 namespace {
 	struct group_test {

@@ -4,12 +4,9 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
-#include <type_traits>
-
 #include <kvasir/mpl/algorithm/find_if.hpp>
-#include <kvasir/mpl/functional/bind.hpp>
 #include <kvasir/mpl/functional/call.hpp>
-#include <kvasir/mpl/utility/is_same.hpp>
+#include <kvasir/mpl/utility/same_as.hpp>
 
 namespace {
 	struct find_if_test {

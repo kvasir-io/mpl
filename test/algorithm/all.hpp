@@ -5,11 +5,8 @@
 #pragma once
 
 #include <kvasir/mpl/algorithm/all.hpp>
-
-#include <type_traits>
-
-#include <kvasir/mpl/functional/bind.hpp>
 #include <kvasir/mpl/types/list.hpp>
+#include <kvasir/mpl/utility/same_as.hpp>
 
 namespace {
 	struct all_test {

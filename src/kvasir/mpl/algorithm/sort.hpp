@@ -363,9 +363,9 @@ namespace kvasir {
 			                F>,
 			        F>;
 			constexpr unsigned select_sort_loop(const unsigned in) {
-				return /*in >= 256 ? 256 :*/ in >= 64 ?
-				               64 :
-				               in >= 16 ? 16 : in >= 4 ? 4 : in >= 1 ? 1 : 0;
+				return /*in >= 256 ? 256 :*/ in >= 64 ? 64 : in >= 16 ? 16 : in >= 4 ? 4 : in >= 1 ?
+				                                                                       1 :
+				                                                                       0;
 			}
 			template <unsigned I, template <typename...> class F>
 			struct sort_loop;
