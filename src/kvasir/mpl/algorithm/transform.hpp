@@ -35,7 +35,8 @@ namespace kvasir {
 		template <typename F, template <typename...> class C>
 		struct transform<F, cfe<C, identity>> {
 			template <typename... Ts>
-			using f = C<typename F::template f<Ts>...>;
+			using f = typename dcallf<(sizeof...(Ts) <
+			                           100000)>::template f1<C, typename F::template f<Ts>...>;
 		};
 
 		namespace eager {

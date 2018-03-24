@@ -10,7 +10,7 @@ namespace kvasir {
 	namespace mpl {
 		namespace detail {
 			constexpr unsigned extreme_impl_select(unsigned n) {
-				return n >= 4 ? 4 : n >= 2 ? 2 : n >= 1 ? 1 : 0;
+				return n >= 16 ? 16 : n >= 8 ? 8 : n >= 4 ? 4 : n >= 2 ? 2 : n >= 1 ? 1 : 0;
 			}
 
 			/// this implementation of extreme does a tournament-style elimination between the
@@ -43,7 +43,7 @@ namespace kvasir {
 			struct extreme_impl<4> {
 				template <typename C, template <typename...> class Pred, typename T0, typename T1,
 				          typename T2, typename T3, typename... Ts>
-				using f = typename extreme_impl<(
+				using f = typename extreme_impl<extreme_impl_select(
 				        sizeof...(Ts) + 2)>::template f<C, Pred, Pred<T0, T1>, Pred<T2, T3>, Ts...>;
 			};
 
@@ -52,7 +52,7 @@ namespace kvasir {
 				template <typename C, template <typename...> class Pred, typename T0, typename T1,
 				          typename T2, typename T3, typename T4, typename T5, typename T6,
 				          typename T7, typename... Ts>
-				using f = typename extreme_impl<(sizeof...(Ts) + 4)>::template f<
+				using f = typename extreme_impl<extreme_impl_select(sizeof...(Ts) + 4)>::template f<
 				        C, Pred, Pred<T0, T1>, Pred<T2, T3>, Pred<T4, T5>, Pred<T6, T7>, Ts...>;
 			};
 
@@ -62,7 +62,7 @@ namespace kvasir {
 				          typename T2, typename T3, typename T4, typename T5, typename T6,
 				          typename T7, typename T8, typename T9, typename T10, typename T11,
 				          typename T12, typename T13, typename T14, typename T15, typename... Ts>
-				using f = typename extreme_impl<(sizeof...(Ts) + 8)>::template f<
+				using f = typename extreme_impl<extreme_impl_select(sizeof...(Ts) + 8)>::template f<
 				        C, Pred, Pred<T0, T1>, Pred<T2, T3>, Pred<T4, T5>, Pred<T6, T7>,
 				        Pred<T8, T9>, Pred<T10, T11>, Pred<T12, T13>, Pred<T14, T15>, Ts...>;
 			};
