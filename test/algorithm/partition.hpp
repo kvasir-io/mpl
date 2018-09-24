@@ -52,7 +52,8 @@ namespace partition {
 	                  L>;
 
 	constexpr auto same_size_test = mc::test<same_size, 20, mc::gen::list_of<mc::gen::bool_>>;
-}
+} // namespace partition
 
-constexpr auto partition_section = mc::section("partition", partition::ordering_test,
-                                               partition::same_size_test);
+constexpr auto partition_section_t =
+        mc::section("partition", partition::ordering_test, partition::same_size_test);
+extern mc::detail::section_base *partition_section;

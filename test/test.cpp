@@ -2,7 +2,6 @@
 // Distributed under the Boost Software License, Version 1.0.
 //    (See accompanying file LICENSE.md or copy at
 //          http://www.boost.org/LICENSE_1_0.txt)
-
 #include "algorithm/all.hpp"
 #include "algorithm/any.hpp"
 #include "algorithm/count_if.hpp"
@@ -62,7 +61,6 @@
 #include "sequence/push_back.hpp"
 #include "sequence/push_front.hpp"
 #include "sequence/size.hpp"
-
 #include "types/bool.hpp"
 #include "types/int.hpp"
 #include "types/integral_constant.hpp"
@@ -75,14 +73,15 @@
 #include <iostream>
 #include <metacheck.hpp>
 
-constexpr auto testing_result =
+auto testing_result =
         mc::test_all(all_section, any_section, count_if_section, filter_section, find_if_section,
                      flatten_section, fold_left_section, fold_right_section, make_sequence_section,
                      partition_section, product_section, remove_adjacent_section, remove_if_section,
                      reverse_section, sort_section, split_if_section, stable_sort_section,
-                     transform_section, zip_with_section, lookup_section);
+                     transform_section, zip_with_section, lookup_section, size_section);
 
 int main() {
+
 	std::cout << testing_result << std::endl;
 
 	return testing_result;

@@ -42,8 +42,9 @@ namespace filter {
 	                              mpl::unpack<mpl::filter<mpl::logical_not<>>>::template f, L>;
 
 	constexpr auto associative_test = mc::test<associative, 20, mc::gen::list_of<mc::gen::bool_>>;
-}
+} // namespace filter
 
-constexpr auto filter_section =
+constexpr auto filter_section_t =
         mc::section("filter", filter::same_size_test, filter::distributive_test,
                     filter::commutative_test, filter::associative_test);
+extern mc::detail::section_base *filter_section;

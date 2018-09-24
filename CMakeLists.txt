@@ -37,25 +37,26 @@ add_custom_target(kvasir_mpl_test_always_run
 		WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
 
 add_executable(kvasir_mpl_test test/test.cpp
-		test/algorithm/all.hpp
-		test/algorithm/any.hpp
-		test/algorithm/count_if.hpp
-		test/algorithm/filter.hpp
-		test/algorithm/find_if.hpp
-		test/algorithm/flatten.hpp
-		test/algorithm/fold_left.hpp
-		test/algorithm/fold_right.hpp
-		test/algorithm/make_sequence.hpp
-		test/algorithm/partition.hpp
-		test/algorithm/product.hpp
-		test/algorithm/remove_adjacent.hpp
-		test/algorithm/remove_if.hpp
-		test/algorithm/reverse.hpp
-		test/algorithm/sort.hpp
-		test/algorithm/split_if.hpp
-		test/algorithm/stable_sort.hpp
-		test/algorithm/transform.hpp
-		test/algorithm/zip_with.hpp
+		test/algorithm/all.cpp
+		test/algorithm/any.cpp
+		test/algorithm/count_if.cpp
+		test/algorithm/filter.cpp
+		test/algorithm/find_if.cpp
+		test/algorithm/flatten.cpp
+		test/algorithm/fold_left.cpp
+		test/algorithm/fold_right.cpp
+		test/algorithm/lookup.cpp
+		test/algorithm/make_sequence.cpp
+		test/algorithm/partition.cpp
+		test/algorithm/product.cpp
+		test/algorithm/remove_adjacent.cpp
+		test/algorithm/remove_if.cpp
+		test/algorithm/reverse.cpp
+		test/algorithm/sort.cpp
+		test/algorithm/split_if.cpp
+		test/algorithm/stable_sort.cpp
+		test/algorithm/transform.cpp
+		test/algorithm/zip_with.cpp
 		test/functional/bind.hpp
 		test/functional/call.hpp
 		test/functional/compose.hpp
@@ -88,10 +89,11 @@ add_executable(kvasir_mpl_test test/test.cpp
 		test/sequence/at.hpp
 		test/sequence/is_list.hpp
 		test/sequence/join.hpp
+		test/sequence/lookup.cpp
 		test/sequence/pop_front.hpp
 		test/sequence/push_back.hpp
 		test/sequence/push_front.hpp
-		test/sequence/size.hpp
+		test/sequence/size.cpp
 		test/types/bool.hpp
 		test/types/int.hpp
 		test/types/integral_constant.hpp
@@ -99,12 +101,14 @@ add_executable(kvasir_mpl_test test/test.cpp
 		test/types/nothing.hpp
 		test/utility/always.hpp
 		test/utility/conditional.hpp
-		test/utility/is_instance.hpp)
+		test/utility/is_instance.hpp
+		test/testing.hpp)
 target_compile_options(kvasir_mpl_test PUBLIC -ftemplate-depth=2048 -Wall
 		-ftemplate-backtrace-limit=0) # -std=gnu++1z)
 target_link_libraries(kvasir_mpl_test kvasir_mpl)
 add_dependencies(kvasir_mpl_test metacheck kvasir_mpl_test_always_run)
-target_include_directories(kvasir_mpl_test PRIVATE ${CMAKE_BINARY_DIR}/metacheck/src/metacheck/src)
+target_include_directories(kvasir_mpl_test PRIVATE
+		${CMAKE_BINARY_DIR}/mpl/metacheck/src/metacheck/src)
 set_target_properties(kvasir_mpl_test PROPERTIES CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED YES)
 set(CMAKE_CXX_EXTENSIONS NO)

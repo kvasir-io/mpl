@@ -15,6 +15,7 @@ namespace zip_with {
 	                       L>;
 
 	constexpr auto same_test = mc::test<same, 20, mc::gen::list_of<mc::gen::anything>>;
-}
+} // namespace zip_with
 
-constexpr auto zip_with_section = mc::section("zip_with", zip_with::same_test);
+constexpr auto zip_with_section_t = mc::section("zip_with", zip_with::same_test);
+extern mc::detail::section_base *zip_with_section;

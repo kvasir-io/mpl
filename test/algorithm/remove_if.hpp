@@ -18,6 +18,7 @@ namespace remove_if_test {
 
 	constexpr auto distributive_test = mc::test<distributive, 20, mc::gen::list_of<mc::gen::bool_>,
 	                                            mc::gen::list_of<mc::gen::bool_>>;
-}
+} // namespace remove_if_test
 
-constexpr auto remove_if_section = mc::section("remove_if", remove_if_test::distributive_test);
+constexpr auto remove_if_section_t = mc::section("remove_if", remove_if_test::distributive_test);
+extern mc::detail::section_base *remove_if_section;

@@ -34,6 +34,7 @@ namespace split_if {
 	constexpr auto distributive_test =
 	        mc::test<distributive, 20, mc::gen::list_of<mc::gen::uint_<>, mc::gen::uint_<128>>,
 	                 mc::gen::list_of<mc::gen::uint_<>, mc::gen::uint_<128>>>;
-}
+} // namespace split_if
 
-constexpr auto split_if_section = mc::section("split_if", split_if::distributive_test);
+constexpr auto split_if_section_t = mc::section("split_if", split_if::distributive_test);
+extern mc::detail::section_base *split_if_section;

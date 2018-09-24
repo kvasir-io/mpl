@@ -31,8 +31,9 @@ namespace count_if {
 
 	constexpr auto commutative_test = mc::test<commutative, 20, mc::gen::list_of<mc::gen::bool_>,
 	                                           mc::gen::list_of<mc::gen::bool_>>;
-}
+} // namespace count_if
 
-constexpr auto count_if_section =
+constexpr auto count_if_section_t =
         mc::section("count_if", count_if::same_size_test, count_if::distributive_test,
                     count_if::commutative_test);
+extern mc::detail::section_base *count_if_section;

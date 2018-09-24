@@ -27,14 +27,16 @@ namespace transform {
 
 	constexpr auto size_test = mc::test<size, 20, mc::gen::list_of<mc::gen::anything>>;
 
-	template<typename L>
-	using not_same = mpl::call<mpl::unpack<mpl::fork<mpl::listify,
-	                                                 mpl::transform<mpl::listify>,
-	                                                 mpl::zip_with<mpl::is_same<mpl::invert<>>,
-	                                                               mpl::all<mpl::identity>>>>, L>;
+	template <typename L>
+	using not_same =
+	        mpl::call<mpl::unpack<mpl::fork<
+	                          mpl::listify, mpl::transform<mpl::listify>,
+	                          mpl::zip_with<mpl::is_same<mpl::invert<>>, mpl::all<mpl::identity>>>>,
+	                  L>;
 
 	constexpr auto not_same_test = mc::test<not_same, 20, mc::gen::list_of<mc::gen::anything>>;
-}
+} // namespace transform
 
-constexpr auto transform_section = mc::section("transform", transform::distributive_test,
-                                               transform::size_test, transform::not_same_test);
+constexpr auto transform_section_t = mc::section("transform", transform::distributive_test,
+                                                 transform::size_test, transform::not_same_test);
+extern mc::detail::section_base *transform_section;

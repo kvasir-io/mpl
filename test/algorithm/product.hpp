@@ -31,6 +31,7 @@ namespace product {
 	        mc::test<size, 20,
 	                 mc::gen::list_of<mc::gen::list_of<mc::gen::anything, mc::gen::uint_<16>>,
 	                                  mc::gen::uint_<4>>>;
-}
+} // namespace product
 
-constexpr auto product_section = mc::section("product", product::size_test);
+constexpr auto product_section_t = mc::section("product", product::size_test);
+extern mc::detail::section_base *product_section;

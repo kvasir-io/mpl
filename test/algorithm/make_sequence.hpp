@@ -42,8 +42,9 @@ namespace make_sequence {
 	        mpl::uint_<N::value + 1>>;
 
 	constexpr auto incremental_test = mc::test<incremental, 20, mc::gen::uint_<>>;
-}
+} // namespace make_sequence
 
-constexpr auto make_sequence_section =
+constexpr auto make_sequence_section_t =
         mc::section("make_sequence", make_sequence::equal_size_test, make_sequence::front_zero_test,
                     make_sequence::incremental_test);
+extern mc::detail::section_base *make_sequence_section;

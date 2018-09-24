@@ -15,6 +15,7 @@ namespace reverse {
 
 	constexpr auto double_reverse_test =
 	        mc::test<double_reverse, 20, mc::gen::list_of<mc::gen::anything>>;
-}
+} // namespace reverse
 
-constexpr auto reverse_section = mc::section("reverse", reverse::double_reverse_test);
+constexpr auto reverse_section_t = mc::section("reverse", reverse::double_reverse_test);
+extern mc::detail::section_base *reverse_section;

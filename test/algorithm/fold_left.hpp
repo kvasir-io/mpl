@@ -32,7 +32,8 @@ namespace fold_left {
 	                     L>>;
 
 	constexpr auto ordering_test = mc::test<ordering, 20, mc::gen::list_of<mc::gen::anything>>;
-}
+} // namespace fold_left
 
-constexpr auto fold_left_section =
+constexpr auto fold_left_section_t =
         mc::section("fold_left", fold_left::distributive_test, fold_left::ordering_test);
+extern mc::detail::section_base *fold_left_section;

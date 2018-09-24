@@ -33,6 +33,7 @@ namespace any {
 	using prepend = mpl::call<mpl::unpack<mpl::push_front<mpl::bool_<true>, mpl::any<>>>, List>;
 
 	constexpr auto prepend_test = mc::test<prepend, 20, mc::gen::list_of<mc::gen::bool_>>;
-}
+} // namespace any
 
-constexpr auto any_section = mc::section("any", any::bools_test, any::prepend_test);
+constexpr auto any_section_t = mc::section("any", any::bools_test, any::prepend_test);
+extern mc::detail::section_base *any_section;

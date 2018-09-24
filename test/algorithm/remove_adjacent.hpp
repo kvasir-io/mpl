@@ -14,12 +14,13 @@ namespace remove_adjacent {
 	template <typename L>
 	using same = mc::mpl::equal<
 	        mpl::call<mpl::unpack<mpl::remove_adjacent<
-	                          mpl::is_same<>,
-	                          mpl::remove_adjacent<mpl::is_same<mpl::invert<>>>>>,
+	                          mpl::is_same<>, mpl::remove_adjacent<mpl::is_same<mpl::invert<>>>>>,
 	                  L>,
 	        mpl::list<>>;
 
 	constexpr auto same_test = mc::test<same, 20, mc::gen::list_of<mc::gen::bool_>>;
-}
+} // namespace remove_adjacent
 
-constexpr auto remove_adjacent_section = mc::section("remove_adjacent", remove_adjacent::same_test);
+constexpr auto remove_adjacent_section_t =
+        mc::section("remove_adjacent", remove_adjacent::same_test);
+extern mc::detail::section_base *remove_adjacent_section;

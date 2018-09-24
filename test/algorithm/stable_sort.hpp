@@ -54,6 +54,7 @@ namespace stable_sort {
 
 	constexpr auto ordered_stable_test =
 	        mc::test<ordered_stable, 20, mc::gen::list_of<mc::gen::uint_<16>>>;
-}
+} // namespace stable_sort
 
-constexpr auto stable_sort_section = mc::section("stable_sort", stable_sort::ordered_stable_test);
+constexpr auto stable_sort_section_t = mc::section("stable_sort", stable_sort::ordered_stable_test);
+extern mc::detail::section_base *stable_sort_section;

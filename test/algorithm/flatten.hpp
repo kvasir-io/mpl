@@ -27,6 +27,7 @@ namespace flatten {
 
 	constexpr auto distributive_test =
 	        mc::test<distributive, 20, recursive_list<>, recursive_list<>>;
-}
+} // namespace flatten
 
-constexpr auto flatten_section = mc::section("flatten", flatten::distributive_test);
+constexpr auto flatten_section_t = mc::section("flatten", flatten::distributive_test);
+extern mc::detail::section_base *flatten_section;

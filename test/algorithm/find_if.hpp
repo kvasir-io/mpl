@@ -36,7 +36,8 @@ namespace find_if {
 
 	constexpr auto distributive_test = mc::test<distributive, 20, mc::gen::list_of<mc::gen::bool_>,
 	                                            mc::gen::list_of<mc::gen::bool_>>;
-}
+} // namespace find_if
 
-constexpr auto find_if_section =
+constexpr auto find_if_section_t =
         mc::section("find_if", find_if::uint_seq_test, find_if::distributive_test);
+extern mc::detail::section_base *find_if_section;
