@@ -9,7 +9,7 @@
 
 namespace kvasir {
 	namespace mpl {
-		/// \brief removes all elements in a list for which a predicate does not hald
+		/// \brief removes all elements in a list for which a predicate does not hold
 		/// \effects calls `C` with all elements in the input pack for which the provided predicate
 		/// `F` holds. \requires Type `F` shall be a `ContinuationPredicate` and C shall be any
 		/// `Continuation`. example call<filter<same_as<int>,cfe<std::tuple>>,void,int,char>
