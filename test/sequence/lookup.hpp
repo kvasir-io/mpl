@@ -8,7 +8,7 @@
 #include <kvasir/mpl/algorithm/make_sequence.hpp>
 #include <kvasir/mpl/sequence/lookup.hpp>
 
-#include <metacheck.hpp>
+#include <metacheck/metacheck.hpp>
 
 namespace lookup {
 	namespace mpl = kvasir::mpl;
@@ -25,4 +25,4 @@ namespace lookup {
 } // namespace lookup
 
 constexpr auto lookup_section_t = mc::section("lookup", lookup::uint_seq_test);
-extern mc::detail::section_base *lookup_section;
+extern mc::result *lookup_section;

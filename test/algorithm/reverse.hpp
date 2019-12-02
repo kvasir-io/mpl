@@ -4,7 +4,7 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
-#include <metacheck.hpp>
+#include <metacheck/metacheck.hpp>
 
 namespace reverse {
 	namespace mpl = kvasir::mpl;
@@ -18,4 +18,4 @@ namespace reverse {
 } // namespace reverse
 
 constexpr auto reverse_section_t = mc::section("reverse", reverse::double_reverse_test);
-extern mc::detail::section_base *reverse_section;
+extern mc::result *reverse_section;

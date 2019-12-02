@@ -6,7 +6,7 @@
 
 #include <type_traits>
 
-#include <metacheck.hpp>
+#include <metacheck/metacheck.hpp>
 
 namespace stable_sort {
 	namespace mpl = kvasir::mpl;
@@ -57,4 +57,4 @@ namespace stable_sort {
 } // namespace stable_sort
 
 constexpr auto stable_sort_section_t = mc::section("stable_sort", stable_sort::ordered_stable_test);
-extern mc::detail::section_base *stable_sort_section;
+extern mc::result *stable_sort_section;

@@ -10,7 +10,7 @@
 #include <kvasir/mpl/types/bool.hpp>
 #include <kvasir/mpl/types/int.hpp>
 
-#include <metacheck.hpp>
+#include <metacheck/metacheck.hpp>
 
 namespace filter {
 	namespace mpl = kvasir::mpl;
@@ -47,4 +47,4 @@ namespace filter {
 constexpr auto filter_section_t =
         mc::section("filter", filter::same_size_test, filter::distributive_test,
                     filter::commutative_test, filter::associative_test);
-extern mc::detail::section_base *filter_section;
+extern mc::result *filter_section;

@@ -10,7 +10,7 @@
 #include <kvasir/mpl/functional/bind.hpp>
 #include <kvasir/mpl/utility/is_same.hpp>
 
-#include <metacheck.hpp>
+#include <metacheck/metacheck.hpp>
 
 namespace find_if {
 	namespace mpl = kvasir::mpl;
@@ -40,4 +40,4 @@ namespace find_if {
 
 constexpr auto find_if_section_t =
         mc::section("find_if", find_if::uint_seq_test, find_if::distributive_test);
-extern mc::detail::section_base *find_if_section;
+extern mc::result *find_if_section;

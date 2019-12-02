@@ -9,7 +9,7 @@
 #include <kvasir/mpl/algorithm/make_sequence.hpp>
 #include <kvasir/mpl/types/list.hpp>
 
-#include <metacheck.hpp>
+#include <metacheck/metacheck.hpp>
 
 namespace make_sequence {
 	namespace mpl = kvasir::mpl;
@@ -47,4 +47,4 @@ namespace make_sequence {
 constexpr auto make_sequence_section_t =
         mc::section("make_sequence", make_sequence::equal_size_test, make_sequence::front_zero_test,
                     make_sequence::incremental_test);
-extern mc::detail::section_base *make_sequence_section;
+extern mc::result *make_sequence_section;

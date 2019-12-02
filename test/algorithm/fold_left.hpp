@@ -9,7 +9,7 @@
 #include <kvasir/mpl/types/int.hpp>
 #include <kvasir/mpl/types/list.hpp>
 
-#include <metacheck.hpp>
+#include <metacheck/metacheck.hpp>
 
 namespace fold_left {
 	namespace mpl = kvasir::mpl;
@@ -36,4 +36,4 @@ namespace fold_left {
 
 constexpr auto fold_left_section_t =
         mc::section("fold_left", fold_left::distributive_test, fold_left::ordering_test);
-extern mc::detail::section_base *fold_left_section;
+extern mc::result *fold_left_section;

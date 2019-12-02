@@ -11,7 +11,7 @@
 #include <kvasir/mpl/functional/bind.hpp>
 #include <kvasir/mpl/types/list.hpp>
 
-#include <metacheck.hpp>
+#include <metacheck/metacheck.hpp>
 
 namespace all {
 	namespace mpl = kvasir::mpl;
@@ -39,4 +39,4 @@ namespace all {
 } // namespace all
 
 constexpr auto all_section_t = mc::section("all", all::bools_test, all::prepend_test);
-extern mc::detail::section_base *all_section;
+extern mc::result *all_section;

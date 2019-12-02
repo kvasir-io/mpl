@@ -6,7 +6,7 @@
 
 #include <type_traits>
 
-#include <metacheck.hpp>
+#include <metacheck/metacheck.hpp>
 
 namespace remove_if_test {
 	namespace mpl = kvasir::mpl;
@@ -21,4 +21,4 @@ namespace remove_if_test {
 } // namespace remove_if_test
 
 constexpr auto remove_if_section_t = mc::section("remove_if", remove_if_test::distributive_test);
-extern mc::detail::section_base *remove_if_section;
+extern mc::result *remove_if_section;

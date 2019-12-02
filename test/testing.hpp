@@ -5,5 +5,5 @@
 #pragma once
 
 #define TEST_CPP(NAME) \
-auto NAME##_impl = PRECALC_SECTION(NAME##_t); \
-mc::detail::section_base *NAME = &NAME##_impl;
+auto NAME##_impl = mc::evaluate(NAME##_t); \
+mc::result *NAME = &NAME##_impl;

@@ -6,7 +6,7 @@
 
 #include <type_traits>
 
-#include <metacheck.hpp>
+#include <metacheck/metacheck.hpp>
 
 namespace sort {
 	namespace mpl = kvasir::mpl;
@@ -39,4 +39,4 @@ namespace sort {
 } // namespace sort
 
 constexpr auto sort_section_t = mc::section("sort", sort::order_test);
-extern mc::detail::section_base *sort_section;
+extern mc::result *sort_section;

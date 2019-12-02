@@ -8,7 +8,7 @@
 
 #include <kvasir/mpl/algorithm/count_if.hpp>
 
-#include <metacheck.hpp>
+#include <metacheck/metacheck.hpp>
 
 namespace count_if {
 	namespace mpl = kvasir::mpl;
@@ -36,4 +36,4 @@ namespace count_if {
 constexpr auto count_if_section_t =
         mc::section("count_if", count_if::same_size_test, count_if::distributive_test,
                     count_if::commutative_test);
-extern mc::detail::section_base *count_if_section;
+extern mc::result *count_if_section;

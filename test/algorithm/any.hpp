@@ -10,7 +10,7 @@
 #include <kvasir/mpl/functional/bind.hpp>
 #include <kvasir/mpl/types/list.hpp>
 
-#include <metacheck.hpp>
+#include <metacheck/metacheck.hpp>
 
 namespace any {
 	namespace mpl = kvasir::mpl;
@@ -36,4 +36,4 @@ namespace any {
 } // namespace any
 
 constexpr auto any_section_t = mc::section("any", any::bools_test, any::prepend_test);
-extern mc::detail::section_base *any_section;
+extern mc::result *any_section;

@@ -6,7 +6,7 @@
 
 #include <type_traits>
 
-#include <metacheck.hpp>
+#include <metacheck/metacheck.hpp>
 
 namespace transform {
 	namespace mpl = kvasir::mpl;
@@ -39,4 +39,4 @@ namespace transform {
 
 constexpr auto transform_section_t = mc::section("transform", transform::distributive_test,
                                                  transform::size_test, transform::not_same_test);
-extern mc::detail::section_base *transform_section;
+extern mc::result *transform_section;

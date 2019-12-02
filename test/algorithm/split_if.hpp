@@ -4,7 +4,7 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
-#include <metacheck.hpp>
+#include <metacheck/metacheck.hpp>
 
 namespace split_if {
 	namespace mpl = kvasir::mpl;
@@ -37,4 +37,4 @@ namespace split_if {
 } // namespace split_if
 
 constexpr auto split_if_section_t = mc::section("split_if", split_if::distributive_test);
-extern mc::detail::section_base *split_if_section;
+extern mc::result *split_if_section;

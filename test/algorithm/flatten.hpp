@@ -8,7 +8,7 @@
 
 #include <kvasir/mpl/mpl.hpp>
 
-#include <metacheck.hpp>
+#include <metacheck/metacheck.hpp>
 
 namespace flatten {
 	namespace mpl = kvasir::mpl;
@@ -30,4 +30,4 @@ namespace flatten {
 } // namespace flatten
 
 constexpr auto flatten_section_t = mc::section("flatten", flatten::distributive_test);
-extern mc::detail::section_base *flatten_section;
+extern mc::result *flatten_section;

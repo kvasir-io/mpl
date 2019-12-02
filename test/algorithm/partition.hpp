@@ -7,7 +7,7 @@
 #include <limits>
 #include <type_traits>
 
-#include <metacheck.hpp>
+#include <metacheck/metacheck.hpp>
 
 namespace partition {
 	namespace mpl = kvasir::mpl;
@@ -56,4 +56,4 @@ namespace partition {
 
 constexpr auto partition_section_t =
         mc::section("partition", partition::ordering_test, partition::same_size_test);
-extern mc::detail::section_base *partition_section;
+extern mc::result *partition_section;

@@ -6,7 +6,7 @@
 
 #include <kvasir/mpl/sequence/size.hpp>
 
-#include <metacheck.hpp>
+#include <metacheck/metacheck.hpp>
 
 namespace size { /*
 	 using namespace kvasir::mpl;
@@ -31,4 +31,4 @@ namespace size { /*
 } // namespace size
 
 constexpr auto size_section_t = mc::section("size", size::distributive_test);
-extern mc::detail::section_base *size_section;
+extern mc::result *size_section;

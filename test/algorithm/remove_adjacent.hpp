@@ -6,7 +6,7 @@
 
 #include <type_traits>
 
-#include <metacheck.hpp>
+#include <metacheck/metacheck.hpp>
 
 namespace remove_adjacent {
 	namespace mpl = kvasir::mpl;
@@ -23,4 +23,4 @@ namespace remove_adjacent {
 
 constexpr auto remove_adjacent_section_t =
         mc::section("remove_adjacent", remove_adjacent::same_test);
-extern mc::detail::section_base *remove_adjacent_section;
+extern mc::result *remove_adjacent_section;

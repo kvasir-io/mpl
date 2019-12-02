@@ -6,7 +6,7 @@
 
 #include <type_traits>
 
-#include <metacheck.hpp>
+#include <metacheck/metacheck.hpp>
 
 namespace product {
 	namespace mpl = kvasir::mpl;
@@ -34,4 +34,4 @@ namespace product {
 } // namespace product
 
 constexpr auto product_section_t = mc::section("product", product::size_test);
-extern mc::detail::section_base *product_section;
+extern mc::result *product_section;

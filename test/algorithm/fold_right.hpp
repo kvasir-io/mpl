@@ -11,7 +11,7 @@
 #include <kvasir/mpl/types/int.hpp>
 #include <kvasir/mpl/types/list.hpp>
 
-#include <metacheck.hpp>
+#include <metacheck/metacheck.hpp>
 
 namespace fold_right {
 	namespace mpl = kvasir::mpl;
@@ -38,4 +38,4 @@ namespace fold_right {
 
 constexpr auto fold_right_section_t =
         mc::section("fold_right", fold_right::distributive_test, fold_right::ordering_test);
-extern mc::detail::section_base *fold_right_section;
+extern mc::result *fold_right_section;

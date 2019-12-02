@@ -4,7 +4,7 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
-#include <metacheck.hpp>
+#include <metacheck/metacheck.hpp>
 
 namespace zip_with {
 	namespace mpl = kvasir::mpl;
@@ -18,4 +18,4 @@ namespace zip_with {
 } // namespace zip_with
 
 constexpr auto zip_with_section_t = mc::section("zip_with", zip_with::same_test);
-extern mc::detail::section_base *zip_with_section;
+extern mc::result *zip_with_section;
