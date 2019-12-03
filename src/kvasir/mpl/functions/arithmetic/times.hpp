@@ -4,19 +4,20 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
-#include "../../types/integral_constant.hpp"
 #include "../../functional/identity.hpp"
+#include "../../types/integral_constant.hpp"
 
 namespace kvasir {
 	namespace mpl {
-		template<typename C = identity>
+		template <typename C = identity>
 		struct times {
 			template <typename A, typename B>
-			using f = typename C::template f<integral_constant<decltype(A::value * B::value), (A::value * B::value)>>;
+			using f = typename C::template f<
+			        integral_constant<decltype(A::value * B::value), (A::value * B::value)>>;
 		};
 		namespace eager {
 			template <typename A, typename B>
 			using times = integral_constant<decltype(A::value * B::value), (A::value * B::value)>;
 		}
-	}
-}
+	} // namespace mpl
+} // namespace kvasir

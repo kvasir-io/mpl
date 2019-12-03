@@ -39,7 +39,7 @@ namespace kvasir {
 					using front = nothing;
 					using rest  = mpl::list<>;
 				};
-			}
+			} // namespace impl
 
 			/// pop a single element from the front of a list
 			/// returns a pair of the first element and the rest of the list, with ::front and
@@ -48,6 +48,6 @@ namespace kvasir {
 			/// ::rest will be an empty list
 			template <typename List>
 			using pop_front = impl::pop_front_impl<List>;
-		}
-	}
-}
+		} // namespace eager
+	} // namespace mpl
+} // namespace kvasir

@@ -4,6 +4,7 @@ project(kvasir_mpl)
 # create the kvasir_mpl library target
 add_library(kvasir_mpl INTERFACE)
 target_include_directories(kvasir_mpl INTERFACE
+		$<INSTALL_INTERFACE:include>
 		$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src>)
 # mpl requires a number of features to compile, this will automatically set the c++ standard version
 # to support those features. The c++ version is not explicitly set, so that cmake can figure
@@ -20,10 +21,9 @@ target_compile_features(kvasir_mpl INTERFACE
 		cxx_user_literals
 		${CPP_EXTRA_FEATURES})
 
-
-option(KVASIR_MPL_TESTING OFF)
+option(BUILD_TESTING OFF)
 option(MAKE_INCLUDE_TESTS OFF)
-if (KVASIR_MPL_TESTING)
+if (MAKE_INCLUDE_TESTS)
 	include(ExternalProject)
 	ExternalProject_Add(metacheck
 			PREFIX metacheck
@@ -163,13 +163,28 @@ if (STANDARDESE)
 	file(MAKE_DIRECTORY ${KVASIR_MPL_DOCS_DIR})
 	add_custom_target(
 			standardese
-			COMMAND ${STANDARDESE}
+			COMMAND standardese
 			-I${CMAKE_SOURCE_DIR}/src/kvasir/mpl
 			--input.blacklist_namespace=detail
-			--compilation.comments_in_macro=false
+                        --input.blacklist_namespace=eager
 			--output.require_comment_for_full_synopsis=false
 			--output.format=html
 			${CMAKE_SOURCE_DIR}/src/kvasir/mpl
 			WORKING_DIRECTORY ${KVASIR_MPL_DOCS_DIR}
 	)
 endif (STANDARDESE)
+
+include(GNUInstallDirs)
+
+install(DIRECTORY src/
+	DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
+)
+
+install(TARGETS kvasir_mpl
+	EXPORT kvasir_mplConfig
+	DESTINATION ${CMAKE_INSTALL_LIBDIR}
+)
+
+install(EXPORT kvasir_mplConfig
+	DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/kvasir_mpl"
+)

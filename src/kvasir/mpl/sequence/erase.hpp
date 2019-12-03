@@ -21,5 +21,5 @@ namespace kvasir {
 			template <typename List, unsigned Index>
 			using erase = call<unpack<mpl::erase<uint_<Index>>>, List>;
 		}
-	}
-}
+	} // namespace mpl
+} // namespace kvasir

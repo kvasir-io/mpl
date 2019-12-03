@@ -28,9 +28,9 @@ namespace kvasir {
 		struct offset {
 			template <typename... Ts>
 			using f = typename C::template f<uint_<(T::value - sizeof...(Ts))>>;
-		}; 
+		};
 		template <typename T>
-		struct offset<T,identity> {
+		struct offset<T, identity> {
 			template <typename... Ts>
 			using f = uint_<(T::value - sizeof...(Ts))>;
 		};
@@ -39,6 +39,6 @@ namespace kvasir {
 			/// type
 			template <typename List>
 			using size = call<unpack<mpl::size<>>, List>;
-		}
-	}
-}
+		} // namespace eager
+	} // namespace mpl
+} // namespace kvasir

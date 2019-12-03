@@ -22,5 +22,5 @@ namespace kvasir {
 			template <typename List, unsigned Index, typename Input>
 			using insert = call<unpack<insert<uint_<Index>, Input>>, List>;
 		}
-	}
-}
+	} // namespace mpl
+} // namespace kvasir

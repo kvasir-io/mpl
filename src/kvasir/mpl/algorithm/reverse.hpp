@@ -77,7 +77,8 @@ namespace kvasir {
 				              Tail>,
 				        Ts...>;
 			};
-		}
+		} // namespace detail
+		/// \brief reverses the order of elements in a pack
 		template <typename C = listify>
 		struct reverse {
 			template <typename... Ts>
@@ -90,5 +91,5 @@ namespace kvasir {
 			template <typename List>
 			using reverse = call<unpack<mpl::reverse<typename sequencify<List>::type>>, List>;
 		}
-	}
-}
+	} // namespace mpl
+} // namespace kvasir

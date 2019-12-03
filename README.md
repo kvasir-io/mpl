@@ -33,6 +33,7 @@ We'd like to thank the following contributors, in alphabetical order:
 - Chiel Douwes ([@chieltbest](https://github.com/chieltbest))
 - Emil Fresk ([@korken89](https://github.com/korken89))
 - Odin Holmes ([@odinthenerd](https://github.com/odinthenerd))
+- Jonathan Poelen ([@jonathanpoelen](https://github.com/jonathanpoelen))
 
 ## Maintainer
 This library is maintained by Chiel Douwes ([@chieltbest](https://github.com/chieltbest)).

@@ -4,19 +4,19 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
-#include "../../types/bool.hpp"
 #include "../../functional/identity.hpp"
+#include "../../types/bool.hpp"
 
 namespace kvasir {
 	namespace mpl {
-		template<typename C = identity>
+		template <typename C = identity>
 		struct not_equal {
 			template <typename A, typename B>
 			using f = typename C::template f<bool_<(A::value != B::value)>>;
 		};
-		namespace eager{
+		namespace eager {
 			template <typename A, typename B>
 			using not_equal = bool_<(A::value != B::value)>;
 		}
-	}
-}
+	} // namespace mpl
+} // namespace kvasir

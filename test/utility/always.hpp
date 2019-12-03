@@ -4,14 +4,18 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
-#include <type_traits>
-
+#include <kvasir/mpl/functional/call.hpp>
+#include <kvasir/mpl/types/bool.hpp>
 #include <kvasir/mpl/utility/always.hpp>
 
 namespace {
 	namespace mpl = kvasir::mpl;
 
-	static_assert(std::is_same<mpl::always<int>::template f<void>, int>::value, "");
+	struct always_test {
+		always_test() {
+			mpl::call<mpl::always<mpl::bool_<false>>, void>{} = mpl::bool_<false>{};
+		}
+	};
 
 	template <typename T>
 	struct foo {

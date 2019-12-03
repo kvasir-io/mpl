@@ -20,5 +20,5 @@ namespace kvasir {
 			template <typename List, unsigned N>
 			using take = call<unpack<mpl::take<mpl::uint_<N>>>, List>;
 		}
-	}
-}
+	} // namespace mpl
+} // namespace kvasir

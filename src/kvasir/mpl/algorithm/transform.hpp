@@ -11,33 +11,37 @@
 
 namespace kvasir {
 	namespace mpl {
-		/// transform a list using a type wrapped predicate
-		template <typename F, typename C = listify>
+		/// \brief executes the continuation `F` on every element in the input pack passing the
+		/// results to the continuation `C`
+		template <typename F = identity, typename C = listify>
 		struct transform {
 			template <typename... Ts>
 			using f = typename dcall<C, sizeof...(Ts)>::template f<typename F::template f<Ts>...>;
 		};
+		/// \exclude
 		template <template <typename...> class F, typename C>
 		struct transform<cfe<F, identity>, C> {
 			template <typename... Ts>
 			using f = typename dcall<C, sizeof...(Ts)>::template f<
 			        typename dcallf<(sizeof...(Ts) < 100000)>::template f1<F, Ts>...>;
 		};
+		/// \exclude
 		template <template <typename...> class F, template <typename...> class C>
 		struct transform<cfe<F, identity>, cfe<C, identity>> {
 			template <typename... Ts>
 			using f = C<F<Ts>...>;
 		};
+		/// \exclude
 		template <typename F, template <typename...> class C>
 		struct transform<F, cfe<C, identity>> {
 			template <typename... Ts>
-			using f = C<typename F::template f<Ts>...>;
+			using f = typename dcallf<(sizeof...(Ts) <
+			                           100000)>::template f1<C, typename F::template f<Ts>...>;
 		};
 
 		namespace eager {
-			/// transform each element in a list with a function
 			template <typename List, template <typename...> class F>
 			using transform = call<unpack<mpl::transform<cfe<F>, listify>>, List>;
 		}
-	}
-}
+	} // namespace mpl
+} // namespace kvasir

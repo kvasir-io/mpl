@@ -5,8 +5,8 @@
 #pragma once
 
 #include "../functional/call.hpp"
-#include "../types/int.hpp"
 #include "../sequence/front.hpp"
+#include "../types/int.hpp"
 
 namespace kvasir {
 	namespace mpl {
@@ -76,7 +76,7 @@ namespace kvasir {
 			struct drop_impl<8, C> {
 				template <unsigned N, typename T0, typename T1, typename T2, typename T3,
 				          typename T4, typename T5, typename T6, typename T7, typename... Ts>
-				using f = typename drop_impl<N-8, C>::template f<(N-8), Ts...>;
+				using f = typename drop_impl<N - 8, C>::template f<(N - 8), Ts...>;
 			};
 			template <typename C>
 			struct drop_impl<16, C> {
@@ -163,16 +163,16 @@ namespace kvasir {
 				using f = typename drop_impl<select_next_drop_step(N - 256, sizeof...(Ts)),
 				                             C>::template f<(N - 256), Ts...>;
 			};
-		}
+		} // namespace detail
 		template <typename N, typename C = listify>
 		struct drop {
 			template <typename... Ts>
 			using f = typename detail::drop_impl<detail::select_next_drop_step(N::value,
-				sizeof...(Ts)),
-				C>::template f<N::value, Ts...>;
+			                                                                   sizeof...(Ts)),
+			                                     C>::template f<N::value, Ts...>;
 		};
 
-		//composition matching for common lambda cases
+		// composition matching for common lambda cases
 		template <typename C>
 		struct drop<uint_<0>, front<C>> {
 			template <typename T, typename... Ts>
@@ -225,5 +225,5 @@ namespace kvasir {
 			template <typename List, unsigned Index>
 			using drop = call<unpack<mpl::drop<mpl::uint_<Index>>>, List>;
 		}
-	}
-}
+	} // namespace mpl
+} // namespace kvasir

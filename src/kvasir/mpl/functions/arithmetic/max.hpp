@@ -4,21 +4,22 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
+#include "../../functional/identity.hpp"
 #include "../../types/integral_constant.hpp"
 #include "../../utility/conditional.hpp"
-#include "../../functional/identity.hpp"
 
 namespace kvasir {
 	namespace mpl {
 
-		template<typename C = identity>
+		template <typename C = identity>
 		struct max {
 			template <typename A, typename B>
-			using f = typename C::template f<typename conditional<(A::value > B::value)>::template f<A, B>>;
+			using f = typename C::template f<
+			        typename conditional<(A::value > B::value)>::template f<A, B>>;
 		};
 		namespace eager {
 			template <typename A, typename B>
 			using max = typename conditional<(A::value > B::value)>::template f<A, B>;
 		}
-	}
-}
+	} // namespace mpl
+} // namespace kvasir

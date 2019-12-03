@@ -10,18 +10,14 @@
 namespace kvasir {
 	namespace mpl {
 		namespace detail {
-			template <bool b>
+			template <bool b, typename C>
 			struct dependant_impl;
-			template <>
-			struct dependant_impl<true> {
-				template <typename C>
-				using f = C;
-			};
-		}
+			template <typename C>
+			struct dependant_impl<true, C> : C {};
+		} // namespace detail
 
 		template <typename C, unsigned size>
-		using dcall =
-		        typename detail::dependant_impl<static_cast<bool>(size < 100000)>::template f<C>;
+		using dcall = typename detail::dependant_impl<static_cast<bool>(size < 100000), C>;
 
 		template <bool>
 		struct dcallf;
@@ -41,5 +37,5 @@ namespace kvasir {
 			          typename... Ts>
 			using f2 = F1<F2<>>;
 		};
-	}
-}
+	} // namespace mpl
+} // namespace kvasir

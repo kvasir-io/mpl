@@ -2,20 +2,27 @@
 // Distributed under the Boost Software License, Version 1.0.
 //    (See accompanying file LICENSE.md or copy at
 //          http://www.boost.org/LICENSE_1_0.txt)
+
 #include "algorithm/all.hpp"
 #include "algorithm/any.hpp"
+#include "algorithm/combinations.hpp"
 #include "algorithm/count_if.hpp"
+#include "algorithm/extreme.hpp"
 #include "algorithm/filter.hpp"
 #include "algorithm/find_if.hpp"
 #include "algorithm/flatten.hpp"
 #include "algorithm/fold_left.hpp"
 #include "algorithm/fold_right.hpp"
+#include "algorithm/group.hpp"
+#include "algorithm/lookup.hpp"
+#include "algorithm/none.hpp"
 #include "algorithm/make_sequence.hpp"
 #include "algorithm/partition.hpp"
 #include "algorithm/product.hpp"
 #include "algorithm/remove_adjacent.hpp"
 #include "algorithm/remove_if.hpp"
 #include "algorithm/reverse.hpp"
+#include "algorithm/rotate.hpp"
 #include "algorithm/sort.hpp"
 #include "algorithm/split_if.hpp"
 #include "algorithm/stable_sort.hpp"
@@ -25,6 +32,7 @@
 #include "functional/bind.hpp"
 #include "functional/call.hpp"
 #include "functional/compose.hpp"
+#include "functional/flow.hpp"
 #include "functional/fork.hpp"
 #include "functional/identity.hpp"
 
@@ -56,11 +64,11 @@
 #include "sequence/at.hpp"
 #include "sequence/is_list.hpp"
 #include "sequence/join.hpp"
-#include "sequence/lookup.hpp"
 #include "sequence/pop_front.hpp"
 #include "sequence/push_back.hpp"
 #include "sequence/push_front.hpp"
 #include "sequence/size.hpp"
+
 #include "types/bool.hpp"
 #include "types/int.hpp"
 #include "types/integral_constant.hpp"

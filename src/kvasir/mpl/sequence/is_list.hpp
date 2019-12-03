@@ -20,10 +20,10 @@ namespace kvasir {
 				struct is_list<mpl::list<Ts...>> {
 					using f = bool_<true>;
 				};
-			}
+			} // namespace impl
 
 			template <typename Elem>
 			using is_list = typename impl::is_list<Elem>::f;
-		}
-	}
-}
+		} // namespace eager
+	} // namespace mpl
+} // namespace kvasir

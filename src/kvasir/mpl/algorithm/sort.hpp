@@ -325,7 +325,7 @@ namespace kvasir {
 				                Comp>::type,
 				        typename sort_impl<list<>, list<T255, Ts...>, Comp>::type, Comp>;
 			};
-		}
+		} // namespace detail
 
 		namespace detail {
 			template <template <typename...> class F, typename T0, typename T1, typename T2,
@@ -441,7 +441,7 @@ namespace kvasir {
 			struct recursive_merge<F, rlist<T, rlist<list<>, U>>> {
 				using type = T;
 			};
-		}
+		} // namespace detail
 		//			template <template <typename...> class F>
 		//			struct sort {
 		//				template <typename... Ts>
@@ -449,15 +449,14 @@ namespace kvasir {
 		// detail::sort_loop<detail::select_sort_loop(sizeof...(Ts)),
 		//				                                     F>::template f<Ts...>;
 		//			};
-		template <template <typename...> class F = less_than, typename C = listify>
+
+		/// \brief sorts a pack of elements
+		template <typename F = less_than<>, typename C = listify>
 		using sort = stable_sort<F, C>;
 
 		namespace eager {
-			//		template <typename List, template <typename...> class Comp = less_than>
-			//		using sort = typename c::detail::recursive_merge<Comp, c::call<c::sort<Comp>,
-			// List>>::type;
 			template <typename List, template <typename...> class Comp = less_than>
 			using sort = stable_sort<List, Comp>;
 		}
-	}
-}
+	} // namespace mpl
+} // namespace kvasir

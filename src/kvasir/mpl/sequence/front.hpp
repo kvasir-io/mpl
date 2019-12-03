@@ -4,20 +4,20 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 #pragma once
 
-#include "../types/list.hpp"
 #include "../functional/identity.hpp"
+#include "../types/list.hpp"
 
 namespace kvasir {
 	namespace mpl {
-		template<typename C = identity>
+		template <typename C = identity>
 		struct front {
 			template <typename T, typename... Ts>
 			using f = typename C::template f<T>;
 		};
-		template<>
+		template <>
 		struct front<identity> {
 			template <typename T, typename... Ts>
 			using f = T;
 		};
-	}
-}
+	} // namespace mpl
+} // namespace kvasir

@@ -20,7 +20,7 @@ namespace kvasir {
 			                    rlist<list<>,
 			                          rlist<list<>,
 			                                rlist<list<>, rlist<list<>, rlist<list<>, void>>>>>>>>;
-		}
+		} // namespace detail
 		using listify = cfe<list>;
 
 		template <typename S>
@@ -34,5 +34,5 @@ namespace kvasir {
 		list<Ts...> make_list(Ts...) {
 			return {};
 		}
-	}
-}
+	} // namespace mpl
+} // namespace kvasir
