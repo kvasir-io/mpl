@@ -192,7 +192,7 @@ namespace kvasir {
 		template <typename C = identity>
 		struct is_pod {
 			template <typename T>
-			using f = typename C::template f<bool_<std::is_pod<T>::value>>;
+			using f = typename C::template f<bool_<std::is_standard_layout<T>::value && std::is_trivial<T>::value>>;
 		};
 		template <typename C = identity>
 		struct is_literal_type {
