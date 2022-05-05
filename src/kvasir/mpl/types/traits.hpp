@@ -194,11 +194,13 @@ namespace kvasir {
 			template <typename T>
 			using f = typename C::template f<bool_<std::is_standard_layout<T>::value && std::is_trivial<T>::value>>;
 		};
+#if __cplusplus < 201703L // this feature is deprecated in c++17, and there is no feature test macro for it
 		template <typename C = identity>
 		struct is_literal_type {
 			template <typename T>
 			using f = typename C::template f<bool_<std::is_literal_type<T>::value>>;
 		};
+#endif
 		template <typename C = identity>
 		struct is_empty {
 			template <typename T>

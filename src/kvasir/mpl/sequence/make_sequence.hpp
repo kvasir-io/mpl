@@ -28,12 +28,12 @@ namespace kvasir {
 			template <typename C>
 			struct make_seq_impl<0, C> { // done
 				template <unsigned End, unsigned... Is>
-				using f = typename C::template f<uint_<Is>...>;
+				using f = call<C, uint_<Is>...>;
 			};
 			template <typename C>
 			struct make_seq_impl<1, C> { // done +1
 				template <unsigned End, unsigned... Is>
-				using f = typename C::template f<uint_<Is>..., uint_<End - 1>>;
+				using f = call<C, uint_<Is>..., uint_<End - 1>>;
 			};
 			template <typename C>
 			struct make_seq_impl<2, C> { // double
